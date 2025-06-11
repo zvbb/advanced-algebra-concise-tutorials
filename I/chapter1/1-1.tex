@@ -62,11 +62,59 @@
 
     \item (3)
 
-          不是数域。举一个反例。
+          %   不是数域。
 
-          
-
+          %   \begin{align}
+          %     \mathbb{Q}(\pi) = \{\frac{a_0 + a_1\pi + \cdots + a_n\pi^n}{b_0 + b_1\pi + \cdots + b_m\pi^m}| m,n \in \mathbb{N}; a_i, b_j \in \mathbb{Q}; 1 \leq i \leq n, 1 \leq j \leq m \}
+          %   \end{align}
 
 \end{itemize}
+
+\section*{2}
+
+\begin{itemize}
+    \item (1)
+
+          既不是单射也不是满射。
+
+    \item (2)
+
+          不是单射，是满射。
+
+    \item (3)
+          是单射，不是满射。
+\end{itemize}
+
+\section*{3}
+
+\begin{itemize}
+    \item (1)
+
+          反证法，假设$f$不是满射，
+          那么，存在$y \in S$，没有$x \in S$使得$f(x) = y$，
+          即$f(S) \subseteq S \setminus \{y\}$。
+
+          $S$中的元素个数为$n$，$S \setminus \{y\}$的元素个数小于$n$，
+          那么，$f$存在多个元素映射到同一个元素，这与$f$是单射矛盾。
+
+    \item (2)
+
+          反证法，假设$f$不是单射。
+          那么，存在$a \neq b$使得
+          \begin{align*}
+              f(a) = f(b)
+          \end{align*}
+          从而
+          \begin{align*}
+              f(S \setminus \{a\}) = f(S \setminus \{b\}) = f(S)
+          \end{align*}
+          于是$f(S)$的元素个数小于等于$n - 1$，
+          那么，$ S \setminus f(S) \neq \varnothing$，
+          设$y \in S \setminus f(S)$，
+          则不存在$x \in S$使得$f(x) = b$，这与$f$是满射矛盾。
+\end{itemize}
+
+
+
 
 \end{document}
