@@ -493,6 +493,54 @@ $n = k + 1$时，利用归纳假设，我们有
 
 \section*{15}
 
-todo 
+对任意$a \in \mathbb{Q}$，可以表示成一下形式：
+\begin{align*}
+      a + 0\sqrt{2}
+\end{align*}
+所以，$a \in \mathbb{Q}(\sqrt{2})$，
+由$a$的任意性，我们有
+\begin{align*}
+      \mathbb{Q} \subseteq \mathbb{Q}(\sqrt{2})
+\end{align*}
+
+于是，在有理数的范围下，由习题14可知，
+$f = id_{\mathbb{Q}}$或$f$是零变换。
+
+如果$f$满足有理数下的零变换，
+那么对任意$\alpha \in \mathbb{Q}(\sqrt{2})$（不妨表示成$\alpha = a + b\sqrt{2}$的形式）
+我们有，
+\begin{align*}
+      f(a + b\sqrt{2})
+       & = f(a) + f(b\sqrt{2})    \\
+       & = f(a) + f(b)f(\sqrt{2}) \\
+       & = 0 + 0f(\sqrt{2})       \\
+       & = 0
+\end{align*}
+属于情况（1）。
+
+如果$f = id_{\mathbb{Q}}$，
+因为
+\begin{align*}
+      2 = \sqrt{2} \sqrt{2}
+\end{align*}
+
+于是
+\begin{align*}
+      f(2)        & = f(\sqrt{2}) f(\sqrt{2}) \\
+      2           & = f(\sqrt{2})^2           \\
+      f(\sqrt{2}) & = \pm \sqrt{2}
+\end{align*}
+
+那么对任意$\alpha \in \mathbb{Q}(\sqrt{2})$，
+（不妨表示成$\alpha = a + b\sqrt{2}$的形式），
+我们有
+\begin{align*}
+      f(\alpha) & = f(a + b\sqrt{2})        \\
+                & = f(a) + f(b\sqrt{2})     \\
+                & = f(a) + f(b) f(\sqrt{2}) \\
+                & = a + \pm b \sqrt{2}
+\end{align*}
+属于情况(2)(3)。
+
 
 \end{document}
