@@ -1,0 +1,302 @@
+\documentclass{article}
+\usepackage{mathtools} 
+\usepackage{fontspec}
+\usepackage[UTF8]{ctex}
+\usepackage{amsthm}
+\usepackage{mdframed}
+\usepackage{xcolor}
+\usepackage{amssymb}
+\usepackage{amsmath}
+
+
+% 定义新的带灰色背景的说明环境 zremark
+\newmdtheoremenv[
+  backgroundcolor=gray!10,
+  % 边框与背景一致，边框线会消失
+  linecolor=gray!10
+]{zremark}{注释}
+
+% 通用矩阵命令: \flexmatrix{矩阵名}{元素符号}{行数}{列数}
+\newcommand{\flexmatrix}[4]{
+  \[
+  #1 = \begin{pmatrix}
+    #2_{11}     & #2_{12}     & \cdots & #2_{1#4}   \\
+    #2_{21}     & #2_{22}     & \cdots & #2_{2#4}   \\
+    \vdots      & \vdots      & \ddots & \vdots     \\
+    #2_{#31}    & #2_{#32}    & \cdots & #2_{#3#4}
+  \end{pmatrix}
+  \]
+}
+
+% 简化版命令（默认矩阵名为A，元素符号为a）: \quickmatrix{行数}{列数}
+\newcommand{\quickmatrix}[2]{\flexmatrix{A}{a}{#1}{#2}}
+
+
+\begin{document}
+\title{1.2}
+\author{张志聪}
+\maketitle
+
+\section*{1}
+
+$\mathbb{Q}(\sqrt{5})$
+
+\section*{2}
+
+令$f(x) = 2x^4 - 3x^2 + x - 1$。
+
+由命题2.1，令$a = 1, f(1) = -1$，于是我们有
+\begin{align*}
+  f(x) & = q(x)(x - 1) + f(1) \\
+       & = q(x)(x - 1) - 1
+\end{align*}
+其中
+\begin{align*}
+  q(x) & = 2 q_4(x) - 3 q_2(x) + 1                 \\
+       & = 2(x^3 + x^2 + x + 1^1) - 3(x^1 + 1) + 1 \\
+       & = 2x^3 + 2x^2 + 2x + 2 - 3x - 3 + 1       \\
+       & = 2x^3 + 2x^2 - x
+\end{align*}
+
+\section*{3}
+
+由命题2.1可知
+\begin{align*}
+  q(x) = a_0q_n(x) + a_1q_{n-1}(x) + \cdots + a_{n - 1}
+\end{align*}
+
+对任意$2 \leq k \leq n$，我们有
+\begin{align*}
+  q_k(x) = x^{k - 1} + ax^{k - 2} + \cdots + a^{k - 1}
+\end{align*}
+因为$a \in K$，所以$q_k(x)$的系数也都属于$K$。
+进而，$q(x)$的系数也都属于$K$。
+
+\section*{4}
+
+我们考虑变量代换$y = x - a$，于是$x = y + a$，我们有
+\begin{align*}
+  f(x) = f(y + a)
+\end{align*}
+$f(y + a)$是一个以$y$为变量的新的多项式$g$，次数为$n$，且系数任然属于数域$K$，
+设它为
+\begin{align*}
+  g(y) = b_0 + b_1 y + b_2 y^2 + \cdots + b_{n} y^{n}
+\end{align*}
+代回$y = x - a$，我们有
+\begin{align*}
+  g(y) = b_0 + b_1 (x - a) + b_2 (x - a)^2 + \cdots + b_{n} (x - a)^n
+\end{align*}
+又因为，我们有
+\begin{align*}
+  g(y) = f(y + a) = f(x)
+\end{align*}
+所以
+\begin{align*}
+  f(x) = b_0 + b_1 (x - a) + b_2 (x - a)^2 + \cdots + b_{n} (x - a)^n
+\end{align*}
+
+（另一种方法就是以数学分析的角度考虑——泰勒公式的有限版本）
+
+\section*{5}
+
+由推论1可知，$f(x)$有$n$个复数根，不妨设为
+\begin{align*}
+  \alpha_1, \alpha_2, \cdots, \alpha_n
+\end{align*}
+由命题2.2可知，$f(x)$可表示成
+\begin{align*}
+  f(x) = a_0(x - \alpha_1)(x - \alpha_2) \cdots (x - \alpha_n)
+\end{align*}
+
+对$\alpha_1, \alpha_2, \cdots, \alpha_n$可以分成两类：\\
+一类是实数根，设为$R = \{b_i \in \mathbb{R}, i = 1, 2, \cdots, k\}$；\\
+一类是复数根，设为$C = \{c_i \in \mathbb{C}, i = 1, 2, \cdots, m\}$；\\
+于是，我们有
+\begin{align*}
+  f(x) = a_0(x - b_1)(x - b_2) \cdots (x - b_k)(x - c_1)(x - c_2) \cdots (x - c_m)
+\end{align*}
+由命题2.4可知，对任意$c_j \in C$，由对应的共轭复数也在$C$中，
+于是，我们有
+\begin{align*}
+  f_j(x) & = (x - c_j) (x - \overline{c_j})                    \\
+         & = x^2 - (c_j + \overline{c_j})x + c_j\overline{c_j}
+\end{align*}
+令$p_j = - (c_j + \overline{c_j})$， $q_j = c_j\overline{c_j}$，
+此时$p_j, q_j$都是实数，所以$f_j(x)$是一个实数系上的二次多项式。
+又因为$f_j(x) = 0$没有实数解，所以
+\begin{align*}
+  p_j^2 - 4q_j < 0
+\end{align*}
+
+
+综上，$f(x)$可表示成：
+\begin{align*}
+  f(x) = a_0\left(\prod\limits_{i = 1}^k (x - b_i)\right)
+  \left(\prod\limits_{j = 1}^{l = m/2} (x^2 + p_j x + q_j)\right)
+\end{align*}
+其中$p_j^2 - 4q_j < 0$，$(b_i \in \mathbb{R}, i = 1, 2, \cdots, k)$。
+
+\section*{6}
+
+由命题2.1可知，
+\begin{align*}
+  f(x) = q(x)(x - 1) + f(1)
+\end{align*}
+因为$f(a) = 0$，即
+\begin{align*}
+  q(a)(a - 1) + f(1) = 0                     \\
+  q(a)(a - 1) + a_0 + a_1 + \cdots + a_n = 0 \\
+  - q(a)(a - 1) = a_0 + a_1 + \cdots + a_n
+\end{align*}
+由$q(x)$的构造方式可知，$q(a)$是整数，于是
+$-q(a)(a - 1)$也是整数，可得$a - 1$整除$a_0 + a_1 + \cdots + a_n$。
+（注意：代数学中的整除结果不一定非要是正的，负的也可以）
+
+类似地，
+\begin{align*}
+  f(x) = q(x)(x - (-1)) + f(-1)
+\end{align*}
+因为$f(a) = 0$，即
+\begin{align*}
+  q(a)(a-(-1)) + f(-1) = 0                                \\
+  q(a)(a + 1) + a_0 - a_1 + a_2 + \cdots + (-1)^n a_n = 0 \\
+  - q(a)(a + 1) = a_0 - a_1 + a_2 + \cdots + (-1)^n a_n
+\end{align*}
+于是$a+1$整除$a_0 - a_1 + a_2 + \cdots + (-1)^n a_n$，也就
+整除$(-1)^n (a_0 - a_1 + a_2 + \cdots + (-1)^n a_n)$。
+
+\section*{7}
+只做第一题，别的类似。
+
+多项式的$a_0 = 1, a_4 = -14$。
+
+设有理数的零点表示成$\frac{m}{k}$。
+
+于是，我们要保证以下结果都是整数：
+\begin{align*}
+  \frac{a_0}{k} = \frac{1}{k} \\
+  \frac{a_4}{m} = \frac{-14}{m}
+\end{align*}
+于是可能的结果是
+\begin{align*}
+  k \in \{1, -1\} \\
+  m \in \{1, -1, 2, -2, 7, -7, 14, -14\}
+\end{align*}
+他们的组合是否为零点，就要一个个试验了。
+
+\begin{itemize}
+  \item $\frac{m}{k} = \frac{1}{1} = 1$。
+
+        \begin{align*}
+          x^3 - 6x^2 + 15x - 14 = 1 - 6 + 15 - 14 = -4
+        \end{align*}
+        不是零点。
+
+  \item $\frac{m}{k} = \frac{-1}{1} = -1$。
+
+        \begin{align*}
+          x^3 - 6x^2 + 15x - 14 = (-1) - 6 + (-15) - 14 = -46
+        \end{align*}
+        不是零点。
+
+  \item $\frac{m}{k} = \frac{2}{1} = 2$。
+        \begin{align*}
+          x^3 - 6x^2 + 15x - 14 = 8 - 24 + 30 - 14 = 0
+        \end{align*}
+        是零点。
+
+  \item 以此类推
+
+
+        最后，有唯一的理数根：2
+\end{itemize}
+
+\section*{8}
+
+我们有
+\begin{align*}
+  \sum\limits_{i = 1}^n \alpha_i^2
+   & = (\sum\limits_{i = 1}^n \alpha_i)^2
+  - \sum\limits_{i \neq j} \alpha_i \alpha_j \\
+   & = (\sum\limits_{i = 1}^n \alpha_i)^2
+  - 2 \sum\limits_{1 \leq i < j \leq n} \alpha_i \alpha_j
+\end{align*}
+
+由命题2.3可知
+\begin{align*}
+  \sum\limits_{i = 1}^n \alpha_i = \sigma_1(\alpha_1, \cdots, \alpha_n) = - \frac{a_1}{a_0} \\
+  \sum\limits_{1 \leq i < j \leq n} \alpha_i \alpha_j = \sigma_2(\alpha_1, \cdots, \alpha_n) = \frac{a_2}{a_0}
+\end{align*}
+综上，
+\begin{align*}
+  \sum\limits_{i = 1}^n \alpha_i^2
+   & = (- \frac{a_1}{a_0})^2 - 2 \frac{a_2}{a_0}
+\end{align*}
+因为$a_1, a_2, \cdots , a_n$属于$K$，
+所以$(- \frac{a_1}{a_0})^2 - 2 \frac{a_2}{a_0} \in K$。
+
+\section*{9}
+
+% 这道题，个人感觉挺难的，主要在于$n,k$都是可变的，导致情况比较复杂，
+% 我会把思考过程写进去，这样方便下次查看。
+
+% $e^{\frac{2\pi i}{n}}$在P8页处有提及，并说明
+% $e^{\frac{2k\pi i}{n}} \ (k \in 0, 1, \cdots, n-1)$都是代数方程
+% $x^n - 1 = 0$在复数系$\mathbb{C}$内的$n$个根，
+% 这也就意味着$\epsilon^k, \epsilon^{2k}, \cdot, \epsilon^{nk}$都是代数方程
+% $x^n - 1 = 0$的根。
+% 不妨设这些根为$\alpha_1, \alpha_2, \cdots, \alpha_n$。
+
+% 现在的问题是$nk > n - 1$是可能的，但有一点是明确的:
+% $\epsilon^{jk} \ 1 \leq j \leq n$，都是$x^n - 1 = 0$的根，
+% 因为都是$\frac{2\pi i}{n}$的整数倍。
+
+% 到这里，问题就转变成，在$\alpha_1, \alpha_2, \cdots, \alpha_n$中，
+% 中选取$n$个值的问题（有可能重复），一种最简单的情况是：
+% 选取的都是不同的值，也就是把所有的根$\alpha_1, \alpha_2, \cdots, \alpha_n$都选了，
+% 此时
+% \begin{align*}
+%   \epsilon^k + \epsilon^{2k} + \cdot + \epsilon^{nk}
+%    & = \alpha_1 + \alpha_2 + \cdot + \alpha_n \\
+%    & = - \frac{a_1}{a_0}
+% \end{align*}
+% 现在，讨论什么情况下，会全选。先考虑简单的清空，$k = 1$，此时步长为$1$，
+% 选$n$次，显然可以选到所有的根。
+
+% 那么如果$k = 2 > 1$呢？
+
+% 此时，会每隔$2$个选1个（步长为$2$），
+% 也就是，第一遍选的都是$\alpha$中下标都是偶数的根，现在有两种情况：\\
+% \begin{itemize}
+%   \item 总的根有偶数个，即$n$是偶数。
+
+%         那么，$\alpha_n$的下标是偶数，第二遍和第一遍选取的会是同样的根，
+%         以此内推，直到选取$k = nk / n$遍。
+%         以上情况，显然值选取了偶数根，只选取了部分根。
+
+%   \item 总的根是奇数个，比如说是$3$。
+
+%         第一遍选取的是$\alpha_2$，第二遍选取$\alpha_1, \alpha_3$，
+%         选取完毕，此时，选取了所有根。
+% \end{itemize}
+% 我们希望从特例中找到规律，直觉告诉我们，$n / k$是整数，也就是第一次循环选取后，
+% 没有余数，第二遍选取将会和第一遍选取是一样的。
+
+% % 可以把所有的根，看做一个首尾相连的环，对任意位置的根$\alpha_j$，有如下规律：
+% % \begin{align*}
+% %   first : \alpha_j        \\
+% %   second : \alpha_{j + n} \\
+% %   third: \alpha_{j + 2n}  \\
+% %   \vdots                  \\
+% %   k: \alpha_{j + kn}
+% % \end{align*}
+% % 于是，$\frac{j + xn}{k} \ (1 \leq x \leq k)$是整数，就会被选中。
+
+% 余数，在于他们$n,k$有没有公因子，
+todo
+
+
+
+
+\end{document}
