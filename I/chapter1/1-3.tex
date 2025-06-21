@@ -1,0 +1,562 @@
+\documentclass{article}
+\usepackage{mathtools} 
+\usepackage{fontspec}
+\usepackage[UTF8]{ctex}
+\usepackage{amsthm}
+\usepackage{mdframed}
+\usepackage{xcolor}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{hyperref}
+
+
+% 定义新的带灰色背景的说明环境 zremark
+\newmdtheoremenv[
+  backgroundcolor=gray!10,
+  % 边框与背景一致，边框线会消失
+  linecolor=gray!10
+]{zremark}{注释}
+
+% 通用矩阵命令: \flexmatrix{矩阵名}{元素符号}{行数}{列数}
+\newcommand{\flexmatrix}[4]{
+  \[
+  #1 = \begin{pmatrix}
+    #2_{11}     & #2_{12}     & \cdots & #2_{1#4}   \\
+    #2_{21}     & #2_{22}     & \cdots & #2_{2#4}   \\
+    \vdots      & \vdots      & \ddots & \vdots     \\
+    #2_{#31}    & #2_{#32}    & \cdots & #2_{#3#4}
+  \end{pmatrix}
+  \]
+}
+
+% 简化版命令（默认矩阵名为A，元素符号为a）: \quickmatrix{行数}{列数}
+\newcommand{\quickmatrix}[2]{\flexmatrix{A}{a}{#1}{#2}}
+
+
+\begin{document}
+\title{1.3}
+\author{张志聪}
+\maketitle
+
+\section*{1}
+只做第一题（处理过程很机械）。
+
+写成方程的的增广矩阵，并进行初等变换：
+\begin{align*}
+  \begin{bmatrix}
+    2 & -1 & 1  & -1 & 1  \\
+    2 & -1 & 0  & -3 & 2  \\
+    3 & 0  & -1 & 1  & -3 \\
+    2 & 2  & -2 & 5  & -6
+  \end{bmatrix}
+  \xrightarrow{\frac{1}{2} R_1}
+  \begin{bmatrix}
+    1 & \frac{-1}{2} & \frac{1}{2} & \frac{-1}{2} & \frac{1}{2} \\
+    2 & -1           & 0           & -3           & 2           \\
+    3 & 0            & -1          & 1            & -3          \\
+    2 & 2            & -2          & 5            & -6
+  \end{bmatrix}
+  \xrightarrow{R_2 - 2 R_1}
+  \begin{bmatrix}
+    1 & \frac{-1}{2} & \frac{1}{2} & \frac{-1}{2} & \frac{1}{2} \\
+    0 & -1           & 0           & -3           & 2           \\
+    3 & 0            & -1          & 1            & -3          \\
+    2 & 2            & -2          & 5            & -6
+  \end{bmatrix}   \\
+  \xrightarrow{R_3 - 3 R_1}
+  \begin{bmatrix}
+    1 & \frac{-1}{2} & \frac{1}{2}  & \frac{-1}{2} & \frac{1}{2}  \\
+    0 & -1           & 0            & -3           & 2            \\
+    0 & \frac{3}{2}  & \frac{-5}{2} & \frac{-1}{2} & \frac{-9}{2} \\
+    2 & 2            & -2           & 5            & -6
+  \end{bmatrix}
+  \xrightarrow{R_4 - 2 R_1}
+  \begin{bmatrix}
+    1 & \frac{-1}{2} & \frac{1}{2}  & \frac{-1}{2} & \frac{1}{2}  \\
+    0 & -1           & 0            & -3           & 2            \\
+    0 & \frac{3}{2}  & \frac{-5}{2} & \frac{-1}{2} & \frac{-9}{2} \\
+    0 & 3            & -3           & 6            & -7
+  \end{bmatrix}
+  \xrightarrow{R_3 + \frac{3}{2} R_2}
+  \begin{bmatrix}
+    1 & \frac{-1}{2} & \frac{1}{2}  & \frac{-1}{2} & \frac{1}{2}  \\
+    0 & -1           & 0            & -3           & 2            \\
+    0 & 0            & \frac{-5}{2} & -5           & \frac{-3}{2} \\
+    0 & 3            & -3           & 6            & -7
+  \end{bmatrix} \\
+  \xrightarrow{R_4 + 3 R_2}
+  \begin{bmatrix}
+    1 & \frac{-1}{2} & \frac{1}{2}  & \frac{-1}{2} & \frac{1}{2}  \\
+    0 & -1           & 0            & -3           & 2            \\
+    0 & 0            & \frac{-5}{2} & -5           & \frac{-3}{2} \\
+    0 & 0            & -3           & -3           & -1
+  \end{bmatrix}
+  \xrightarrow{R_3 \times (-2)}
+  \begin{bmatrix}
+    1 & \frac{-1}{2} & \frac{1}{2} & \frac{-1}{2} & \frac{1}{2} \\
+    0 & -1           & 0           & -3           & 2           \\
+    0 & 0            & 5           & 10           & 3           \\
+    0 & 0            & -3          & -3           & -1
+  \end{bmatrix}
+  \xrightarrow{R_4 + \frac{3}{5} R_3}
+  \begin{bmatrix}
+    1 & \frac{-1}{2} & \frac{1}{2} & \frac{-1}{2} & \frac{1}{2} \\
+    0 & -1           & 0           & -3           & 2           \\
+    0 & 0            & 5           & 10           & 3           \\
+    0 & 0            & 0           & 3            & \frac{4}{5}
+  \end{bmatrix}
+\end{align*}
+写出对应方程组
+\begin{equation*}
+  \begin{cases*}
+    x_1 - \frac{1}{2} x_2 + \frac{1}{2} x_3 - \frac{1}{2} x_4 = \frac{1}{2} \\
+    -x_2  - 3 x_4 = 2                                                       \\
+    5 x_3 + 10 x_4 = 3                                                      \\
+    3 x_4 = \frac{4}{5}                                                     \\
+  \end{cases*}
+\end{equation*}
+然后自下而上逐次求$x_4, x_3, x_2, x_1$，最后得
+\begin{align*}
+  x_1 & = - \frac{4}{5}  \\
+  x_2 & = - \frac{14}{5} \\
+  x_3 & = \frac{1}{15}   \\
+  x_4 & = \frac{4}{15}
+\end{align*}
+
+\section*{2}
+
+先证明极端情况，$a_{11} = a_{21} = 0$（或$a_{12} = a_{22} = 0$），
+这种情况$a_{11}a_{22} - a_{12} a_{21} = 0$是必然的，无需讨论。
+
+写出系数矩阵，并做初等变换，完成消元：
+\begin{align*}
+  \begin{bmatrix}
+    a_{11} & a_{12} \\
+    a_{21} & a_{22}
+  \end{bmatrix}
+  \xrightarrow{R_2 - \frac{a_{21}}{a_{11}} R_1}
+  \begin{bmatrix}
+    a_{11} & a_{12}                                \\
+    0      & a_{22} - \frac{a_{12} a_{21}}{a_{11}}
+  \end{bmatrix}
+\end{align*}
+（这里假设了$a_{11} \neq 0$，$a_{12} \neq 0$证明方式类似，只需调整方程顺序即可。）
+
+\begin{itemize}
+
+  \item 充分性
+
+        当$a_{11}a_{22} - a_{12} a_{21} = 0$时
+        \begin{align*}
+          a_{22} - \frac{a_{12} a_{21}}{a_{11}} = 0
+        \end{align*}
+        此时，矩阵如下：
+        \begin{align*}
+          \begin{bmatrix}
+            a_{11} & a_{12} \\
+            0      & 0
+          \end{bmatrix}
+        \end{align*}
+        于是第二行是无效行，
+        由命题3.2可知，方程组一定有非零解。
+
+  \item 必要性
+
+        反证法，假设$a_{11}a_{22} - a_{12} a_{21} \neq 0$，
+
+        于是，我们有
+        \begin{equation*}
+          \begin{cases*}
+            a_{11}x_1 + a_{12}x_2 = 0 \\
+            \frac{a_{11}a_{22} - a_{12} a_{21}}{a_{11}} x_2 = 0
+          \end{cases*}
+        \end{equation*}
+        因为，$a_{11}a_{22} - a_{12} a_{21} \neq 0$，所有
+        \begin{align*}
+          x_2 = 0
+        \end{align*}
+        进而
+        \begin{align*}
+          x_1 = 0
+        \end{align*}
+        也就是说，此时方程没有非零解，与题设矛盾，假设不成立，命题得证。
+
+\end{itemize}
+
+\section*{3}
+
+有以下情况：
+\begin{itemize}
+  \item 可以直接解出来；
+  \item 存在矛盾的等式，无解；
+  \item 存在无效行，使用命题3.2，判断是否有非零解。
+\end{itemize}
+
+\section*{4}
+
+先做矩阵消元
+\begin{align*}
+  \begin{bmatrix}
+    2  & 1 & 1  \\
+    a  & 0 & -1 \\
+    -1 & 0 & 3
+  \end{bmatrix}
+  \xrightarrow{R_2 + \frac{-a}{2}R_1}
+  \begin{bmatrix}
+    2  & 1            & 1                \\
+    0  & \frac{-a}{2} & -1 - \frac{a}{2} \\
+    -1 & 0            & 3
+  \end{bmatrix}
+  \xrightarrow{R_3 + \frac{1}{2}R_1}
+  \begin{bmatrix}
+    2 & 1            & 1                \\
+    0 & \frac{-a}{2} & -1 - \frac{a}{2} \\
+    0 & \frac{1}{2}  & \frac{7}{2}
+  \end{bmatrix} \\
+  \xrightarrow{}
+  \begin{bmatrix}
+    2 & 1            & 1                \\
+    0 & \frac{1}{2}  & \frac{7}{2}      \\
+    0 & \frac{-a}{2} & -1 - \frac{a}{2}
+  \end{bmatrix}
+  \xrightarrow{R_3 + a R_2}
+  \begin{bmatrix}
+    2 & 1           & 1           \\
+    0 & \frac{1}{2} & \frac{7}{2} \\
+    0 & 0           & -1 + 3a
+  \end{bmatrix}
+\end{align*}
+写出对应的方程组
+\begin{equation*}
+  \begin{cases*}
+    2x + y + z = 0                  \\
+    \frac{1}{2}y + \frac{7}{2}z = 0 \\
+    (-1 + 3a) z = 0
+  \end{cases*}
+\end{equation*}
+假设$(-1 + 3a) \neq 0$，于是可得$z = 0$，进而得$y = 0, x = 0$。
+此时，方程没有非零解。
+
+假设$(-1 + 3a) = 0$（即$a = \frac{1}{3}$），于是方程组成为
+\begin{equation*}
+  \begin{cases*}
+    2x + y + z = 0                \\
+    \frac{1}{2}y = - \frac{7}{2}z \\
+  \end{cases*}
+\end{equation*}
+可得
+\begin{equation*}
+  \begin{cases*}
+    x = 3 z \\
+    y = -7 z
+  \end{cases*}
+\end{equation*}
+$z$是自由变量。
+
+\section*{5}
+
+只做第一题
+
+对增广矩阵进行消元
+\begin{align*}
+  \begin{bmatrix}
+    \lambda & 1       & 1       & 1         \\
+    1       & \lambda & 1       & \lambda   \\
+    1       & 1       & \lambda & \lambda^2
+  \end{bmatrix}
+  \xrightarrow{}
+  \begin{bmatrix}
+    1       & 1       & \lambda & \lambda^2 \\
+    1       & \lambda & 1       & \lambda   \\
+    \lambda & 1       & 1       & 1
+  \end{bmatrix}
+  \xrightarrow{R_2 - R_1}
+  \begin{bmatrix}
+    1       & 1           & \lambda     & \lambda^2           \\
+    0       & \lambda - 1 & 1 - \lambda & \lambda - \lambda^2 \\
+    \lambda & 1           & 1           & 1
+  \end{bmatrix}                       \\
+  \xrightarrow{R_3 - \lambda R_1}
+  \begin{bmatrix}
+    1 & 1           & \lambda       & \lambda^2           \\
+    0 & \lambda - 1 & 1 - \lambda   & \lambda - \lambda^2 \\
+    0 & 1 - \lambda & 1 - \lambda^2 & 1 - \lambda^3
+  \end{bmatrix}
+  \xrightarrow{R_3 + R_2}
+  \begin{bmatrix}
+    1 & 1           & \lambda                 & \lambda^2                           \\
+    0 & \lambda - 1 & 1 - \lambda             & \lambda - \lambda^2                 \\
+    0 & 0           & 2 - \lambda - \lambda^2 & 1 + \lambda - \lambda^2 - \lambda^3
+  \end{bmatrix} \\
+  \xrightarrow{(1 - \lambda)R_2}
+  \begin{bmatrix}
+    1 & 1   & \lambda                 & \lambda^2                           \\
+    0 & - 1 & 1                       & \lambda                             \\
+    0 & 0   & 2 - \lambda - \lambda^2 & 1 + \lambda - \lambda^2 - \lambda^3
+  \end{bmatrix}
+\end{align*}
+写出对应方程组
+\begin{equation*}
+  \begin{cases}
+    x_1 + x_2 +\lambda x_3 = \lambda^2 \\
+    - x_2 + x_3 = \lambda              \\
+    (2 - \lambda - \lambda^2)x_3 = 1 + \lambda - \lambda^2 - \lambda^3
+  \end{cases}
+\end{equation*}
+调整下
+\begin{equation*}
+  \begin{cases}
+    x_1 + x_2 +\lambda x_3 = \lambda^2 \\
+    - x_2 + x_3 = \lambda              \\
+    (- \lambda  + 1)(\lambda + 2)x_3 = 1 + \lambda - \lambda^2 - \lambda^3
+  \end{cases}
+\end{equation*}
+考虑$(- \lambda  + 1)(\lambda + 2) = 0$时，方程组的求解情况：
+
+\begin{itemize}
+  \item $\lambda = -2$。
+
+        第三个方程会出现如下矛盾
+        \begin{align*}
+          0 = 3
+        \end{align*}
+        此时，方程无解。
+
+  \item $\lambda = 1$。
+
+        $x_3$将是自由变量（答案中说$x_2$也是自由的，个人判断是错误的），
+        \begin{align*}
+          x_1 & = -2x_3 + 2 \\
+          x_2 & = x_3 - 1
+        \end{align*}
+\end{itemize}
+
+考虑$(- \lambda  + 1)(\lambda + 2) \neq 0$，
+我们自下而上逐次求$x_3,x_2,x_1$，最后得
+\begin{align*}
+  x_1 & = - \frac{\lambda + 1}{\lambda + 2}   \\
+  x_2 & = \frac{1}{\lambda + 2}               \\
+  x_3 & = \frac{(1 + \lambda)^2}{\lambda + 2}
+\end{align*}
+
+\section*{6}
+
+先进行增广矩阵消元：
+\begin{align*}
+  \begin{bmatrix}
+    1  & -1 & 0  & 0  & 0  & a_1 \\
+    0  & 1  & -1 & 0  & 0  & a_2 \\
+    0  & 0  & 1  & -1 & 0  & a_3 \\
+    0  & 0  & 0  & 1  & -1 & a_4 \\
+    -1 & 0  & 0  & 0  & 1  & a_5 \\
+  \end{bmatrix}
+  \xrightarrow{R_5 + R_1}
+  \begin{bmatrix}
+    1 & -1 & 0  & 0  & 0  & a_1       \\
+    0 & 1  & -1 & 0  & 0  & a_2       \\
+    0 & 0  & 1  & -1 & 0  & a_3       \\
+    0 & 0  & 0  & 1  & -1 & a_4       \\
+    0 & -1 & 0  & 0  & 1  & a_5 + a_1 \\
+  \end{bmatrix}                   \\
+  \xrightarrow{R_5 + R_2}
+  \begin{bmatrix}
+    1 & -1 & 0  & 0  & 0  & a_1             \\
+    0 & 1  & -1 & 0  & 0  & a_2             \\
+    0 & 0  & 1  & -1 & 0  & a_3             \\
+    0 & 0  & 0  & 1  & -1 & a_4             \\
+    0 & 0  & -1 & 0  & 1  & a_5 + a_1 + a_2 \\
+  \end{bmatrix}
+  \xrightarrow{R_5 + R_3}
+  \begin{bmatrix}
+    1 & -1 & 0  & 0  & 0  & a_1                   \\
+    0 & 1  & -1 & 0  & 0  & a_2                   \\
+    0 & 0  & 1  & -1 & 0  & a_3                   \\
+    0 & 0  & 0  & 1  & -1 & a_4                   \\
+    0 & 0  & 0  & -1 & 1  & a_5 + a_1 + a_2 + a_3 \\
+  \end{bmatrix}       \\
+  \xrightarrow{R_5 + R_4}
+  \begin{bmatrix}
+    1 & -1 & 0  & 0  & 0  & a_1                         \\
+    0 & 1  & -1 & 0  & 0  & a_2                         \\
+    0 & 0  & 1  & -1 & 0  & a_3                         \\
+    0 & 0  & 0  & 1  & -1 & a_4                         \\
+    0 & 0  & 0  & 0  & 0  & a_5 + a_1 + a_2 + a_3 + a_4 \\
+  \end{bmatrix} \\
+\end{align*}
+
+\begin{itemize}
+  \item 必要性
+
+        显然，如果$a_5 + a_1 + a_2 + a_3 + a_4 \neq 0$，那么第5个方程存在矛盾，
+        则线性方程组无解，可知$a_5 + a_1 + a_2 + a_3 + a_4 = 0$是有解的必要条件。
+
+  \item 充分性
+
+        已知，$a_5 + a_1 + a_2 + a_3 + a_4 = 0$。
+
+        写出消元后的矩阵，对应的方程组
+        \begin{equation*}
+          \begin{cases*}
+            x_1 - x_2 = a_1 \\
+            x_2 - x_3 = a_2 \\
+            x_3 - x_4 = a_3 \\
+            x_4 - x_5 = a_4
+          \end{cases*}
+        \end{equation*}
+        此时，$x_5$是自由变量，可得
+        \begin{align*}
+          x_4 = a_4 + x_5             \\
+          x_3 = a_3 + a_4 + x_5       \\
+          x_2 = a_2 + a_3 + a_4 + x_5 \\
+          x_1 = a_1 + a_2 + a_3 + a_4 + x_5
+        \end{align*}
+        由于第5行变为 $0 = 0$，不会引入矛盾，所构造的解满足全部方程。
+
+        于是，我们找到了满足所有方程的解，充分性证明完成。
+\end{itemize}
+
+\section*{7}
+
+由方程组前$n - 1$个方程可得:
+\begin{align*}
+  x_1 = - x_n       \\
+  x_2 = -x_1 = x_n  \\
+  x_3 = -x_2 = -x_n \\
+  \vdots            \\
+  x_{n - 1} = (-1)^{n - 1} x_n
+\end{align*}
+
+$n$是奇数时，
+\begin{align*}
+  x_{n - 1} = (-1)^{n - 1} x_n = x_n
+\end{align*}
+为了保证最后一个方程
+\begin{align*}
+  x_{n - 1} + x_n = 0
+\end{align*}
+成立，此时只能$x_n = 0$，于是所有的$x_i \ (1 \leq i \leq n - 1)$都为0。
+
+$n$是偶数时，
+\begin{align*}
+  x_{n - 1} = (-1)^{n - 1} x_n = -x_n
+\end{align*}
+满足最后一个方程
+\begin{align*}
+  x_{n - 1} + x_n = 0
+\end{align*}
+于是，我们找到了以$x_n$为自由变量的解。
+
+\section*{8}
+
+二次曲线的一般形式为
+\begin{align*}
+  Ax^2 + Bxy + Cy^2 + Dx + Ey + F = 0
+\end{align*}
+我们需要通过五个点，确定系数$A,B,C,D,E,F$的值。
+
+设任意不在同一条直线上的五个点为
+\begin{align*}
+  (x_1, y_1), (x_2, y_2), (x_3, y_3), (x_4, y_4), (x_5, y_5)
+\end{align*}
+于是，我们有
+\begin{equation*}
+  \begin{cases*}
+    Ax_1^2 + Bx_1y_1 + Cy_1^2 + Dx_1 + Ey_1 + F & = 0 \\
+    Ax_2^2 + Bx_2y_2 + Cy_2^2 + Dx_2 + Ey_2 + F & = 0 \\
+    Ax_3^2 + Bx_3y_3 + Cy_3^2 + Dx_3 + Ey_3 + F & = 0 \\
+    Ax_4^2 + Bx_4y_4 + Cy_4^2 + Dx_4 + Ey_4 + F & = 0 \\
+    Ax_5^2 + Bx_5y_5 + Cy_5^2 + Dx_5 + Ey_5 + F & = 0
+  \end{cases*}
+\end{equation*}
+我们得到了一个齐次方程组，对应的系数矩阵如下：
+\begin{align*}
+  \begin{bmatrix}
+    x_1^2 & x_1y_1 & y_1^2 & x_1 & y_1 & F \\
+    x_2^2 & x_2y_2 & y_2^2 & x_2 & y_2 & F \\
+    x_3^2 & x_3y_3 & y_3^2 & x_3 & y_3 & F \\
+    x_4^2 & x_4y_4 & y_4^2 & x_4 & y_4 & F \\
+    x_5^2 & x_5y_5 & y_5^2 & x_5 & y_5 & F
+  \end{bmatrix}
+\end{align*}
+由命题3.2可知，他必定存在非零解。
+
+这个非零解会不会使得$A=B=C=0$（即二次项全部为零），
+此时得到的不在是二次曲线，而是一条直线，这与题设
+五个点不在同一条直线上矛盾，故不会存在这种情况。
+
+（2）给定四个点，这部分就是矩阵的计算问题了，就不做解答了。
+
+\section*{9}
+
+所有方程相加，我们有
+\begin{align*}
+   & (n-1)x_1 + (a(n-2) + 1)x_2 + (a(n-2) + 1)x_3 + (a(n-2) + 1)x_4 + \cdots (a(n-2) + 1)x_n \\
+   & = b_1 + b_2 + b_3 + b_4 + \cdots + b_n \textcircled{1}
+\end{align*}
+
+第一个方程乘以$(a(n-2) + 1)$，我们有
+\begin{align*}
+   & (a(n-2) + 1)x_2 + (a(n-2) + 1)x_3 + (a(n-2) + 1)x_4 + \cdots (a(n-2) + 1)x_n \\
+   & = (a(n-2) + 1)b_1 \textcircled{2}
+\end{align*}
+
+$\textcircled{1} - \textcircled{2}$，我们有
+\begin{align*}
+  (n-1)x_1 & = b_1 + b_2 + b_3 + b_4 + \cdots + b_n - (a(n-2) + 1)b_1               \\
+  x_1      & = \frac{b_1 + b_2 + b_3 + b_4 + \cdots + b_n - (a(n-2) + 1)b_1}{n - 1} \\
+  x_1      & = \frac{b_1 + b_2 + b_3 + b_4 + \cdots + b_n - a(n-2)b_1}{n - 1}
+\end{align*}
+
+
+第一个方程乘以$a$，我们有
+\begin{align*}
+  a x_2 + ax_3 + ax_4 + \cdots + ax_n = ab_1 \textcircled{3}
+\end{align*}
+
+式$\textcircled{3}$减去方程二，我们有
+\begin{align*}
+  -x_1 + ax_2 & = ab_1 - b_2                 \\
+  x_2         & = \frac{ab_1 - b_2 + x_1}{a}
+\end{align*}
+以此类推，对任意$x_i(2 \leq i \leq n)$都有
+\begin{align*}
+  x_i & = \frac{ab_1 - b_i + x_1}{a}
+\end{align*}
+
+综上，我们有
+\begin{align*}
+  x_1 & = \frac{b_1 + b_2 + b_3 + b_4 + \cdots + b_n - a(n-2)b_1}{n - 1} \\
+  x_i & = \frac{ab_1 - b_i + x_1}{a} (2 \leq i \leq n)
+\end{align*}
+
+把结果代入方程组验证（只需代入方程1和方程2，其他方程同理），
+方程组成立，所以这就是方程组的解。\\
+（这一步必不可少，因为我们假设了这个方程组有解，才能把所有的方程相加，
+具体可参考这个视频：
+\url{https://www.bilibili.com/video/BV13q4y1E75c/?spm_id_from=333.1391.0.0&vd_source=d155cb524fdd3dbd0fd732cc3ae44dff}
+）
+
+\section*{10}
+
+如果$a_1,a_2, \cdots, a_n$都是$0$，于是未知量可以取任意值。
+
+设存在一个$a_t \neq 0 (1 \leq t \leq n) $，于是，利用题设，有：
+\begin{align*}
+  a_ta_t x_{jk} - a_j a_k x_{tt} & = 0                            \\
+  x_{jk}                         & = \frac{a_j a_k}{a_t^2} x_{tt}
+\end{align*}
+
+所以，我们得到$x_{tt}$为自由变量的解
+\begin{align*}
+  x_{jk} = \frac{a_j a_k}{a_t^2} x_{tt}
+\end{align*}
+
+与9题一样，需要验证该解是否满足所有方程组。
+对任意方程
+\begin{align*}
+  a_ia_l x_{jk} - a_ja_k x_{il} & = a_ia_l \frac{a_j a_k}{a_t^2} x_{tt} - a_ja_k \frac{a_i a_l}{a_t^2} x_{tt} \\
+                                & = 0
+\end{align*}
+验证完毕。
+
+\end{document}
