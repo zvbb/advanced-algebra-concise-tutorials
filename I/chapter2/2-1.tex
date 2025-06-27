@@ -1,0 +1,560 @@
+\documentclass{article}
+\usepackage{mathtools} 
+\usepackage{fontspec}
+\usepackage[UTF8]{ctex}
+\usepackage{amsthm}
+\usepackage{mdframed}
+\usepackage{xcolor}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{hyperref}
+
+
+% 定义新的带灰色背景的说明环境 zremark
+\newmdtheoremenv[
+  backgroundcolor=gray!10,
+  % 边框与背景一致，边框线会消失
+  linecolor=gray!10
+]{zremark}{注释}
+
+% 通用矩阵命令: \flexmatrix{矩阵名}{元素符号}{行数}{列数}
+\newcommand{\flexmatrix}[4]{
+  \[
+  #1 = \begin{pmatrix}
+    #2_{11}     & #2_{12}     & \cdots & #2_{1#4}   \\
+    #2_{21}     & #2_{22}     & \cdots & #2_{2#4}   \\
+    \vdots      & \vdots      & \ddots & \vdots     \\
+    #2_{#31}    & #2_{#32}    & \cdots & #2_{#3#4}
+  \end{pmatrix}
+  \]
+}
+
+% 简化版命令（默认矩阵名为A，元素符号为a）: \quickmatrix{行数}{列数}
+\newcommand{\quickmatrix}[2]{\flexmatrix{A}{a}{#1}{#2}}
+
+
+\begin{document}
+\title{2.1}
+\author{张志聪}
+\maketitle
+
+\section*{1-5}
+略
+
+\section*{6}
+
+由$\alpha_1, \alpha_2, \cdots, \alpha_s, \beta$线性相关，
+我们有
+\begin{align*}
+  k_1\alpha_1 + k_2\alpha_2 + \cdots + k_s\alpha_s + k_{s + 1} \beta = 0
+\end{align*}
+存在非零解。
+
+可知$k_{s + 1} \neq 0$，因为如果$k_{s + 1} = 0$，则
+\begin{align*}
+  k_1\alpha_1 + k_2\alpha_2 + \cdots + k_s\alpha_s = 0
+\end{align*}
+存在非零解，于是$\alpha_1, \alpha_2, \cdots, \alpha_s$线性相关，
+与题设矛盾。
+
+所以，$\beta$可以被$\alpha_1, \alpha_2, \cdots, \alpha_s$线性表示成
+\begin{align*}
+  \beta = - \frac{1}{k_{s + 1}} (k_1\alpha_1 + k_2\alpha_2 + \cdots + k_s\alpha_s)
+\end{align*}
+
+\section*{7}
+
+对任意线性无关的向量组
+\begin{align*}
+  \alpha_1, \alpha_2, \cdots, \alpha_s \ \ \ (I)
+\end{align*}
+
+设其部分组为
+\begin{align*}
+  \alpha_{i1}, \alpha_{i2}, \cdots, \alpha_{ir} \ \ \ (II)
+\end{align*}
+其中$1 \leq ir \leq s$。
+
+$ir = 1$时，由于是线性无关的，所以不存在零向量，
+于是向量组$\alpha_{i1}$是线性无关的。
+
+$ir > 1$时，假设$\alpha_{i1}, \alpha_{i2}, \cdots, \alpha_{ir}$线性相关，
+于是向量组$(II)$中存在$\gamma$向量可以被$(II)$中的其他向量线性表示，
+因为$(II)$中的向量也是$(I)$中的向量，
+进而可得$(I)$线性相关，与题设矛盾，假设不成立。
+
+综上，命题得证。
+
+\section*{8}
+
+略
+
+\section*{9}
+
+\begin{itemize}
+  \item (1)
+
+        反证法，假设$\alpha_1, \alpha_2, \cdots, \alpha_m$线性相关，
+        于是
+        \begin{align*}
+          k_1 \alpha_1 + k_2 \alpha_2 + \cdots + k_m \alpha_m = 0
+        \end{align*}
+        存在非零解。
+
+        以上可以看做对应方程组的非零解，这个解满足所有方程，每个向量中去掉$i_1, i_2 , \cdots, i_s$个分量，
+        会让方程数减少，但这个解还是可以满足剩下的方程，即：
+        \begin{align*}
+          k_1 \alpha_1^\prime + k_2 \alpha_2\prime + \cdots + k_m \alpha_m\prime = 0
+        \end{align*}
+        可得$\alpha_1^\prime, \alpha_2^\prime, \cdots, \alpha_m^\prime$是线性相关的，
+        与题设矛盾。
+
+  \item (2)
+
+        是(1)中证明的一部分：
+
+        $\alpha_1, \alpha_2, \cdots, \alpha_m$线性相关，
+        于是
+        \begin{align*}
+          k_1 \alpha_1 + k_2 \alpha_2 + \cdots + k_m \alpha_m = 0
+        \end{align*}
+        存在非零解。
+
+        以上可以看做对应方程组的非零解，这个解满足所有方程，每个向量中去掉$i_1, i_2 , \cdots, i_s$个分量，
+        会让方程数减少，但这个解还是可以满足剩下的方程，即：
+        \begin{align*}
+          k_1 \alpha_1^\prime + k_2 \alpha_2\prime + \cdots + k_m \alpha_m\prime = 0
+        \end{align*}
+        可得$\alpha_1^\prime, \alpha_2^\prime, \cdots, \alpha_m^\prime$是线性相关的。
+\end{itemize}
+
+\section*{10}
+
+就是矩阵的初等变换的另一种阐述。
+
+\section*{11}
+
+\begin{itemize}
+  \item 方法一（推荐）
+
+        因为$\alpha_1, \alpha_2, \cdots, \alpha_s$是线性相关的，那么
+        \begin{align*}
+          k_1 \alpha_1 + k_2 \alpha_2 + \cdots + k_s \alpha_s = 0
+        \end{align*}
+        存在非零解。
+
+        从右往左，一定可以找到第一个非零的系数$k_t (1 \leq t \leq s)$
+        （因为题设中$\alpha_1 \neq 0$，所以找到的第一个非零系数不会是$k_1$），
+        于是，$\alpha_t$就可以被之前的向量线性表示。
+
+  \item 方法二（复杂）
+
+        反证法，假设不存在$\alpha_i$可以被$\alpha_1, \alpha_2, \cdots, \alpha_{i - 1}$表示。
+        那么，任意$1 < k \leq s$时，$\alpha_{k}$
+        也不能被$\alpha_1, \alpha_2, \cdots, \alpha_{k - 1}, \alpha_{k + 1}, \cdots, \alpha_s$线性表示。
+        因为如果能够被线性表示成：
+        \begin{align*}
+          \alpha_{k} = c_1 \alpha_1 + c_2\alpha_2 + \cdots + c_{k - 1}\alpha_{k - 1} + c_{k + 1} \alpha_{k + 1} + \cdots + c_s \alpha_s
+        \end{align*}
+        由假设可知，$c_{k + 1}, c_{k + 2}, \cdots, c_s$均为0，
+        因为如果$c_s \neq 0$，那么
+        \begin{align*}
+          \alpha_s = \frac{1}{c_s} \alpha_{k} - \frac{1}{c_s} (c_1 \alpha_1 + c_2\alpha_2 + \cdots + c_{k - 1}\alpha_{k - 1} + c_{k + 1} \alpha_{k + 1} + \cdots + c_{s-1} \alpha_{s - 1})
+        \end{align*}
+        与假设矛盾，所以$c_s = 0$；类似地，可推出其他系数为$0$。
+
+        于是，我们有
+        \begin{align*}
+          \alpha_{k} = c_1 \alpha_1 + c_2\alpha_2 + \cdots + c_{k - 1}\alpha_{k - 1}
+        \end{align*}
+        会与假设矛盾。
+
+        由$k$的任意性可知，向量组$\alpha_1, \alpha_2, \cdots, \alpha_s$是线性无关的，
+        与题设矛盾，假设不成立，命题得证。
+\end{itemize}
+
+\section*{12}
+
+略
+
+\section*{13}
+
+按照极大线性无关部分组的定义证明。
+
+线性无关性，题设已给出，我们只需证明
+$\alpha_1, \alpha_2, \cdots, \alpha_s$可以被
+$\alpha_{i1}, \alpha_{i2}, \cdots, \alpha_{ir}$线性表示即可。
+
+反证法，假设$\alpha_1, \alpha_2, \cdots, \alpha_s$中存在$\alpha_t \ (1 \leq t \leq s)$无法
+被$\alpha_{i1}, \alpha_{i2}, \cdots, \alpha_{ir}$线性表示。
+那么，把$\alpha_t$放入线性无关的向量组$\alpha_{i1}, \alpha_{i2}, \cdots, \alpha_{ir}$
+中，新的向量组应该还是线性无关的（这个小命题，在2-1-comment.tex有证明），
+这与题设(2)矛盾，假设不成立，命题得证。
+
+\section*{14}
+
+设
+\begin{align*}
+  \alpha_1, \alpha_2, \cdots, \alpha_s \ \ \ (I)
+\end{align*}
+
+反证法，假设命题不成立，那么，有$(I)$的线性无关的部分组：
+\begin{align*}
+  \alpha_{i1}, \alpha_{i2}, \cdots, \alpha_{ir} \ \ \ (II)
+\end{align*}
+存在$\alpha_t \in (I)$无法被$(II)$线性表示。
+
+于是，我们有
+\begin{align*}
+  \alpha_{i1}, \alpha_{i2}, \cdots, \alpha_{ir}, \alpha_t  \ \ \ (III)
+\end{align*}
+是线性无关的（反证法，利用习题6）。
+
+设
+\begin{align*}
+  \alpha_{j1}, \alpha_{j2}, \cdots, \alpha_{jr} \ \ \ (I^\prime)
+\end{align*}
+是$(I)$的极大线性无关部分组，因为$(I)$的秩是$r$，所以$(I^\prime)$的个数为$r$。
+
+$(I^\prime)$可以线性表示$(I)$，因为$(III)$是$(I)$的部分组，所以$(I^\prime)$也可以线性表示$(III)$。
+由替换定理结论1（2-1-comment.tex中有证，也是命题1.4的逆否命题）可得
+\begin{align*}
+  r \geq r + 1
+\end{align*}
+存在矛盾，假设不成立，命题得证。
+
+\section*{15}
+
+设
+\begin{align*}
+  \alpha_1, \alpha_2, \cdots, \alpha_s \ \ \ (I) \\
+  \alpha_{i1}, \alpha_{i2}, \cdots, \alpha_{ir} \ \ \ (II)
+\end{align*}
+
+由极大线性无关部分组的定义可知，我们只需证明$(II)$是线性无关的即可。
+
+反证法，假设$(II)$不是线性无关的，那么$\alpha_{i1}, \alpha_{i2}, \cdots, \alpha_{ir}$
+中存在可以被其他向量表示的向量，不妨设为$\alpha_{i1}$，从$(II)$
+中删除向量$\alpha_{i1}$，得到新的向量组:
+\begin{align*}
+  \alpha_{i2}, \alpha_{i3}, \cdots, \alpha_{ir} \ \ \ (III)
+\end{align*}
+可得$(II)$和$(III)$线性等价，于是$(III)$可以线性表示$(I)$。
+
+设
+\begin{align*}
+  \alpha_{j1}, \alpha_{j2}, \cdots, \alpha_{jr} \ \ \ (I^\prime)
+\end{align*}
+是$(I)$的极大线性无关部分组，因为$(I)$的秩是$r$，所以$(I^\prime)$的向量个数为$r$。
+
+$(III)$可以线性表示$(I)$，从而可以线性表示$(I^\prime)$。
+
+利用替换定理结论1（2-1-comment.tex中有证，也是命题1.4的逆否命题）可得
+\begin{align*}
+  r - 1 \geq r
+\end{align*}
+存在矛盾，假设不成立，命题得证。
+
+\section*{16}
+
+设$(I^\prime)$是$(I)$的极大线性无关部分组，秩为$r$。\\
+设$(II^\prime)$是$(II)$的极大线性无关部分组，秩为$s$。
+
+由题设$(II)$可以线性表示$(I)$可得，$(II^\prime)$可以线性表示$(I^\prime)$。
+
+利用替换定理结论1（2-1-comment.tex中有证，也是命题1.4的逆否命题）可得
+\begin{align*}
+  r \leq s
+\end{align*}
+命题得证。
+
+\section*{17}
+
+设
+\begin{align*}
+  \epsilon_1, \epsilon_2, \cdots, \epsilon_n \ \ \ (I)
+  \alpha_1, \alpha_2, \cdots, \alpha_n \ \ \ (II)
+\end{align*}
+易得$(I)$是线性无关的。
+
+假设$(II)$是线性相关的，那么存在$(II)$的某个向量，可以被$(II)$的中的其他向量表示，
+不妨设为$\alpha_1$，从$(II)$中删除向量$\alpha_1$，得到新的向量组：
+\begin{align*}
+  \alpha_2, \alpha_3, \cdots, \alpha_n \ \ \ (III)
+\end{align*}
+$(III)$与$(II)$线性等价，由题设$(II)$可以线性表示$(I)$可得$(III)$可以线性表示$(I)$。
+
+由替换定理结论1（2-1-comment.tex中有证，也是命题1.4的逆否命题）可得
+\begin{align*}
+  n - 1 \geq n
+\end{align*}
+存在矛盾，假设不成立，命题得证。
+
+\section*{18}
+
+设
+\begin{align*}
+  \alpha_1, \alpha_2, \cdots, \alpha_n \ \ \ (I)
+\end{align*}
+
+$n$维坐标向量组:
+\begin{align*}
+  \epsilon_1, \epsilon_2, \cdots, \epsilon_n \ \ \ (I^\prime)
+\end{align*}
+
+\begin{itemize}
+  \item 必要性
+
+        已知(I)线性无关，假设存在$n$维向量$\beta$不能被(I)线性表示，
+        于是
+        \begin{align*}
+          \beta, \alpha_1, \alpha_2, \cdots, \alpha_n \ \ \ (II)
+        \end{align*}
+        也是线性无关的。
+
+        因为任意$n$维向量都可以被$(I^\prime)$线性表示，
+        于是$(II)$可以被$(I^\prime)$线性表示，
+        且$(II)$是线性无关的，利用替换定理结论1（2-1-comment.tex中有证，也是命题1.4的逆否命题）可得
+        \begin{align*}
+          n \geq n + 1
+        \end{align*}
+        存在矛盾，假设不成立。
+
+  \item 充分性
+
+        已知$(I)$可是线性表示任意$n$维向量，
+        于是$(I^\prime)$中的任意向量都可以被$(I)$线性表示，
+        利用习题17可得，$(I)$是线性无关的。
+\end{itemize}
+
+\section*{19}
+
+设
+
+任意向量组为:
+\begin{align*}
+  \alpha_1, \alpha_2, \cdots, \alpha_n \ \ \ (I)
+\end{align*}
+
+(I)的任意线性无关部分组为:
+\begin{align*}
+  \alpha_{i1}, \alpha_{i2}, \cdots, \alpha_{ir} \ \ \ (II)
+\end{align*}
+
+取$(I)$的任意极大线性无关部分组为:
+\begin{align*}
+  \alpha_{j1}, \alpha_{j2}, \cdots, \alpha_{js} \ \ \ (I^\prime)
+\end{align*}
+
+由替换定理结论(2)可知，$(II)$可以适当替换$(I^\prime)$中的向量得到向量组$(II^\prime)$，
+且$(II^\prime)$与$(I^\prime)$线性等价。且由替换定理结论(3)可知，
+$(II^\prime)$也是线性无关的，综上可得，$(II^\prime)$是$(I)$的极大线性无关部分组，
+命题得证。
+
+\section*{20}
+
+设
+\begin{align*}
+  \alpha_1, \alpha_2, \cdots, \alpha_r                                     & \ \ \ (I)  \\
+  \alpha_1, \alpha_2, \cdots, \alpha_r, \alpha_{r + 1}, \cdots, \alpha_{s} & \ \ \ (II)
+\end{align*}
+假设$(I)$和$(II)$两者不等价（以$(I)$无法线性表示$(II)$中的所有向量为例，其他情况类似），
+设两者的极大线性无关部分组分别为$(I^\prime), (II^\prime)$，且由题设可知$(I^\prime)$与$(II^\prime)$向量个数相同，
+不妨设为$r$。
+
+由题设知$(I)$是$(II)$的部分组，于是可知$(II^\prime)$是可以线性表示$(I^\prime)$的。
+又因为$(I)$无法线性表示$(II)$中的所有向量，从而$(I^\prime)$也无法线性表示$(II)$中的所有向量，
+即，存在$\beta \in (II)$无法被$(I^\prime)$线性表示，把$\beta$加入$(I^\prime)$得到
+新的向量组$(I^{\prime\prime})$，利用习题6可知$(I^{\prime\prime})$线性无关。
+
+综上，我们有$(II^\prime)$可以线性表示$(I^{\prime\prime})$，
+利用替换定理结论1（或命题1.4的逆否命题）可知
+\begin{align*}
+  r \geq r + 1
+\end{align*}
+存在矛盾，假设不成立，命题得证。
+
+\section*{21}
+
+设
+\begin{align*}
+  \alpha_1, \alpha_2, \cdots, \alpha_r \ \ \  & (I)  \\
+  \beta_1, \beta_2, \cdots, \beta_r \ \ \     & (II)
+\end{align*}
+由题设可知$(I)$可以线性表示$(II)$，于是利用习题16可知，
+$(I)$的秩大于等于$(II)$的秩。
+
+令
+\begin{align*}
+  \alpha : = \{ \alpha_1, \alpha_2, \cdots, \alpha_r\}
+\end{align*}
+于是
+\begin{align*}
+  \alpha_i = \alpha - \beta_i
+\end{align*}
+所以
+\begin{align*}
+  \alpha, \beta_1, \beta_2, \cdots, \beta_r \ \ \  & (III)
+\end{align*}
+可以线性表示$(I)$。
+
+因为
+\begin{align*}
+  \beta_1 + \beta_2 + \cdots + \beta_r & = (n - 1) \alpha                                        \\
+  \alpha                               & = \frac{1}{n - 1}(\beta_1 + \beta_2 + \cdots + \beta_r)
+\end{align*}
+可得，$(II)$可以线性表示$(III)$。
+
+于是，$(II)$可以线性表示$(I)$，利用习题16可知，$(II)$的秩大于$(I)$的秩。
+
+综上可得，$(I)$与$(II)$的秩相等。
+
+扩展：证明过程也表明了$(I), (II)$线性等价。
+
+\section*{22}
+
+会不会他本身就是极大线性无关部分组？
+
+我们有
+\begin{align*}
+  (\alpha_1 - \alpha_2) + (\alpha_2 - \alpha_3) + (\alpha_3 - \alpha_1) = 0
+\end{align*}
+可知其不是线性无关的，所以秩小于$3$。
+
+那么$\alpha_1 - \alpha_2, \alpha_2 - \alpha_3$线性相关（其他情况类似），
+即
+\begin{align*}
+  x_1(\alpha_1 - \alpha_2) + x_2(\alpha_2 - \alpha_3) = 0
+\end{align*}
+是否存在非零解? 假设存在非零解，那么
+\begin{align*}
+  x_1 \alpha_1 + (x_2 - x_1) \alpha_2 - x_2 \alpha_3 = 0
+\end{align*}
+成立，这表明$\alpha_1, \alpha_2, \alpha_3$是线性相关的，与假设矛盾，
+假设不成立。
+
+综上，$\alpha_1 - \alpha_2, \alpha_2 - \alpha_3, \alpha_3 - \alpha_1$的秩为2，任取向量组中的两个向量，都是
+其极大线性无关部分组。
+
+\section*{23}
+
+设
+\begin{align*}
+  \alpha_1, \alpha_2, \cdots \alpha_n                            & \ \ \ (I)        \\
+  \alpha_{i_1}, \alpha_{i_2}, \cdots \alpha_{i_r}                & \ \ \ (I^\prime) \\
+  \alpha - \alpha_1, \alpha - \alpha_2, \cdots \alpha - \alpha_n & \ \ \ (II)
+\end{align*}
+由习题21可知，$(I),(II)$是线性等价的，那么可得两者的秩都是$r$。
+
+假设
+\begin{align*}
+  \alpha - \alpha_{i_1}, \alpha - \alpha_{i_2}, \cdots \alpha - \alpha_{i_r} \ \ \ (II^\prime)
+\end{align*}
+是$(II)$的极大线性无关部分组。
+
+只要证明$(I^\prime), (II^\prime)$线性等价，则$(II^\prime)$的秩与$(I^\prime)$的秩相同也是$r$，
+从而$(II^\prime)$是线性无关的（因为$(II^\prime)$只有$r$个向量）。
+
+引入一个临时向量组:
+\begin{align*}
+  \alpha_{i_1}, \alpha_{i_2}, \cdots \alpha_{i_r}, \alpha \ \ \ (III)
+\end{align*}
+我们证明$(I^\prime), (III)$线性等价，$(III), (II^\prime)$线性等价，从而得到
+$(I^\prime), (II^\prime)$线性等价。
+
+$(I^\prime), (III)$线性等价是显然的。
+
+$(III)$可以线性表示$(II^\prime)$也是显然的，我们主要考虑$(II^\prime)$线性表示$(III)$
+的证明。先考虑$\alpha$如何用$(II^\prime)$线性表示。
+
+我们有
+\begin{align*}
+  k_1 (\alpha - \alpha_{i_1}) + k_2 (\alpha - \alpha_{i_2}) + \cdots + k_r (\alpha - \alpha_{i_r})
+   & = (k_1 + k_2 + \cdots + k_r)\alpha - (k_1\alpha_{i_1} + k_2\alpha_{i_2} + \cdots + k_r\alpha_{i_r}) \\
+   & = (k_1 + k_2 + \cdots + k_r)\alpha - \alpha                                                         \\
+   & = (k_1 + k_2 + \cdots + k_r - 1)\alpha
+\end{align*}
+由题设可知$k_1 + k_2 + \cdots + k_r \neq 1$，于是可得
+\begin{align*}
+  \alpha = \frac{1}{k_1 + k_2 + \cdots + k_r - 1} k_1 (\alpha - \alpha_{i_1}) + k_2 (\alpha - \alpha_{i_2}) + \cdots + k_r (\alpha - \alpha_{i_r})
+\end{align*}
+所以，$\alpha$可以被$(II^\prime)$线性表示。
+
+至于$(III)$中其他向量的线性表示则是显然的。
+
+综上可得，$(I^\prime), (II^\prime)$线性等价，命题得证。
+
+\section*{24}
+
+反证法，假设$\alpha_1, \alpha_2, \cdots, \alpha_s$线性无关，
+那么
+\begin{align*}
+  k_1 \alpha_1 + k_2 \alpha_2 + \cdots + k_s \alpha_s = 0
+\end{align*}
+存在非零解。
+
+取$k_1, k_2, \cdots, k_s$中的最大值，不妨设为$k_i$（因为存在非零解，所以$k_i \neq 0$）。
+
+取第$i$行方程，我们有
+\begin{align*}
+  k_1 a_{1i} + k_2 a_{2i} + \cdots + k_ia_{ii} + \cdots + k_s a_{si}                                           & = 0                \\
+  - (k_1 a_{1i} + k_2 a_{2i} + \cdots + k_{i - 1} a_{(i - 1)i} + k_{i+1} a_{(i + 1)i} + k_s a_{si})            & = k_ia_{ii}        \\
+  |k_1 a_{1i} + k_2 a_{2i} + \cdots + k_{i-1} a_{(i - 1)i} + k_{i+1} a_{(i + 1)i} + k_s a_{si}|                & = |k_i||a_{ii}|    \\
+  |k_1||a_{1i}| + |k_2||a_{2i}| + \cdots + |k_{i-1}||a_{(i - 1)i}| + |k_{i + 1}||a_{(i + 1)i}| + |k_s||a_{si}| & \geq |k_i||a_{ii}| \\
+  |k_i|(|a_{1i}| + |a_{2i}| + \cdots + |a_{(i - 1)i}| + |a_{(i + 1)i}| + |a_{si}|) \geq |k_i||a_{ii}|                               \\
+  |a_{1i}| + |a_{2i}| + \cdots + |a_{(i - 1)i}| + |a_{(i + 1)i}| + |a_{si}| \geq |a_{ii}|
+\end{align*}
+与题设矛盾，假设不成立，命题得证。
+
+\section*{25}
+
+设
+\begin{align*}
+  \eta_1, \eta_2, \cdots, \eta_n             & \ \ \ (I)  \\
+  \epsilon_1, \epsilon_2, \cdots, \epsilon_n & \ \ \ (II)
+\end{align*}
+$(II)$的秩是$n$，接下来，我们只需证明$(I),(II)$线性等价，就能说明$(II)$的秩也为$n$。
+
+引入一个向量$n$维向量
+\begin{align*}
+  \epsilon = (1, 1, \cdots, 1)
+\end{align*}
+新建一个向量组
+\begin{align*}
+  \epsilon_1, \epsilon_2, \cdots, \epsilon_n, \epsilon \ \ \ (III)
+\end{align*}
+我们只需证明$(I),(II)$都与$(III)$线性等价，则$(I),(II)$线性等价。
+
+$(II)$中是单位向量，可以表示任意$n$维向量，于是$(II), (III)$线性等价是显然的；
+
+$(III)$中也有单位向量，所以$(III)$可以线性表示$(I)$也是显然的；
+
+$(II)$是否可以线性表示$(III)$，关键在于是否可以表示$\epsilon$。
+
+我们有
+\begin{align*}
+   & \frac{1}{a_1}\eta_1 + \frac{1}{a_2}\eta_2 + \frac{1}{a_n} \eta_n           \\
+   & = (\frac{1}{a_1} + 1, \frac{1}{a_1}, \frac{1}{a_1}, \cdots, \frac{1}{a_1}) \\
+   & + (\frac{1}{a_2}, \frac{1}{a_2} + 1, \frac{1}{a_2}, \cdots, \frac{1}{a_2}) \\
+   & + \vdots                                                                   \\
+   & + (\frac{1}{a_n}, \frac{1}{a_n}, \frac{1}{a_n}, \cdots, \frac{1}{a_n} + 1) 
+\end{align*}
+对每一个坐标分量都等于
+\begin{align*}
+  1 + \frac{1}{a_1} + \frac{1}{a_2} + \cdots + \frac{1}{a_n}
+\end{align*}
+由题设可知
+\begin{align*}
+  1 + \frac{1}{a_1} + \frac{1}{a_2} + \cdots + \frac{1}{a_n} \neq 0
+\end{align*}
+于是可得
+\begin{align*}
+  \epsilon = \frac{1}{1 + \frac{1}{a_1} + \frac{1}{a_2} + \cdots + \frac{1}{a_n}} (\frac{1}{a_1}\eta_1 + \frac{1}{a_2}\eta_2 + \frac{1}{a_n} \eta_n           )
+\end{align*}
+所以，$\epsilon$可以被$(II)$线性表示，
+其他向量也可以被$(II)$线性表示，于是我们有$(II), (III)$线性等价。
+
+综上，$(I),(II)$线性等价，于是秩都等于$n$。
+
+
+\end{document}

@@ -1,0 +1,259 @@
+\documentclass{article}
+\usepackage{mathtools} 
+\usepackage{fontspec}
+\usepackage[UTF8]{ctex}
+\usepackage{amsthm}
+\usepackage{mdframed}
+\usepackage{xcolor}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{hyperref}
+
+
+% 定义新的带灰色背景的说明环境 zremark
+\newmdtheoremenv[
+  backgroundcolor=gray!10,
+  % 边框与背景一致，边框线会消失
+  linecolor=gray!10
+]{zremark}{注释}
+
+% 通用矩阵命令: \flexmatrix{矩阵名}{元素符号}{行数}{列数}
+\newcommand{\flexmatrix}[4]{
+  \[
+  #1 = \begin{pmatrix}
+    #2_{11}     & #2_{12}     & \cdots & #2_{1#4}   \\
+    #2_{21}     & #2_{22}     & \cdots & #2_{2#4}   \\
+    \vdots      & \vdots      & \ddots & \vdots     \\
+    #2_{#31}    & #2_{#32}    & \cdots & #2_{#3#4}
+  \end{pmatrix}
+  \]
+}
+
+% 简化版命令（默认矩阵名为A，元素符号为a）: \quickmatrix{行数}{列数}
+\newcommand{\quickmatrix}[2]{\flexmatrix{A}{a}{#1}{#2}}
+
+
+\begin{document}
+\title{2.1 注释}
+\author{张志聪}
+\maketitle
+
+\begin{zremark}
+  命题1.4的增强形式：替换定理 \\
+  给定$K^m$内两个向量组
+  \begin{align*}
+    \alpha_1, \alpha_2, \cdots, \alpha_r & \ \ \ (I)  \\
+    \beta_1, \beta_2, \cdots, \beta_s    & \ \ \ (II)
+  \end{align*}
+  如果向量组$(I)$中每一个向量都能被$(II)$线性表示，且向量组$(I)$线性无关，
+  则有如下结论：
+  \begin{itemize}
+    \item (1) $r \leq s$。
+    \item (2) 向量组$(I)$中的所有向量经过适当替换$(II)$中的向量，
+          可以得到与$(II)$线性等价的向量组$(II^\prime)$。
+    \item (3) $(II)$线性无关，替换后的向量组$(II^\prime)$也线性无关。
+  \end{itemize}
+\end{zremark}
+
+\textbf{证明：}
+
+\begin{itemize}
+  \item (1)
+
+        这是命题1.4的逆否命题。
+  \item (2)
+
+        对$r$进行归纳。
+
+        $\circ$ 归纳基始$r = 1$，
+        首先，由$(I)$是线性无关的可知，$\alpha_1 \neq 0$。
+        又因为$(I)$中每一个向量都能被$(II)$线性表示，所以存在
+        $k_1, k_2, \cdots, k_s$使得
+        \begin{align*}
+          \alpha_1 = k_1 \beta_1 + k_2 \beta_2 + \cdots + k_s \beta_s
+        \end{align*}
+        因为$\alpha_1 \neq 0$，可以确定至少存在一个$k_i \neq 0 (1 \leq i \leq s)$（我们取其中的一个即可）。
+
+        我们用$\alpha_1$替换$\beta_i$，于是我们得到新的向量组：
+        \begin{align*}
+          \beta_1, \beta_2, \cdots, \beta_{i-1}, \alpha_1, \beta_{i+1}, \cdots, \beta_s \ \ \ (II^\prime)
+        \end{align*}
+        接下来，我们需要证明$(II)$与$(II^\prime)$线性等价。
+
+        $(II^\prime)$可以被$(II)$线性表示是显然的，因为$(II^\prime)$中的向量除了$\alpha_1$外，$(II)$中都存在，
+        且$\alpha_1$也是可以被$(II)$线性表示。
+
+        $(II)$和$(II^\prime)$相差一个向量$\alpha_1$，只需关注$\beta_i$是否能被$(II^\prime)$线性表示即可。
+        我们有
+        \begin{align*}
+          \alpha_1 = k_1 \beta_1 + k_2 \beta_2 + \cdots + k_i \beta_i + \cdots + k_s \beta_s                                             \\
+          k_i \beta_i = \alpha_1 - k_1 \beta_1 - k_2 \beta_2 - \cdots - k_{i-1} \beta_{i-1} - k_{i+1} \beta_{i+1} - \cdots - k_s \beta_s \\
+          \beta_i = \frac{1}{k_i}\alpha_1 - \frac{k_1}{k_i} \beta_1 - \frac{k_2}{k_i} \beta_2 - \cdots - \frac{k_{i-1}}{k_i} \beta_{i-1} - \frac{k_{i+1}}{k_i} \beta_{i+1} - \cdots - \frac{k_s}{k_i} \beta_s
+        \end{align*}
+        综上，$(II)$与$(II^\prime)$线性等价。
+
+        $\circ$ 归纳假设$r = k - 1$时，命题成立。
+
+        $\circ$ $r = k$时，$(I)$中去除$\alpha_k$的到的$(I^\prime)$也是线性无关的（可以直接用反证法证明）。
+        于是利用归纳假设可知，$(I^\prime)$替换$(II)$中的向量得到:
+        \begin{align*}
+          \alpha_1, \alpha_2, \cdots, \alpha_{k - 1}, \beta_{i1}, \beta_{i2}, \cdots, \beta_{i(s - r + 1)} \ \ \ (II^\prime)
+        \end{align*}
+        与$(II)$是线性等价的。
+
+        接下来，我们只需证明，把$\alpha_k$替换$\beta_{i1}, \beta_{i2}, \cdots, \beta_{i(s - r + 1)}$中的某一个向量后，
+        $(II^\prime)$依然和$(II)$线性等价即可。
+
+        由题设$(I)$可以被$(II)$线性表示可知，因为$(II)$和$II^\prime$是线性等价的，
+        于是我们有
+        \begin{align*}
+          \alpha_k = a_1 \alpha_1 + a_2 \alpha_2 + \cdots + a_{k - 1} \alpha_{k - 1} + a_k \beta_{i1} + \cdots + a_s \beta_{i(s - r + 1)}
+        \end{align*}
+        我们可以断定$a_k, \cdots, a_s$中必有非零的数
+        （可以通过反证法，如果都等于零，那么$\alpha_k$就可以被$(I)$中的其他向量线性表示了，与题设矛盾）。
+
+        设$a_{ij} \neq 0 (k \leq ij \leq s)$，那么，用$\alpha_k$替换掉对应的$\beta_{ij}$，我们得到新的向量组
+        \begin{align*}
+          \alpha_1, \alpha_2, \cdots, \alpha_{k}, \beta_{i1}, \beta_{i2}, \cdots,
+          \beta_{i(j - 1)}, \beta_{i(j + 1)}, \cdots, \beta_{i(s - r + 1)} \ \ \ (III)
+        \end{align*}
+
+        易得$(III)$与$(II^\prime)$线性等价（讨论和$r = 1$类似，这里不做赘述。），进而$(II)$与$(III)$线性等价。
+
+        归纳完成，命题成立。
+
+  \item (3)
+
+        对$r$进行归纳。
+
+        $\circ$ 归纳基始$r = 1$，可知$\alpha_1 \neq 0$，
+        不妨设替换后的$(II)$为：
+        \begin{align*}
+          \alpha_1, \beta_2, \beta_3, \cdots, \beta_s \ \ \ (II^\prime)
+        \end{align*}
+
+        我们需要证明$(II^\prime)$是线性无关的。反证法，假设$(II^\prime)$是线性有关的，
+        那么
+        \begin{align*}
+          k_1 \alpha_1 + k_2 \beta_2 + \cdots + k_s \beta_s = 0
+        \end{align*}
+        存在非零解。
+
+        显然，$k_1 \neq 0$，否则
+        \begin{align*}
+          k_2 \beta_2 + \cdots + k_s \beta_s = 0
+        \end{align*}
+        这与题设$(II)$线性无关矛盾。
+
+        由$k_1 \neq 0$，有$\alpha_1$可以被$\beta_2, \beta_3, \cdots, \beta_s$
+        线性表示为
+        \begin{align*}
+          \alpha_1 = - \frac{1}{k_1} (k_2 \beta_2 + \cdots + k_s \beta_s)
+        \end{align*}
+
+        因为$(II)$与$(II^\prime)$线性等价可知，
+        $\beta_1$可以被$(II^\prime)$线性表示：
+        \begin{align*}
+          \beta_1 & = c_1 \alpha_1 + c_2 \beta_2 + \cdots + c_s \beta_s                                         \\
+                  & = - \frac{1}{k_1} (k_2 \beta_2 + \cdots + k_s \beta_s) + c_2 \beta_2 + \cdots + c_s \beta_s
+        \end{align*}
+        于是我们有$(II)$是线性有关的，与题设矛盾，
+        所以假设不成立。
+
+        $\circ$ 归纳假设$r = k - 1$时，命题成立。
+
+        $\circ$ $r = k$时。因为$\alpha_1, \alpha_2, \cdots, \alpha_{k - 1}$是线性无关的，
+        所以由归纳假设可知，向量组
+        \begin{align*}
+          \alpha_1, \alpha_2, \cdots, \alpha_{k - 1}, \beta_{i1}, \beta_{i2}, \cdots, \beta_{i(s - r + 1)} \ \ \ (II^\prime)
+        \end{align*}
+        是线性无关的。
+
+        按照之前的方法用$\alpha_k$替换掉对应的$\beta_{ij} \ (k \leq ij \leq s)$，
+        得到与$(II^\prime)$线性等价的新向量组$(III)$，需证明$(III)$也是线性无关的。
+
+        证明方式与$r = 1$时相同。反证法，假设$(III)$是线性相关的，那么
+        \begin{align*}
+          c_1 \alpha_1 + c_2 \alpha_2 + \cdots + c_k \alpha_k
+          + c_{k + 1} \beta_{i1} + \cdots + c_{k + j - 1} \beta_{i(j-1)}
+          + c_{k + j + 1} \beta_{i(j+1)} + \cdots
+          + c_s \beta_{i(s - r + 1)} = 0
+        \end{align*}
+        存在非零解。
+        $c_k \neq 0$，否者会与$(II^\prime)$线性无关矛盾。
+        于是，我们有$\alpha_k$可以被$(III)$中的其他向量线性表示。
+
+        因为$(II^\prime)$与$(III)$线性等价，所以存在
+        \begin{align*}
+          \beta_{ij} = d_1 \alpha_1 + d_2 \alpha_2 + \cdots + d_k \alpha_k
+          + d_{k + 1} \beta_{i1} + \cdots + d_{k + j - 1} \beta_{i(j-1)}
+          + d_{k + j + 1} \beta_{i(j+1)} + \cdots
+          + d_s \beta_{i(s - r + 1)}
+        \end{align*}
+        替换掉$\alpha_k$，就会得到$\beta_{ij}$可以被$(II^\prime)$中的其他向量线性表示，
+        这与$(II^\prime)$线性无关矛盾。
+        综上，假设不成立，$(III)$是线性无关的。
+
+        归纳完成，命题成立。
+\end{itemize}
+
+\begin{zremark}
+  筛选法中涉及的命题：\\
+
+  已知，向量组
+  \begin{align*}
+    \alpha_1, \alpha_2, \cdots, \alpha_n \ \ \ (I)
+  \end{align*}
+  是线性无关的，如果$\alpha_{n + 1}$无法被向量组线性表示，
+  把$\alpha_{n + 1}$加入向量组，则新向量组$(II)$仍然是线性无关的。 
+\end{zremark}
+
+\textbf{证明：}
+
+反证法，假设新的向量组线性相关，于是方程组
+\begin{align*}
+  k_1 \alpha_1 + k_2 \alpha_2 + \cdots + k_n \alpha_n + k_{n + 1} \alpha_{n + 1} = 0
+\end{align*}
+存在非零解。
+
+这里$k_{n + 1} = 0$，否则会与$\alpha_{n + 1}$不能被$(I)$线性表示矛盾。
+
+于是，我们有
+\begin{align*}
+  k_1 \alpha_1 + k_2 \alpha_2 + \cdots + k_n \alpha_n = 0
+\end{align*}
+存在非零解，这与题设$(I)$线性无关矛盾。
+
+综上，假设不成立，命题得证。
+
+\begin{zremark}
+  关于集合$S$上的二元“关系”（这里用$\thicksim$表示）的定义：\\
+  对任意$a, b \in S$，要么$a, b$存在这种“关系”（$a \thicksim b$），
+  要么不存在这种“关系”（$a \not\thicksim b$），两者必选其一。
+\end{zremark}
+
+\begin{zremark}
+  一个重要关系。
+
+  设，向量组为
+  \begin{align*}
+    \alpha_1, \alpha_2, \cdots, \alpha_2 \ \ \ (I)
+  \end{align*}
+  $(I)$的秩是$r$，
+  存在一个部分组为
+  \begin{align*}
+    \alpha_{i1}, \alpha_{i2}, \cdots, \alpha_{ik} \ \ \ (II)
+  \end{align*}
+  那么，以下任意两个结论可以推出另一个结论：
+  \begin{itemize}
+    \item (1) $(II)$线性无关;
+    \item (2) $(II)$可以线性表示$(I)$;
+    \item (3) $k = r$。
+  \end{itemize}
+\end{zremark}
+
+\textbf{证明：}
+
+习题14,15
+
+\end{document}
