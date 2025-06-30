@@ -1,0 +1,66 @@
+\documentclass{article}
+\usepackage{mathtools} 
+\usepackage{fontspec}
+\usepackage[UTF8]{ctex}
+\usepackage{amsthm}
+\usepackage{mdframed}
+\usepackage{xcolor}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{hyperref}
+
+
+% 定义新的带灰色背景的说明环境 zremark
+\newmdtheoremenv[
+  backgroundcolor=gray!10,
+  % 边框与背景一致，边框线会消失
+  linecolor=gray!10
+]{zremark}{注释}
+
+% 通用矩阵命令: \flexmatrix{矩阵名}{元素符号}{行数}{列数}
+\newcommand{\flexmatrix}[4]{
+  \[
+  #1 = \begin{pmatrix}
+    #2_{11}     & #2_{12}     & \cdots & #2_{1#4}   \\
+    #2_{21}     & #2_{22}     & \cdots & #2_{2#4}   \\
+    \vdots      & \vdots      & \ddots & \vdots     \\
+    #2_{#31}    & #2_{#32}    & \cdots & #2_{#3#4}
+  \end{pmatrix}
+  \]
+}
+
+% 简化版命令（默认矩阵名为A，元素符号为a）: \quickmatrix{行数}{列数}
+\newcommand{\quickmatrix}[2]{\flexmatrix{A}{a}{#1}{#2}}
+
+
+\begin{document}
+\title{2.2 注释}
+\author{张志聪}
+\maketitle
+
+\begin{zremark}
+  问题2：
+
+  求$K^n$内下面向量组（以行向量为例）的极大线性无关部分组：
+  \begin{align*}
+    \alpha_1, \alpha_2, \cdots, \alpha_m \ \ \ (I)
+  \end{align*}
+
+  操作方法：
+
+  操作方式和例2.2相同，只是额外支持初等列变换，在进行该操作时，
+  希腊字母表示的向量\textbf{不}跟着变，最终把$m \times n$矩阵化为阶梯型。
+
+  试着完成该操作方法的理论支持部分。
+\end{zremark}
+
+\textbf{证明：}
+
+矩阵$A$通过上述“操作方式”我们得到矩阵$B$，并的到一个极大线性无关部分组：
+\begin{align}
+  \alpha_{i_1}, \alpha_{i_2}, \cdots, \alpha_{i_r}
+\end{align}
+我们需要证明这确实是矩阵$A$的极大线性无关部分组。
+
+
+\end{document}
