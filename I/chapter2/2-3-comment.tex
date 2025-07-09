@@ -1,0 +1,201 @@
+\documentclass{article}
+\usepackage{mathtools} 
+\usepackage{fontspec}
+\usepackage[UTF8]{ctex}
+\usepackage{amsthm}
+\usepackage{mdframed}
+\usepackage{xcolor}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{hyperref}
+
+
+% 定义新的带灰色背景的说明环境 zremark
+\newmdtheoremenv[
+  backgroundcolor=gray!10,
+  % 边框与背景一致，边框线会消失
+  linecolor=gray!10
+]{zremark}{注释}
+
+% 通用矩阵命令: \flexmatrix{矩阵名}{元素符号}{行数}{列数}
+\newcommand{\flexmatrix}[4]{
+  \[
+  #1 = \begin{pmatrix}
+    #2_{11}     & #2_{12}     & \cdots & #2_{1#4}   \\
+    #2_{21}     & #2_{22}     & \cdots & #2_{2#4}   \\
+    \vdots      & \vdots      & \ddots & \vdots     \\
+    #2_{#31}    & #2_{#32}    & \cdots & #2_{#3#4}
+  \end{pmatrix}
+  \]
+}
+
+% 简化版命令（默认矩阵名为A，元素符号为a）: \quickmatrix{行数}{列数}
+\newcommand{\quickmatrix}[2]{\flexmatrix{A}{a}{#1}{#2}}
+
+
+\begin{document}
+\title{2.3 注释}
+\author{张志聪}
+\maketitle
+
+\begin{zremark}
+  形如
+  \begin{align*}
+    A = \begin{bmatrix}
+          b      & a      & \cdots & a      \\
+          a      & b      & \cdots & a      \\
+          \vdots & \vdots & \ddots & \vdots \\
+          a      & a      & \cdots & b
+        \end{bmatrix}
+  \end{align*}
+  的$n \times n$系数矩阵，秩的情况。
+\end{zremark}
+
+所有行都加到第一行（初等行变换），我们有
+\begin{align*}
+  \begin{bmatrix}
+    (n - 1)a + b & (n - 1)a + b & \cdots & (n - 1)a + b \\
+    a            & b            & \cdots & a            \\
+    \vdots       & \vdots       & \ddots & \vdots       \\
+    a            & a            & \cdots & b
+  \end{bmatrix}
+\end{align*}
+
+于是可以分两种情况讨论：
+\begin{itemize}
+  \item $(n - 1)a + b \neq 0$；
+
+        把第一行除以$\frac{1}{(n - 1)a + b}$得到
+        \begin{align*}
+          \begin{bmatrix}
+            1      & 1      & \cdots & 1      \\
+            a      & b      & \cdots & a      \\
+            \vdots & \vdots & \ddots & \vdots \\
+            a      & a      & \cdots & b
+          \end{bmatrix}
+          \xrightarrow{\text{从第二行开始减去$a$倍的第一行}}
+          \begin{bmatrix}
+            1      & 1      & \cdots & 1      \\
+            0      & b - a  & \cdots & 0      \\
+            \vdots & \vdots & \ddots & \vdots \\
+            0      & 0      & \cdots & b - a
+          \end{bmatrix}
+        \end{align*}
+
+        可见，除在主对角线上是$b - a$，其余位置都是$0$。
+
+        所以，我们有
+        \begin{equation*}
+          rank(A) =
+          \begin{cases*}
+            1, a = b \\
+            n, a \neq b
+          \end{cases*}
+        \end{equation*}
+
+  \item $(n - 1)a + b = 0$；
+
+        我们有
+        \begin{align*}
+          \begin{bmatrix}
+            0      & 0      & \cdots & 0      \\
+            a      & b      & \cdots & a      \\
+            \vdots & \vdots & \ddots & \vdots \\
+            a      & a      & \cdots & b
+          \end{bmatrix}
+          \xrightarrow{\text{从第二列开始减去第一列}}
+          \begin{bmatrix}
+            0      & 0      & \cdots & 0      \\
+            a      & b - a  & \cdots & 0      \\
+            \vdots & \vdots & \ddots & \vdots \\
+            a      & 0      & \cdots & b - a
+          \end{bmatrix}
+        \end{align*}
+
+        如果$b - a = 0$，那么由$(n - 1)a + b = 0$可知$a = b = 0$，
+        此时矩阵是零矩阵，$rank(A) = 0$。
+
+        如果$b - a \neq 0$，那么$rank(A) = n - 1$。
+\end{itemize}
+
+综上，
+\begin{equation*}
+  rank(A) = \begin{cases}
+    0     & a = b = 0           \\
+    1     & a = b \neq 0        \\
+    n - 1 & (n - 1)a + b = 0    \\
+    n     & (n - 1)a + b \neq 0
+  \end{cases}
+\end{equation*}
+
+\begin{zremark}
+  数域$K_1$上含有$n$个未知量的非齐次线性方程组$(I)$，扩大数域到$K_2(K_1 \subset K_2)$，
+  对解的影响。
+\end{zremark}
+
+\textbf{证明：}
+
+设$(I)$的系数矩阵和增广矩阵分别为$A, \overline{A}$，常数列设为$\beta$。
+
+通过初等变换把$A$化作标准型，
+在初等变换中，只使用$K_1$的数，
+最后，确定$A$的秩。
+
+分情况讨论：
+\begin{itemize}
+  \item 无解;
+
+        即$rank(A) \neq rank(\overline{A})$，
+        把数域扩展到$K_2$，因为$K_1 \subset K_2$，
+        标准型可以通过相同的初等变换得到（标准型有其特殊性，元素只有1和0，
+        即使数域改变，还是要满足数域的运算法则，线性关系无法改变），
+        即秩的关系不会因为数域的扩大而改变。
+        因此，在数域$K_2$也是无解的。
+
+  \item 唯一解;
+
+        即$rank(A) = rank(\overline{A}) = n$，
+        在$K_1$下，$(I)$存在唯一解。
+
+        在$K_2$下，秩的情况是不变的，于是在$K_2$下，
+        $(I)$也存在唯一解。
+
+        这唯一的解在$K_1$中已经被唯一确定。
+        所以在$K_2$中的解也只会是这个在$K_1$中的解，
+        即：解是相同的。
+
+  \item 无数解;
+
+        即$rank(A) = rank(\overline{A}) = r < n$，
+        在$K_1$下，$(I)$的解可以表示成
+        \begin{align*}
+          \gamma_0 + k_1 \eta_1 + k_2 \eta_2 + \cdots + k_{n - r} \eta_{n - r}
+        \end{align*}
+        其中$\gamma_0$是特解，
+        \begin{align*}
+          \eta_1, \eta_2, \cdots, \eta_{n - r}
+        \end{align*}
+        是$(I)$导出方程组的基础解系，且
+        \begin{align*}
+          k_1, k_2, \cdots, k_{n - r} \in K_1
+        \end{align*}
+
+        因为在$K_2$下，$A$的秩是不变的，
+        于是导出方程组的基础解系向量个数也是$n - r$，
+        显然$\eta_1, \eta_2, \cdots, \eta_{n - r}$ 
+        也是$K_2$下的解，于是由习题3，可知该基础解系也是
+        $K_2$下导出方程组的基础解系。
+
+        特解$\gamma_0$也是$K_2$下的特解，
+        于是，在$K_2$下，$(I)$的解可以表示成
+        \begin{align*}
+          \gamma_0 + s_1 \eta_1 + s_2 \eta_2 + \cdots + s_{n - r} \eta_{n - r}
+        \end{align*}
+        其中
+        \begin{align*}
+          s_1, s_2, \cdots, s_{n - r} \in K_2
+        \end{align*}
+        因为系数的不同，在$K_2$下，解是不同的。
+\end{itemize}
+
+\end{document}

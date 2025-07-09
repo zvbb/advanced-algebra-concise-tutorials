@@ -143,7 +143,7 @@ $x_3,x_4,x_5$为自由未知量。
         假设$(II)$不是基础解系，那么存在解向量$\beta$无法被$(II)$线性表示，
         由命题3.2的逆否命题可知，向量组
         \begin{align*}
-         (III) : = (II), \beta
+          (III) : = (II), \beta
         \end{align*}
         是线性无关的，于是秩为$n - r + 1$。
 
@@ -176,6 +176,451 @@ $x_3,x_4,x_5$为自由未知量。
 
 \section*{4}
 
+反证法，假设$\beta$不可以被$\alpha_1, \alpha_2, \cdots \alpha_{s}$线性表示。
 
+齐次线性方程组对应的矩阵设为
+\begin{align*}
+  A = \begin{bmatrix}
+        \alpha_1 \\
+        \alpha_2 \\
+        \vdots   \\
+        \alpha_s
+      \end{bmatrix}
+\end{align*}
+把方程
+\begin{align*}
+  b_1 x_1 + b_2 x_2 + \cdots + b_n x_n = 0
+\end{align*}
+添加到齐次线性方程组，得到新的矩阵:
+\begin{align*}
+  B = \begin{bmatrix}
+        \alpha_1 \\
+        \alpha_2 \\
+        \vdots   \\
+        \alpha_s \\
+        \beta
+      \end{bmatrix}
+\end{align*}
+
+不妨设$rank(A) = r$，那么，我们有
+\begin{align*}
+  rank(B) = r + 1
+\end{align*}
+设$A,B$的基础解系分别为$(I),(II)$，由定理3.1可知，基础解系的秩为
+\begin{align*}
+  rank((I)) = n - r \\
+  rank((II)) = n - r - 1
+\end{align*}
+由题设中对解的描述可知，$(II)$可以线性表示$(I)$，且$(I)$是线性无关的，
+于是，利用命题1.4可知
+\begin{align*}
+  n - r - 1 \geq n - r
+\end{align*}
+存在矛盾，假设不成立，命题得证。
+
+\section*{5}
+
+设两个齐次线性方程组对应的矩阵分别为为
+\begin{align*}
+  A \\
+  B
+\end{align*}
+把两个齐次线性方程组合并，我们得到新的矩阵
+\begin{align*}
+  C = \begin{bmatrix}
+        A \\
+        B
+      \end{bmatrix}
+\end{align*}
+由$\S 2$习题9（更准确的说是行向量版本）可知
+\begin{align*}
+  max(rank(A), rank(B)) \leq rank(C) \leq rank(A) + rank(B)
+\end{align*}
+因为$rank(A), rank(B)$都小于$n/2$，我们有
+\begin{align*}
+  0 \leq rank(C) < n
+\end{align*}
+
+如果$rank(C)$等于$0$，说明矩阵$A, B$都是零矩阵，此时任意$x_1, x_2, \cdots, x_n$
+都是$A, B$对应的齐次线性方程组的解，命题成立。
+
+$rank(C) < n$时，由定理3.1可知，$C$存在一个秩为$n - rank(C) > 0$的基础解系$(I)$，
+因为$(I)$是非空的，$(I)$中的任意向量都是$A, B$的解向量，命题得证。
+
+综上，命题得证。
+
+\section*{6}
+
+\begin{itemize}
+  \item 方法一
+
+        对系数$n \times n$矩阵进行初等变换
+        \begin{align*}
+          \begin{bmatrix}
+            0      & 1      & 1      & 1      & \cdots & 1      & 1      \\
+            1      & 0      & 1      & 1      & \cdots & 1      & 1      \\
+            1      & 1      & 0      & 1      & \cdots & 1      & 1      \\
+            1      & 1      & 1      & 0      & \cdots & 1      & 1      \\
+            \vdots & \vdots & \vdots & \vdots & \vdots & \vdots & \vdots \\
+            1      & 1      & 1      & 1      & \cdots & 1      & 0      \\
+          \end{bmatrix}
+          \xrightarrow{\text{交换前两列}}
+          \begin{bmatrix}
+            1      & 0      & 1      & 1      & \cdots & 1      & 1      \\
+            0      & 1      & 1      & 1      & \cdots & 1      & 1      \\
+            1      & 1      & 0      & 1      & \cdots & 1      & 1      \\
+            1      & 1      & 1      & 0      & \cdots & 1      & 1      \\
+            \vdots & \vdots & \vdots & \vdots & \vdots & \vdots & \vdots \\
+            1      & 1      & 1      & 1      & \cdots & 1      & 0      \\
+          \end{bmatrix} \\
+          \xrightarrow{\text{先利用$R_1$进行行变换，再利用$C_1$进行列变换}}
+          \begin{bmatrix}
+            1      & 0      & 0      & 0      & \cdots & 0      & 0      \\
+            0      & 1      & 0      & 0      & \cdots & 0      & 0      \\
+            0      & 1      & -1     & 0      & \cdots & 0      & 0      \\
+            0      & 1      & 0      & -1     & \cdots & 0      & 0      \\
+            \vdots & \vdots & \vdots & \vdots & \vdots & \vdots & \vdots \\
+            0      & 1      & 0      & 0      & \cdots & 0      & -1     \\
+          \end{bmatrix}
+        \end{align*}
+        有无非零解，就是判断$A$的秩的情况。
+        此时，主对角线上都是非零的，且矩阵的右上角都是$0$，观察行向量可得都是线性无关的，
+        所以矩阵$rank(A) = n$，于是可得$A$没有非零解。
+
+  \item 方法二
+
+        使用2-3-comment.tex中的结论，直接可得秩为$n$。
+\end{itemize}
+
+
+\section*{7}
+
+不妨设齐次线性方程组$A$的秩为$r$，那么设它的任意基础解系为
+\begin{align*}
+  \alpha_1, \alpha_2, \cdots, \alpha_{n - r} \ \ \ (I)
+\end{align*}
+
+设满足题设要求的线性无关解向量组为
+\begin{align*}
+  \eta_1, \eta_2, \cdots, \eta_s \ \ \ (II)
+\end{align*}
+
+如果$s = n - r$，由习题3可知，$(II)$就是基础解系。
+
+如果$s < n - r$，于是由基础解系的定义可知$(I)$可以线性表示$(II)$，
+又因为$(II)$是线性无关的，由替换定理的结论(2)(3)可得，
+可以用$(II)$替换掉$(I)$中的部分向量，得到一个与$(I)$线性等价且线性无关的基础解系。
+
+综上，命题得证。
+
+\section*{8}
+
+略
+
+\section*{9}
+
+如果是齐次线性方程组，由解的性质可知，命题是显然成立的。
+
+我们主要考虑非齐次线性方程组，不妨设为$A$。
+
+我们有
+\begin{align*}
+   & \eta_1 = \eta_1 + (\eta_1 - \eta_1) \\
+   & \eta_2 = \eta_1 + (\eta_2 - \eta_1) \\
+   & \eta_3 = \eta_1 + (\eta_3 - \eta_1) \\
+   & \vdots                              \\
+   & \eta_t = \eta_1 + (\eta_t - \eta_1)
+\end{align*}
+于是
+\begin{align*}
+  k_1 \eta_1 + k_2 \eta_2 + \cdots + k_t \eta_t
+   & = (k_1 + k_2 + \cdots + k_t) \eta_1 + [k_1(\eta_1 - \eta_1) + k_2(\eta_2 - \eta_1) + \cdots + k_t(\eta_t - \eta_1)] \\
+   & = \eta_1 + [k_1(\eta_1 - \eta_1) + k_2(\eta_2 - \eta_1) + \cdots + k_t(\eta_t - \eta_1)]
+\end{align*}
+
+因为
+\begin{align*}
+  [k_1(\eta_1 - \eta_1) + k_2(\eta_2 - \eta_1) + \cdots + k_t(\eta_t - \eta_1)]
+\end{align*}
+是$A$导出方程组的解。
+所以
+\begin{align*}
+  \eta_1 + [k_1(\eta_1 - \eta_1) + k_2(\eta_2 - \eta_1) + \cdots + k_t(\eta_t - \eta_1)]
+\end{align*}
+是$A$的解。
+
+\section*{10}
+
+设n个平面合并成一个方程组$A$（注意，不一定是齐次的）。
+
+通过一个点，即方程组只有一个解，满足以下条件即可
+\begin{align*}
+  rank(A) = n = rank(\overline{A})
+\end{align*}
+其中$\overline{A}$是增广矩阵。
+
+通过同一直线，即方程组的基础解系的秩为$1$，满足以下条件即可
+\begin{align*}
+  rank(A) = n - 1 = rank(\overline{A})
+\end{align*}
+
+\section*{11}
+
+不妨设$rank(A) = r$，可设
+\begin{align*}
+  \alpha_{i_1}, \alpha_{i_2}, \cdots, \alpha_{i_r} \ \ \ (I)
+\end{align*}
+是$A$列向量组的极大无关部分组。
+
+$(I)$中每个向量加上一个分量$b_j (1 \leq j \leq n)$，得到新的向量组
+\begin{align*}
+  \beta_{i_1}, \beta_{i_2}, \cdots, \beta_{i_r} \ \ \ (II)
+\end{align*}
+依然是线性无关的。
+
+由题设$rank(A) = rank(B)$可知，$(II)$是$B$列向量的极大线性无关部分组，
+于是$(II)$可以线性表示最后一列，从而线性方程组有解。
+
+\section*{12}
+
+设该方程组的系数矩阵为$A$，增广矩阵为$\overline{A}$，
+\begin{align*}
+  \beta = (b_1, b_2, \cdots, b_n)
+\end{align*}
+
+先对$A$进行行变换，把$n$行放到第$1$行，第$n-1$行放到第二行，以此类推，
+于是由2-3-comment.tex中的结论可知：\\
+$a = b = 0$时$rank(A) = 0$，
+由定理3.2（判别定理）可知，只有当$rank(A) = 0 = rank(\overline{A})$
+时，方程组才有解。即$\beta$是零向量才有解。且$K^n$中的任意向量都是它的解。
+
+$a = b = 0$时$rank(A) = 1$，
+由定理3.2（判别定理）可知，只有当$rank(A) = 1 = rank(\overline{A})$
+时，所有的方程都是一样的，
+此时只有当$\beta$中所有分量都相同时，方程组才有解，基础解系的秩为$n - 1$。
+
+$(n - 1)a + b \neq 0$，此时$rank(A) = n$，因为增广矩阵的行只有$n$行，
+可得$rank(\overline{A}) = n$，此时，有唯一解且对$\beta$没有要求。
+
+$(n - 1)a + b = 0$，对增广矩阵做行变换：所有的行都加入第一行，得到
+\begin{align*}
+  \begin{bmatrix}
+    0      & 0      & \cdots & 0,     & \sum\limits_{i}^n b_i \\
+    a      & b      & \cdots & a,     & b_{n - 1}             \\
+    \vdots & \vdots & \ddots & \vdots & \vdots                \\
+    a      & a      & \cdots & b      & b_1
+  \end{bmatrix}
+\end{align*}
+已知除去第n行，矩阵的秩为$n - 1$，要想线性方程有解，那么要保证其秩为$n - 1$，
+于是需要保证$\sum\limits_{i}^n b_i = 0$。
+
+综上，
+\begin{equation*}
+  \begin{cases}
+    \text{任意解}           & a = b = 0, b_1 = b_2 =\cdots = b_n = 0 \\
+    \text{基础解系秩为$n - 1$} & a = b \neq 0, b_1 = b_2 =\cdots = b_n  \\
+    \text{基础解系秩为$1$}     & a = b = 0, \sum\limits_{i}^n b_i = 0   \\
+    \text{唯一解}           & (n - 1)a + b \neq 0
+  \end{cases}
+\end{equation*}
+
+\section*{13}
+由定理3.3可知，任一解$\gamma$可以表示成
+\begin{align*}
+  \gamma = \gamma_0 + k_1\eta_1 + \cdots + k_s\eta_s
+\end{align*}
+
+令$k_0 = 1 - (k_1 + \cdots + k_s)$，于是我们有
+\begin{align*}
+  \gamma
+   & = (k_0 + k_1 + \cdots + k_s) \gamma_0 + k_1 \eta_1 + \cdots + k_s \eta_s    \\
+   & = k_0 \gamma_0 + k_1 (\gamma_0 + \eta_1) + \cdots + k_s (\gamma_0 + \eta_s) \\
+   & = k_0 \gamma_0 + k_1 \gamma_1 + \cdots + k_s \gamma_s
+\end{align*}
+
+\section*{14}
+
+不妨设任意非齐次线性方程组的系数矩阵和增广矩阵为$A, \overline{A}$，
+因为系数矩阵与增广矩阵的秩相等，由定义3.2（判别定理）可知
+方程组有解。
+
+如果$rank(A) = n$，由定理3.3可知，方程组有唯一解。
+因为$n - n + 1 = 1$，命题成立。
+
+如果$rank(A) < n$，由定理3.3可知，方程组的解可有某一特殊解$\gamma_0$和它的
+导出方程组的一个基础解系表示。
+不妨设导出方程组的基础解系为
+\begin{align*}
+  \eta_1, \eta_2, \cdots, \eta_{n - r}
+\end{align*}
+于是方程组的解可以表示成
+\begin{align*}
+  \gamma_0 + k_1 \eta_1 + k_2 \eta_2 + \cdots + k_{n - r} \eta_{n - r}
+\end{align*}
+我们令
+\begin{align*}
+  \gamma_0 = \gamma_0          \\
+  \gamma_1 = \gamma_0 + \eta_1 \\
+  \gamma_2 = \gamma_0 + \eta_2 \\
+  \vdots                       \\
+  \gamma_{n - r} = \gamma_0 + \eta_{n - r}
+\end{align*}
+这就是满足题设要求的线性无关解向量组，设为$(I)$。
+
+我们还需证明该向量组是线性无关的。
+考虑向量组
+\begin{align*}
+  \gamma_0, \eta_1, \eta_2, \cdots, \eta_{n - r} \ \ \ (II)
+\end{align*}
+$(II)$是线性无关的，
+因为$\eta_1, \eta_2, \cdots, \eta_{n - r}$是线性无关，
+且$\gamma_0$是无法被$\eta_1, \eta_2, \cdots, \eta_{n - r}$
+线性表示，否则$\gamma_0$将是导出方程组的解。
+
+易得$(I), (II)$是线性等价的，进而$(I)$是线性无关的。
+
+\section*{15}
+
+\begin{itemize}
+  \item (1)
+
+        三点不共线，则向量
+        \begin{align*}
+          \overrightarrow{AB} = (b_1 - a_1, b_2 - a_2) \\
+          \overrightarrow{AC} = (c_1 - a_1, c_2 - a_2)
+        \end{align*}
+        线性无关。
+
+        对矩阵做初等行列变换
+        \begin{align*}
+          \begin{bmatrix}
+            a_1 & a_2 & 1 \\
+            b_1 & b_2 & 1 \\
+            c_1 & c_2 & 1
+          \end{bmatrix}
+          \xrightarrow{\text{行变换}}
+          \begin{bmatrix}
+            a_1       & a_2       & 1 \\
+            b_1 - a_1 & b_2 - a_2 & 0 \\
+            c_1 - a_1 & c_2 - a_2 & 0
+          \end{bmatrix}
+          \xrightarrow{\text{列变换}}
+          \begin{bmatrix}
+            0         & 0         & 1 \\
+            b_1 - a_1 & b_2 - a_2 & 0 \\
+            c_1 - a_1 & c_2 - a_2 & 0
+          \end{bmatrix} \\
+          \xrightarrow{\text{列变换}}
+          \begin{bmatrix}
+            1 & 0         & 0         \\
+            0 & b_1 - a_1 & b_2 - a_2 \\
+            0 & c_1 - a_1 & c_2 - a_2
+          \end{bmatrix}
+        \end{align*}
+
+        充分性: \\
+        即$rank(A) = 3$，由于初等变换不改变秩，于是可得
+        \begin{align*}
+          (0, b_1 - a_1, b_2 - a_2) \\
+          (0, c_1 - a_1, c_2 - a_2) \\
+        \end{align*}
+        线性无关，进而可得
+        \begin{align*}
+          (b_1 - a_1, b_2 - a_2) \\
+          (c_1 - a_1, c_2 - a_2) \\
+        \end{align*}
+        线性无关，所以三点不共线。
+
+        必要性: \\
+        由三点不共线，可知
+        \begin{align*}
+          (b_1 - a_1, b_2 - a_2) \\
+          (c_1 - a_1, c_2 - a_2)
+        \end{align*}
+        线性无关，从而
+        \begin{align*}
+          (0, b_1 - a_1, b_2 - a_2) \\
+          (0, c_1 - a_1, c_2 - a_2)
+        \end{align*}
+        线性无关。
+
+        显然，向量
+        \begin{align*}
+          (1, 0, 0)
+        \end{align*}
+        不能被
+        \begin{align*}
+          (0, b_1 - a_1, b_2 - a_2) \\
+          (0, c_1 - a_1, c_2 - a_2)
+        \end{align*}
+        于是可得，秩为$3$。
+
+  \item (2)
+
+        三点不共线，唯一确定一个圆。这是几何结论。
+
+        两条中轴线（以AB，BC为例）相交的点，就是圆心。
+        \begin{equation*}
+          \begin{cases*}
+            2(b_1 - a_1)x + 2(b_2 - a_2)y + (a_1^2 + a_2^2 - b_1^2 - b_2^2) = 0 \\
+            2(c_1 - b_1)x + 2(c_2 - b_2)y + (b_1^2 + b_2^2 - c_1^2 - c_2^2) = 0
+          \end{cases*}
+          \ \ \ (1)
+        \end{equation*}
+        以上方程一定有唯一的实数解，设为$(x_0, y_0)$。
+
+        接下来，我们需要证明$(x_0, y_0)$是有理数坐标。
+
+        对于方程组$(1)$的系数矩阵，
+        因为元素都是有理数，
+        我们可以利用初等变换（有理数域内的初等变换）化作
+        标准型，由2-3-comment.tex注释2中的讨论可知，
+        有理数域扩大到实数域，秩是不会改变的，
+        由实数域有唯一解可知，秩为$2$，
+        所以在有理数域也有唯一解，
+        因为有理数域是实数域的子集，
+        从而可知，这个唯一解是有理数解，否则实数域中就有两个解了，存在矛盾。
+
+        综上，$(x_0, y_0)$是有理数坐标。
+\end{itemize}
+
+\section*{16}
+
+因为是实数域上的齐次线性方程组，
+由2-3-comment.tex注释2中的讨论可知，
+秩的情况在实数域还是复数域上是相同的，
+题设中齐次线性方程组有非零解，即
+实数域中有非零解。
+不妨设
+\begin{align*}
+  (c_1, c_2, \cdots, c_n)
+\end{align*}
+是一个实数域中的非零解向量。
+
+于是我们有以下方程组
+
+\begin{equation*}
+  \begin{cases*}
+    \lambda c_1 + a_{12} c_2 + \cdots + a_{1n} c_n = 0 \\
+    a_{21} c_1 + \lambda c_2 + \cdots + a_{2n} c_n = 0 \\
+    \cdots                                             \\
+    a_{n1}c_1 + a_{n2}c_2 + \cdots + \lambda c_n = 0
+  \end{cases*}
+\end{equation*}
+对$i$个方程，乘以$c_i$，于是，我们有
+\begin{equation*}
+  \begin{cases*}
+    \lambda c_1^2 + a_{12} c_1c_2 + \cdots + a_{1n} c_1c_n = 0 \\
+    a_{21} c_1c_2 + \lambda c_2^2 + \cdots + a_{2n} c_2c_n = 0 \\
+    \cdots                                                     \\
+    a_{n1}c_1c_n + a_{n2}c_2c_n + \cdots + \lambda c_n^2 = 0
+  \end{cases*}
+\end{equation*}
+所有方程相加，由于$a_{ij} = - a_{ji}$，我们有
+\begin{align*}
+  \lambda c_1^2 + \lambda c_2^2 + \cdots + \lambda c_n^2 & = 0 \\
+  \lambda (c_1^2 + c_2^2 + \cdots + c_n^2)               & = 0 \\
+  \lambda                                                & = 0
+\end{align*}
 
 \end{document}
