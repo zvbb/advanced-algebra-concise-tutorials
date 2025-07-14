@@ -1,0 +1,129 @@
+\documentclass{article}
+\usepackage{mathtools} 
+\usepackage{fontspec}
+\usepackage[UTF8]{ctex}
+\usepackage{amsthm}
+\usepackage{mdframed}
+\usepackage{xcolor}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{hyperref}
+
+
+% 定义新的带灰色背景的说明环境 zremark
+\newmdtheoremenv[
+  backgroundcolor=gray!10,
+  % 边框与背景一致，边框线会消失
+  linecolor=gray!10
+]{zremark}{注释}
+
+% 通用矩阵命令: \flexmatrix{矩阵名}{元素符号}{行数}{列数}
+\newcommand{\flexmatrix}[4]{
+  \[
+  #1 = \begin{pmatrix}
+    #2_{11}     & #2_{12}     & \cdots & #2_{1#4}   \\
+    #2_{21}     & #2_{22}     & \cdots & #2_{2#4}   \\
+    \vdots      & \vdots      & \ddots & \vdots     \\
+    #2_{#31}    & #2_{#32}    & \cdots & #2_{#3#4}
+  \end{pmatrix}
+  \]
+}
+
+% 简化版命令（默认矩阵名为A，元素符号为a）: \quickmatrix{行数}{列数}
+\newcommand{\quickmatrix}[2]{\flexmatrix{A}{a}{#1}{#2}}
+
+
+\begin{document}
+\title{2.4 注释}
+\author{张志聪}
+\maketitle
+
+\begin{zremark}
+  对某种映射的讨论：
+
+  在数域$K$，对任意$m,n \in \mathbb{N}^+$
+  定义映射
+  \begin{align*}
+     & \theta     :  \{A: A \in M_{m,n}(K)\} \to \{K^n \to K^m \text{的映射}\} \\
+     & \theta(A)  = f_A
+  \end{align*}
+  它是单射、满射？
+\end{zremark}
+
+\textbf{证明：}
+
+\begin{itemize}
+  \item (1) 是单射;
+
+        对任意$A, B \in M_{m,n}(K)$且$A \neq B$，
+        所存在某列$col_j(A) \neq col_j(B)$（$1 \leq j \leq n$）。
+        于是取$K^n$中坐标向量
+        \begin{align*}
+          x_j^T = \begin{bmatrix}
+                    0      \\
+                    \vdots \\
+                    0      \\
+                    1      \\
+                    0      \\
+                    \vdots
+                    \\ 0
+                  \end{bmatrix}
+          \cdots \ \cdots j
+        \end{align*}
+        此时
+        \begin{align*}
+          \theta(A)(x_j^T) = f_A(x_j^T) = col_j(A) \\
+          \theta(B)(x_j^T) = f_B(x_j^T) = col_j(B) \\
+          \implies                                 \\
+          \theta(A) \neq \theta(B)
+        \end{align*}
+        所以，$\theta$是单射。
+  \item (2) 不是满射。
+
+        举一个反例，设映射$f: K^n \to K^m $，对任意$x \in K^n$，$f(x) = [1, 1, \cdots, 1]^T$。
+        但对任意矩阵$A \in M_{m,n}(K)$，我们有
+        \begin{align*}
+          \theta(A)(0) = f_A(0) = 0
+        \end{align*}
+        即：在$\theta$中找不到原像$A$，使得$\theta(A) = f$。
+        故不是满射。
+\end{itemize}
+
+
+\begin{zremark}
+  命题4.4(ii)的扩展。
+  \begin{align*}
+    |rank(A) - rank(B)| \leq rank(A + B) \leq rank(A) + rank(B)
+  \end{align*}
+\end{zremark}
+
+\textbf{证明：}
+
+因为
+\begin{align*}
+  A = A + B - B
+\end{align*}
+
+通过(ii)，我们有
+\begin{align*}
+  rank(A)           & \leq rank(A + B) + rank(-B) \\
+                    & = rank(A + B) + rank(B)     \\
+                    & \implies                    \\
+  rank(A) - rank(B) & \leq rank(A + B)
+\end{align*}
+
+同理，我们有
+\begin{align*}
+  rank(B) - rank(A) \leq rank(A + B)
+\end{align*}
+
+综上
+\begin{align*}
+  |rank(A) - rank(B)| \leq rank(A + B)
+\end{align*}
+结合已知的(ii)，我们有
+\begin{align*}
+  |rank(A) - rank(B)| \leq rank(A + B) \leq rank(A) + rank(B)
+\end{align*}
+
+\end{document}
