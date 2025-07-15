@@ -165,6 +165,111 @@ $rank(A) < n$，否则$C$只能是零矩阵。
 
 \section*{12}
 
+设$D = AB$，
+考虑矩阵的齐次线性方程组：
+\begin{align*}
+  A x = 0 \\
+  B x = 0 \\
+  C x = 0 \\
+  D x = AB x = BA x = 0
+\end{align*}
+
+于是，他们的基础解系的秩，可以分别设为
+\begin{align*}
+  s = n - rank(A) \\
+  t = n - rank(B) \\
+  u = n - rank(C) \\
+  v = n - rank(AB)
+\end{align*}
+
+且由基础解系构成的解集，分别设为：
+\begin{align*}
+  S_A \\
+  S_B \\
+  S_C \\
+  S_D
+\end{align*}
+因为$Cx = 0$，是$Ax = 0, Bx = 0$的联立方程组，于是有
+\begin{align*}
+  S_C = S_A \cap S_B
+\end{align*}
+因为
+\begin{align*}
+  Dx = A(Bx) = B(Ax) = 0
+\end{align*}
+所以$S_A \subseteq S_D, S_B \subseteq S_D$，于是有
+\begin{align*}
+  (S_A \cup S_B) \subseteq S_D
+\end{align*}
+
+对于$Cx = 0$的基础解系$\gamma_1,\gamma_2,\cdots,\gamma_u$，
+由$S_C = S_A \cap S_B$，可知$\gamma_1,\gamma_2,\cdots,\gamma_u$
+都是$Ax = 0, Bx = 0$的解。
+
+由$\S 3$习题7可知，可以在$\gamma_1,\gamma_2,\cdots,\gamma_u$基础上
+扩充成$Ax = 0, Bx = 0$的基础解系：
+\begin{align*}
+  \alpha_{u + 1}, \cdots, \alpha_s, \gamma_1, \gamma_2, \cdots, \gamma_u \\
+  \gamma_1, \gamma_2, \cdots, \gamma_u, \beta_{u + 1}, \cdots, \beta_t
+\end{align*}
+现在，我们证明
+\begin{align*}
+  \alpha_{u + 1}, \cdots, \alpha_s, \gamma_1, \gamma_2, \cdots, \gamma_u, \beta_{u + 1}, \cdots, \beta_t
+  \ \ \ (I)
+\end{align*}
+是线性无关的。
+\begin{align*}
+  a_{u + 1}\alpha_{u + 1} + \cdots + a_s \alpha_s
+  + b_1 \gamma_1 + \cdots + b_u \gamma_u + c_{u + 1}\beta_{u + 1} + \cdots + c_t\beta_t = 0 \\
+  a_{u + 1}\alpha_{u + 1} + \cdots + a_s \alpha_s + b_1 \gamma_1 + \cdots + b_u \gamma_u
+  = - (c_{u + 1}\beta_{u + 1} + \cdots + c_t\beta_t)
+\end{align*}
+又我们有
+\begin{align*}
+  a_{u + 1}\alpha_{u + 1} + \cdots + a_s \alpha_s + b_1 \gamma_1 + \cdots + b_u \gamma_u \in S_A \\
+  - (c_{u + 1}\beta_{u + 1} + \cdots + c_t\beta_t) \in S_B
+\end{align*}
+所以
+\begin{align*}
+  a_{u + 1}\alpha_{u + 1} + \cdots + a_s \alpha_s + b_1 \gamma_1 + \cdots + b_u \gamma_u \in S_C \\
+  - (c_{u + 1}\beta_{u + 1} + \cdots + c_t\beta_t) \in S_C
+\end{align*}
+于是存在
+\begin{align*}
+  c_{u + 1}\beta_{u + 1} + \cdots + c_t\beta_t = d_1 \gamma_1 + \cdots + d_u \gamma_u
+\end{align*}
+所以
+\begin{align*}
+  - (c_{u + 1}\beta_{u + 1} + \cdots + c_t\beta_t) + d_1 \gamma_1 + \cdots + d_u \gamma_u = 0
+\end{align*}
+由于这里使用的向量都是$Bx = 0$基础解系中的向量，于是可得
+\begin{align*}
+  d_1 = d_2 = \cdots = d_u = 0 \\
+  c_{u + 1} = c_{u + 2} = \cdots = c_t = 0
+\end{align*}
+于是我们有
+\begin{align*}
+  a_{u + 1}\alpha_{u + 1} + \cdots + a_s \alpha_s + b_1 \gamma_1 + \cdots + b_u \gamma_u
+   & = - (c_{u + 1}\beta_{u + 1} + \cdots + c_t\beta_t) \\
+   & = 0
+\end{align*}
+这个左侧都是$Ax = 0$的基础解系中的向量，所以有
+\begin{align*}
+  a_{u + 1} = \cdots = a_s = 0 \\
+  b_1 = \cdots = b_u = 0
+\end{align*}
+综上可得，
+$(I)$是线性无关的。
+
+由于$(S_A \cup S_B) \subseteq S_D$，
+所以$(I)$可以被$Dx = 0$的基础解系表示，
+利用替换定理，我们有
+\begin{align*}
+  v \geq s + t - u \\
+  n - rank(AB) \geq n - rank(A) + n - rank(B) - n + rank(C) \\
+  rank(A) + rank(B) \geq rank(C) + rank(AB)
+\end{align*}
+
 \section*{13}
 
 记
@@ -209,6 +314,162 @@ $rank(A) < n$，否则$C$只能是零矩阵。
 
 \section*{14}
 
+设
+\begin{align*}
+  \gamma_0, \gamma_1, \gamma_2, \cdots \gamma_s \ \ \ (I)
+\end{align*}
+令
+\begin{align*}
+  \eta_1 = \gamma_1 - \gamma_0 \\
+  \eta_2 = \gamma_2 - \gamma_0 \\
+  \vdots                       \\
+  \eta_s = \gamma_s - \gamma_0
+\end{align*}
+易得向量组
+\begin{align*}
+  \gamma_0, \eta_1, \eta_2, \cdots \eta_s \ \ \ (II)
+\end{align*}
+与$(I)$是线性等价的。
+由$(I)$是线性无关的，可得$(II)$是线性无关的，
+于是可得
+\begin{align*}
+  \eta_1, \eta_2, \cdots \eta_s \ \ \ (III)
+\end{align*}
+是线性无关的。
+
+利用习题13可得，存在一个$K$上一个齐次线性方程组以$(III)$
+为基础解系。设该齐次线性方程组的系数矩阵为$B$，并令
+\begin{align*}
+  \beta = B \gamma_0
+\end{align*}
+先证明$\beta \neq 0$，
+如果$B \gamma_0 = 0$，那么$\gamma_0$应该可以被$Bx = 0$的基础解系
+$(III)$表示，这与$(II)$是线性无关向量组矛盾。
+到此，得到非齐次线性方程组
+\begin{align*}
+  Bx = \beta
+\end{align*}
+
+接下来，证明该非齐次线性方程组满足题设要求。
+通过构造过程，我们知道$\gamma_0$是一个特解，
+$(III)$是其基础解系。并且对任意$1 \leq j \leq s$，我们有
+\begin{align*}
+  B\eta_j   & = 0                      \\
+            & = B(\gamma_j - \gamma_0) \\
+            & = B\gamma_j - B\gamma_0  \\
+            & = B\gamma_j - \beta      \\
+  \implies                             \\
+  B\gamma_j & = \beta
+\end{align*}
+可得$\gamma_j$是非齐次线性方程组的解，
+所以这个非齐次线性方程组满足了题设条件(1)；
+
+非齐次线性方程组的解都可以表示成
+\begin{align*}
+  \gamma & = \gamma_0 + k_1 \eta_1 + k_2 \eta_2 + \cdots + k_s \eta_s
+\end{align*}
+$(I)(II)$线性等价，于是可得题设条件(2)成立。
+
+\section*{15}
+ (1)
+
+由基础解系与秩的关系，我们有
+\begin{align*}
+  rank(B) = s - k \\
+  rank(AB) = s - l
+\end{align*}
+于是可得
+\begin{align*}
+  rank(B) - rank(AB) = l - k
+\end{align*}
+于是问题等价于证明$B\eta_{k + 1}, \cdots, B\eta_l$是线性无关的。
+
+设$a_{k+1}, \cdots, a_l \in K$使得
+\begin{align*}
+  a_{k + 1}B\eta_{k + 1} + \cdots + a_lB\eta_l = 0 \\
+  B(a_{k + 1} \eta_{k + 1} + \cdots + a_l \eta_l) = 0
+\end{align*}
+于是可得$a_{k + 1} \eta_{k + 1} + \cdots + a_l \eta_l$是
+$BX$的一个解，所以可以被$\eta_1, \cdots, \eta_k$线性表示，
+系数不妨设为$a_1, \cdots, a_k$，即
+\begin{align*}
+  a_{k + 1} \eta_{k + 1} + \cdots + a_l \eta_l
+  = a_1 \eta_1 + \cdots + a_k \eta_k \\
+  a_1 \eta_1 + \cdots + a_k \eta_k + a_{k + 1} \eta_{k + 1} + \cdots + a_l \eta_l = 0
+\end{align*}
+因为$\eta_1, \cdots, \eta_k, \eta_{k + 1}, \cdots, \eta_l$是线性无关的，
+于是可得
+\begin{align*}
+  a_1 = a_2 = \cdots = a_k = a_{k + 1} = \cdots = a_l = 0
+\end{align*}
+从而
+\begin{align*}
+  a_{k + 1}B\eta_{k + 1} + \cdots + a_lB\eta_l = 0
+\end{align*}
+只有零解，所以$B\eta_{k + 1}, \cdots, B\eta_l$是线性无关的。
+
+(2) 证明命题4.6
+
+我们有
+\begin{align*}
+  (AB)X = A(BX) = 0
+\end{align*}
+因为$\eta_{k + 1}, \cdots , \eta_l$是$(AB)X = 0$的解，
+所以$B\eta_{k + 1}, \cdots, B\eta_l$是$A(BX) = 0$的解。
+
+设$(I)$是$A(BX) = 0$的一个基础解系，秩为$n - rank(A)$，
+于是可得$(I)$可以线性表示$B\eta_{k + 1}, \cdots, B\eta_l$，
+又因为$B\eta_{k + 1}, \cdots, B\eta_l$是线性无关的，
+所以
+\begin{align*}
+  n - rank(A) \geq l - k = rank(B) - rank(AB) \\
+  \implies                                    \\
+  rank(AB) \geq rank(A) + rank(B) - n
+\end{align*}
+
+\section*{16}
+
+先考虑$C$的秩。
+我们有
+\begin{align*}
+  rank(A) + rank(B) - n \leq rank(C) \leq min\{rank(A), rank(B)\} \\
+  rank(B) \leq rank(C) \leq rank(B)                               \\
+  r \leq rank(C) \leq r                                           \\
+  rank(C) = r
+\end{align*}
+
+设
+\begin{align*}
+  c_{i_1} = B \beta_{i_1} \\
+  c_{i_2} = B \beta_{i_2} \\
+  \vdots                  \\
+  c_{i_r} = B \beta_{i_r}
+\end{align*}
+验证
+\begin{align*}
+  c_{i_1}, c_{i_2}, \cdots, c_{i_r} \ \ \ (I)
+\end{align*}
+是否为$C$的极大线性无关部分组。
+
+我们只需证明$(I)$的极大性，即$C$中的任意列向量都可以被$(I)$线性表示，
+就可以证明$(I)$是$C$的极大线性无关部分组（$\S 2$习题15）。
+
+$C$任意列向量$c_j(1 \leq j \leq s)$为
+\begin{align*}
+  c_j = A \beta_j
+\end{align*}
+由于$\beta_{i_1}, \beta_{i_2}, \cdots, \beta_{i_r}$是$B$的极大线性无关部分组，
+所以$\beta_j$可以被其线性表示：
+\begin{align*}
+  \beta_j = k_1 \beta_{i_1} + k_2 \beta_{i_2} + \cdots + k_r \beta_{i_r}
+\end{align*}
+于是可得
+\begin{align*}
+  c_j & = A(k_1 \beta_{i_1} + k_2 \beta_{i_2} + \cdots + k_r \beta_{i_r})    \\
+      & = k_1 A \beta_{i_1} + k_2 A \beta_{i_2} + \cdots + k_r A \beta_{i_r} \\
+      & = k_1 c_{i_1} + k_2 c_{i_2} + \cdots + k_r c_{i_r}
+\end{align*}
+所以，$c_j$可以被$(I)$线性表示，极大性得证。
 
 
 \end{document}
