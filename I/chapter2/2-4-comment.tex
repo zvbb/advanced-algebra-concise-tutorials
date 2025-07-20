@@ -125,4 +125,27 @@
 \begin{align*}
   |rank(A) - rank(B)| \leq rank(A + B) \leq rank(A) + rank(B)
 \end{align*}
+
+\begin{zremark}
+  由习题9,10,11，我们得到一个以下命题：
+
+  在数域$K$中，有$A \in M_{m,n}(K), B \in M_{n,s}(K)$，
+  $AB = 0 (B \neq 0)$当且仅当$rank(A) < n$。
+\end{zremark}
+
+\textbf{证明：}
+
+\begin{itemize}
+  \item 必要性
+
+        假设$rank(A) = n$，于是$A x = 0$只有零解，
+        与题设$A B = 0 (B \neq 0)$矛盾。
+
+  \item 充分性
+
+    已知$rank(A) < n$，于是线性方程组$Ax = 0$有非零解，
+    且基础解系中向量个数为大于等于$1$，通过基础解系构造矩阵$B$，
+    得到$AB = 0 (B \neq 0)$。
+\end{itemize}
+
 \end{document}
