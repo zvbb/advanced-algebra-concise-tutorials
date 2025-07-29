@@ -1,0 +1,181 @@
+\documentclass{article}
+\usepackage{mathtools} 
+\usepackage{fontspec}
+\usepackage[UTF8]{ctex}
+\usepackage{amsthm}
+\usepackage{mdframed}
+\usepackage{xcolor}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{hyperref}
+
+
+% 定义新的带灰色背景的说明环境 zremark
+\newmdtheoremenv[
+  backgroundcolor=gray!10,
+  % 边框与背景一致，边框线会消失
+  linecolor=gray!10
+]{zremark}{注释}
+
+% 通用矩阵命令: \flexmatrix{矩阵名}{元素符号}{行数}{列数}
+\newcommand{\flexmatrix}[4]{
+  \[
+  #1 = \begin{pmatrix}
+    #2_{11}     & #2_{12}     & \cdots & #2_{1#4}   \\
+    #2_{21}     & #2_{22}     & \cdots & #2_{2#4}   \\
+    \vdots      & \vdots      & \ddots & \vdots     \\
+    #2_{#31}    & #2_{#32}    & \cdots & #2_{#3#4}
+  \end{pmatrix}
+  \]
+}
+
+% 简化版命令（默认矩阵名为A，元素符号为a）: \quickmatrix{行数}{列数}
+\newcommand{\quickmatrix}[2]{\flexmatrix{A}{a}{#1}{#2}}
+
+
+\begin{document}
+\title{2.6}
+\author{张志聪}
+\maketitle
+
+\section*{5}
+
+以$rank(A) = m$为例。证明与书中命题6.1一致，
+把$A$化作标准型$D_1$，因为$rank(A) = m$，与
+$C$的行数一致，于是可以通过$D_1$把$C$化作零矩阵，于是我们有
+\begin{align*}
+  \begin{bmatrix}
+    D_1 & 0 \\
+    0   & B
+  \end{bmatrix}
+\end{align*}
+通过行列变换把$B$化作标准型$D_2$，因为$B$的左侧和上方都是$0$，于是这些操作对
+其他方块没有影响，于是我们有
+\begin{align*}
+  \begin{bmatrix}
+    D_1 & 0   \\
+    0   & D_2
+  \end{bmatrix}
+\end{align*}
+所以
+\begin{align*}
+  rank(M) = rank(D_1) + rank(D_2) = rank(A) + rank(B)
+\end{align*}
+
+\section*{9}
+
+我们有
+\begin{align*}
+  f(J) = \begin{bmatrix}
+           f(J_1) &        & 0      \\
+                  & f(J_2) &        \\
+           0      &        & f(J_3)
+         \end{bmatrix}
+\end{align*}
+令
+\begin{align*}
+  J_1 = \begin{bmatrix}
+          -2 & 1  \\
+          0  & -2
+        \end{bmatrix}
+  = E_2 + \begin{bmatrix}
+            0 & 1 \\
+            0 & 0
+          \end{bmatrix}
+\end{align*}
+我们有
+\begin{align*}
+  \begin{bmatrix}
+    0 & 1 \\
+    0 & 0
+  \end{bmatrix} \begin{bmatrix}
+                  0 & 1 \\
+                  0 & 0
+                \end{bmatrix} = 0
+\end{align*}
+$J_2, J_3$有类似的情况，
+于是设
+\begin{align*}
+  g(x) = (x - 2)^3 \\
+  h(x) = (x - 3)^2
+\end{align*}
+我们有
+\begin{align*}
+  g(J_1) = 0 \\
+  g(J_2) = 0 \\
+  h(J_3) = 0
+\end{align*}
+于是可得
+\begin{align*}
+  f(x) = g(x) h(x)
+\end{align*}
+此时
+\begin{align*}
+  f(J_1) = 0 \\
+  f(J_2) = 0 \\
+  f(J_3) = 0
+\end{align*}
+即
+\begin{align*}
+  f(J) = \begin{bmatrix}
+           f(J_1) &        & 0      \\
+                  & f(J_2) &        \\
+           0      &        & f(J_3)
+         \end{bmatrix}
+  = 0
+\end{align*}
+
+\section*{12}
+因为$A, A^T$可交换，所以
+\begin{align*}
+  A A^T = A^T A
+\end{align*}
+于是
+\begin{align*}
+  A A^T =
+  \begin{bmatrix}
+    A_1 & A_2 \\
+    0   & A_3
+  \end{bmatrix}
+  \begin{bmatrix}
+    A_1^T & 0     \\
+    A_2^T & A_3^T
+  \end{bmatrix}
+  =
+  \begin{bmatrix}
+    A_1 A_1^T + A_2 A_2^T & * \\
+    *                     & *
+  \end{bmatrix}
+\end{align*}
+又
+\begin{align*}
+  \begin{bmatrix}
+    A_1^T & 0     \\
+    A_2^T & A_3^T
+  \end{bmatrix}
+  \begin{bmatrix}
+    A_1 & A_2 \\
+    0   & A_3
+  \end{bmatrix}
+  =
+  \begin{bmatrix}
+    A_1^T A_1 & * \\
+    *         & *
+  \end{bmatrix}
+\end{align*}
+于是我们有
+\begin{align*}
+  A_1 A_1^T + A_2 A_2^T = A_1^T A_1
+\end{align*}
+由$\S 5$习题23-(1)（准确说是一般形式无需是方阵），我们有
+\begin{align*}
+  Tr(A_1 A_1^T + A_2 A_2^T) = Tr(A_1^T A_1)     \\
+  Tr(A_1 A_1^T) + Tr(A_2 A_2^T) = Tr(A_1^T A_1) \\
+  Tr(A_2 A_2^T) = 0
+\end{align*}
+由$\S 5$习题23-(2)，可知
+\begin{align*}
+  A_2 = 0
+\end{align*}
+
+\end{document}

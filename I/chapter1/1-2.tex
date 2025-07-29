@@ -238,65 +238,104 @@ $-q(a)(a - 1)$也是整数，可得$a - 1$整除$a_0 + a_1 + \cdots + a_n$。
 
 \section*{9}
 
-% 这道题，个人感觉挺难的，主要在于$n,k$都是可变的，导致情况比较复杂，
-% 我会把思考过程写进去，这样方便下次查看。
+先讨论$k > 0$的情况。
 
-% $e^{\frac{2\pi i}{n}}$在P8页处有提及，并说明
-% $e^{\frac{2k\pi i}{n}} \ (k \in 0, 1, \cdots, n-1)$都是代数方程
-% $x^n - 1 = 0$在复数系$\mathbb{C}$内的$n$个根，
-% 这也就意味着$\epsilon^k, \epsilon^{2k}, \cdot, \epsilon^{nk}$都是代数方程
-% $x^n - 1 = 0$的根。
-% 不妨设这些根为$\alpha_1, \alpha_2, \cdots, \alpha_n$。
+讨论，$n, k$互为质数。
 
-% 现在的问题是$nk > n - 1$是可能的，但有一点是明确的:
-% $\epsilon^{jk} \ 1 \leq j \leq n$，都是$x^n - 1 = 0$的根，
-% 因为都是$\frac{2\pi i}{n}$的整数倍。
+我们有
+\begin{align*}
+  \epsilon^k + \epsilon^{2k} + \cdots + \epsilon^{nk}
+   & = e^{i 2\pi \frac{k}{n}} + e^{i 2\pi \frac{2k}{n}} + \cdots + e^{i 2\pi \frac{nk}{n}}
+\end{align*}
+现在我们证明，任意$\epsilon^{jk} \neq \epsilon^{lk}(1 \leq j < l \leq n)$，即两两不相等。
 
-% 到这里，问题就转变成，在$\alpha_1, \alpha_2, \cdots, \alpha_n$中，
-% 中选取$n$个值的问题（有可能重复），一种最简单的情况是：
-% 选取的都是不同的值，也就是把所有的根$\alpha_1, \alpha_2, \cdots, \alpha_n$都选了，
-% 此时
-% \begin{align*}
-%   \epsilon^k + \epsilon^{2k} + \cdot + \epsilon^{nk}
-%    & = \alpha_1 + \alpha_2 + \cdot + \alpha_n \\
-%    & = - \frac{a_1}{a_0}
-% \end{align*}
-% 现在，讨论什么情况下，会全选。先考虑简单的清空，$k = 1$，此时步长为$1$，
-% 选$n$次，显然可以选到所有的根。
+反证法，假设存在$1 \leq j < l \leq n$，使得
+\begin{align*}
+  \epsilon^{jk}           & = \epsilon^{lk}           \\
+  e^{i 2\pi \frac{jk}{n}} & = e^{i 2\pi \frac{lk}{n}}
+\end{align*}
+因为等式两边复数的模都为$1$，所以只能是复数的辐角相同，相差$2\pi$的正整数倍（设为$m$），即
+\begin{align*}
+  \frac{lk}{n} / \frac{jk}{n} = m \\
+  \frac{l}{j} = m
+\end{align*}
+这与$1 \leq j < l \leq n$矛盾，假设不成立，两两不相等得证。
 
-% 那么如果$k = 2 > 1$呢？
+因为$\epsilon^{jk} (1 \leq j \leq n)$都是$x^n - 1 = 0$的根，
+且两两不相等，个数为$n$，于是可得$\epsilon^{k}, \epsilon^{2k}, \cdots, \epsilon^{nk}$是
+$x^n - 1 = 0$的$n$个根，由根与系数的关系（命题2.3），我们有
+\begin{align*}
+  \epsilon^{k} + \epsilon^{2k} + \cdots + \epsilon^{nk} = 0
+\end{align*}
 
-% 此时，会每隔$2$个选1个（步长为$2$），
-% 也就是，第一遍选的都是$\alpha$中下标都是偶数的根，现在有两种情况：\\
-% \begin{itemize}
-%   \item 总的根有偶数个，即$n$是偶数。
+特别地，$n = 1$，我们有
+\begin{align*}
+  \epsilon^k + \epsilon^{2k} + \cdots + \epsilon^{nk} = n
+\end{align*}
 
-%         那么，$\alpha_n$的下标是偶数，第二遍和第一遍选取的会是同样的根，
-%         以此内推，直到选取$k = nk / n$遍。
-%         以上情况，显然值选取了偶数根，只选取了部分根。
+设
+\begin{align*}
+  (n, k) = d
+\end{align*}
+（$n, k$的最大公因子）。
 
-%   \item 总的根是奇数个，比如说是$3$。
+于是，存在$p, q \in \mathbb{N}^+$且$(p,q) = 1$，使得
+\begin{align*}
+  n = dp \\
+  k = dq
+\end{align*}
+我们有
+\begin{align*}
+  \epsilon^k + \epsilon^{2k} + \cdots + \epsilon^{nk}
+   & = e^{i 2\pi \frac{k}{n}} + e^{i 2\pi \frac{2k}{n}} + \cdots + e^{i 2\pi \frac{nk}{n}}  \\
+   & = e^{i 2\pi \frac{q}{p}} + e^{i 2\pi \frac{q}{p} 2} + \cdots + e^{i 2\pi \frac{q}{p}n}
+\end{align*}
+由(1)中的讨论，$p > 1$时，我们有
+\begin{align*}
+  e^{i 2\pi \frac{q}{p}} + e^{i 2\pi \frac{q}{p} 2} + \cdots + e^{i 2\pi \frac{q}{p}n}
+   & = (e^{i 2\pi \frac{q}{p}} + e^{i 2\pi \frac{q}{p} 2} + \cdots + e^{i 2\pi \frac{q}{p}p})                    \\
+   & +
+  (e^{i 2\pi \frac{q}{p}(p+1)} + e^{i 2\pi \frac{q}{p} (p+2)} + \cdots + e^{i 2\pi \frac{q}{p}2p})               \\
+   & +                                                                                                           \\
+   & \vdots                                                                                                      \\
+   & +
+  (e^{i 2\pi \frac{q}{p}[(d-1)p + 1]} + e^{i 2\pi \frac{q}{p} [(d-1)p + 2]} + \cdots + e^{i 2\pi \frac{q}{p}dp}) \\
+   & = 0 + 0 + \cdots + 0                                                                                        \\
+   & = 0
+\end{align*}
 
-%         第一遍选取的是$\alpha_2$，第二遍选取$\alpha_1, \alpha_3$，
-%         选取完毕，此时，选取了所有根。
-% \end{itemize}
-% 我们希望从特例中找到规律，直觉告诉我们，$n / k$是整数，也就是第一次循环选取后，
-% 没有余数，第二遍选取将会和第一遍选取是一样的。
+$p = 1$时，我们有
+\begin{align*}
+  e^{i 2\pi \frac{q}{p}} + e^{i 2\pi \frac{q}{p} 2} + \cdots + e^{i 2\pi \frac{q}{p}n} = n
+\end{align*}
 
-% % 可以把所有的根，看做一个首尾相连的环，对任意位置的根$\alpha_j$，有如下规律：
-% % \begin{align*}
-% %   first : \alpha_j        \\
-% %   second : \alpha_{j + n} \\
-% %   third: \alpha_{j + 2n}  \\
-% %   \vdots                  \\
-% %   k: \alpha_{j + kn}
-% % \end{align*}
-% % 于是，$\frac{j + xn}{k} \ (1 \leq x \leq k)$是整数，就会被选中。
+由于$p = 1$，可知$n = d$，即$n$可以整除$k$（$n | k$）；
+$p > 1$时，我们有$n$不可以整除$k$（$n \nmid k$）。
 
-% 余数，在于他们$n,k$有没有公因子，
-todo
+当$k < 0$时，我们有
+\begin{align*}
+  e^{i 2\pi \frac{-k}{n}} = cos (2\pi \frac{k}{n}) - i sin (2\pi \frac{k}{n})
+\end{align*}
+所以，$e^{i 2\pi \frac{-k}{n}}, e^{i 2\pi \frac{k}{n}}$两者共轭，
+于是
+\begin{align*}
+  \epsilon^k + \epsilon^{2k} + \cdots + \epsilon^{nk} & = \overline{\epsilon^{-k} + \epsilon^{-2k} + \cdots + \epsilon^{-nk}}
+\end{align*}
+又$\epsilon^{-k} + \epsilon^{-2k} + \cdots + \epsilon^{-nk}$都为实数，所以
+\begin{align*}
+  \epsilon^k + \epsilon^{2k} + \cdots + \epsilon^{nk} & = \epsilon^{-k} + \epsilon^{-2k} + \cdots + \epsilon^{-nk}
+\end{align*}
 
+当$k = 0$时，我们有
+\begin{align*}
+  \epsilon^k + \epsilon^{2k} + \cdots + \epsilon^{nk} = n
+\end{align*}
 
-
-
+综上
+\begin{equation*}
+  \epsilon^k + \epsilon^{2k} + \cdots + \epsilon^{nk} = \begin{cases*}
+    0 & n | k     \\
+    n & n $\nmid$ k
+  \end{cases*}
+\end{equation*}
 \end{document}
