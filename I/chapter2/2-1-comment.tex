@@ -39,6 +39,26 @@
 \maketitle
 
 \begin{zremark}
+  线性相关第一个等价定义，另一种说法：\\
+  给定$K^m$内向量组$\alpha_1, \alpha_2, \cdots, \alpha_s$线性相关
+  的充分必要条件是：
+  存在$K$内不全为零的数$k_1, k_2, \cdots, k_s$使
+  \begin{align*}
+    k_1 \alpha_1 + k_2 \alpha_2 + \cdots + k_s \alpha_s = 0
+  \end{align*}
+\end{zremark}
+
+\begin{zremark}
+  线性无关第二个等价定义，另一种说法：\\
+  给定$K^m$内向量组$\alpha_1, \alpha_2, \cdots, \alpha_s$线性无关
+  的充分必要条件是：
+  $K$内只存在全零的数$k_1, k_2, \cdots, k_s$使
+  \begin{align*}
+    k_1 \alpha_1 + k_2 \alpha_2 + \cdots + k_s \alpha_s = 0
+  \end{align*}
+\end{zremark}
+
+\begin{zremark}
   命题1.4的增强形式：替换定理 \\
   给定$K^m$内两个向量组
   \begin{align*}
@@ -102,9 +122,10 @@
         与$(II)$是线性等价的。
 
         接下来，我们只需证明，把$\alpha_k$替换$\beta_{i1}, \beta_{i2}, \cdots, \beta_{i(s - r + 1)}$中的某一个向量后，
-        $(II^\prime)$依然和$(II)$线性等价即可。
+        依然和$(II^\prime)$线性等价即可。
 
-        由题设$(I)$可以被$(II)$线性表示可知，因为$(II)$和$II^\prime$是线性等价的，
+        由题设$(I)$可以被$(II)$线性表示可知，$\alpha_k$可以被$(II)$线性表示，
+        因为$(II)$和$(II^\prime)$是线性等价的，
         于是我们有
         \begin{align*}
           \alpha_k = a_1 \alpha_1 + a_2 \alpha_2 + \cdots + a_{k - 1} \alpha_{k - 1} + a_k \beta_{i1} + \cdots + a_s \beta_{i(s - r + 1)}
@@ -112,13 +133,13 @@
         我们可以断定$a_k, \cdots, a_s$中必有非零的数
         （可以通过反证法，如果都等于零，那么$\alpha_k$就可以被$(I)$中的其他向量线性表示了，与题设矛盾）。
 
-        设$a_{ij} \neq 0 (k \leq ij \leq s)$，那么，用$\alpha_k$替换掉对应的$\beta_{ij}$，我们得到新的向量组
+        设$a_{l} \neq 0 (k \leq l \leq s)$，那么，用$\alpha_k$替换掉对应的$\beta_{l}$，我们得到新的向量组
         \begin{align*}
           \alpha_1, \alpha_2, \cdots, \alpha_{k}, \beta_{i1}, \beta_{i2}, \cdots,
-          \beta_{i(j - 1)}, \beta_{i(j + 1)}, \cdots, \beta_{i(s - r + 1)} \ \ \ (III)
+          \beta_{l - 1}, \beta_{l + 1}, \cdots, \beta_{i(s - r + 1)} \ \ \ (II^{\prime\prime})
         \end{align*}
 
-        易得$(III)$与$(II^\prime)$线性等价（讨论和$r = 1$类似，这里不做赘述。），进而$(II)$与$(III)$线性等价。
+        易得$(II^{\prime\prime})$与$(II^\prime)$线性等价（讨论和$r = 1$类似，这里不做赘述。），进而$(II)$与$(II^{\prime\prime})$线性等价。
 
         归纳完成，命题成立。
 
@@ -132,7 +153,7 @@
           \alpha_1, \beta_2, \beta_3, \cdots, \beta_s \ \ \ (II^\prime)
         \end{align*}
 
-        我们需要证明$(II^\prime)$是线性无关的。反证法，假设$(II^\prime)$是线性有关的，
+        我们需要证明$(II^\prime)$是线性无关的。反证法，假设$(II^\prime)$是线性相关的，
         那么
         \begin{align*}
           k_1 \alpha_1 + k_2 \beta_2 + \cdots + k_s \beta_s = 0
@@ -154,8 +175,8 @@
         因为$(II)$与$(II^\prime)$线性等价可知，
         $\beta_1$可以被$(II^\prime)$线性表示：
         \begin{align*}
-          \beta_1 & = c_1 \alpha_1 + c_2 \beta_2 + \cdots + c_s \beta_s                                         \\
-                  & = - \frac{1}{k_1} (k_2 \beta_2 + \cdots + k_s \beta_s) + c_2 \beta_2 + \cdots + c_s \beta_s
+          \beta_1 & = c_1 \alpha_1 + c_2 \beta_2 + \cdots + c_s \beta_s                                           \\
+                  & = - \frac{c_1}{k_1} (k_2 \beta_2 + \cdots + k_s \beta_s) + c_2 \beta_2 + \cdots + c_s \beta_s
         \end{align*}
         于是我们有$(II)$是线性有关的，与题设矛盾，
         所以假设不成立。
@@ -169,30 +190,35 @@
         \end{align*}
         是线性无关的。
 
-        按照之前的方法用$\alpha_k$替换掉对应的$\beta_{ij} \ (k \leq ij \leq s)$，
-        得到与$(II^\prime)$线性等价的新向量组$(III)$，需证明$(III)$也是线性无关的。
+        按照之前的方法用$\alpha_k$替换掉$(II^\prime)$中对应的$\beta_l$，
+        得到与$(II^\prime)$线性等价的新向量组$(II^{\prime\prime})$，我们要证明$(II^{\prime\prime})$也是线性无关的。
 
-        证明方式与$r = 1$时相同。反证法，假设$(III)$是线性相关的，那么
+        证明方式与$r = 1$时相同。反证法，假设$(II^{\prime\prime})$是线性相关的，那么
         \begin{align*}
           c_1 \alpha_1 + c_2 \alpha_2 + \cdots + c_k \alpha_k
-          + c_{k + 1} \beta_{i1} + \cdots + c_{k + j - 1} \beta_{i(j-1)}
-          + c_{k + j + 1} \beta_{i(j+1)} + \cdots
+          + c_{k + 1} \beta_{i1} + \cdots + c_{l - 1} \beta_{l}
+          + c_{l + 1} \beta_{l} + \cdots
           + c_s \beta_{i(s - r + 1)} = 0
         \end{align*}
         存在非零解。
         $c_k \neq 0$，否者会与$(II^\prime)$线性无关矛盾。
-        于是，我们有$\alpha_k$可以被$(III)$中的其他向量线性表示。
-
-        因为$(II^\prime)$与$(III)$线性等价，所以存在
+        于是，我们有$\alpha_k$可以被$(II^{\prime\prime})$中的其他向量线性表示:
         \begin{align*}
-          \beta_{ij} = d_1 \alpha_1 + d_2 \alpha_2 + \cdots + d_k \alpha_k
-          + d_{k + 1} \beta_{i1} + \cdots + d_{k + j - 1} \beta_{i(j-1)}
-          + d_{k + j + 1} \beta_{i(j+1)} + \cdots
+          \alpha_k = - \frac{1}{c_k} (c_1 \alpha_1 + c_2 \alpha_2 + c_{k-1} \alpha_{k-1} + \cdots + c_{k + 1} \beta_{i1} + \cdots + c_{l - 1} \beta_{l}
+          + c_{l + 1} \beta_{l} + \cdots
+          + c_s \beta_{i(s - r + 1)})
+        \end{align*}
+
+        因为$(II^\prime)$与$(II^{\prime\prime})$线性等价，所以存在
+        \begin{align*}
+          \beta_{l} = d_1 \alpha_1 + d_2 \alpha_2 + \cdots + d_k \alpha_k
+          + d_{k + 1} \beta_{i1} + \cdots + d_{l - 1} \beta_{l}
+          + d_{l + 1} \beta_{l+1} + \cdots
           + d_s \beta_{i(s - r + 1)}
         \end{align*}
-        替换掉$\alpha_k$，就会得到$\beta_{ij}$可以被$(II^\prime)$中的其他向量线性表示，
+        替换掉$\alpha_k$，就会得到$\beta_{l}$可以被$(II^\prime)$中的其他向量线性表示，
         这与$(II^\prime)$线性无关矛盾。
-        综上，假设不成立，$(III)$是线性无关的。
+        综上，假设不成立，$(II^{\prime\prime})$是线性无关的。
 
         归纳完成，命题成立。
 \end{itemize}
@@ -205,7 +231,7 @@
     \alpha_1, \alpha_2, \cdots, \alpha_n \ \ \ (I)
   \end{align*}
   是线性无关的，如果$\alpha_{n + 1}$无法被向量组线性表示，
-  把$\alpha_{n + 1}$加入向量组，则新向量组$(II)$仍然是线性无关的。 
+  把$\alpha_{n + 1}$加入向量组，则新向量组$(II)$仍然是线性无关的。
 \end{zremark}
 
 \textbf{证明：}
@@ -228,19 +254,18 @@
 
 \begin{zremark}
   关于集合$S$上的二元“关系”（这里用$\thicksim$表示）的定义：\\
-  对任意$a, b \in S$，要么$a, b$存在这种“关系”（$a \thicksim b$），
+  对任意$a, b \in S$，要么$a$对$b$存在这种“关系”（$a \thicksim b$），
   要么不存在这种“关系”（$a \not\thicksim b$），两者必选其一。
 \end{zremark}
 
 \begin{zremark}
   一个重要关系。
 
-  设，向量组为
+  设，向量组
   \begin{align*}
     \alpha_1, \alpha_2, \cdots, \alpha_2 \ \ \ (I)
   \end{align*}
-  $(I)$的秩是$r$，
-  存在一个部分组为
+  秩是$r$，存在一个部分组
   \begin{align*}
     \alpha_{i1}, \alpha_{i2}, \cdots, \alpha_{ik} \ \ \ (II)
   \end{align*}

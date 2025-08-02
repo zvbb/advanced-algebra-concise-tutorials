@@ -184,12 +184,17 @@ $ir > 1$时，假设$\alpha_{i1}, \alpha_{i2}, \cdots, \alpha_{ir}$线性相关�
 线性无关性，题设已给出，我们只需证明
 $\alpha_1, \alpha_2, \cdots, \alpha_s$可以被
 $\alpha_{i1}, \alpha_{i2}, \cdots, \alpha_{ir}$线性表示即可。
+由条件(2)可知，
+\begin{align*}
+  a_1 \alpha_i + a_2 \alpha_{i_1} + \cdots + a_{r + 1} \alpha_{i_r} = 0
+\end{align*}
+存在非零解，这里$a_1 \neq 0$，否者$\alpha_{i_1}, \alpha_{i_2}, \cdots, \alpha_{i_r}$是线性相关的，
+与条件(1)矛盾。
 
-反证法，假设$\alpha_1, \alpha_2, \cdots, \alpha_s$中存在$\alpha_t \ (1 \leq t \leq s)$无法
-被$\alpha_{i1}, \alpha_{i2}, \cdots, \alpha_{ir}$线性表示。
-那么，把$\alpha_t$放入线性无关的向量组$\alpha_{i1}, \alpha_{i2}, \cdots, \alpha_{ir}$
-中，新的向量组应该还是线性无关的（这个小命题，在2-1-comment.tex有证明），
-这与题设(2)矛盾，假设不成立，命题得证。
+所以，$\alpha_i$可以被$\alpha_{i1}, \alpha_{i2}, \cdots, \alpha_{ir}$线性表示，
+由$\alpha_i$的任意性可知，满足了极大线性无关部分组的定义，
+命题得证。
+
 
 \section*{14}
 
@@ -400,8 +405,8 @@ $(I)$的秩大于等于$(II)$的秩。
 
 因为
 \begin{align*}
-  \beta_1 + \beta_2 + \cdots + \beta_r & = (n - 1) \alpha                                        \\
-  \alpha                               & = \frac{1}{n - 1}(\beta_1 + \beta_2 + \cdots + \beta_r)
+  \beta_1 + \beta_2 + \cdots + \beta_r & = (r - 1) \alpha                                        \\
+  \alpha                               & = \frac{1}{r - 1}(\beta_1 + \beta_2 + \cdots + \beta_r)
 \end{align*}
 可得，$(II)$可以线性表示$(III)$。
 
@@ -413,15 +418,17 @@ $(I)$的秩大于等于$(II)$的秩。
 
 \section*{22}
 
+设$\alpha_1 - \alpha_2, \alpha_2 - \alpha_3, \alpha_3 - \alpha_1$的极大线性无关部分组为$(I^\prime)$。
+
 会不会他本身就是极大线性无关部分组？
 
 我们有
 \begin{align*}
   (\alpha_1 - \alpha_2) + (\alpha_2 - \alpha_3) + (\alpha_3 - \alpha_1) = 0
 \end{align*}
-可知其不是线性无关的，所以秩小于$3$。
+可知其不是线性无关的，所以$(I^\prime)$的秩小于$3$。
 
-那么$\alpha_1 - \alpha_2, \alpha_2 - \alpha_3$线性相关（其他情况类似），
+那么$\alpha_1 - \alpha_2, \alpha_2 - \alpha_3$是否线性相关（其他情况类似）?
 即
 \begin{align*}
   x_1(\alpha_1 - \alpha_2) + x_2(\alpha_2 - \alpha_3) = 0
@@ -433,7 +440,9 @@ $(I)$的秩大于等于$(II)$的秩。
 成立，这表明$\alpha_1, \alpha_2, \alpha_3$是线性相关的，与假设矛盾，
 假设不成立。
 
-综上，$\alpha_1 - \alpha_2, \alpha_2 - \alpha_3, \alpha_3 - \alpha_1$的秩为2，任取向量组中的两个向量，都是
+由替换定理可知，$(I^\prime)$的秩大于等于$2$，
+
+综上，$(I^\prime)$的秩为2，任取向量组中的两个向量，都是
 其极大线性无关部分组。
 
 \section*{23}
@@ -448,7 +457,7 @@ $(I)$的秩大于等于$(II)$的秩。
 
 假设
 \begin{align*}
-  \alpha - \alpha_{i_1}, \alpha - \alpha_{i_2}, \cdots \alpha - \alpha_{i_r} \ \ \ (II^\prime)
+  \alpha - \alpha_{i_1}, \alpha - \alpha_{i_2}, \cdots, \alpha - \alpha_{i_r} \ \ \ (II^\prime)
 \end{align*}
 是$(II)$的极大线性无关部分组。
 
@@ -513,7 +522,7 @@ $(III)$可以线性表示$(II^\prime)$也是显然的，我们主要考虑$(II^\
   \eta_1, \eta_2, \cdots, \eta_n             & \ \ \ (I)  \\
   \epsilon_1, \epsilon_2, \cdots, \epsilon_n & \ \ \ (II)
 \end{align*}
-$(II)$的秩是$n$，接下来，我们只需证明$(I),(II)$线性等价，就能说明$(II)$的秩也为$n$。
+$(II)$的秩是$n$，接下来，我们只需证明$(I),(II)$线性等价，就能说明$(I)$的秩也为$n$。
 
 引入一个向量$n$维向量
 \begin{align*}
@@ -521,27 +530,22 @@ $(II)$的秩是$n$，接下来，我们只需证明$(I),(II)$线性等价，就�
 \end{align*}
 新建一个向量组
 \begin{align*}
-  \epsilon_1, \epsilon_2, \cdots, \epsilon_n, \epsilon \ \ \ (III)
+  \eta_1, \eta_2, \cdots, \eta_n, \epsilon \ \ \ (III)
 \end{align*}
 我们只需证明$(I),(II)$都与$(III)$线性等价，则$(I),(II)$线性等价。
 
-$(II)$中是单位向量，可以表示任意$n$维向量，于是$(II), (III)$线性等价是显然的；
+$(II), (III)$线性等价是显然的；
 
-$(III)$中也有单位向量，所以$(III)$可以线性表示$(I)$也是显然的；
+$(III)$可以线性表示$(I)$也是显然的；
 
-$(II)$是否可以线性表示$(III)$，关键在于是否可以表示$\epsilon$。
+$(I)$是否可以线性表示$(III)$，关键在于是否可以表示$\epsilon$。
 
 我们有
 \begin{align*}
-   & \frac{1}{a_1}\eta_1 + \frac{1}{a_2}\eta_2 + \frac{1}{a_n} \eta_n           \\
-   & = (\frac{1}{a_1} + 1, \frac{1}{a_1}, \frac{1}{a_1}, \cdots, \frac{1}{a_1}) \\
-   & + (\frac{1}{a_2}, \frac{1}{a_2} + 1, \frac{1}{a_2}, \cdots, \frac{1}{a_2}) \\
-   & + \vdots                                                                   \\
-   & + (\frac{1}{a_n}, \frac{1}{a_n}, \frac{1}{a_n}, \cdots, \frac{1}{a_n} + 1) 
-\end{align*}
-对每一个坐标分量都等于
-\begin{align*}
-  1 + \frac{1}{a_1} + \frac{1}{a_2} + \cdots + \frac{1}{a_n}
+   & \frac{1}{a_1}\eta_1 + \frac{1}{a_2}\eta_2 + \frac{1}{a_n} \eta_n                \\
+   & = (\frac{1}{a_1} \epsilon + \epsilon_1) + (\frac{1}{a_2} \epsilon + \epsilon_2)
+  + \cdots + (\frac{1}{a_n} \epsilon + \epsilon_n)                                   \\
+   & = (\frac{1}{a_1} + \frac{1}{a_2}+\cdots+ \frac{1}{a_n} + 1) \epsilon
 \end{align*}
 由题设可知
 \begin{align*}
@@ -551,8 +555,7 @@ $(II)$是否可以线性表示$(III)$，关键在于是否可以表示$\epsilon$
 \begin{align*}
   \epsilon = \frac{1}{1 + \frac{1}{a_1} + \frac{1}{a_2} + \cdots + \frac{1}{a_n}} (\frac{1}{a_1}\eta_1 + \frac{1}{a_2}\eta_2 + \frac{1}{a_n} \eta_n           )
 \end{align*}
-所以，$\epsilon$可以被$(II)$线性表示，
-其他向量也可以被$(II)$线性表示，于是我们有$(II), (III)$线性等价。
+所以，$\epsilon$可以被$(I)$线性表示，于是我们有$(I), (III)$线性等价。
 
 综上，$(I),(II)$线性等价，于是秩都等于$n$。
 

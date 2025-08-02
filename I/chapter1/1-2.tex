@@ -39,7 +39,56 @@
 
 \section*{1}
 
-$\mathbb{Q}(\sqrt{5})$
+$\mathbb{Q}(\sqrt{-5}) = \{a + b\sqrt{5}i \ | \  a, b \in \mathbb{Q}\}$
+
+以扩张的角度看待这个问题：
+首先，$\mathbb{Q}$是最小数域，且
+\begin{align*}
+  x^2 + 5 = 0 \\
+  x = \pm \sqrt{5}i
+\end{align*}
+于是，我们的目标数域$K$必须有如下性质：
+\begin{align*}
+  \mathbb{Q} \cup \{\pm \sqrt{5}i\} \subseteq K
+\end{align*}
+数域$K$要保持四则运算的封闭性，我们最终得到
+\begin{align*}
+  K = \mathbb{Q}(\sqrt{-5})
+\end{align*}
+那么，这里的$K$是满足条件的最小数域么？\\
+假设存在另一个更小的数域$G$，也满足
+\begin{align*}
+  \mathbb{Q} \cup \{\pm \sqrt{5}i\} \subseteq G
+\end{align*}
+且对四则运算的封闭性。
+
+因为$G \subset K$，所以存在$\alpha \in K$，使得
+\begin{align*}
+  \alpha \notin G
+\end{align*}
+因为
+\begin{align*}
+  \mathbb{Q} \cup \{\pm \sqrt{5}i\} \subseteq K \\
+  \mathbb{Q} \cup \{\pm \sqrt{5}i\} \subseteq G 
+\end{align*}
+可得
+\begin{align*}
+  \alpha \notin \mathbb{Q}
+\end{align*}
+于是，$\alpha$只能是如下形式的无理数
+\begin{align*}
+  \alpha = a + b\sqrt{5}i \, (b \neq 0)
+\end{align*}
+因为
+\begin{align*}
+  b\sqrt{5}i = \sqrt{5}i + \sqrt{5}i + \cdots + \sqrt{5}i 
+\end{align*}
+由于$G$要保持四则运算的封闭性，所以
+\begin{align*}
+  \alpha \in G
+\end{align*}
+存在矛盾。
+
 
 \section*{2}
 

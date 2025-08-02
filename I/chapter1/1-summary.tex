@@ -1,0 +1,69 @@
+\documentclass{article}
+\usepackage{mathtools} 
+\usepackage{fontspec}
+\usepackage[UTF8]{ctex}
+\usepackage{amsthm}
+\usepackage{mdframed}
+\usepackage{xcolor}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{hyperref}
+
+
+% 定义新的带灰色背景的说明环境 zremark
+\newmdtheoremenv[
+  backgroundcolor=gray!10,
+  % 边框与背景一致，边框线会消失
+  linecolor=gray!10
+]{zremark}{注释}
+
+% 通用矩阵命令: \flexmatrix{矩阵名}{元素符号}{行数}{列数}
+\newcommand{\flexmatrix}[4]{
+  \[
+  #1 = \begin{pmatrix}
+    #2_{11}     & #2_{12}     & \cdots & #2_{1#4}   \\
+    #2_{21}     & #2_{22}     & \cdots & #2_{2#4}   \\
+    \vdots      & \vdots      & \ddots & \vdots     \\
+    #2_{#31}    & #2_{#32}    & \cdots & #2_{#3#4}
+  \end{pmatrix}
+  \]
+}
+
+% 简化版命令（默认矩阵名为A，元素符号为a）: \quickmatrix{行数}{列数}
+\newcommand{\quickmatrix}[2]{\flexmatrix{A}{a}{#1}{#2}}
+
+
+\begin{document}
+\title{第一章 总结}
+\author{张志聪}
+\maketitle
+
+\begin{zremark}
+  扩展出的知识点：\\
+  第一节
+  \begin{itemize}
+    \item 常见数域间（不一定是标准的）的数量关系（基数关系）
+
+          \begin{align*}
+            \mathbb{N} = \mathbb{Z} = \mathbb{Q} < \mathbb{R} = \mathbb{C}
+          \end{align*}
+
+  \end{itemize}
+  第二节
+  \begin{itemize}
+    \item 扩展的方式构造最小数域（$\S2$习题1）
+    \item “综合除法”得到的$n-1$多项式的系数，不会超出原始数域（$\S2$习题3）
+  \end{itemize}
+
+  第三节
+  \begin{itemize}
+    \item 求线性方程组的解， 可用的方法。
+          \begin{itemize}
+            \item 先矩阵消元，再求解。
+            \item 一开始，就把某个未知量作为自由未知量，通过已有的方程用自由未知量表示出其他未知量；
+          \end{itemize}
+  \end{itemize}
+\end{zremark}
+
+
+\end{document}
