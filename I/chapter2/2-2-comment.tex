@@ -8,6 +8,9 @@
 \usepackage{amssymb}
 \usepackage{amsmath}
 \usepackage{hyperref}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric, arrows}
+\usetikzlibrary{positioning}
 
 
 % 定义新的带灰色背景的说明环境 zremark
@@ -39,6 +42,37 @@
 \maketitle
 
 \begin{zremark}
+  $A$经过若干次初等列变换化为矩阵$B$，“推论”可以推广到$A$的行向量组。
+\end{zremark}
+
+\textbf{证明：}
+
+设$A$的行向量组是$\alpha_1^T, \alpha_2^T, \cdots, \alpha_m^T$，$B$
+的行向量组是$\beta_1^T, \beta_2^T, \cdots, \beta_m^T$。
+
+考察$A^T$。$A$的行向量组是$A^T$的列向量组，对$A$做初等列变换等价于
+对$A^T$做初等行变换。
+
+结论(i):\\
+如果$\alpha_{i1}^T, \alpha_{i2}^T, \cdots, \alpha_{ir}^T$是$A$的行向量组的一个极大线性
+无关部分组，那么$\alpha_{i1}, \alpha_{i2}, \cdots, \alpha_{ir}$
+是矩阵$A^T$的列向量组的一个极大线性无关部分组，
+利用推理(i)可知，$\beta_{i1}, \beta_{i2}, \cdots, \beta_{ir}$
+是$B^T$的列向量组的一个极大线性无关部分组，而且，当
+\begin{align*}
+  \alpha_i = k_1 \alpha_{i1} + k_2 \alpha_{i2} + \cdots + k_r \alpha_{ir}
+\end{align*}
+时，有$\beta_i = k_1 \beta_{i1} + k_2 \beta_{i2} + \cdots + k_r \beta_{ir}$，
+于是
+\begin{align*}
+  \alpha_i^T = k_1 \alpha_{i1}^T + k_2 \alpha_{i2}^T + \cdots + k_r \alpha_{ir}^T
+\end{align*}
+时，有$\beta_i^T = k_1 \beta_{i1}^T + k_2 \beta_{i2}^T + \cdots + k_r \beta_{ir}^T$。
+
+结论(ii): \\
+证明类似，不做赘述。
+
+\begin{zremark}
   问题2：
 
   求$K^n$内下面向量组（以行向量为例）的极大线性无关部分组：
@@ -62,5 +96,87 @@
 \end{align}
 我们需要证明这确实是矩阵$A$的极大线性无关部分组。
 
+\begin{zremark}
+  标准型的唯一性。
+\end{zremark}
+
+\textbf{证明：}
+
+任意$m \times n$矩阵$A$，设$A$的行秩为$r$，
+通过初等变换化为两个标准型$D_1, D_2$，
+如果$D_1 \neq D_2$，由于标准型的特殊性，只能是$D_1$与$D_2$
+中$1$的个数不同，而$1$的个数决定了$D_1, D_2$的行秩，
+由命题2.1和2.2可知，初等变换是不改变$A$的行秩的，
+那么$D_1, D_2$的行秩都等于$A$的行秩，即
+$D_1$与$D_2$中$1$的个数相等，
+于是存在矛盾，所以必有$D_1 = D_2$。
+
+\begin{zremark}
+  任意矩阵$A$，$A$的行秩 = $A$的列秩，书中是如何保证的。
+\end{zremark}
+\textbf{如图：}
+
+\begin{tikzpicture}[node distance=2cm, font=\small]
+  % 定义样式
+  \tikzstyle{condition} = [rectangle, draw, fill=blue!20, text centered, minimum height=1cm, minimum width=3cm]
+  \tikzstyle{conclusion} = [rectangle, draw, fill=yellow!20, text centered, minimum height=1cm, minimum width=3cm]
+  \tikzstyle{arrow} = [->, thick]
+
+  % 结论节点在上方
+  \node (concl) [conclusion] {$A$行秩 = $A$列秩};
+
+  % 条件节点在下方一行排列
+  \node (cond1) [condition, below left=2cm and 3cm of concl] {初等变换不改变行秩、列秩};
+  \node (cond2) [condition, below=2cm of concl] {$A$经初等变换化为标准型$D$};
+  \node (cond3) [condition, below right=2cm and 3cm of concl] {$D$行秩$=D$列秩};
+
+  % 箭头连接：从条件指向结论
+  \draw [arrow] (cond1) -- (concl);
+  \draw [arrow] (cond2) -- (concl);
+  \draw [arrow] (cond3) -- (concl);
+\end{tikzpicture}
+
+\begin{zremark}
+  例2.2和例2.3思想的结合，
+  求向量组的极大线性无关部分组。
+\end{zremark}
+
+\textbf{证明：}
+
+\textbf{操作方式：}
+
+以行向量组为例，设任意行向量组为
+\begin{align*}
+  \alpha_1^T, \alpha_2^T, \cdots, \alpha_n^T
+\end{align*}
+把向量组作为行排成一个矩阵$A$，
+在做初等行变换时，如例2.2把该行向量的变换过程记录下来，
+在做初等列变换时，无需做任何记录。
+
+最后化为（行）阶梯型，剩余的操作与例2.2相同：
+确定秩以及通过线性表示关系确定极大线性无关部分组。
+
+注意：如果是列向量组，则最后要化为列形式的阶梯型，并记录下列变换过程，
+行变换无需记录。
+
+\textbf{理论支持：}
+
+设$A$经过$n$次初等变换化为阶梯性$B$，其中
+有$k$次列变换，$n - k$次行变换。
+
+$k = 0$时，就是例2.2的情况。
+
+$k = n$时，就是例2.3的情况。
+
+$0 < k < n$时，由推论可知，即：初等列变换，
+是不改变矩阵行向量组的线性表示关系的。
+
+具体情况如下：
+通过阶梯型$B$我们确定$A$的行秩，因为初等变换
+对矩阵的行秩没有影响，这一点我们不做考虑。
+
+通过线性表示关系，我们确定$A$的极大线性无关部分组，
+又初等列变换，不改变矩阵行向量组的线性表示关系，
+所以，不会对行向量组的极大线性无关部分组的确定产生影响。
 
 \end{document}

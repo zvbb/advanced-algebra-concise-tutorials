@@ -192,6 +192,41 @@
         \end{align*}
 \end{itemize}
 
+\section*{16}
+
+提示
+\begin{itemize}
+  \item 方法一（整体）：通过对角矩阵$A^T = A$。
+
+        \begin{itemize}
+          \item 必要性
+
+                已知，$AB$是对称矩阵和$A,B$是对称矩阵，那么
+                \begin{align*}
+                  AB = (AB)^T = B^T A^T = B A
+                \end{align*}
+          \item 充分性
+
+                已知，$AB = BA$，我们有
+                \begin{align*}
+                  (AB)^T = (BA)^T
+                \end{align*}
+                又
+                \begin{align*}
+                  (BA)^T = A^T B^T = A B
+                \end{align*}
+                综上可得
+                \begin{align*}
+                  (AB)^T = AB
+                \end{align*}
+                所以，$AB$是对称矩阵。
+        \end{itemize}
+
+  \item 方法二（部分）：通过对角矩阵的元素性质$a_{ij} = a_{ji}$证明。
+
+        这个就是矩阵乘法的计算，过程略。
+\end{itemize}
+
 \section*{18}
 
 \begin{itemize}
@@ -369,19 +404,75 @@
                 b_{n1} & b_{n2} & \cdots & b_{nn}
               \end{bmatrix}
         \end{align*}
-
-        我们有
+        设$AB = C = (c_{ij}), BA = D = (d_{ij})$，我们有
         \begin{align*}
-          Tr(AB) & = (a_{11}b_{11} + a_{12}b_{21} + \cdots + a_{1n}b_{n1}) \\
-                 & + (a_{21}b_{12} + a_{22}b_{22} + \cdots + a_{2n}b_{n2}) \\
-                 & + \cdots                                                \\
-                 & + (a_{n1}b_{1n} + a_{n2}b_{2n} + \cdots + a_{nn}b_{nn}) \\
-                 & = (b_{11}a_{11} + b_{12}a_{21} + \cdots + b_{1n}a_{n1}) \\
-                 & + (b_{21}a_{12} + b_{22}a_{22} + \cdots + b_{2n}a_{n2}) \\
-                 & + \cdots                                                \\
-                 & + (b_{n1}a_{1n} + b_{n2}a_{2n} + \cdots + b_{nn}a_{nn}) \\
-                 & = Tr(BA)
+          Tr(AB) & = c_{11} + c_{22} + \cdots + c_{nn}                                       \\
+                 & = \sum\limits_{k = 1}^n a_{1k}b_{k1} + \sum\limits_{k = 1}^n a_{2k}b_{k2}
+          + \cdots + \sum\limits_{k = 1}^n a_{nk}b_{kn}                                      \\
+                 & = \sum \limits_{l = 1}^n \sum\limits_{k = 1}^n a_{lk}b_{kl}
         \end{align*}
+        \begin{align*}
+          Tr(BA) & = d_{11} + d_{22} + \cdots + d_{nn}                                       \\
+                 & = \sum\limits_{k = 1}^n b_{1k}a_{k1} + \sum\limits_{k = 1}^n b_{2k}a_{k2}
+          + \cdots + \sum\limits_{k = 1}^n b_{nk}a_{kn}                                      \\
+                 & = \sum \limits_{l = 1}^n \sum\limits_{k = 1}^n b_{lk}a_{kl}
+        \end{align*}
+        于是，只需证明$\sum \limits_{l = 1}^n \sum\limits_{k = 1}^n a_{lk}b_{kl} = \sum \limits_{l = 1}^n \sum\limits_{k = 1}^n b_{lk}a_{kl}$。
+
+        对$n$进行归纳。
+
+        $n = 1$时，
+        \begin{align*}
+          \sum \limits_{l = 1}^1 \sum\limits_{k = 1}^1 a_{lk}b_{kl}
+           & = a_{11}b_{11}                                              \\
+           & = \sum \limits_{l = 1}^1 \sum\limits_{k = 1}^1 b_{lk}a_{kl}
+        \end{align*}
+        等式成立。
+
+        归纳假设$n = r$时，
+        \begin{align*}
+          \sum \limits_{l = 1}^r \sum\limits_{k = 1}^r a_{lk}b_{kl} = \sum \limits_{l = 1}^r \sum\limits_{k = 1}^r b_{lk}a_{kl}
+        \end{align*}
+        等式成立。
+
+        $n = r + 1$时，我们有
+        \begin{align*}
+          \sum \limits_{l = 1}^{r + 1} \sum\limits_{k = 1}^{r + 1} a_{lk}b_{kl}
+          & = \sum \limits_{l = 1}^r \sum\limits_{k = 1}^r a_{lk}b_{kl} 
+          + \sum \limits_{l = 1}^{r + 1} a_{l(r + 1)}b_{(r+1)l}
+          + \sum \limits_{k = 1}^{r} a_{(r + 1)k} b_{k(r + 1)}
+        \end{align*}
+        同理，我们有
+        \begin{align*}
+          \sum \limits_{l = 1}^{r + 1} \sum\limits_{k = 1}^{r + 1} b_{lk}a_{kl}
+          & = \sum \limits_{l = 1}^r \sum\limits_{k = 1}^r b_{lk}a_{kl} 
+          + \sum \limits_{l = 1}^{r + 1} b_{l(r + 1)}a_{(r+1)l}
+          + \sum \limits_{k = 1}^{r} b_{(r + 1)k} a_{k(r + 1)}
+        \end{align*}
+        由于求和符号的下标不依赖于具体的字母，
+        于是我们有
+        \begin{align*}
+          \sum \limits_{l = 1}^{r + 1} a_{l(r + 1)}b_{(r+1)l} - \sum \limits_{k = 1}^{r} b_{(r + 1)k} a_{k(r + 1)}
+          & = \sum \limits_{l = 1}^{r + 1} a_{l(r + 1)}b_{(r+1)l} - \sum \limits_{l = 1}^{r} b_{(r + 1)l} a_{l(r + 1)} \\
+          & = a_{(r + 1)(r + 1)}b_{(r + 1)(r + 1)}
+        \end{align*}
+        同理
+        \begin{align*}
+          \sum \limits_{l = 1}^{r} a_{(r + 1)l} b_{l(r + 1)} - \sum \limits_{l = 1}^{r + 1} b_{l(r + 1)}a_{(r+1)l}
+          & = - a_{(r + 1)(r + 1)}b_{(r + 1)(r + 1)}
+        \end{align*}
+        结合归纳假设可知
+        \begin{align*}
+          \sum \limits_{l = 1}^{r + 1} \sum\limits_{k = 1}^{r + 1} a_{lk}b_{kl} 
+          -  \sum \limits_{l = 1}^{r + 1} \sum\limits_{k = 1}^{r + 1} b_{lk}a_{kl} = 0 \\
+          \implies \\
+          \sum \limits_{l = 1}^{r + 1} \sum\limits_{k = 1}^{r + 1} a_{lk}b_{kl} 
+          =  \sum \limits_{l = 1}^{r + 1} \sum\limits_{k = 1}^{r + 1} b_{lk}a_{kl}
+        \end{align*}
+
+        归纳完成。
+
+        所以，$Tr(AB) = Tr(BA)$。
 
   \item (2)
 

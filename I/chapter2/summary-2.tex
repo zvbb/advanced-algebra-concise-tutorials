@@ -34,142 +34,32 @@
 
 
 \begin{document}
-\title{2章总结}
+\title{第二章总结}
 \author{张志聪}
 \maketitle
 
 \begin{zremark}
-  特殊$n$阶方阵的封闭性。
+  矩阵消去律成立的充分条件：
+
+  矩阵$A$满秩，那么
+  \begin{align*}
+    AB = AC               \\
+    A^{-1} A = A^{-1} A C \\
+    B = C
+  \end{align*}
 \end{zremark}
-
-\begin{itemize}
-  \item (1) 对角矩阵。
-
-        两个对角矩阵$A, B$，又如下封闭性：
-        \begin{itemize}
-          \item 加法封闭: $A + B$也是对角矩阵；
-          \item 数乘封闭: $kA$也是对角矩阵；
-          \item 乘法封闭: $AB$也是对角矩阵。
-          \item 逆矩阵封闭: $A$可逆，则$A^{-1}$也是对角矩阵（是上三角矩阵的特例）。
-        \end{itemize}
-
-
-  \item (2) （反）对称矩阵。
-
-        两个（反）对称矩阵$A, B$，又如下封闭性：
-        \begin{itemize}
-          \item 加法封闭: $A + B$也是（反）对称矩阵；
-          \item 数乘封闭: $kA$也是（反）对称矩阵；
-          \item 乘法有条件的封闭: 充分必要条件“A, B可交换，即$AB = BA$”（习题16）。
-          \item 逆矩阵封闭: $A^{-1}$也是（反）对称矩阵（习题18-1）。
-        \end{itemize}
-
-  \item (3) 上（下）三角矩阵。
-
-        两个上（下）三角矩阵$A, B$，又如下封闭性：
-        \begin{itemize}
-          \item 加法封闭: $A + B$也是上（下）三角矩阵；
-          \item 数乘封闭: $kA$也是上（下）三角矩阵；
-          \item 乘法封闭: $AB$也是上（下）三角矩阵；
-          \item 逆矩阵封闭: $A$可逆，则$A^{-1}$也是上（下）三角矩阵（习题18-2）。
-        \end{itemize}
-\end{itemize}
 
 \begin{zremark}
-  打洞技巧：\\
-  给定数域$K$上的$n$阶分块矩阵
+  矩阵 $A, B$满足
   \begin{align*}
-    M = \begin{bmatrix}
-          A & B \\
-          C & D
-        \end{bmatrix}
+    AB = BA
   \end{align*}
-  其中$A$是$k$阶可逆方阵，通过初等变换得到
-  \begin{align*}
-    \begin{bmatrix}
-      A & 0 \\
-      0 & *
-    \end{bmatrix}
-  \end{align*}
-  求初等变换对应的初等矩阵。
+  的充分条件有：
+  \begin{itemize}
+    \item $A,B$都是对角矩阵。
+    \item 还有些其他条件。（持续补充）
+  \end{itemize}
 \end{zremark}
-
-先考虑数值矩阵的情况，
-\begin{align*}
-  M = \begin{bmatrix}
-        a & b \\
-        c & d
-      \end{bmatrix}
-\end{align*}
-通过行变换，第二行加上第一行的$-\frac{c}{a}$倍，把$c$消为0，
-\begin{align*}
-  \begin{bmatrix}
-    1            & 0 \\
-    -\frac{c}{a} & 1
-  \end{bmatrix}
-  \begin{bmatrix}
-    a & b \\
-    c & d
-  \end{bmatrix}
-  =
-  \begin{bmatrix}
-    a & b                \\
-    0 & d - \frac{bc}{a}
-  \end{bmatrix}
-\end{align*}
-通过列变换，第二列加上第一列的$-\frac{b}{a}$被，把$b$消为0，
-\begin{align*}
-  \begin{bmatrix}
-    a & b                \\
-    0 & d - \frac{bc}{a}
-  \end{bmatrix}
-  \begin{bmatrix}
-    1 & - \frac{b}{a} \\
-    0 & 1
-  \end{bmatrix}
-  = \begin{bmatrix}
-      a & 0                \\
-      0 & d - \frac{bc}{a}
-    \end{bmatrix}
-\end{align*}
-即
-\begin{align*}
-  \begin{bmatrix}
-    1            & 0 \\
-    -\frac{c}{a} & 1
-  \end{bmatrix}
-  \begin{bmatrix}
-    a & b \\
-    c & d
-  \end{bmatrix}
-  \begin{bmatrix}
-    1 & - \frac{b}{a} \\
-    0 & 1
-  \end{bmatrix}
-  = \begin{bmatrix}
-      a & 0                \\
-      0 & d - \frac{bc}{a}
-    \end{bmatrix}
-\end{align*}
-相应的可得
-\begin{align*}
-  \begin{bmatrix}
-    E_k            & 0 \\
-    -C A^{-1} & E_{n - k}
-  \end{bmatrix}
-  \begin{bmatrix}
-    A & B \\
-    C & D
-  \end{bmatrix}
-  \begin{bmatrix}
-    E_k & - A^{-1}B \\
-    0   & E_{n - k}
-  \end{bmatrix}
-  = \begin{bmatrix}
-      A & 0             \\
-      0 & D - C A^{-1}B
-    \end{bmatrix}
-\end{align*}
 
 
 \end{document}

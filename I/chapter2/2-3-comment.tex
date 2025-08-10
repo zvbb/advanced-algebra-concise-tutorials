@@ -39,6 +39,28 @@
 \maketitle
 
 \begin{zremark}
+  $K^m$内向量方程
+  \begin{align*}
+    x_1 \alpha_1 + x_2 \alpha_2 + \cdots + x_m \alpha_m = 0
+  \end{align*}
+  等价于$K$上的齐次线性方程组，它的解集
+  \begin{align*}
+    S = \{
+    \begin{bmatrix}
+      x_1    \\
+      x_2    \\
+      \vdots \\
+      x_m
+    \end{bmatrix}
+    \in K^m : x_1 \alpha_1 + x_2 \alpha_2 + \cdots + x_m \alpha_m = 0\}
+  \end{align*}
+  对于加法、乘法封闭。
+  即：\\
+  $\forall \eta_1, \eta_2 \in S$，有$\eta_1 + \eta_2 \in S$；\\
+  $\forall \eta \in S, k \in K$，有$k \eta \in S$。
+\end{zremark}
+
+\begin{zremark}
   形如
   \begin{align*}
     A = \begin{bmatrix}
@@ -138,7 +160,7 @@
 设$(I)$的系数矩阵和增广矩阵分别为$A, \overline{A}$，常数列设为$\beta$。
 
 通过初等变换把$A$化作标准型，
-在初等变换中，只使用$K_1$的数，
+（由书中的讨论可知，在初等变换中可只使用$K_1$的数，化为标准型），
 最后，确定$A$的秩。
 
 分情况讨论：
@@ -147,9 +169,9 @@
 
         即$rank(A) \neq rank(\overline{A})$，
         把数域扩展到$K_2$，因为$K_1 \subset K_2$，
-        标准型可以通过相同的初等变换得到（标准型有其特殊性，元素只有1和0，
-        即使数域改变，还是要满足数域的运算法则，线性关系无法改变），
-        即秩的关系不会因为数域的扩大而改变。
+        标准型可以通过相同的初等变换得到（即：只用$K_1$中的数），
+        % 标准型有其特殊性，元素只有1和0，即使数域改变，还是要满足数域的运算法则，线性关系无法改变
+        所以，秩的关系不会因为数域的扩大而改变。
         因此，在数域$K_2$也是无解的。
 
   \item 唯一解;
@@ -182,7 +204,7 @@
 
         因为在$K_2$下，$A$的秩是不变的，
         于是导出方程组的基础解系向量个数也是$n - r$，
-        显然$\eta_1, \eta_2, \cdots, \eta_{n - r}$ 
+        显然$\eta_1, \eta_2, \cdots, \eta_{n - r}$
         也是$K_2$下的解，于是由习题3，可知该基础解系也是
         $K_2$下导出方程组的基础解系。
 

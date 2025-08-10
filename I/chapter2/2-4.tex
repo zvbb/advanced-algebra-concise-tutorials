@@ -40,29 +40,59 @@
 
 \section*{8}
 
-设
-\begin{align*}
-  A = [\alpha_1 \ \alpha_2 \ \cdots \  \alpha_n]
-\end{align*}
+\begin{itemize}
+  \item 方法一
 
-由题设可知
-\begin{align*}
-  \alpha_1, \alpha_2, \cdots, \alpha_n \ \ \ (I)
-\end{align*}
-是线性无关的。
+        设
+        \begin{align*}
+          D = A B = A C
+        \end{align*}
+        设$B$的列向量组为$\beta_1, \beta_2, \cdots, \beta_s$，
+        $C$的列向量组为$\gamma_1, \gamma_2, \cdots, \gamma_s$，
+        $D$的列向量组为$\eta_1, \eta_2, \cdots, \eta_s$，
+        那么按照矩阵乘法，任意$1 \leq i \leq s$，应有
+        \begin{align*}
+          \eta_i = A \beta_i = A \gamma_i \\
+          A (\beta_i - \gamma_i) = 0
+        \end{align*}
+        由于$rank(A) = n$，于是方程组$A x = 0$只有零解，
+        所以
+        \begin{align*}
+          \beta_i - \gamma_i = 0 \\
+          \beta_i = \gamma_i
+        \end{align*}
+        由于$i$是任意的，所以
+        \begin{align*}
+          B = C
+        \end{align*}
 
-设$D = AB = AC$，那么对任意列向量$col_j(D) (1 \leq j \leq s)$，
-我们有
-\begin{align*}
-  col_j(D) = A col_j(B) = A col_j(C)
-\end{align*}
-即$col_j(D)$可以被$(I)$线性表示:
-\begin{align*}
-  col_j(D) = k_1 \alpha_1 + k_2 \alpha_2 + \cdots + k_n \alpha_n
-\end{align*}
-由于$(I)$是线性无关的，利用命题3.1可知，表示法是唯一的，
-即$k_1, k_2, \cdots, k_n$是唯一的。
-于是可得$col_j(B) = col_j(C)$，所以$B = C$。
+  \item 方法二
+
+        设
+        \begin{align*}
+          A = [\alpha_1 \ \alpha_2 \ \cdots \  \alpha_n]
+        \end{align*}
+
+        由题设可知
+        \begin{align*}
+          \alpha_1, \alpha_2, \cdots, \alpha_n \ \ \ (I)
+        \end{align*}
+        是线性无关的。
+
+        设$D = AB = AC$，那么对任意列向量$col_j(D) (1 \leq j \leq s)$，
+        我们有
+        \begin{align*}
+          col_j(D) = A col_j(B) = A col_j(C)
+        \end{align*}
+        即$col_j(D)$可以被$(I)$线性表示:
+        \begin{align*}
+          col_j(D) = k_1 \alpha_1 + k_2 \alpha_2 + \cdots + k_n \alpha_n
+        \end{align*}
+        由于$(I)$是线性无关的，利用命题3.1可知，表示法是唯一的，
+        即$k_1, k_2, \cdots, k_n$是唯一的。
+        于是可得$col_j(B) = col_j(C)$，所以$B = C$。
+\end{itemize}
+
 
 \section*{9}
 
@@ -265,7 +295,7 @@ $(I)$是线性无关的。
 所以$(I)$可以被$Dx = 0$的基础解系表示，
 利用替换定理，我们有
 \begin{align*}
-  v \geq s + t - u \\
+  v \geq s + t - u                                          \\
   n - rank(AB) \geq n - rank(A) + n - rank(B) - n + rank(C) \\
   rank(A) + rank(B) \geq rank(C) + rank(AB)
 \end{align*}

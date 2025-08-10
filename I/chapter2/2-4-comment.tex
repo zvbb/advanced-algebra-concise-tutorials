@@ -39,6 +39,97 @@
 \maketitle
 
 \begin{zremark}
+  矩阵乘法的整体理解。
+\end{zremark}
+
+设$A \in \mathbb{K}^{m \times n}, B \in \mathbb{K}^{n \times s}, C = AB$。
+\begin{itemize}
+  \item $C$的列向量角度；
+
+        对于的$C$第$j$个列向量：以$B$的第$j$列元素为系数作$A$的列向量组$\alpha_1, \alpha_2, \cdots, \alpha_n$
+        的线性组合所得的$m$维向量。
+
+        \begin{align*}
+          \begin{bmatrix}
+            c_{1j} \\
+            c_{2j} \\
+            \vdots \\
+            c_{mj}
+          \end{bmatrix}
+          =
+          A \begin{bmatrix}
+              b_{1j} \\
+              b_{2j} \\
+              \vdots \\
+              b_{nj}
+            \end{bmatrix}
+          =
+          (\alpha_1, \alpha_2, \cdots, \alpha_n)\begin{bmatrix}
+                                                  b_{1j} \\
+                                                  b_{2j} \\
+                                                  \vdots \\
+                                                  b_{nj}
+                                                \end{bmatrix}
+          = b_{1j} \alpha_1 + b_{2j} \alpha_2 + \cdots + b_{nj} \alpha_n
+        \end{align*}
+
+  \item $C$的行向量角度；
+
+        对于的$C$第$i$个行向量：以$A$的第$i$行元素为系数作$B$的行向量组$\beta_1^T, \beta_2^T, \cdots, \beta_n^T$
+        的线性组合所得的$s$维向量。
+
+        \begin{align*}
+          (c_{i1}, c_{i2}, \cdots, c_{is})                                           \\
+           & = (a_{i1}, a_{i2}, \cdots, a_{in}) B                                    \\
+           & = (a_{i1}, a_{i2}, \cdots, a_{in}) \begin{bmatrix}
+                                                  \beta_{1}^T \\
+                                                  \beta_{2}   \\
+                                                  \vdots      \\
+                                                  \beta_{n}
+                                                \end{bmatrix}                       \\
+           & = a_{i1} \beta_{1}^T + a_{i2} \beta_{2}^T + \cdots + a_{in} \beta_{n}^T
+        \end{align*}
+
+  \item 整体角度；
+
+        如果写
+        \begin{align*}
+          A & = \begin{bmatrix}
+                  \alpha_1 & \alpha_2 & \cdots & \alpha_n
+                \end{bmatrix} \\
+          B & = \begin{bmatrix}
+                  \beta_{1}^T \\
+                  \beta_{2}^T \\
+                  \vdots      \\
+                  \beta_{n}^T
+                \end{bmatrix}
+        \end{align*}
+        那么，
+        \begin{align*}
+          C = A B = \alpha_1 \beta_{1}^T + \alpha_2 \beta_{2}^T + \cdots + \alpha_n \beta_{n}^T
+        \end{align*}
+
+  \item 整体角度（错误）；
+
+        如果写
+        \begin{align*}
+          A & = \begin{bmatrix}
+                  \alpha_1^T \\
+                  \alpha_2^T \\
+                  \vdots     \\
+                  \alpha_n^T
+                \end{bmatrix}                       \\
+          B & = \begin{bmatrix}
+                  \beta_1 & \beta_2 & \cdots & \beta_s
+                \end{bmatrix} \\
+        \end{align*}
+        此时，$\alpha_i^T \beta_i$是标量，所以整体$AB$也是标量，
+        所以这种理解方式是错误的。
+
+
+\end{itemize}
+
+\begin{zremark}
   对某种映射的讨论：
 
   在数域$K$，对任意$m,n \in \mathbb{N}^+$
@@ -143,9 +234,21 @@
 
   \item 充分性
 
-    已知$rank(A) < n$，于是线性方程组$Ax = 0$有非零解，
-    且基础解系中向量个数为大于等于$1$，通过基础解系构造矩阵$B$，
-    得到$AB = 0 (B \neq 0)$。
+        已知$rank(A) < n$，于是线性方程组$Ax = 0$有非零解，
+        且基础解系中向量个数为大于等于$1$，通过基础解系构造矩阵$B$，
+        得到$AB = 0 (B \neq 0)$。
 \end{itemize}
+
+\begin{zremark}
+  把线性无关的向量组，作为基础解系，找方程组。
+
+  习题13，习题14
+\end{zremark}
+
+\begin{zremark}
+  命题4.6第二种解法。
+
+  习题15
+\end{zremark}
 
 \end{document}

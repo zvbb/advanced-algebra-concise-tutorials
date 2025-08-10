@@ -176,6 +176,8 @@ $x_3,x_4,x_5$为自由未知量。
 
 \section*{4}
 
+备注：添加一个方程，对齐次线性方程组解的影响。
+
 反证法，假设$\beta$不可以被$\alpha_1, \alpha_2, \cdots \alpha_{s}$线性表示。
 
 齐次线性方程组对应的矩阵设为
@@ -212,7 +214,7 @@ $x_3,x_4,x_5$为自由未知量。
   rank((II)) = n - r - 1
 \end{align*}
 由题设中对解的描述可知，$(II)$可以线性表示$(I)$，且$(I)$是线性无关的，
-于是，利用命题1.4可知
+于是，利用替换定理可知
 \begin{align*}
   n - r - 1 \geq n - r
 \end{align*}
@@ -359,7 +361,7 @@ $rank(C) < n$时，由定理3.1可知，$C$存在一个秩为$n - rank(C) > 0$�
 \end{align*}
 其中$\overline{A}$是增广矩阵。
 
-通过同一直线，即方程组的基础解系的秩为$1$，满足以下条件即可
+通过同一直线，即导出方程组的基础解系的秩为$1$，满足以下条件即可
 \begin{align*}
   rank(A) = n - 1 = rank(\overline{A})
 \end{align*}
@@ -427,16 +429,21 @@ $(n - 1)a + b = 0$，对增广矩阵做行变换：所有的行都加入第一�
 \section*{13}
 由定理3.3可知，任一解$\gamma$可以表示成
 \begin{align*}
-  \gamma = \gamma_0 + k_1\eta_1 + \cdots + k_s\eta_s
+  \gamma & = \gamma_0 + k_1\eta_1 + k_2\eta_2 + \cdots + k_s\eta_s                                              \\
+         & = \gamma_0 + k_1(\gamma_1 - \gamma_0) + k_2(\gamma_2 - \gamma_0) + \cdots + k_s(\gamma_s - \gamma_0) \\
+         & = [1 - (k_1 + k_2 + \cdots + k_s)] \gamma_0 + k_1 \gamma_1 + k_2 \gamma_2 + \cdots + k_s \gamma_s    \\
+\end{align*}
+令
+\begin{align*}
+  k_0 & = 1 - (k_1 + k_2 + \cdots + k_s) \\
+  \implies                               \\
+  1   & = k_0 + k_1 + k_2 + \cdots + k_s
+\end{align*}
+于是$\gamma$可以表示成
+\begin{align*}
+  \gamma & = k_0 \gamma_0 + k_1 \gamma_1 + k_2 \gamma_2 + \cdots + k_s \gamma_s
 \end{align*}
 
-令$k_0 = 1 - (k_1 + \cdots + k_s)$，于是我们有
-\begin{align*}
-  \gamma
-   & = (k_0 + k_1 + \cdots + k_s) \gamma_0 + k_1 \eta_1 + \cdots + k_s \eta_s    \\
-   & = k_0 \gamma_0 + k_1 (\gamma_0 + \eta_1) + \cdots + k_s (\gamma_0 + \eta_s) \\
-   & = k_0 \gamma_0 + k_1 \gamma_1 + \cdots + k_s \gamma_s
-\end{align*}
 
 \section*{14}
 
