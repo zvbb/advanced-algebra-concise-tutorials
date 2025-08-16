@@ -1,0 +1,218 @@
+\documentclass{article}
+\usepackage{mathtools} 
+\usepackage{fontspec}
+\usepackage[UTF8]{ctex}
+\usepackage{amsthm}
+\usepackage{mdframed}
+\usepackage{xcolor}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{hyperref}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric, arrows}
+\usetikzlibrary{positioning}
+
+
+% 定义新的带灰色背景的说明环境 zremark
+\newmdtheoremenv[
+  backgroundcolor=gray!10,
+  % 边框与背景一致，边框线会消失
+  linecolor=gray!10
+]{zremark}{注释}
+
+% 通用矩阵命令: \flexmatrix{矩阵名}{元素符号}{行数}{列数}
+\newcommand{\flexmatrix}[4]{
+  \[
+  #1 = \begin{pmatrix}
+    #2_{11}     & #2_{12}     & \cdots & #2_{1#4}   \\
+    #2_{21}     & #2_{22}     & \cdots & #2_{2#4}   \\
+    \vdots      & \vdots      & \ddots & \vdots     \\
+    #2_{#31}    & #2_{#32}    & \cdots & #2_{#3#4}
+  \end{pmatrix}
+  \]
+}
+
+% 简化版命令（默认矩阵名为A，元素符号为a）: \quickmatrix{行数}{列数}
+\newcommand{\quickmatrix}[2]{\flexmatrix{A}{a}{#1}{#2}}
+
+
+\begin{document}
+\title{3.2 注释}
+\author{张志聪}
+\maketitle
+
+\begin{zremark}
+  命题2.1的推广 设$f$是$M_n(K) (n \geq 2)$上的列（行）线性函数，那么，下面命题相互等价：
+  \begin{itemize}
+    \item (0) 如果$A \in M_n(K)$有两列元素相同时，必有$f(A) = 0$。
+    \item (1) 设将$A \in M_n(K)$的$i,j$两列（行）互换得出方阵$B$，则$f(B) = - f(A)$。
+    \item (2) 设将$A \in M_n(K)$的第$j$列（行）加上其第$i$列（行）的$\lambda$倍（$\lambda \in K$）
+          得出方阵$B$，则$f(B) = f(A)$。
+    \item (3) 对$K$上任何不满秩$n$阶方阵$A$都有$f(A) = 0$。
+  \end{itemize}
+\end{zremark}
+
+\begin{zremark}
+  通过列线性函数定义的行列式$f$，和通过行线性函数定义的行列式$g$，是等价的。
+\end{zremark}
+
+\textbf{证明：}
+
+设任意$A \in M_n(K)$。
+\begin{itemize}
+  \item (1) $A$不满秩。
+
+        由定义可知
+        \begin{align*}
+          f(A) = 0 = g(A)
+        \end{align*}
+
+  \item (2) $A$满秩。
+
+        存在初等矩阵$P_1, P_2, \cdots, P_m$，使得
+        \begin{align*}
+          A = P_1 P_2 \cdots P_m
+        \end{align*}
+
+        如设$P_1, P_2, \cdots, P_m$中有$r$个第一类初等矩阵，$s$个第二类初等矩阵。
+
+        把$A$看做
+        \begin{align*}
+          A = E P_1 P_2 \cdots P_m
+        \end{align*}
+        即只进行了初等列变换，那么
+        \begin{align*}
+          f(A) = (-1)^{r} \lambda_1 \cdots \lambda_s
+        \end{align*}
+
+        把$A$看做
+        \begin{align*}
+          A = P_1 P_2 \cdots P_m E
+        \end{align*}
+        即只进行了初等行变换，那么
+        \begin{align*}
+          g(A) = (-1)^{r} \lambda_1 \cdots \lambda_s
+        \end{align*}
+        所以
+        \begin{align*}
+          f(A) = g(A)
+        \end{align*}
+        综上，$f = g$。
+\end{itemize}
+
+\begin{zremark}
+  $n \geq 2$个不同的自然数，奇排列和偶排列的个数相同。
+\end{zremark}
+
+\textbf{证明：}
+
+\begin{itemize}
+  \item 方法一：
+
+        习题11
+
+  \item 方法二：
+
+        排列的总个数是$n!$，因为$n \geq 2$，所以总排列数是偶数个。
+
+        设奇排列和偶排列的集合分别为$S_1, S_2$。
+
+        定义映射$f : S_1 \rightarrow S_2$为：将一个奇排列中的第一个数与最后一个数交换。
+
+        接下来，我们证明这个$f$是双射。
+
+        \begin{itemize}
+          \item (1) 单射；
+
+                任意$a_1, a_2 \in S_1$且$a_1 \neq a_2$，
+                由命题2.5可知，
+                \begin{align*}
+                  f(a_1), f(a_2) \in S_2
+                \end{align*}
+
+                假设$f(a_1) = f(a_2)$，那么
+                \begin{align*}
+                  a_1 = f(f(a_1)) = f(f(a_2)) = a_2
+                \end{align*}
+                与$a_1 \neq a_2$矛盾，可得
+                \begin{align*}
+                  f(a_1) \neq f(a_2)
+                \end{align*}
+                所以，$f$是单射。
+
+          \item (2) 满射；
+
+                任意$b \in S_2$，由命题2.5可知，
+                交换排列$b$中的第一个数和最后一个数所得的$b^\prime \in S_1$，
+                又
+                \begin{align*}
+                  f(b^\prime) = b
+                \end{align*}
+                所以，$f$是满射。
+        \end{itemize}
+\end{itemize}
+
+\begin{zremark}
+  行列式的常见计算方式
+\end{zremark}
+
+\begin{itemize}
+  \item (1) 化成阶梯型（注意初等变换对行列式值的影响），通过上（下）对角矩阵行列式，对角线乘积即为行列式值。
+  \item (2) 递推关系。
+  \item (3) 范德蒙德行列式。
+  \item (4) 按某行（列）展开，尤其是零多的情况下。
+\end{itemize}
+
+其实，如果是“固定阶”，蛮干也行。
+
+\begin{zremark}
+  反对称列线性函数有无穷多个，
+  设$f$是反对称称列线性函数，
+  那么，存在常数$k$使得$f (A) = k det(A)$的形式。
+\end{zremark}
+
+\textbf{证明：}
+
+结合习题3，习题4，习题13
+
+\begin{zremark}
+  切比雪夫多项式（不是指某一个具体函数，而是指一类多项式）：
+
+  $k \in \mathbb{N}^{+}$，我们有
+  \begin{align*}
+    cos(k \alpha) = f_k (cos(\alpha))
+  \end{align*}
+  其中
+  \begin{align*}
+    f_k (x) = 2^{k - 1} x^k + *
+  \end{align*}
+  是首项系数为$2^{k - 1}$的$k$次多项式，即$cos(k \alpha)$是关于$cos(\alpha)$的多项式。
+\end{zremark}
+
+\textbf{证明：}
+
+对$k$进行归纳，
+$k = 1$时，$cos \alpha$显然成立。
+归纳假设$k \leq n$时，命题成立。
+$k = n+1$时
+\begin{align*}
+  cos[(n + 1)\alpha] + cos [(n - 1)\alpha]
+                     & = 2 cos(n \alpha)cos(\alpha)                       \\
+  cos[(n + 1)\alpha] & = 2 cos(n \alpha)cos(\alpha) - cos [(n - 1)\alpha]
+\end{align*}
+于是由归纳假设可知，
+\begin{align*}
+  cos(n \alpha)
+\end{align*}
+$cos(n \alpha)$是关于$cos(\alpha)$的首项系数为$2^{n - 1}$的$n$次多项式，
+于是
+\begin{align*}
+  2 cos(n \alpha)cos(\alpha)
+\end{align*}
+是关于$cos(\alpha)$的首项系数为$2^{n}$的$n+1$次多项式，
+而$ - cos [(n - 1)\alpha]$不会影响最高次项，
+综上，$k = n + 1$时，命题成立。
+
+归纳完成。
+
+\end{document}

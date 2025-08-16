@@ -1,0 +1,179 @@
+\documentclass{article}
+\usepackage{mathtools} 
+\usepackage{fontspec}
+\usepackage[UTF8]{ctex}
+\usepackage{amsthm}
+\usepackage{mdframed}
+\usepackage{xcolor}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{hyperref}
+
+
+% 定义新的带灰色背景的说明环境 zremark
+\newmdtheoremenv[
+  backgroundcolor=gray!10,
+  % 边框与背景一致，边框线会消失
+  linecolor=gray!10
+]{zremark}{注释}
+
+% 通用矩阵命令: \flexmatrix{矩阵名}{元素符号}{行数}{列数}
+\newcommand{\flexmatrix}[4]{
+  \[
+  #1 = \begin{pmatrix}
+    #2_{11}     & #2_{12}     & \cdots & #2_{1#4}   \\
+    #2_{21}     & #2_{22}     & \cdots & #2_{2#4}   \\
+    \vdots      & \vdots      & \ddots & \vdots     \\
+    #2_{#31}    & #2_{#32}    & \cdots & #2_{#3#4}
+  \end{pmatrix}
+  \]
+}
+
+% 简化版命令（默认矩阵名为A，元素符号为a）: \quickmatrix{行数}{列数}
+\newcommand{\quickmatrix}[2]{\flexmatrix{A}{a}{#1}{#2}}
+
+
+\begin{document}
+\title{3.1}
+\author{张志聪}
+\maketitle
+
+\section*{3}
+
+提示：
+设
+\begin{align*}
+  f_m(A) = m det(A)
+\end{align*}
+
+\section*{25}
+
+对任意$n$阶方正$A = (a_{ij})$，
+对应的$B$为
+\begin{align*}
+  B = \begin{bmatrix}
+        a_{11}b^{1-1} & a_{12}b^{1-2} & \cdots & a_{1n}b^{1-n} \\
+        a_{21}b^{2-1} & a_{22}b^{2-2} & \cdots & a_{2n}b^{2-n} \\
+        \vdots        & \vdots        & \ddots & \vdots        \\
+        a_{n1}b^{n-1} & a_{n2}b^{n-2} & \cdots & a_{nn}b^{n-n}
+      \end{bmatrix}
+\end{align*}
+于是，我们有（先提取行向量的公因子，再提取列向量的公因子）
+\begin{align*}
+  |B| & = b b^2 \cdots b^{n-1} \begin{vmatrix}
+                                 a_{11}b^{-1} & a_{12}b^{-2} & \cdots & a_{1n}b^{-n} \\
+                                 a_{21}b^{-1} & a_{22}b^{-2} & \cdots & a_{2n}b^{-n} \\
+                                 \vdots       & \vdots       & \ddots & \vdots       \\
+                                 a_{n1}b^{-1} & a_{n2}b^{-2} & \cdots & a_{nn}b^{-n}
+                               \end{vmatrix}             \\
+      & = b b^2 \cdots b^{n-1} \frac{1}{b b^2 \cdots b^{n-1}}\begin{vmatrix}
+                                                               a_{11} & a_{12} & \cdots & a_{1n} \\
+                                                               a_{21} & a_{22} & \cdots & a_{2n} \\
+                                                               \vdots & \vdots & \ddots & \vdots \\
+                                                               a_{n1} & a_{n2} & \cdots & a_{nn}
+                                                             \end{vmatrix} \\
+      & = |A|
+\end{align*}
+
+\section*{26}
+
+todo
+
+\section*{27}
+
+把矩阵看做行向量组，
+\begin{align*}
+  \begin{bmatrix}
+    \alpha_0^T \\
+    \alpha_1^T \\
+    \vdots     \\
+    \alpha_{n - 1}^T
+  \end{bmatrix}
+\end{align*}
+
+我们证明，对任意$\alpha_i$，可以被其他行向量做$i - 1$次初等变换，化为只剩首项系数的形式。
+
+对$i$进行归纳，
+$i = 1$时
+\begin{align*}
+  \alpha_1^T = (a_1 b_1 + c_1 , a_1 b_2 + c_1 , \cdots , a_1 b_n + c_1)
+\end{align*}
+其中$c_1$是一个定值。
+我们有
+\begin{align*}
+  \alpha_0^T = (a_0, a_0, \cdots, a_0)
+\end{align*}
+所以，可以通过$\alpha_0^T$，去掉$\alpha_1^T$中的$c_1$，得到
+\begin{align*}
+  (a_1 b_1 , a_1 b_2 , \cdots , a_1 b_n)
+\end{align*}
+归纳假设$i = k$时，也成立。
+
+$i = k + 1$时，我们有
+\begin{align*}
+  \alpha_{k+1}^T = (a_{k+1} b_1^{k + 1} + * b_1^{k} + \cdots + c_{k+1}, a_{k+1} b_2^{k + 1} + * b_2^{k} + \cdots + c_{k+1}, \cdots, a_{k+1} b_n^{k + 1} + * b_n^{k} + \cdots + c_{k+1})
+\end{align*}
+由归纳假设可知，$\alpha_{k+1}^T$通过$k - 1$次初等变化，可得
+\begin{align*}
+  (a_{k+1} b_1^{k + 1} + * b_1^{k}, a_{k+1} b_2^{k + 1} + * b_2^{k}, \cdots, a_{k+1} b_n^{k + 1} + * b_n^{k})
+\end{align*}
+再加上$- \frac{*}{a_k} \alpha_{k}^T$，我们有
+\begin{align*}
+  (a_{k+1} b_1^{k + 1}, a_{k+1} b_2^{k + 1}, \cdots, a_{k+1} b_n^{k + 1})
+\end{align*}
+归纳完成。
+
+于是，我们有
+\begin{align*}
+  \begin{vmatrix}
+    f_0(b_1)     & f_0(b_2)     & \cdots & f_0(b_n)     \\
+    f_1(b_1)     & f_1(b_2)     & \cdots & f_1(b_n)     \\
+    \vdots       & \vdots       & \ddots & \vdots       \\
+    f_{n-1}(b_1) & f_{n-1}(b_2) & \cdots & f_{n-1}(b_n)
+  \end{vmatrix}
+   & = \begin{vmatrix}
+         a_0               & a_0              & \cdots & a_0               \\
+         a_1 b_1^1         & a_1 b_2^1        & \cdots & a_1 b_n^1         \\
+         \vdots            & \vdots           & \ddots & \vdots            \\
+         a_{n-1} b_1^{n-1} & a_{n-1}b_2^{n-1} & \cdots & a_{n-1} b_n^{n-1}
+       \end{vmatrix}        \\
+   & = a_0 a_2 \cdots a_{n - 1} \begin{vmatrix}
+                                  1         & 1         & \cdots & 1         \\
+                                  b_1^1     & b_2^1     & \cdots & b_n^1     \\
+                                  \vdots    & \vdots    & \ddots & \vdots    \\
+                                  b_1^{n-1} & b_2^{n-1} & \cdots & b_n^{n-1}
+                                \end{vmatrix}      \\
+   & = a_0 a_2 \cdots a_{n - 1}  \prod\limits_{1 \leq j < i \leq n} (b_i - b_j)
+\end{align*}
+
+\section*{28}
+
+对任意$k \in \mathbb{N}^{+}$，
+我们有
+\begin{align*}
+  cos(k \alpha) = 2^{k - 1} (cos \alpha)^k + *
+\end{align*}
+这里的$*$是其他次数小于$k$的项。
+
+与习题27类似的方式化简，本题中的行列式可化为
+\begin{align*}
+   & \begin{vmatrix}
+       1                               & 1                               & \cdots & 1                               \\
+       cos\alpha_1                     & cos\alpha_2                     & \cdots & cos\alpha_n                     \\
+       2 (cos\alpha_1)^2               & 2 (cos\alpha_2)^2               & \cdots & 2 (cos\alpha_n)^2               \\
+       \vdots                                                                                                       \\
+       2^{n - 2} (cos\alpha_1)^{n - 1} & 2^{n - 2} (cos\alpha_2)^{n - 1} & \cdots & 2^{n - 2} (cos\alpha_n)^{n - 1}
+     \end{vmatrix} \\
+   & = 2 \cdot 2^{2} \cdots 2^{n - 2}
+  \begin{vmatrix}
+    1                     & 1                     & \cdots & 1                     \\
+    cos\alpha_1           & cos\alpha_2           & \cdots & cos\alpha_n           \\
+    (cos\alpha_1)^2       & (cos\alpha_2)^2       & \cdots & (cos\alpha_n)^2       \\
+    \vdots                                                                         \\
+    (cos\alpha_1)^{n - 1} & (cos\alpha_2)^{n - 1} & \cdots & (cos\alpha_n)^{n - 1}
+  \end{vmatrix}                                  \\
+   & = 2^{\frac{(n-2)(n-1)}{2}} \prod \limits_{1 \leq j < i \leq n} (cos\alpha_i - cos\alpha_j)
+\end{align*}
+
+
+\end{document}
