@@ -1,0 +1,80 @@
+\documentclass{article}
+\usepackage{mathtools} 
+\usepackage{fontspec}
+\usepackage[UTF8]{ctex}
+\usepackage{amsthm}
+\usepackage{mdframed}
+\usepackage{xcolor}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{hyperref}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric, arrows}
+\usetikzlibrary{positioning}
+
+
+% 定义新的带灰色背景的说明环境 zremark
+\newmdtheoremenv[
+  backgroundcolor=gray!10,
+  % 边框与背景一致，边框线会消失
+  linecolor=gray!10
+]{zremark}{注释}
+
+% 通用矩阵命令: \flexmatrix{矩阵名}{元素符号}{行数}{列数}
+\newcommand{\flexmatrix}[4]{
+  \[
+  #1 = \begin{pmatrix}
+    #2_{11}     & #2_{12}     & \cdots & #2_{1#4}   \\
+    #2_{21}     & #2_{22}     & \cdots & #2_{2#4}   \\
+    \vdots      & \vdots      & \ddots & \vdots     \\
+    #2_{#31}    & #2_{#32}    & \cdots & #2_{#3#4}
+  \end{pmatrix}
+  \]
+}
+
+% 简化版命令（默认矩阵名为A，元素符号为a）: \quickmatrix{行数}{列数}
+\newcommand{\quickmatrix}[2]{\flexmatrix{A}{a}{#1}{#2}}
+
+
+\begin{document}
+\title{3.3 注释}
+\author{张志聪}
+\maketitle
+
+\begin{zremark}
+  命题 3.6 （命题3.5的加强）：
+
+  设$A$是数域$K$上一个$m \times n$矩阵，
+  则$rank(A) \geq r$当且仅当
+  $A$有一个$r$阶子式不为$0$。
+\end{zremark}
+
+\textbf{证明：}
+
+\begin{itemize}
+  \item 必要性。
+
+        因为$rank(A) \geq r$，那么对于$A$的列向量组，存在一个极大线性无关部分组，
+        从中任选$r$个线性无关列向量，
+        得到一个$m \times r$的矩阵$B$，
+        矩阵的列秩与行秩相等，于是$B$的行向量组有$r$个线性无关行向量，
+        以它们为行向量组成$r \times r$的矩阵$\overline{B}$，因为
+        $\overline{B}$满秩，所以$|\overline{B}| \neq 0$，
+        这就是要找的，关于$A$的不为零的$r$阶子式。
+
+  \item 充分性。
+
+        设$A$的列向量为$\beta_1, \beta_2, \dots, \beta_n$，并设$A$有$r$阶子式
+        以$A$的第$i_1, i_2, \ldots, i_r$行向量和第$j_1, j_2, \ldots, j_r$列向量
+        组成$r \times r$矩阵$B$，且$|B| \neq 0$，所以$B$是满秩的，
+        于是，我们有$\beta_{j_1}, \beta_{j_2}, \cdots, \beta_{j_r}$是线性无关，
+        又$A$列向量组的极大线性无关部分组可以线性表示$\beta_{j_1}, \beta_{j_2}, \cdots, \beta_{j_r}$，
+        由替换定理可知$rank(A) \geq r$。
+\end{itemize}
+
+\begin{zremark}
+  通过 命题3.6 可以证明 命题3.5
+\end{zremark}
+
+
+\end{document}

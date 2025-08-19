@@ -1,0 +1,631 @@
+\documentclass{article}
+\usepackage{mathtools} 
+\usepackage{fontspec}
+\usepackage[UTF8]{ctex}
+\usepackage{amsthm}
+\usepackage{mdframed}
+\usepackage{xcolor}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{hyperref}
+
+
+% 定义新的带灰色背景的说明环境 zremark
+\newmdtheoremenv[
+  backgroundcolor=gray!10,
+  % 边框与背景一致，边框线会消失
+  linecolor=gray!10
+]{zremark}{注释}
+
+% 通用矩阵命令: \flexmatrix{矩阵名}{元素符号}{行数}{列数}
+\newcommand{\flexmatrix}[4]{
+  \[
+  #1 = \begin{pmatrix}
+    #2_{11}     & #2_{12}     & \cdots & #2_{1#4}   \\
+    #2_{21}     & #2_{22}     & \cdots & #2_{2#4}   \\
+    \vdots      & \vdots      & \ddots & \vdots     \\
+    #2_{#31}    & #2_{#32}    & \cdots & #2_{#3#4}
+  \end{pmatrix}
+  \]
+}
+
+% 简化版命令（默认矩阵名为A，元素符号为a）: \quickmatrix{行数}{列数}
+\newcommand{\quickmatrix}[2]{\flexmatrix{A}{a}{#1}{#2}}
+
+
+\begin{document}
+\title{3.3}
+\author{张志聪}
+\maketitle
+
+\section*{1}
+
+证明$\beta_1, \beta_2, \cdots, \beta_s$是线性无关的，
+当且仅当
+\begin{align*}
+  k_1\beta_1 + k_2\beta_2 + \cdots + k_s \beta_s = 0
+\end{align*}
+只有非零解。
+
+又由题设可知
+\begin{align*}
+  k_1\beta_1 + k_2\beta_2 + \cdots + k_s \beta_s = 0     \\
+  (a_{11} k_1 + a_{21}k_2 + \cdots + a_{s1} k_s)\alpha_1 \\
+  +
+  (a_{12} k_1 + a_{22}k_2 + \cdots + a_{s2} k_s)\alpha_2 \\
+  + \cdots                                               \\
+  +
+  (a_{1s} k_1 + a_{2s}k_2 + \cdots + a_{ss} k_s)\alpha_s \\
+  = 0
+\end{align*}
+设
+\begin{align*}
+  X     & = \begin{bmatrix}
+              k_1 & k_2 & \cdots & k_s
+            \end{bmatrix}          \\
+  A     & = \begin{bmatrix}
+              a_{11} & a_{12} & \cdots & a_{1s} \\
+              a_{21} & a_{22} & \cdots & a_{2s} \\
+              \vdots & \vdots & \ddots & \vdots \\
+              a_{s1} & a_{s2} & \cdots & a_{ss}
+            \end{bmatrix} \\
+  A^{T} & = \begin{bmatrix}
+              a_{11} & a_{21} & \cdots & a_{s1} \\
+              a_{12} & a_{22} & \cdots & a_{s2} \\
+              \vdots & \vdots & \ddots & \vdots \\
+              a_{1s} & a_{2s} & \cdots & a_{ss}
+            \end{bmatrix}
+\end{align*}
+因为$\alpha_1, \alpha_2, \cdots, \alpha_s$是线性无关的，
+那么，$\beta_1, \beta_2, \cdots, \beta_s$线性无关当且仅当
+\begin{align*}
+  A^T X = 0
+\end{align*}
+是否只存在非零解，即当且仅当$A^T$满秩，当且仅当$A$满秩。
+
+\section*{4}
+
+提示
+\begin{itemize}
+  \item (1)
+
+        设线性方程组的系数矩阵为
+        \begin{align*}
+          A = \begin{bmatrix}
+                a_{11}      & a_{12}      & \cdots & a_{1n}      \\
+                a_{21}      & a_{22}      & \cdots & a_{2n}      \\
+                \vdots      & \vdots      & \ddots & \vdots      \\
+                a_{n-1 \ 1} & a_{n-1 \ 2} & \cdots & a_{n-1 \ n}
+              \end{bmatrix}
+        \end{align*}
+        令
+        \begin{align*}
+          X = \begin{bmatrix}
+                M_1    \\
+                -M_2   \\
+                \vdots \\
+                (-1)^{n - 1} M_n
+              \end{bmatrix}
+        \end{align*}
+        我们要证明
+        \begin{align*}
+          A X = 0
+        \end{align*}
+        考虑$AX$的第$i$行，我们有
+        \begin{align*}
+          a_{i1} M_1 + a_{i2} (-M_2) + \cdots + a_{in} [(-1)^{n-1}M_n]
+        \end{align*}
+        这是以下矩阵的行列式值
+        \begin{align*}
+          B_i = \begin{bmatrix}
+                  a_{11}      & a_{12}      & \cdots & a_{1n}      \\
+                  a_{21}      & a_{22}      & \cdots & a_{2n}      \\
+                  \vdots      & \vdots      & \ddots & \vdots      \\
+                  a_{i1}      & a_{i2}      & \cdots & a_{in}      \\
+                  a_{i1}      & a_{i2}      & \cdots & a_{in}      \\
+                  \vdots                                           \\
+                  a_{n-1 \ 1} & a_{n-1 \ 2} & \cdots & a_{n-1 \ n}
+                \end{bmatrix}
+        \end{align*}
+        由于矩阵$B_i$不是满秩的，所以$det(B_i) = 0$。
+
+  \item (2) 因为基础解系只有一个非零解向量，其他解都是这个解向量的线性组合，
+        所以是这个解向量的倍数。
+
+        我们需要证明$(M_1, -M_2, \cdots, (-1)^{n-1}M_n)$是非零向量。
+        因为系数矩阵的秩为$n - 1$，那么由命题3.5可知，存在一个非零的$n - 1$阶
+        子式，因为$n - 1$阶子式不为零，所以列数不能重复，由于系数矩阵的行数是$n - 1$，
+        所以在子式对应的矩阵$B$包含了所有行，而列向量是从系数矩阵的列向量组中去除一个列向量得到的，
+        这种选择只有$n$种，所以存在$M_i$可以通过$B$调整行向量的顺序得到（与系数矩阵一致），
+        于是，我们有
+        \begin{align*}
+          det(B) = \pm M_i
+        \end{align*}
+        即子式和$M_i$只会和$det(B)$相差一个正负号。
+
+        由于$M_i \neq 0$，所以，$(M_1, -M_2, \cdots, (-1)^{n-1}M_n)$是非零向量。
+
+\end{itemize}
+
+\section*{5}
+
+
+我们有
+\begin{align*}
+  A A^{*} = det(A) E
+\end{align*}
+
+如果$det(A) \neq 0$，那么
+\begin{align*}
+  det(A A^{*}) = det(det(A) E)        \\
+  det(A) det(A^{*}) = det(A)^n det(E) \\
+  det(A^{*}) = det(A)^{n - 1}
+\end{align*}
+
+如果$det(A) = 0$，所以$A$不满秩，
+由习题6可知，$A^{*}$不满秩，所以
+\begin{align*}
+  det(A^{*}) = 0
+\end{align*}
+
+\section*{6}
+
+\begin{itemize}
+  \item (1) $rank(A) = n$。
+
+        如果$rank(A^{*})$不满秩，那么
+        \begin{align*}
+          det(A A^{*}) = 0
+        \end{align*}
+        这与
+        \begin{align*}
+          det(A A^{*}) = det(det(A) E) = det(A)^n \neq 0
+        \end{align*}
+        矛盾。
+
+  \item (2) $rank(A) = n - 1$。
+
+        命题3.5可知，$A$存在一个$n - 1$阶子式不为零，
+        由不为零可知子式不会有相同行，
+        从$n$个行中选$n - 1$行，
+        有$n$种选择。
+        同时从$n$个列中选$n - 1$列，
+        有$n$种选择。
+        因此有$n^2$种选择。
+
+        $A^{*}$的元素不考虑符号，就是这$n^2$中选择，
+        于是可得$A^{*}$存在非零元素，所以
+        \begin{align*}
+          rank(A^{*}) \geq 1
+        \end{align*}
+
+        由于
+        \begin{align*}
+          A A^{*} = |A|E = 0
+        \end{align*}
+        所以
+        \begin{align*}
+          rank(A A^{*}) = 0
+        \end{align*}
+        又因为
+        \begin{align*}
+          rank(A A^{*}) \geq rank(A) + rank(A^{*}) - n \\
+          0 \geq n - 1 + rank(A^{*}) - n               \\
+          1 \geq rank(A^{*})
+        \end{align*}
+        综上
+        \begin{align*}
+          rank(A^{*}) = 1
+        \end{align*}
+
+  \item (3) $rank(A) < n - 1$
+
+        由习题3.5可知，$A$的$n - 1$阶子式都为$0$，
+        与$(2)$中类似的分析可知，$A^{*} = 0$，
+        所以
+        \begin{align*}
+          rank(A^{*}) = 0
+        \end{align*}
+
+\end{itemize}
+
+\section*{7}
+
+\begin{itemize}
+  \item (1)
+        \begin{align*}
+          |B| & = |T^{-1}AT|       \\
+              & = |T^{-1}| |A| |T| \\
+              & = |T^{-1}| |T| |A| \\
+              & = |T^{-1}T| |A|    \\
+              & = |E| |A|          \\
+              & = |A|
+        \end{align*}
+
+  \item (2)
+
+        矩阵转置行列式不变，于是
+        \begin{align*}
+          |B| & = |T^{T} A T|     \\
+              & = |T^{T}| |A| |T| \\
+              & = |T| |A| |T|     \\
+              & = |T|^2 |A|
+        \end{align*}
+        所以，$|A|,|B|$同号。
+\end{itemize}
+
+\section*{8}
+这是打洞的题。
+
+我们有
+\begin{align*}
+  \begin{bmatrix}
+    E         & 0 \\
+    -C A^{-1} & E
+  \end{bmatrix}
+  \begin{bmatrix}
+    A & B \\
+    C & D
+  \end{bmatrix}
+   & = \begin{bmatrix}
+         A & B              \\
+         0 & D - C A^{-1} B
+       \end{bmatrix}
+\end{align*}
+两边求行列式，
+\begin{align*}
+  1 \cdot |R| & = |A| \cdot |D - C A^{-1} B| \\
+  |R|         & = |A| \cdot |D - C A^{-1} B| \\
+\end{align*}
+
+\section*{9}
+
+设
+\begin{align*}
+  G = \begin{vmatrix}
+        a_{11} & a_{12} & b_1 \\
+        a_{12} & a_{22} & b_2 \\
+        b_1    & b_2    & c
+      \end{vmatrix}
+\end{align*}
+那么，二次曲线可以表示成
+\begin{align*}
+  \begin{bmatrix}
+    x & y & 1
+  \end{bmatrix}
+  G
+  \begin{bmatrix}
+    x \\
+    y \\
+    1
+  \end{bmatrix}
+  = 0
+\end{align*}
+设
+\begin{align*}
+  T = \begin{bmatrix}
+        cos\theta & -sin\theta & x_0 \\
+        sin\theta & cos\theta  & y_0 \\
+        0         & 0          & 1
+      \end{bmatrix}
+\end{align*}
+坐标变换可以表示成
+\begin{align*}
+  \begin{bmatrix}
+    x \\
+    y \\
+    1 \\
+  \end{bmatrix}
+  = T \begin{bmatrix}
+        x^\prime \\
+        y^\prime \\
+        1
+      \end{bmatrix}
+\end{align*}
+二次曲线被替换变量$x, y$后，我们有
+\begin{align*}
+  \begin{bmatrix}
+    x^\prime & y^\prime & 1
+  \end{bmatrix}
+  T^T G T \begin{bmatrix}
+            x^\prime \\
+            y^\prime \\
+            1
+          \end{bmatrix}
+  = 0
+\end{align*}
+我们要证明
+\begin{align*}
+  det(T^T G T) = det(G) = F
+\end{align*}
+因为
+\begin{align*}
+  det(T) = 1 = det(T^T)
+\end{align*}
+所以
+\begin{align*}
+  det(T^T G T)
+   & = det(T^T) det(G) det(T) \\
+   & = 1 \cdot det(G) \cdot 1 \\
+   & = det(G) = F
+\end{align*}
+
+\section*{11}
+
+设$f(x) = c_0 + c_1 x + c_2 x^2 + \cdots + c_{n - 1} x^{n - 1}$。
+由$f(a_i) = b_i$，我们得到一个线性方程组，他的系数矩阵为
+\begin{align*}
+  A = \begin{bmatrix}
+        1 & a_1 & a_1^2 & \cdots & a_{1}^{n - 1} \\
+        1 & a_2 & a_2^2 & \cdots & a_{2}^{n - 1} \\
+        \vdots                                   \\
+        1 & a_n & a_n^2 & \cdots & a_{n}^{n - 1} \\
+      \end{bmatrix}
+\end{align*}
+线性方程组可表示成
+\begin{align*}
+  A \begin{bmatrix}
+      c_0    \\
+      c_1    \\
+      \vdots \\
+      c_{n - 1}
+    \end{bmatrix}
+  = \begin{bmatrix}
+      b_1    \\
+      b_2    \\
+      \vdots \\
+      b_{n}
+    \end{bmatrix}
+\end{align*}
+$A^T$是范德蒙当行列式，又因为$a_1, a_2, \cdots, a_n$两两不同，所以
+\begin{align*}
+  det(A^T) = det(A) \neq 0
+\end{align*}
+可得$A$是满秩的，因为线性方程组的增广矩阵$\overline{A}$的秩也是$n$（因为不能超过行向量个数），
+所以线性方程组一定有解，且解是唯一的。
+即$c_0, c_1, \cdots, c_{n - 1}$是唯一的，
+进而$f(x)$多项式是唯一的。
+
+\section*{12}
+
+\begin{itemize}
+  \item (1)
+
+        $n$阶行列对应的矩阵$A$可以表示成
+        \begin{align*}
+          \begin{bmatrix}
+            x_1 & x_2 & \cdots & x_n
+          \end{bmatrix}
+          \begin{bmatrix}
+            y_1    \\
+            y_2    \\
+            \vdots \\
+            y_n
+          \end{bmatrix}
+          + \begin{bmatrix}
+              1 & 1 & \cdots & 1
+            \end{bmatrix}
+          \begin{bmatrix}
+            1      \\
+            1      \\
+            \vdots \\
+            1
+          \end{bmatrix}
+        \end{align*}
+        以上矩阵秩一矩阵，于是可得
+        \begin{align*}
+          rank(A) \leq 1 + 1 = 2
+        \end{align*}
+
+        于是，$n > 2$时，$det(A) = 0$。
+
+        $n = 1$时，$det(A) = 1 + x_1y_1$；
+
+        $n = 2$时，$det(A) = (1 + x_1y_1)(1 + x_2y_2) - (1 + x_1y_2)(1 + x_2y_1)$
+
+  \item (2)
+
+        $n$阶行列对应的矩阵$A$可以表示成
+        \begin{align*}
+          \begin{bmatrix}
+            1           & 1           & \cdots & 1           \\
+            a_1         & a_2         & \cdots & a_n         \\
+            \vdots      & \vdots      & \ddots & \vdots      \\
+            a_1^{n - 1} & a_2^{n - 1} & \cdots & a_n^{n - 1}
+          \end{bmatrix}
+          \begin{bmatrix}
+            1      & a_1    & \cdots & a_1^{n - 1} \\
+            1      & a_2    & \cdots & a_2^{n - 1} \\
+            \vdots & \vdots & \ddots & \vdots      \\
+            1      & a_n    & \cdots & a_n^{n - 1}
+          \end{bmatrix}
+        \end{align*}
+
+  \item (3)
+
+        设行列式的矩阵为$A$。
+
+        \begin{itemize}
+          \item 方法一：按照例3.3的思想。
+
+                令$\epsilon_k = e^{\frac{2k \pi i}{n}}$，设
+                \begin{align*}
+                  f(x) = a_1 x^{n - 1} + a_2 x^{n - 2} + \cdots + a_n
+                \end{align*}
+                构造$n$阶方阵
+                \begin{align*}
+                  B = \begin{bmatrix}
+                        \epsilon_1^{n-1} & \epsilon_2^{n-1} & \cdots & \epsilon_n^{n-1} \\
+                        \epsilon_1^{n-2} & \epsilon_2^{n-2} & \cdots & \epsilon_n^{n-2} \\
+                        \vdots           & \vdots           & \ddots & \vdots           \\
+                        \epsilon_1       & \epsilon_2       & \cdots & \epsilon_n       \\
+                        1                & 1                & \cdots & 1                \\
+                      \end{bmatrix}
+                \end{align*}
+                于是
+                \begin{align*}
+                  A B & = \begin{bmatrix}
+                            a_1     & a_2    & \cdots & a_n       \\
+                            a_2     & a_3    & \cdots & a_1       \\
+                            \vdots  & \vdots & \ddots & \vdots    \\
+                            a_{n-1} & a_n    & \cdots & a_{n - 2} \\
+                            a_n     & a_1    & \cdots & a_{n - 1} \\
+                          \end{bmatrix}
+                  \begin{bmatrix}
+                    \epsilon_1^{n-1} & \epsilon_2^{n-1} & \cdots & \epsilon_n^{n-1} \\
+                    \epsilon_1^{n-2} & \epsilon_2^{n-2} & \cdots & \epsilon_n^{n-2} \\
+                    \vdots           & \vdots           & \ddots & \vdots           \\
+                    \epsilon_1       & \epsilon_2       & \cdots & \epsilon_n       \\
+                    1                & 1                & \cdots & 1                \\
+                  \end{bmatrix}                                                   \\
+                      & = \begin{bmatrix}
+                            f(\epsilon_1)                  & f(\epsilon_2)                  & \cdots & f(\epsilon_n)                  \\
+                            \epsilon_1 f(\epsilon_1)       & \epsilon_2 f(\epsilon_2)       & \cdots & \epsilon_n f(\epsilon_n)       \\
+                            \vdots                         & \vdots                         & \ddots & \vdots                         \\
+                            \epsilon_1^{n-2} f(\epsilon_1) & \epsilon_2^{n-2} f(\epsilon_2) & \cdots & \epsilon_n^{n-2} f(\epsilon_n) \\
+                            \epsilon_1^{n-1} f(\epsilon_1) & \epsilon_2^{n-1} f(\epsilon_2) & \cdots & \epsilon_n^{n-1} f(\epsilon_n) \\
+                          \end{bmatrix}
+                \end{align*}
+                于是，我们有
+                \begin{align*}
+                  |A| \cdot |B| = |A B| = f(\epsilon_1)f(\epsilon_2)\cdots f(\epsilon_n) (-1)^{\frac{(n-1)n}{2}} |B|
+                \end{align*}
+                因为$|B| \neq 0$，故有
+                \begin{align*}
+                  |A| = (-1)^{\frac{(n-1)n}{2}} f(\epsilon_1)f(\epsilon_2)\cdots f(\epsilon_n)
+                \end{align*}
+
+          \item 方法二：直接利用3.3的结论。
+
+                把矩阵$A$通过初等行变换化为例3.3的样式，具体操作如下，
+                对第$n$行依次和$n-1, n - 2, \cdots, 2$进行交换，
+                对第$n$行依次和$n-1, n - 2, \cdots, 3$进行交换，
+                $\vdots$
+                对第$n$与$n-1$进行交换。
+
+                总的交换次数为
+                \begin{align*}
+                  (n-2) + (n - 3) + \cdots + 3 + 2 + 1 = \frac{(n-2)(n-1)}{2}
+                \end{align*}
+                利用3.3结论，我们有
+                \begin{align*}
+                  |A| = (-1)^{\frac{(n-2)(n-1)}{2}} f(\epsilon_1)f(\epsilon_2)\cdots f(\epsilon_n)
+                \end{align*}
+
+                这里的结果好像与方法一的不一致，这是因为他们的$f$是不同的。
+        \end{itemize}
+\end{itemize}
+
+\section*{13}
+
+原题有错误，应该是：
+\begin{align*}
+  \begin{vmatrix}
+    E_m & B   \\
+    A   & E_n
+  \end{vmatrix}
+  = \begin{vmatrix}
+      E_n - AB
+    \end{vmatrix}
+  = \begin{vmatrix}
+      E_m - BA
+    \end{vmatrix}
+\end{align*}
+
+提示：
+\begin{align*}
+  \begin{bmatrix}
+    E_m        & 0   \\
+    -AE_m^{-1} & E_n
+  \end{bmatrix}
+  \begin{bmatrix}
+    E_m & B   \\
+    A   & E_n
+  \end{bmatrix}
+  = \begin{bmatrix}
+      E_m & B        \\
+      0   & E_n - AB
+    \end{bmatrix}
+\end{align*}
+
+\begin{align*}
+  \begin{bmatrix}
+    E_m & - B E_n^{-1} \\
+    0   & E_n
+  \end{bmatrix}
+  \begin{bmatrix}
+    E_m & B   \\
+    A   & E_n
+  \end{bmatrix}
+  = \begin{bmatrix}
+      E_m - BA & 0   \\
+      A        & E_n
+    \end{bmatrix}
+\end{align*}
+
+\section*{14}
+
+\begin{itemize}
+  \item 方法一：通过初等列变换
+
+        把$A$的第一列依次与前方的$n, n-1, \cdots, 1$列互换；
+        然后是$A$的第二列，依次与$n+1, n, \cdots, 2$列互换；
+        重复直到$A$的最后一列，我们得到
+        \begin{align*}
+          \begin{bmatrix}
+            A & C \\
+            0 & B
+          \end{bmatrix}
+        \end{align*}
+        因为$A$有$m$列，所以经过了$m n$次初等列变换。
+        于是，我们有
+        \begin{align*}
+          |M| = (-1)^{mn} |A| \cdot |B|
+        \end{align*}
+
+  \item 方法二：通过矩阵乘法
+
+        我们有
+        \begin{align*}
+          \begin{bmatrix}
+            C & A \\
+            B & 0
+          \end{bmatrix}
+          \begin{bmatrix}
+            0   & E_n \\
+            E_m & 0
+          \end{bmatrix}
+          =
+          \begin{bmatrix}
+            A & C \\
+            0 & B
+          \end{bmatrix}
+        \end{align*}
+
+        设$D = \begin{bmatrix}
+            0   & E_n \\
+            E_m & 0
+          \end{bmatrix}$为$(a_{ij})$，于是我们有
+        \begin{align*}
+          |D| = \sum \limits_{(i_1, i_2, \cdots, i_{m+n})}(-1)^{N(i_1, i_2, \cdots, i_{m+n})} a_{i_1 1}a_{i_2 2} \cdots a_{i_{m+n} m+n}
+        \end{align*}
+        $|D|$是$(n + m)!$项相加，易得只有一项是非零的，即选择$E_n, E_m$有值的行，
+        具体的行号为
+        \begin{align*}
+          n, n+1, \cdots, n+m, 1, 2, \cdots, n
+        \end{align*}
+        对应的反序数为$nm$，所以
+        \begin{align*}
+          |D| = (-1)^{nm}
+        \end{align*}
+        于是
+        \begin{align*}
+          \begin{vmatrix}
+            C & A \\
+            B & 0
+          \end{vmatrix} = (-1)^{nm} |A| \cdot |B|
+        \end{align*}
+
+\end{itemize}
+
+\end{document}
