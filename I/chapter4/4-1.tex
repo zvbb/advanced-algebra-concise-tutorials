@@ -1,0 +1,345 @@
+\documentclass{article}
+\usepackage{mathtools} 
+\usepackage{fontspec}
+\usepackage[UTF8]{ctex}
+\usepackage{amsthm}
+\usepackage{mdframed}
+\usepackage{xcolor}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{hyperref}
+
+
+% 定义新的带灰色背景的说明环境 zremark
+\newmdtheoremenv[
+  backgroundcolor=gray!10,
+  % 边框与背景一致，边框线会消失
+  linecolor=gray!10
+]{zremark}{注释}
+
+% 通用矩阵命令: \flexmatrix{矩阵名}{元素符号}{行数}{列数}
+\newcommand{\flexmatrix}[4]{
+  \[
+  #1 = \begin{pmatrix}
+    #2_{11}     & #2_{12}     & \cdots & #2_{1#4}   \\
+    #2_{21}     & #2_{22}     & \cdots & #2_{2#4}   \\
+    \vdots      & \vdots      & \ddots & \vdots     \\
+    #2_{#31}    & #2_{#32}    & \cdots & #2_{#3#4}
+  \end{pmatrix}
+  \]
+}
+
+% 简化版命令（默认矩阵名为A，元素符号为a）: \quickmatrix{行数}{列数}
+\newcommand{\quickmatrix}[2]{\flexmatrix{A}{a}{#1}{#2}}
+
+
+\begin{document}
+\title{4.1}
+\author{张志聪}
+\maketitle
+
+\section*{8}
+
+维数：2，一组基：
+\begin{align*}
+  1, w
+\end{align*}
+
+\section*{9}
+
+维度：$n + \frac{n^2 - n}{2} = \frac{n^2 + n}{2}$，
+一组基：
+\begin{itemize}
+  \item 对角线上$n$个；
+        \begin{align*}
+          E_{ij} (1 \leq i=j \leq n)
+        \end{align*}
+
+  \item 除了对角线，对称位置上的$\frac{n^2 - n}{2}$个；
+        \begin{align*}
+          \begin{bmatrix}
+            0      & \cdots & 1      & 0      & \cdots & 0      \\
+            \vdots & \ddots & \cdots & \cdots & \cdots & \cdots \\
+            1      & \cdots & 0      & 0      & \cdots & 0      \\
+            0      & \cdots & 0      & 0      & \cdots & 0      \\
+            \vdots & \ddots & \cdots & \cdots & \cdots & \cdots \\
+            0      & \cdots & 0      & 0      & \cdots & 0
+          \end{bmatrix}
+        \end{align*}
+\end{itemize}
+
+\section*{10}
+
+维度：$n + \frac{n^2 - n}{2} = \frac{n^2 + n}{2}$，
+一组基：
+\begin{itemize}
+  \item 对角线上$n$个；
+        \begin{align*}
+          E_{ij} (1 \leq i=j \leq n)
+        \end{align*}
+
+  \item 除了对角线，对称位置上的$\frac{n^2 - n}{2}$个；
+        \begin{align*}
+          \begin{bmatrix}
+            0      & \cdots & 1      & 0      & \cdots & 0      \\
+            \vdots & \ddots & \cdots & \cdots & \cdots & \cdots \\
+            -1     & \cdots & 0      & 0      & \cdots & 0      \\
+            0      & \cdots & 0      & 0      & \cdots & 0      \\
+            \vdots & \ddots & \cdots & \cdots & \cdots & \cdots \\
+            0      & \cdots & 0      & 0      & \cdots & 0
+          \end{bmatrix}
+        \end{align*}
+\end{itemize}
+
+\section*{11}
+
+这里就无法一眼看出来了。
+
+需要一个标准的流程找出一组基：
+
+先找出一个非零向量，然后判断这个向量的线性组合是否可以表示线性空间中的所有向量，
+如果可以，寻找到此结束。
+如果不可以，把不能表示的向量加入到基中，并重复上述过程。
+
+\begin{itemize}
+  \item (1)
+
+        第二题(5)的零向量为$(0, 0)$，令
+        \begin{align*}
+          \epsilon_1 = (1, 0)
+        \end{align*}
+        因为$\epsilon_1$的线性组合为
+        \begin{align*}
+          k \circ (1, 0) = [k, \frac{k(k-1)}{2}]
+        \end{align*}
+        显然，它无法表示$(0, 1)$，于是令
+        \begin{align*}
+          \epsilon_2 = (0, 1)
+        \end{align*}
+        它们线性组合为
+        \begin{align*}
+          k_1 \circ (1, 0) = [k_1, \frac{k_1(k_1-1)}{2}] \\
+          k_2 \circ (0, 1) = (0, k_2)
+        \end{align*}
+        那么，对任意$(x, y)$，我们的以下线性方程组
+        \begin{equation*}
+          \begin{cases*}
+            k_1 = x \\
+            k_2 + \frac{k_1(k_1-1)}{2} = y
+          \end{cases*}
+        \end{equation*}
+        可得
+        \begin{equation*}
+          \begin{cases*}
+            k_1 = x \\
+            k_2 = y - \frac{x(x-1)}{2}
+          \end{cases*}
+        \end{equation*}
+
+        于是可得，任意元素$(x, y)$都可以被$(1, 0), (0, 1)$线性表示。
+
+        综上，线性空间的维度是2，一组基为：
+        \begin{align*}
+          (1, 0), (0, 1)
+        \end{align*}
+
+  \item (2)
+
+        第二题(7)的零向量为实数$1$。
+
+        令
+        \begin{align*}
+          \epsilon_1 = 2
+        \end{align*}
+
+        对任意$y > 0$，我们有
+        \begin{align*}
+          k \circ 2 = 2^{k} = y \\
+          k = log_2 y
+        \end{align*}
+
+        综上，线性空间的维度是1，一组基为：
+        \begin{align*}
+          2
+        \end{align*}
+\end{itemize}
+
+\section*{12}
+
+对任意$n$，我们有
+\begin{align*}
+  f(A) = a_0 E + a_1 A + a_2 A^2 + \cdots + a_n A^n
+\end{align*}
+
+我们有
+\begin{align*}
+  A \neq A^2 \neq A^3 = E \\
+  A^n = A^{n \ mod \ 3}
+\end{align*}
+其中$n \ mod \ 3$表示$n$除以$3$的余数。
+
+综上，维数为$3$，一组基为
+\begin{align*}
+  A, A^2, A^3
+\end{align*}
+
+\section*{14}
+
+设
+\begin{align*}
+  E, A, A^2, \cdots, A^{m - 1} \ \ \ (I)
+\end{align*}
+要想证明$(I)$是一组基，需要证明$(I)$是线性无关的，且可以表示线性空间中的所有向量。
+
+\begin{itemize}
+  \item 线性无关性
+
+        假设$(I)$是线性相关的，那么
+        \begin{align*}
+          k_0 E + k_2 A + k_3 A^2 + \cdots + k_m A^{m - 1} = 0
+        \end{align*}
+        存在非零解，这与题设中$f(\lambda)$是使$f(A) = 0$的最低次多项式相矛盾。
+
+  \item 可以线性表示表示所有向量。
+
+        只需证明对任意$n$，$A^n$都可以被$(I)$线性表示即可。
+
+        对$n$进行归纳，$n = m$时，有题设可知，$A^n$可以被$(I)$线性表示。
+
+        归纳假设$n = r$时，$A^r$可以被$(I)$线性表示。
+
+        $n = r + 1$时，由归纳假设可知，存在$k_1, k_2, \cdots, k_m \in \mathbb{K}$，使得
+        \begin{align*}
+          A^r = k_1 E + k_2 A + k_3 A^2 + \cdots + k_m A^{m - 1}
+        \end{align*}
+        于是，我们有
+        \begin{align*}
+          A^{r + 1} & = A A^r                                                \\
+                    & = A (k_1 E + k_2 A + k_3 A^2 + \cdots + k_m A^{m - 1}) \\
+                    & = k_1 A + k_2 A^2 + k_3 A^3 + \cdots + k_m A^{m}
+        \end{align*}
+        又因为$A^m$也可以被$(I)$线性表示，所以，$A^{r + 1}$可以被$(I)$线性表示。
+\end{itemize}
+综上，$(I)$是$V$的一组基，从而$dim V = m$。
+
+后边部分的证明略。
+
+\section*{15}
+
+要证明$(A - aE)^k (0 \leq k \leq m - 1)$是一组基，
+由于$dim V = m$，于是我们只需证明$(A - aE)^k (0 \leq k \leq m - 1)$线性无关即可。
+
+按二项展开公式，我们有
+\begin{align*}
+  (A - aE)^j = A^j + *
+\end{align*}
+由于无法被其他向量$(A - aE)^k (0 \leq k \leq m - 1, k \neq j)$线性表示，
+于是，线性无关性得到证明。
+
+\section*{16}
+
+\begin{itemize}
+  \item (1)
+
+        \begin{align*}
+          T = \begin{bmatrix}
+                2  & 0 & 5 & 6 \\
+                1  & 3 & 3 & 6 \\
+                -1 & 1 & 2 & 1 \\
+                1  & 0 & 1 & 3
+              \end{bmatrix}
+        \end{align*}
+\end{itemize}
+
+\section*{17}
+
+设$\xi$在基$\epsilon_1, \epsilon_2, \epsilon_3, \epsilon_4$
+中的坐标为$X$，在$\sigma_1, \sigma_2, \sigma_3, \sigma_4$中的坐标为$Y$。
+由题设要求$X = Y$，并且
+\begin{align*}
+  T X = X    \\
+  TX - X = 0 \\
+  (T - E) X = 0
+\end{align*}
+由于$T$是已知的，所以需要求解上方的方程组即可。
+
+\section*{18}
+todo
+
+\section*{19}
+
+todo
+
+\section*{20}
+
+数域$K$上的$n$阶方阵构成一个线性空间$V$，加法和数乘就是矩阵的加法和数乘。
+这个空间的基为$E_{ij} (1 \leq i,j \leq n)$，
+维数为$n \times n = n^2$。
+
+于是，对于
+\begin{align*}
+  A^{0}, A, A^{2}, \dots, A^{n^2} \ \ \ (I)
+\end{align*}
+有$n^2 + 1$个，且都属于$V$，所以$(I)$线性无关的，
+从而，存在不全为零的$k_1, k_2, \dots, k_{n^2} \in K$，使得
+\begin{align*}
+  k_1 A^{0} + k_2 A + \dots + k_{n^2} A^{n^2} = 0
+\end{align*}
+即存在一个次数$\leq n^2$的多项式$f(x)$使得$f(A) = 0$。
+
+\section*{21}
+
+对于$\beta$，由(iv)可知，存在$\beta^\prime \in V$使得
+\begin{align*}
+  \beta + \beta^\prime = 0
+\end{align*}
+
+于是，我们有
+\begin{align*}
+  \beta + 0 + \beta^\prime = 0                \\
+  \beta + (\alpha + \beta) + \beta^\prime = 0 \\
+  \beta + \alpha + (\beta + \beta^\prime) = 0 \\
+  \beta + \alpha + 0 = 0                      \\
+  \beta + (\alpha + 0) = 0                    \\
+  \beta + \alpha  = 0
+\end{align*}
+
+\section*{22}
+对于$\alpha$，由(iv)可知，存在$\alpha^\prime \in V$使得
+\begin{align*}
+  \alpha + \alpha^\prime = 0
+\end{align*}
+利用习题21，我们有
+\begin{align*}
+  \alpha^\prime + \alpha = 0
+\end{align*}
+于是
+\begin{align*}
+  \alpha + 0 = \alpha                        \\
+  \alpha + (\alpha^\prime + \alpha) = \alpha \\
+  (\alpha + \alpha^\prime) + \alpha = \alpha \\
+  0 + \alpha = \alpha
+\end{align*}
+
+\section*{23}
+
+对任意的$\alpha, \beta \in V$，
+由(iv)可知，存在$\alpha^\prime, \beta^\prime \in V$，使得
+\begin{align*}
+  \alpha + \alpha^\prime = 0 \\
+  \beta + \beta^\prime = 0
+\end{align*}
+利用习题21，习题22和其他公理，我们有
+\begin{align*}
+  2(\alpha + \beta) = 2\alpha + 2\beta                                                                  \\
+  \alpha + \beta + \alpha + \beta = \alpha + \alpha + \beta + \beta                                     \\
+  \alpha^\prime + \alpha + \beta + \alpha + \beta = \alpha^\prime + \alpha + \alpha + \beta + \beta     \\
+  (\alpha^\prime + \alpha) + \beta + \alpha + \beta = (\alpha^\prime + \alpha) + \alpha + \beta + \beta \\
+  0 + \beta + \alpha + \beta = 0 + \alpha + \beta + \beta                                               \\
+  \beta + \alpha + \beta = \alpha + \beta + \beta                                                       \\
+  \beta + \alpha + \beta + \beta^\prime = \alpha + \beta + \beta + \beta^\prime                         \\
+  \beta + \alpha + 0 = \alpha + \beta + 0                                                               \\
+  \beta + \alpha = \alpha + \beta
+\end{align*}
+
+\end{document}
