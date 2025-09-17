@@ -1,0 +1,92 @@
+\documentclass{article}
+\usepackage{mathtools} 
+\usepackage{fontspec}
+\usepackage[UTF8]{ctex}
+\usepackage{amsthm}
+\usepackage{mdframed}
+\usepackage{xcolor}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{hyperref}
+\usepackage{mathrsfs}
+
+
+
+% 定义新的带灰色背景的说明环境 zremark
+\newmdtheoremenv[
+  backgroundcolor=gray!10,
+  % 边框与背景一致，边框线会消失
+  linecolor=gray!10
+]{zremark}{注释}
+
+% 通用矩阵命令: \flexmatrix{矩阵名}{元素符号}{行数}{列数}
+\newcommand{\flexmatrix}[4]{
+  \[
+  #1 = \begin{pmatrix}
+    #2_{11}     & #2_{12}     & \cdots & #2_{1#4}   \\
+    #2_{21}     & #2_{22}     & \cdots & #2_{2#4}   \\
+    \vdots      & \vdots      & \ddots & \vdots     \\
+    #2_{#31}    & #2_{#32}    & \cdots & #2_{#3#4}
+  \end{pmatrix}
+  \]
+}
+
+% 简化版命令（默认矩阵名为A，元素符号为a）: \quickmatrix{行数}{列数}
+\newcommand{\quickmatrix}[2]{\flexmatrix{A}{a}{#1}{#2}}
+
+
+\begin{document}
+\title{4.4}
+\author{张志聪}
+\maketitle
+
+\section*{3}
+
+（i）$A$的特征多项式为
+\begin{align*}
+  f(\lambda) = \det(\lambda E - A)
+   & = \begin{vmatrix}
+         \lambda & -1      &        &         \\
+                 & \lambda & -1     &         \\
+                 &         & \ddots & \ddots  \\
+                 &         &        & \lambda \\
+       \end{vmatrix}
+   & = \lambda^n
+\end{align*}
+因为
+\begin{align*}
+  f(\lambda) = 0 \\
+  \lambda^n = 0  \\
+  \lambda = 0
+\end{align*}
+所以，它的特征根仅有0。
+
+（ii）求$\lambda_0 = 0$对应的特征向量.
+\begin{align*}
+  \lambda E - A = \begin{bmatrix}
+                    0 & -1 &        &        \\
+                      & 0  & -1     &        \\
+                      &    & \ddots & \ddots \\
+                      &    &        & 0      \\
+                  \end{bmatrix}
+\end{align*}
+这个齐次线性方程组中，仅有$x_1$是自由未知量，取$x_1 = 1$，得基础解系
+\begin{align*}
+  \eta_1 = \begin{bmatrix}
+             1  \\
+             0  \\
+             \vdots  \\
+             0  \\
+           \end{bmatrix}
+\end{align*}
+它对应于$A$的特性向量
+\begin{align*}
+  x_1 \epsilon_1 + x_2 \epsilon_2 + \cdots + x_n \epsilon_n = \epsilon_1
+\end{align*}
+于是$V_{\lambda_0} = L(\epsilon)$。
+
+\section*{7}
+
+反证法，假设存在$\lambda \neq 0$是$\mathscr{A}$的特征值。
+
+\end{document}

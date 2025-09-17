@@ -1,0 +1,224 @@
+\documentclass{article}
+\usepackage{mathtools} 
+\usepackage{fontspec}
+\usepackage[UTF8]{ctex}
+\usepackage{amsthm}
+\usepackage{mdframed}
+\usepackage{xcolor}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{hyperref}
+
+
+% 定义新的带灰色背景的说明环境 zremark
+\newmdtheoremenv[
+  backgroundcolor=gray!10,
+  % 边框与背景一致，边框线会消失
+  linecolor=gray!10
+]{zremark}{注释}
+
+% 通用矩阵命令: \flexmatrix{矩阵名}{元素符号}{行数}{列数}
+\newcommand{\flexmatrix}[4]{
+  \[
+  #1 = \begin{pmatrix}
+    #2_{11}     & #2_{12}     & \cdots & #2_{1#4}   \\
+    #2_{21}     & #2_{22}     & \cdots & #2_{2#4}   \\
+    \vdots      & \vdots      & \ddots & \vdots     \\
+    #2_{#31}    & #2_{#32}    & \cdots & #2_{#3#4}
+  \end{pmatrix}
+  \]
+}
+
+% 简化版命令（默认矩阵名为A，元素符号为a）: \quickmatrix{行数}{列数}
+\newcommand{\quickmatrix}[2]{\flexmatrix{A}{a}{#1}{#2}}
+
+
+\begin{document}
+\title{4.2注释}
+\author{张志聪}
+\maketitle
+
+\begin{zremark}
+  \[
+    M_i \cap (\sum \limits_{j = 1; j \neq i}^n{M_j}) = \{0\}  \ (i = 1, 2, 3, \cdots, n)
+  \]
+  则
+  \[
+    M_1 \cap M_2 \cap M_3 \cap \cdots \cap M_n = \{0\}
+  \]
+  反之，不成立。
+\end{zremark}
+
+\textbf{证明：}
+
+假设
+\[
+  M_1 \cap M_2 \cap M_3 \cap \cdots \cap M_n \neq \{0\}
+\]
+即存在非零向量$\alpha \in M_1 \cap M_2 \cap M_3 \cap \cdots \cap M_n$，
+于是
+\begin{align*}
+  \alpha \in M_i \cap (\sum \limits_{j = 1; j \neq i}^n{M_j}) \ (i = 1, 2, 3, \cdots, n)
+\end{align*}
+存在矛盾。
+
+反之，只需举一个反例，假设只有$M_k, M_r$存在向量$\alpha$，
+且满足
+\begin{align*}
+  M_1 \cap M_2 \cap M_3 \cap \cdots \cap M_n = \{0\}
+\end{align*}
+对于
+\begin{align*}
+  M_k \cap (\sum \limits_{j = 1; j \neq i}^n{M_j}) = \{0, \alpha\}
+\end{align*}
+
+\begin{zremark}
+  直和的结合律：
+  \begin{align*}
+    (A \oplus B) \oplus C = A \oplus B \oplus C = A \oplus (B \oplus C)
+  \end{align*}
+\end{zremark}
+
+\textbf{证明：}
+
+首先$(A + B) + C = A + B + C = A + (B + C)$是显然的。
+我们需要着重说明的是直和关系的成立。
+
+\begin{itemize}
+  \item 已知$(A \oplus B) \oplus C$可得$A \oplus B \oplus C$。
+
+        $(A \oplus B) \oplus C$，由定理2.2(iii)，我们有
+        \begin{align*}
+          A \cap B = \{0\} \\
+          (A + B) \cap C = \{0\}
+        \end{align*}
+        为了证明$A \oplus B \oplus C$，我们利用定理2.3的(iii)，
+        即
+        \begin{align*}
+          A \cap (B + C) = \{0\} \\
+          B \cap (A + C) = \{0\} \\
+          C \cap (A + B) = \{0\}
+        \end{align*}
+        最后一条是已知的，且前两条是对称的，所以只需证明一条。
+
+        $\forall \alpha \in A \cap (B + C)$，我们有
+        \begin{align*}
+          \alpha = a = b + c \\
+          a - b = c
+        \end{align*}
+        因为$a - b \in A + B, c \in C$，利用$(A + B) \cap C = \{0\} $可知
+        \begin{align*}
+          a - b = c = 0 \\
+          a = b         \\
+          c = 0
+        \end{align*}
+        又$A \cap B = \{0\}$，所以
+        \begin{align*}
+          a = b = 0
+        \end{align*}
+        所以
+        \begin{align*}
+          \alpha = a = 0
+        \end{align*}
+        综上可得
+        \begin{align*}
+          A \cap (B + C) = \{0\}
+        \end{align*}
+        所以，$A + B + C$是直和。
+
+  \item 已知$A \oplus B \oplus C$可得$(A \oplus B) \oplus C$。
+
+        为了证明$(A \oplus B) \oplus C$，我们利用定理2.2的(i)，
+        反证法，假设存在同一向量在$(A \oplus B) \oplus C$中有两种不同的表示。
+        \begin{align*}
+          \alpha = (a_1 + b_1) + c_1 \\
+          \alpha = (a_2 + b_2) + c_2
+        \end{align*}
+        两式相减得
+        \begin{align*}
+          (a_1 + b_1) + c_1 - [(a_2 + b_2) + c_2] = 0 \\
+          (a_1 - a_2) + (b_1 - b_2) + (c_1 - c_2) = 0
+        \end{align*}
+        因为$A \oplus B \oplus C$，利用定理2.3(ii)可知
+        \begin{align*}
+          a_1 - a_2 = 0 \\
+          b_1 - b_2 = 0 \\
+          c_1 - c_2 = 0
+        \end{align*}
+        即
+        \begin{align*}
+          a_1 = a_2 \\
+          b_1 = b_2 \\
+          c_1 = c_2
+        \end{align*}
+        与假设矛盾，故$(A + B) + C$中任意向量表法唯一，
+        所以$(A + B) + C$是直和。
+\end{itemize}
+类似地，可证$A \oplus B \oplus C = A \oplus (B \oplus C)$。
+
+\begin{zremark}
+  向量的模M同余和数的模$m$同余的类比。
+\end{zremark}
+
+正整数中，
+\begin{align*}
+  a \equiv b (mod \ m)
+\end{align*}
+表示$a,b$除以数$m$的余数相同，即
+\begin{align*}
+  a - b \in \{km | k \in \mathbb{Z}\}
+\end{align*}
+
+向量中，
+\begin{align*}
+  \alpha \equiv \beta (mod \ M)
+\end{align*}
+按照定义有
+\begin{align*}
+  \alpha - \beta \in M
+\end{align*}
+
+\begin{zremark}
+  一个线性空间$V$的商空间$V/M$是不是唯一的。
+\end{zremark}
+
+\textbf{证明：}
+
+设$\overline{V} \neq \overline{W}$都是$V$的商空间，
+所以存在同余类$\overline{\alpha} \in \overline{V}, \overline{\alpha} \notin \overline{W}$。
+
+又因为$\alpha \in V$，由于商空间是$V$内向量模$M$同余类的全体所成的集合，所以
+$\alpha$的模$M$同余类$\overline{\alpha}$有:
+\begin{align*}
+  \overline{\alpha} \in \overline{V}, \overline{\alpha} \in \overline{W}
+\end{align*}
+存在矛盾。
+
+\begin{zremark}
+  商空间的维数是不是就是其元素个数。
+\end{zremark}
+
+数模m的同余类是有限的，比如整数$5$，它的
+余数只有$0, 1, 2, 3, 4$。受此启发，那么商空间元素是不是也是有限的。
+
+先给出结论：不是有限的。
+
+只要是线性空间，只要不是零空间（即只有零元素的空间），那么元素个数一定是无限个的。
+
+\begin{zremark}
+  商空间作为工具，通常用来干什么？
+\end{zremark}
+
+降维，把不关心的维度放入模$M$中。
+
+\begin{zremark}
+  商空间与补空间的关系。
+\end{zremark}
+
+一个线性空间$V$，它的补空间不唯一，
+商空间是唯一的。
+
+
+
+
+\end{document}

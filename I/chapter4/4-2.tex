@@ -1,0 +1,834 @@
+\documentclass{article}
+\usepackage{mathtools} 
+\usepackage{fontspec}
+\usepackage[UTF8]{ctex}
+\usepackage{amsthm}
+\usepackage{mdframed}
+\usepackage{xcolor}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{hyperref}
+
+
+% 定义新的带灰色背景的说明环境 zremark
+\newmdtheoremenv[
+  backgroundcolor=gray!10,
+  % 边框与背景一致，边框线会消失
+  linecolor=gray!10
+]{zremark}{注释}
+
+% 通用矩阵命令: \flexmatrix{矩阵名}{元素符号}{行数}{列数}
+\newcommand{\flexmatrix}[4]{
+  \[
+  #1 = \begin{pmatrix}
+    #2_{11}     & #2_{12}     & \cdots & #2_{1#4}   \\
+    #2_{21}     & #2_{22}     & \cdots & #2_{2#4}   \\
+    \vdots      & \vdots      & \ddots & \vdots     \\
+    #2_{#31}    & #2_{#32}    & \cdots & #2_{#3#4}
+  \end{pmatrix}
+  \]
+}
+
+% 简化版命令（默认矩阵名为A，元素符号为a）: \quickmatrix{行数}{列数}
+\newcommand{\quickmatrix}[2]{\flexmatrix{A}{a}{#1}{#2}}
+
+
+\begin{document}
+\title{4.2}
+\author{张志聪}
+\maketitle
+
+\section*{1}
+
+ (2)提示: $C(A)$是对角矩阵。
+
+\section*{4}
+
+注意：需要考虑$K$是不是有理数，是有理数则是子空间，
+否则不是。
+
+\section*{7}
+
+设$M$的秩为$r$，
+\begin{align*}
+  \alpha_1, \alpha_2, \cdots, \alpha_r
+\end{align*}
+是它的一组基。
+
+$r = 0$，则$M$是零空间，即线性方程组只有零解，
+对于齐次线性方程组:
+\begin{equation*}
+  \begin{cases*}
+    x_1 = 0 \\
+    x_2 = 0 \\
+    \cdots  \\
+    x_n = 0
+  \end{cases*}
+\end{equation*}
+的解空间为零空间（$M$），命题成立。
+
+$1 \leq r \leq n$时，设
+\begin{align*}
+  B = \begin{bmatrix}
+        \alpha_1, \alpha_2, \cdots, \alpha_r
+      \end{bmatrix}
+\end{align*}
+对于齐次线性方程组$B^T x = 0$，
+因为$rank(B^T) = r$，所以解空间的一组基可设为
+\begin{align*}
+  \beta_1, \beta_2, \cdots, \beta_{n - r}
+\end{align*}
+设
+\begin{align*}
+  A = \begin{bmatrix}
+        \beta_1, \beta_2, \cdots, \beta_{n - r}
+      \end{bmatrix}
+\end{align*}
+我们有，
+\begin{align*}
+  B^T A = 0
+\end{align*}
+于是
+\begin{align*}
+  A^T B = 0
+\end{align*}
+对于齐次线性方程组$A^T x = 0$，
+由于$rank(A^T) = n - r$，所以它的解空间的基个数为$r$，
+所以$B$中向量可以是$A^T x = 0$解空间的一组基，
+即$M$是$A^T x = 0$的解空间，命题成立。
+
+综上，$K^n$上的任一子空间$M$都是数域$K$上某个齐次线性方程组的解空间。
+
+\section*{8}
+
+反证法，假设存在$M_1 \cup M_2 \cup \cdots \cup M_k = V$，
+这里是最小状态，即不存在删除某个子空间$M_i$后，
+$M_1 \cup M_2 \cup \cdots \cup M_{i - 1} \cup M_{i + 1} \cup \cdots \cup M_k = V$仍然成立。
+
+为了讨论方便，令
+\begin{align*}
+  M = (M_2 \cup M_3 \cup \cdots \cup M_k)
+\end{align*}
+于是
+\begin{align*}
+  V = M_1 \cup M
+\end{align*}
+因为$M_1 \neq \{0\}, M \neq \{0\}$，
+于是
+\begin{align*}
+  \exists \alpha \in M_1 - M \\
+  \exists \beta \in M - M_1
+\end{align*}
+定义一个无限个数的向量组$(I)$:
+\begin{align*}
+  \alpha + \beta, 2\alpha + \beta, 3\alpha + \beta, \cdots
+\end{align*}
+显然，$(I)$中的任意向量都不可能在$M_1$中。
+
+因为$(I)$中向量个数是无限多个，$M$中存在子空间包含无限多个$(I)$中向量，
+不妨设为$M_i$包含无限多个$(I)$中向量，任取两个向量$j\alpha + \beta, i\alpha + \beta$，
+我们有
+\begin{align*}
+  (j\alpha + \beta - i\alpha + \beta)
+  = (j - i)\alpha
+\end{align*}
+于是可得，$\alpha \in M_i$，存在矛盾，
+假设不成立，命题得证。
+
+\section*{9}
+
+提示：如果函数之间是线性关系，那么函数值之间的线性关系一定成立。
+
+对于行列式
+\begin{align*}
+  \begin{vmatrix}
+    1 & cos x_1 & cos 2 x_1 & cos 3 x_1 \\
+    1 & cos x_2 & cos 2 x_2 & cos 3 x_2 \\
+    1 & cos x_3 & cos 2 x_3 & cos 3 x_3 \\
+    1 & cos x_4 & cos 2 x_4 & cos 3 x_4
+  \end{vmatrix}
+\end{align*}
+由于，$cos kx$都可以表示成$2^{k - 1} (cos x)^k + *$的格式（3-2-comment中有详细证明）。
+于是，通过初等列变换可以把非高次项移除
+\begin{align*}
+  \begin{vmatrix}
+    1 & cos x_1 & cos 2 x_1 & cos 3 x_1 \\
+    1 & cos x_2 & cos 2 x_2 & cos 3 x_2 \\
+    1 & cos x_3 & cos 2 x_3 & cos 3 x_3 \\
+    1 & cos x_4 & cos 2 x_4 & cos 3 x_4
+  \end{vmatrix}
+   & =
+  \begin{vmatrix}
+    1 & cos x_1 & 2 cos^2 x_1 & 4 cos^3 x_1 \\
+    1 & cos x_2 & 2 cos^2 x_2 & 4 cos^3 x_2 \\
+    1 & cos x_3 & 2 cos^2 x_3 & 4 cos^3 x_3 \\
+    1 & cos x_4 & 2 cos^2 x_4 & 4 cos^3 x_4
+  \end{vmatrix} \\
+   & = 2 \cdot 4
+  \begin{vmatrix}
+    1 & cos x_1 & cos^2 x_1 & cos^3 x_1 \\
+    1 & cos x_2 & cos^2 x_2 & cos^3 x_2 \\
+    1 & cos x_3 & cos^2 x_3 & cos^3 x_3 \\
+    1 & cos x_4 & cos^2 x_4 & cos^3 x_4
+  \end{vmatrix}
+\end{align*}
+以上是范德蒙德行列式，于是只要$cos x_1, cos x_2, cos x_3$两两不相等，
+则行列式不为零，显然这样的自变量$x_1, x_2, x_3$可以找到，
+从而可得，这4个函数是线性无关的。（注意：如果找不到这四个函数线性相关）
+
+综上，子空间$L(1, cos x, cos 2x, cos 3x)$的维数是4，一组基为
+\begin{align*}
+  1, cos x, cos 2x, cos 3x
+\end{align*}
+
+\section*{17}
+
+\begin{align*}
+  M_n(K) = M + N
+\end{align*}
+成立，但不是直和。
+
+\section*{18}
+
+\begin{itemize}
+  \item 方法一
+
+        先证明$M_1 + M_2$是直和。
+        设$\alpha = \begin{bmatrix}
+            a_1    \\
+            a_2    \\
+            \vdots \\
+            a_n
+          \end{bmatrix} \in M_1 \cap M_2$，那么，因为$\alpha \in M_1$，
+        所以
+        \begin{align*}
+          a_1 + a_2 + \cdots + a_n = 0
+        \end{align*}
+        同理，因为$\alpha \in M_2$，
+        \begin{align*}
+          a_1 = a_2 = \cdots = a_n
+        \end{align*}
+        于是
+        \begin{align*}
+          n a_1 = 0 \\
+          a_1 = 0
+        \end{align*}
+        所以
+        \begin{align*}
+          \alpha = 0
+        \end{align*}
+        于是可得$M_1 \cap M_2 \neq \{0\}$，
+        所以，$M_1 + M_2$是直和。
+
+        再证明$dim M_1 + dim M_2 = n$。
+        第一个线性方程组的系数矩阵为
+        \begin{align*}
+          A = \begin{bmatrix}
+                1 & 1 & \cdots & 1
+              \end{bmatrix}
+        \end{align*}
+        $rank(A) = 1$，所以解空间$M_1$维数为
+        \begin{align*}
+          n - rank(A) = n - 1
+        \end{align*}
+
+        易得$M_2$是1维的，且$A$是它的一组基。
+        于是可得$dim M_1 + dim M_2 = n$。
+
+        综上，$M_n(K) = M_1 \oplus M_2$。
+
+  \item 方法二
+
+        先证明$M_n(K) = M_1 + M_2$，即对任意$\gamma  = \begin{bmatrix}
+            c_1    \\
+            c_2    \\
+            \vdots \\
+            c_n
+          \end{bmatrix}$，可以表示成$\gamma = \alpha + \beta$，其中
+        \begin{align*}
+          \alpha = \begin{bmatrix}
+                     a_1    \\
+                     a_2    \\
+                     \vdots \\
+                     a_n
+                   \end{bmatrix} \\
+          \beta = \begin{bmatrix}
+                    b      \\
+                    b      \\
+                    \vdots \\
+                    b
+                  \end{bmatrix}
+        \end{align*}
+        于是，解以下方程组：
+        \begin{align*}
+          c_1 = a_1 + b \\
+          c_2 = a_2 + b \\
+          \vdots        \\
+          c_n = a_n + b
+        \end{align*}
+        所有等式相加得
+        \begin{align*}
+          c_1 + c_2 + \cdots + c_n = a_1 + a_2 + \cdots + a_n + n b
+        \end{align*}
+        由于$\alpha \in M_1$，所以，我们有
+        \begin{align*}
+          a_1 + a_2 + \cdots + a_n = 0
+        \end{align*}
+        于是
+        \begin{align*}
+          c_1 + c_2 + \cdots + c_n = 0 + n \cdot b \\
+          b = \frac{c_1 + c_2 + \cdots + c_n}{n}
+        \end{align*}
+        带入后可得
+        \begin{align*}
+          a_1 = c_1 - \frac{c_1 + c_2 + \cdots + c_n}{n} \\
+          a_2 = c_2 - \frac{c_1 + c_2 + \cdots + c_n}{n} \\
+          \vdots                                         \\
+          a_n = c_n - \frac{c_1 + c_2 + \cdots + c_n}{n}
+        \end{align*}
+
+        综上，
+        \begin{align*}
+          \begin{bmatrix}
+            c_1    \\
+            c_2    \\
+            \vdots \\
+            c_n
+          \end{bmatrix}
+          = \begin{bmatrix}
+              c_1 - \frac{c_1 + c_2 + \cdots + c_n}{n} \\
+              c_2 - \frac{c_1 + c_2 + \cdots + c_n}{n} \\
+              \vdots                                   \\
+              c_n - \frac{c_1 + c_2 + \cdots + c_n}{n}
+            \end{bmatrix}
+          + \begin{bmatrix}
+              \frac{c_1 + c_2 + \cdots + c_n}{n} \\
+              \frac{c_1 + c_2 + \cdots + c_n}{n} \\
+              \vdots                             \\
+              \frac{c_1 + c_2 + \cdots + c_n}{n}
+            \end{bmatrix}
+        \end{align*}
+        $M_n(K) = M_1 + M_2$得证。
+
+        再证明$M_1 + M_2$是直和。
+        通过任意向量$\alpha \in M_1 + M_2$，只有唯一分解方式来证明。
+
+        反证法，假设存在
+        \begin{align*}
+          \alpha = \alpha_1 + \alpha_2 \\
+          \alpha = \beta_1 + \beta_2
+        \end{align*}
+        其中$\alpha_1, \beta_1 \in M_1, \alpha_2, \beta_2 \in M_2$，
+        移项可得
+        \begin{align*}
+          \alpha_1 - \beta_1 = \beta_2 - \alpha_2
+        \end{align*}
+        于是$\beta_2 - \alpha_2 \in M_1 \cap M_2$，
+        设
+        \begin{align*}
+          \alpha_2 = \begin{bmatrix}
+                       b      \\
+                       b      \\
+                       \vdots \\
+                       b
+                     \end{bmatrix}           \\
+          \beta_2 = \begin{bmatrix}
+                      b^\prime \\
+                      b^\prime \\
+                      \vdots   \\
+                      b^\prime
+                    \end{bmatrix}            \\
+          \beta_2 - \alpha_2 = \begin{bmatrix}
+                                 b^\prime - b \\
+                                 b^\prime - b \\
+                                 \vdots       \\
+                                 b^\prime - b
+                               \end{bmatrix} \\
+        \end{align*}
+        利用$\beta_2 - \alpha_2 \in M_1$可得
+        \begin{align*}
+          n(b^\prime - b) = 0 \\
+          b^\prime - b = 0    \\
+          b^\prime = b
+        \end{align*}
+        于是可得
+        \begin{align*}
+          \beta_2 = \alpha_2 \\
+          \beta_1 = \alpha_1
+        \end{align*}
+        所以，$\alpha$只有唯一分解方式，于是$M_1 + M_2$是直和。
+
+\end{itemize}
+
+\section*{19}
+
+4-2-comment.tex中有详细证明
+
+\section*{20}
+
+先证明$M + N$是直和。
+
+任意$\alpha \in M \cap N$，我们有
+\begin{align*}
+  B \alpha = 0 \\
+  C \alpha = 0
+\end{align*}
+于是，我们有
+\begin{align*}
+  A \alpha = 0
+\end{align*}
+因为$A$是满秩的，所以只存在零解，所以
+\begin{align*}
+  \alpha = 0
+\end{align*}
+于是可得
+\begin{align*}
+  M \cap N = \{0\}
+\end{align*}
+所以，$M + N$是直和。
+
+因为
+\begin{align*}
+  rank(B) = k \\
+  rank(C) = n - k
+\end{align*}
+于是可得
+\begin{align*}
+  dim M = n - k \\
+  dim N = k
+\end{align*}
+又因为$M, N$是直和（即：它们各自的一组基合并后，是线性无关的，且个数是$n$个），所以
+\begin{align*}
+  dim M + dim N = dim K^n = n
+\end{align*}
+所以$K^n = M \oplus N$。
+
+\section*{21}
+
+先证明，$M + (N \cap L)$是直和。
+$\forall \alpha \in M \cap (N \cap L)$，我们有
+\begin{equation*}
+  \begin{cases*}
+    \alpha \in M \\
+    \alpha \in N \cap L
+  \end{cases*}
+\end{equation*}
+又因为$M \subset N$，所以
+\begin{align*}
+  \alpha \in M \cap L
+\end{align*}
+由于$M \oplus L$，所以
+\begin{align*}
+  \alpha \in M \cap L = \{0\}
+\end{align*}
+于是可得
+\begin{align*}
+  \alpha = 0
+\end{align*}
+综上，$M \oplus (N \cap L)$。
+
+接下里证明$N = M \oplus (N \cap L)$。
+因为$M \subseteq N$，于是
+\begin{align*}
+  M \oplus (N \cap L) \subseteq N
+\end{align*}
+是显然的。
+
+对任意$\alpha \in N$，
+因为$V = M \oplus L$，所以$\alpha$可以唯一表示成
+\begin{align*}
+  \alpha = m + l
+\end{align*}
+其中$m \in M, l \in L$。
+因为
+\begin{align*}
+  l = \alpha - m
+\end{align*}
+由于$\alpha \in N$且$M \subseteq N$，所以
+\begin{align*}
+  l \in N
+\end{align*}
+所以
+\begin{align*}
+  l \in N \cap L
+\end{align*}
+于是可得
+\begin{align*}
+  \alpha \in M \oplus (N \cap L)
+\end{align*}
+
+\section*{23}
+
+提示
+\begin{itemize}
+  \item 必要性
+
+        \begin{align*}
+          \sum\limits_{j = 1}^{i - 1} M_j \subseteq \sum\limits_{j = 1; j \neq i}^{k} M_j
+        \end{align*}
+
+  \item 充分性
+
+        反证法，假设存在
+        \begin{align*}
+          M_l \cap \left(\sum\limits_{j = 1; j \neq l}^{k} M_j\right) \neq \{0\}
+        \end{align*}
+        由于
+        \begin{align*}
+          M_l \cap \left(\sum\limits_{j = 1}^{l - 1} M_j\right) = \{0\}
+        \end{align*}
+        所以，存在$\alpha \neq 0$，有
+        \begin{align*}
+          \alpha \in M_l \\
+          \alpha \in M_s
+        \end{align*}
+        其中$l < s \leq k$。
+        于是可得
+        \begin{align*}
+          M_{s} \cap \left(\sum\limits_{j = 1}^{s-1} M_j\right) \neq \{0\}
+        \end{align*}
+        出现矛盾。
+\end{itemize}
+
+\section*{24}
+
+提示
+\begin{itemize}
+  \item 必要性
+
+        显然的。
+
+  \item 充分性
+
+        反证法，假设零向量的表法不唯一，即
+        \begin{align*}
+          0 = \beta_1 + \beta_2 + \cdots + \beta_k \ (\beta_i \in M_i) \\
+          0 = \beta_1' + \beta_2' + \cdots + \beta_k' \ (\beta_i' \in M_i)
+        \end{align*}
+        存在$\beta_l \neq \beta_l'$。
+        于是，我们有
+        \begin{align*}
+          \alpha = (\alpha_1 + \beta_1) + (\alpha_2 + \beta_2) + \cdots + (\alpha_k + \beta_k) \\
+          \alpha = (\alpha_1 + \beta_1') + (\alpha_2 + \beta_2') + \cdots + (\alpha_k + \beta_k')
+        \end{align*}
+        因为存在$\beta_l \neq \beta_l'$，那么$\alpha$的表法不唯一，导致矛盾。
+\end{itemize}
+
+\section*{25}
+
+令$V = K^4$。
+易得
+\begin{align*}
+  dim M = 2
+\end{align*}
+由命题2.5可知
+\begin{align*}
+  dim V/M = 4 - 2 = 2
+\end{align*}
+
+使用$\alpha_1, \alpha_2$扩充成$V$的一组基。因为
+\begin{align*}
+  \begin{vmatrix}
+    1 & 0 & 1  & 2 \\
+    0 & 1 & -1 & 1 \\
+    0 & 0 & 1  & 0 \\
+    0 & 0 & 1  & 1
+  \end{vmatrix}
+  = 1 \neq 0
+\end{align*}
+于是可得
+\begin{align*}
+  \epsilon_1 + M, \epsilon_2 + M
+\end{align*}
+是$V/M$的一组基。
+
+\section*{26}
+
+提示：
+
+由于$M_n(K)$的对称矩阵子空间和反对称矩阵子空间的和是直和，
+于是反对称矩阵的一组基，加上对称矩阵的一组基，
+可以构成$M_n(K)$的一组基。
+
+\section*{27}
+
+提示：
+
+设
+\begin{align*}
+  \begin{bmatrix}
+    * \\
+    T_0
+  \end{bmatrix}
+  = \begin{bmatrix}
+      t_{1 \, r+1} & t_{1 \, r+2} & \cdots & t_{1 \, n} \\
+      t_{2 \, r+1} & t_{2 \, r+2} & \cdots & t_{2 \, n} \\
+      \vdots                                            \\
+      t_{n \, r+1} & t_{n \, r+2} & \cdots & t_{n \, n}
+    \end{bmatrix}
+\end{align*}
+
+由过度矩阵的含义可知
+\begin{align*}
+  \eta_n = t_{1 \, n} \epsilon_{1} + t_{2 \, n} \epsilon_{2} + \cdots + t_{n \, n} \epsilon_{n}
+\end{align*}
+
+于是，由商空间中的运算法则，我们有
+\begin{align*}
+  \overline{\eta_n} = t_{1 \, n} \overline{\epsilon_{1}} + t_{2 \, n} \overline{\epsilon_{2}} + \cdots + t_{n \, n} \overline{\epsilon_{n}}
+\end{align*}
+因为在商空间$V/M$中，我们有
+\begin{align*}
+  \overline{\epsilon_{1}} = \epsilon_{2} = \cdots = \epsilon_{r} = 0
+\end{align*}
+所以
+\begin{align*}
+  \overline{\eta_n} = t_{r + 1 \, n} \overline{\epsilon_{r + 1}} + t_{r + 2 \, n} \overline{\epsilon_{r + 2}} + \cdots + t_{n \, n} \overline{\epsilon_{n}}
+\end{align*}
+
+\section*{28}
+
+todo 未做出来
+
+\begin{itemize}
+  \item (1)
+
+        先证明加法和数乘运算是封闭的。
+
+        \begin{itemize}
+          \item $f + g \in P(K)$。
+
+                按照定义的加法，我们有
+                \begin{align*}
+                   & (f + g) \begin{bmatrix}
+                               \cdots & \gamma \alpha + \mu \beta & \cdots
+                             \end{bmatrix}               \\
+                   & = f \begin{bmatrix}
+                           \cdots & \gamma \alpha + \mu \beta & \cdots
+                         \end{bmatrix} + g \begin{bmatrix}
+                                             \cdots & \gamma \alpha + \mu \beta & \cdots
+                                           \end{bmatrix} \\
+                   & = \gamma f \begin{bmatrix}
+                                  \cdots & \alpha & \cdots
+                                \end{bmatrix}
+                  + \mu f \begin{bmatrix}
+                            \cdots & \beta & \cdots
+                          \end{bmatrix}
+                  + \gamma g \begin{bmatrix}
+                               \cdots & \alpha & \cdots
+                             \end{bmatrix}
+                  + \mu g \begin{bmatrix}
+                            \cdots & \beta & \cdots
+                          \end{bmatrix}
+                \end{align*}
+                又因为列线性函数是数量函数，所以我们有
+                \begin{align*}
+                   & \gamma f \begin{bmatrix}
+                                \cdots & \alpha & \cdots
+                              \end{bmatrix}
+                  + \mu f \begin{bmatrix}
+                            \cdots & \beta & \cdots
+                          \end{bmatrix}
+                  + \gamma g \begin{bmatrix}
+                               \cdots & \alpha & \cdots
+                             \end{bmatrix}
+                  + \mu g \begin{bmatrix}
+                            \cdots & \beta & \cdots
+                          \end{bmatrix}                           \\
+                   & = \gamma (f \begin{bmatrix}
+                                   \cdots & \alpha & \cdots
+                                 \end{bmatrix} + g \begin{bmatrix}
+                                                     \cdots & \alpha & \cdots
+                                                   \end{bmatrix})
+                  + \mu (f \begin{bmatrix}
+                             \cdots & \beta & \cdots
+                           \end{bmatrix} + g \begin{bmatrix}
+                                               \cdots & \beta & \cdots
+                                             \end{bmatrix})        \\
+                   & = \gamma \left((f + g) \begin{bmatrix}
+                                              \cdots & \alpha & \cdots
+                                            \end{bmatrix}\right)
+                  + \mu \left((f + g) \begin{bmatrix}
+                                        \cdots & \beta & \cdots
+                                      \end{bmatrix}\right)
+                \end{align*}
+                加法封闭性得证。
+
+          \item $kf \in P(K)$。
+
+                我们有
+                \begin{align*}
+                   & (kf)\begin{bmatrix}
+                           \cdots & \gamma \alpha + \mu \beta & \cdots
+                         \end{bmatrix}                  \\
+                   & =k f \begin{bmatrix}
+                            \cdots & \gamma \alpha + \mu \beta & \cdots
+                          \end{bmatrix}                 \\
+                   & = k \left(\gamma f \begin{bmatrix}
+                                          \cdots & \alpha & \cdots
+                                        \end{bmatrix} + \mu f \begin{bmatrix}
+                                                                \cdots & \beta & \cdots
+                                                              \end{bmatrix}\right) \\
+                   & =  \gamma kf \begin{bmatrix}
+                                    \cdots & \alpha & \cdots
+                                  \end{bmatrix}
+                  + \mu kf \begin{bmatrix}
+                             \cdots & \beta & \cdots
+                           \end{bmatrix}
+                \end{align*}
+
+                乘法封闭性得证。
+        \end{itemize}
+
+        证明8条运算法则成立：
+
+        \begin{itemize}
+          \item 存在零元素。
+
+                零元素$0$具有如下性质: 对任意$A \in M_n(K)$，有
+                \begin{align*}
+                  0(A) = 0
+                \end{align*}
+                注意左侧$0$是列线性函数，右侧$0$是数值。
+
+                显然零元素$0 \in P(K)$。
+
+          \item 负元素。
+
+                任意$f \in P(K)$，其负元素为$-f$。
+
+                对任意$A \in M_n(K)$，有
+                \begin{align*}
+                  (f + (- f))(A) = f(A) + (- f(A)) = 0
+                \end{align*}
+                所以$f + (- f)$是零元素。
+        \end{itemize}
+
+  \item (2)
+
+        任意矩阵$A \in M_n(K)$，设为
+        \begin{align*}
+          A = \begin{bmatrix}
+                a_{11} & a_{12} & \cdots & a_{1n} \\
+                a_{21} & a_{22} & \cdots & a_{2n} \\
+                \vdots & \vdots & \ddots & \vdots \\
+                a_{n1} & a_{n2} & \cdots & a_{nn}
+              \end{bmatrix}
+        \end{align*}
+        即任意列向量$\alpha_i \in A$，表示成
+        \begin{align*}
+          \alpha_i = \begin{bmatrix}
+                       a_{1i} \\
+                       a_{2i} \\
+                       \vdots \\
+                       a_{ni}
+                     \end{bmatrix}
+        \end{align*}
+        $\alpha_i$可以线性表示成
+        \begin{align*}
+          \alpha_i = a_{1i} \epsilon_1 + a_{2i} \epsilon_2 + \cdots + a_{ni} \epsilon_n
+        \end{align*}
+        于是，$A$可表示成
+        \begin{align*}
+          A = \begin{bmatrix}
+                a_{11} \epsilon_1 + a_{21} \epsilon_2 + \cdots + a_{n1} \epsilon_n &
+                a_{12} \epsilon_1 + a_{22} \epsilon_2 + \cdots + a_{n2} \epsilon_n &
+                \cdots                                                             &
+                a_{1n} \epsilon_1 + a_{2n} \epsilon_2 + \cdots + a_{nn} \epsilon_n
+              \end{bmatrix}
+        \end{align*}
+        $f$是列线性函数，可以把$A$每列展开，
+        具体展开式为
+        \begin{align*}
+          f(A)
+          = \sum\limits_{i_1 = 1}^n \cdots \sum\limits_{i_n = 1}^n a_{i_1 1} \cdots a_{i_n n}
+          f[\epsilon_{i_1}  \epsilon_{i_2}  \cdots  \epsilon_{i_n}]
+        \end{align*}
+
+  \item (3)
+
+\end{itemize}
+
+\section*{29}
+
+设$F$作为$K$上的线性空间的一组基为
+\begin{align*}
+  \epsilon_1, \epsilon_2, \cdots, \epsilon_m
+\end{align*}
+$L$作为$F$上的线性空间的一组基为
+\begin{align*}
+  \eta_1, \eta_2, \cdots, \eta_n
+\end{align*}
+
+对任意$l \in L$，可以表示成
+\begin{align*}
+  l = f_1 \eta_1 + f_2 \eta_2 + \cdots + f_n \eta_n
+\end{align*}
+其中$f_1, f_2, \cdots, f_n \in F$，可以表示成
+\begin{align*}
+   & f_1 = k_{1_1} \epsilon_1 + k_{1_2} \epsilon_2 + \cdots + k_{1_m} \epsilon_m \\
+   & f_2 = k_{2_1} \epsilon_1 + k_{2_2} \epsilon_2 + \cdots + k_{2_m} \epsilon_m \\
+   & \vdots                                                                      \\
+   & f_n = k_{n_1} \epsilon_1 + k_{n_2} \epsilon_2 + \cdots + k_{n_m} \epsilon_m
+\end{align*}
+于是，$l$可以表示成：
+\begin{align*}
+  l & = (k_{1_1} \epsilon_1 + k_{1_2} \epsilon_2 + \cdots + k_{1_m} \epsilon_m)\eta_1          \\
+    & + (k_{2_1} \epsilon_1 + k_{2_2} \epsilon_2 + \cdots + k_{2_m} \epsilon_m)\eta_2          \\
+    & + \cdots + (k_{n_1} \epsilon_1 + k_{n_2} \epsilon_2 + \cdots + k_{n_m} \epsilon_m)\eta_n \\
+    & = \sum \limits_{i = 1}^n \left(\sum\limits_{j=1}^m k_{i_j} \epsilon_{j} \eta_i\right)
+\end{align*}
+其中$k_{i_j} \in K (1 \leq i \leq m, 1 \leq j \leq n)$，
+因为$K \subseteq F \subseteq L$，所以$\epsilon_i \eta_j \in L$，
+由此可得，任意$l \in L$，可被一组向量$(I)$:
+\begin{align*}
+  \epsilon_1 \eta_1, \epsilon_1 \eta_2, \cdots \epsilon_1 \eta_n, \\
+  \epsilon_2 \eta_1, \epsilon_2 \eta_2, \cdots \epsilon_2 \eta_n, \\
+  \vdots                                                          \\
+  \epsilon_m \eta_1, \epsilon_m \eta_2, \cdots \epsilon_m \eta_n  \\
+\end{align*}
+用$K$上的数线性表示。
+
+接下来，我们只要证明$(I)$是线性无关即可完成证明。
+
+存在$k_{i_j} (1 \leq i \leq m, 1 \leq j \leq n)$（一定是存在的，全取0即可）使得：
+\begin{align*}
+  0 =
+  k_{1_1} \epsilon_1 \eta_1 + k_{1_2} \epsilon_1 \eta_2 + \cdots + k_{1_n} \epsilon_1 \eta_n + \\
+  k_{2_1} \epsilon_2 \eta_1 + k_{2_2} \epsilon_2 \eta_2 + \cdots + k_{2_n} \epsilon_2 \eta_n + \\
+  \vdots                                                                                       \\
+  +                                                                                            \\
+  k_{m_1} \epsilon_m \eta_1 + k_{m_2} \epsilon_m \eta_2 + \cdots + k_{m_n} \epsilon_m \eta_n
+\end{align*}
+因为$\epsilon_i \eta_j$是数，所以满足相关运算法则，于是我们有
+\begin{align*}
+  0 & = (k_{1_1} \epsilon_1 + k_{1_2} \epsilon_2 + \cdots + k_{1_m} \epsilon_m)\eta_1          \\
+    & + (k_{2_1} \epsilon_1 + k_{2_2} \epsilon_2 + \cdots + k_{2_m} \epsilon_m)\eta_2          \\
+    & + \cdots + (k_{n_1} \epsilon_1 + k_{n_2} \epsilon_2 + \cdots + k_{n_m} \epsilon_m)\eta_n \\
+\end{align*}
+由于$\eta_1, \eta_2, \cdots, \eta_n$是线性无关，于是可得
+\begin{align*}
+  0 = k_{1_1} \epsilon_1 + k_{1_2} \epsilon_2 + \cdots + k_{1_m} \epsilon_m \\
+  0 = k_{2_1} \epsilon_1 + k_{2_2} \epsilon_2 + \cdots + k_{2_m} \epsilon_m \\
+  \vdots                                                                    \\
+  0 = k_{n_1} \epsilon_1 + k_{n_2} \epsilon_2 + \cdots + k_{n_m} \epsilon_m
+\end{align*}
+又因为$\epsilon_1, \epsilon_2, \cdots, \epsilon_m$是线性无关，所以有
+\begin{align*}
+  k_{i_j} = 0, (1 \leq i \leq m, 1 \leq j \leq n) 
+\end{align*}
+综上，$(I)$是线性无关的。
+
+所以，$L$在$K$上是$mn$维线性空间。
+
+\section*{30}
+
+\begin{itemize}
+  \item (1) 略
+
+  \item (2) 略 
+
+  \item (3) 
+\end{itemize}
+
+\end{document}

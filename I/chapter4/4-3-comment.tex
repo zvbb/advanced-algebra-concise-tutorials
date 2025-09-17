@@ -1,0 +1,326 @@
+\documentclass{article}
+\usepackage{mathtools} 
+\usepackage{fontspec}
+\usepackage[UTF8]{ctex}
+\usepackage{amsthm}
+\usepackage{mdframed}
+\usepackage{xcolor}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{hyperref}
+\usepackage{mathrsfs}
+
+
+% 定义新的带灰色背景的说明环境 zremark
+\newmdtheoremenv[
+  backgroundcolor=gray!10,
+  % 边框与背景一致，边框线会消失
+  linecolor=gray!10
+]{zremark}{注释}
+
+% 通用矩阵命令: \flexmatrix{矩阵名}{元素符号}{行数}{列数}
+\newcommand{\flexmatrix}[4]{
+  \[
+  #1 = \begin{pmatrix}
+    #2_{11}     & #2_{12}     & \cdots & #2_{1#4}   \\
+    #2_{21}     & #2_{22}     & \cdots & #2_{2#4}   \\
+    \vdots      & \vdots      & \ddots & \vdots     \\
+    #2_{#31}    & #2_{#32}    & \cdots & #2_{#3#4}
+  \end{pmatrix}
+  \]
+}
+
+% 简化版命令（默认矩阵名为A，元素符号为a）: \quickmatrix{行数}{列数}
+\newcommand{\quickmatrix}[2]{\flexmatrix{A}{a}{#1}{#2}}
+
+
+\begin{document}
+\title{4.3注释}
+\author{张志聪}
+\maketitle
+
+\begin{zremark}
+  使用命题3.1 证明：行变换不改变矩阵的列秩。
+\end{zremark}
+
+\textbf{证明：}
+
+$A$是$m \times n$矩阵，设列向量组为
+\begin{align*}
+  \beta_1, \beta_2, \cdots, \beta_n \ \ (I)
+\end{align*}
+为每一个行变换都构造一个从$K^m \to K^m$的单射，
+这里以初等行变换：第$i$上的$k$倍，加到第$j$行为例（设$A$经过初等行变换得到$B$）：
+构造映射$f: K^m \to K^m$如下：
+若$\beta = \begin{bmatrix}
+    a_1    \\
+    a_2    \\
+    \vdots \\
+    a_i    \\
+    \vdots \\
+    a_j    \\
+    \vdots \\
+    a_n
+  \end{bmatrix}$，那么
+\begin{align*}
+  f(\beta) = \begin{bmatrix}
+               a_1         \\
+               a_2         \\
+               \vdots      \\
+               a_i         \\
+               \vdots      \\
+               a_j + k a_i \\
+               \vdots      \\
+               a_n
+             \end{bmatrix}
+\end{align*}
+容易验证，$f$是线性映射且是单射。
+首先设$\beta_{i_1}, \beta_{i_2}, \cdots, \beta_{i_k}$是$(I)$的极大线性无关部分组，
+于是，由命题3.1可知，$f(\beta_{i_1}), f(\beta_{i_2}), \cdots, f(\beta_{i_k})$是线性无关的。
+
+对任意$\beta \in (I)$，存在
+\begin{align*}
+  \beta = k_1 \beta{i_1} + k_2 \beta{i_2} + \cdots + k_k \beta{i_k}
+\end{align*}
+由于$f$是线性映射，于是
+\begin{align*}
+  f(\beta) = k_1 f(\beta{i_1}) + k_2 f(\beta{i_2}) + \cdots + k_k f(\beta{i_k})
+\end{align*}
+所以，$f(\beta_{i_1}), f(\beta_{i_2}), \cdots, f(\beta_{i_k})$是$B$中列向量组的极大线性无关部分组。
+
+综上可得，该行变换不改变矩阵的列秩。
+
+
+\begin{zremark}
+  同构是等价关系。
+\end{zremark}
+
+\begin{zremark}
+  $U$和$V$是数域$K$上的有限维线性空间，$U$和$V$同构的充分必要条件是
+  \begin{align*}
+    dim U = dim V
+  \end{align*}
+\end{zremark}
+
+\textbf{证明：}
+
+\begin{itemize}
+  \item 必要性
+
+        $U$和$V$，所以存在一个线性映射$f: U \to V$，且$f$是双射。
+        由命题3.2可知
+        \begin{align*}
+          dim U = dim V
+        \end{align*}
+
+  \item 充分性
+
+        令$n = dim U = dim V$，设
+        \begin{align*}
+          \alpha_1, \alpha_2, \cdots, \alpha_n \ \ (I)
+        \end{align*}
+        是$U$的一组基，
+        \begin{align*}
+          \beta_1, \beta_2, \cdots, \beta_n \ \ (II)
+        \end{align*}
+        是$V$的一组基。
+
+        任意$\alpha \in U$，我们有
+        \begin{align*}
+          \alpha = k_1 \alpha_1 + k_2 \alpha_2 + \cdots + k_n \alpha_n
+        \end{align*}
+        构造映射$f: U \to V$如下：
+        \begin{align*}
+          f(\alpha) = k_1 \beta_1 + k_2 \beta_2 + \cdots + k_n \beta_n
+        \end{align*}
+        易得，$f$是同构映射。
+\end{itemize}
+
+\begin{zremark}
+  通过基，证明命题3.5在$U, V$是有限维线性空间的情况下，命题成立。
+\end{zremark}
+
+\textbf{证明：}
+
+设$Kerf$的一组基为
+\begin{align*}
+  \alpha_1, \alpha_2, \cdots, \alpha_r
+\end{align*}
+然后，以此扩充成$U$的一组基
+\begin{align*}
+  \alpha_1, \alpha_2, \cdots, \alpha_r, \alpha_{r+1}, \cdots, \alpha_n
+\end{align*}
+其中
+\begin{align*}
+  \overline{\alpha_{r+1}}, \overline{\alpha_{r+2}}, \cdots, \overline{\alpha_n}
+\end{align*}
+是$U/Kerf$的一组基。
+
+因为$Kerf$的一组基，在映射$f$下都是零向量，于是不可能是$Imf$的基，
+我们考虑
+\begin{align*}
+  f(\alpha_{r + 1}), f(\alpha_{r + 2}), \cdots, f(\alpha_n)
+\end{align*}
+设
+\begin{align*}
+  k_{r + 1} f(\alpha_{r + 1}) + k_{r + 2} f(\alpha_{r + 2}) + \cdots + k_n f(\alpha_n) = 0 \\
+  f(k_{r + 1} \alpha_{r + 1} + k_{r + 2} \alpha_{r + 2} + \cdots + k_n \alpha_n) = 0
+\end{align*}
+可得$k_{r + 1} \alpha_{r + 1} + k_{r + 2} \alpha_{r + 2} + \cdots + k_n \alpha_n \in Kerf$，
+所以存在$k_1, k_2, \cdots, k_r$使得
+\begin{align*}
+  k_{r + 1} \alpha_{r + 1} + k_{r + 2} \alpha_{r + 2} + \cdots + k_n \alpha_n = k_1 \alpha_1 + k_2 \alpha_2 + \cdots + k_r \alpha_r \\
+  -k_1 \alpha_1 - k_2 \alpha_2 - \cdots - k_r \alpha_r + k_{r + 1} \alpha_{r + 1} + k_{r + 2} \alpha_{r + 2} + \cdots + k_n \alpha_n = 0
+\end{align*}
+由于$ \alpha_1, \alpha_2, \cdots, \alpha_r, \alpha_{r+1}, \cdots, \alpha_n$线性无关，
+所以
+\begin{align*}
+  k_1 = k_2 = \cdots = k_n = 0
+\end{align*}
+所以，$f(\alpha_{r + 1}), f(\alpha_{r + 2}), \cdots, f(\alpha_n)$线性无关。
+
+任意$\beta \in Imf$，存在
+\begin{align*}
+  \alpha = a_1 \alpha_1 + a_2 \alpha_2 + \cdots + a_n \alpha_n
+\end{align*}
+使得
+\begin{align*}
+  \beta & = f(\alpha)                                                                            \\
+        & = a_1 f(\alpha_1) + a_2 f(\alpha_2) + \cdots + a_n f(\alpha_n)                         \\
+        & = a_{r + 1} f(\alpha_{r + 1}) + a_{r + 2} f(\alpha_{r + 2}) + \cdots + a_n f(\alpha_n)
+\end{align*}
+所以，$f(\alpha_{r + 1}), f(\alpha_{r + 2}), \cdots, f(\alpha_n)$是$Imf$的一组基。
+
+于是可得
+\begin{align*}
+  dim U/Kerf = dim Imf = n - r
+\end{align*}
+所以，$U/Kerf$与$Imf$同构。
+
+\begin{zremark}
+  命题3.6(ii)，有一点要特别注意：$dim U$是$n$维的，
+  那么$\alpha_1, \alpha_2, \cdots, \alpha_n \in V$也必须是$n$个，
+  但命题本身没有说不可以重复。
+\end{zremark}
+
+\begin{zremark}
+  $f: U \to V$是同构映射，那么任意给定基下的矩阵$A = \sigma(f)$都是满秩矩阵。
+\end{zremark}
+
+\textbf{证明：}
+
+设$U, V$的一组基分别是
+\begin{align*}
+  \epsilon_1, \epsilon_2, \cdots, \epsilon_n \\
+  \eta_1, \eta_2, \cdots, \eta_n
+\end{align*}
+于是，我们有
+\begin{align*}
+  (f(\epsilon_1), f(\epsilon_2), \cdots, f(\epsilon_n)) = (\eta_1, \eta_2, \cdots, \eta_n) A
+\end{align*}
+因为$f$是同构映射，按照命题3.1(i)，$f(\epsilon_1), f(\epsilon_2), \cdots, f(\epsilon_n)$在$V$中线性无关，
+于是可得$A$是满秩的，因为如果$A$不是满秩的，那么存在$A$的某个列向量可以被其他列向量线性表示，即
+某个$f(\epsilon_i)$可以被其他
+$f(\epsilon_1), f(\epsilon_2), \cdots, f(\epsilon_{i-1}), f(\epsilon_{i+1}), \cdots, f(\epsilon_n)$线性表示，
+出现矛盾。
+
+\begin{zremark}
+  线性变换$\mathscr{P}$是线性空间$V$某个子空间$M$的投影变换的充分必要条件是$\mathscr{P}^2 = \mathscr{P}$。
+\end{zremark}
+
+\textbf{证明：}
+
+\begin{itemize}
+  \item 必要性
+
+        设$V = M \oplus N$，
+        因为$\mathscr{P}$是线性空间$V$对子空间$M$的投影变换，那么$\forall \alpha \in V$，设
+        \begin{align*}
+          \alpha = \alpha_1 + \alpha_2 \ \ \ (\alpha_1 \in M, \alpha_2 \in N)
+        \end{align*}
+        我们有
+        \begin{align*}
+          \mathscr{P}(\alpha) = \alpha_1
+        \end{align*}
+        又
+        \begin{align*}
+          \mathscr{P}^2(\alpha) & = \mathscr{P}(\mathscr{P}(\alpha)) \\
+                                & = \mathscr{P}(\alpha_1)            \\
+                                & = \alpha_1
+        \end{align*}
+        所以
+        \begin{align*}
+          \mathscr{P}^2 = \mathscr{P}
+        \end{align*}
+
+  \item 充分性
+
+        令
+        \begin{align*}
+          M & = Im\mathscr{P}  \\
+          N & = Ker\mathscr{P}
+        \end{align*}
+        由3.5推论1，我们有
+        \begin{align*}
+          dim M + dim N = dim Im\mathscr{P} + (dim V - dim Im\mathscr{P}) = dim V
+        \end{align*}
+        又因为$Ker\mathscr{P}, Im\mathscr{P}$都是$V$的子空间，所以$U, V$是直和。
+
+        任意$\alpha \in V$，令
+        \begin{align*}
+          \alpha = \mathscr{P}(\alpha) + (\alpha - \mathscr{P}(\alpha))
+        \end{align*}
+        显然$\mathscr{P}(\alpha) \in Im \mathscr{P}$，因为
+        \begin{align*}
+          \mathscr{P}(\alpha - \mathscr{P}(\alpha))
+          & = \mathscr{P}(\alpha) - \mathscr{P}(\mathscr{P}(\alpha)) \\
+          & = \mathscr{P}(\alpha) - \mathscr{P}(\alpha) \\
+          & = 0 
+        \end{align*}
+        所以，$\alpha - \mathscr{P}(\alpha) \in Ker\mathscr{P}$。
+
+        综上
+        \begin{align*}
+          V = Im\mathscr{P} \oplus Ker\mathscr{P} = M \oplus N
+        \end{align*}
+
+        由以上的讨论可知，任意$\alpha \in V$，有
+        \begin{align*}
+          \alpha = \alpha_1 + \alpha_2 \ \ \ (\alpha_1 \in M, \alpha_2 \in N)
+        \end{align*}
+        且
+        \begin{align*}
+          \mathscr{P}( \alpha ) = \alpha_1
+        \end{align*}
+        所以，$\mathscr{P}$是线性空间对子空间$M$的投影变换。
+\end{itemize}
+
+\begin{zremark}
+  互补投影变换：$\mathscr{E} - \mathscr{P}$
+\end{zremark}
+
+\textbf{证明：}
+
+设$\mathscr{P}$是线性空间$V$对子空间$M$（关于直和分解式$V = M \oplus N$）的投影变换。
+
+任意$\alpha \in V$，设
+\begin{align*}
+  \alpha = \alpha_1 + \alpha_2 \ \ \ (\alpha_1 \in M, \alpha_2 \in N)
+\end{align*}
+我们有
+\begin{align*}
+  (\mathscr{E} - \mathscr{P})(\alpha) 
+  & = \mathscr{E}(\alpha) - \mathscr{P}(\alpha) \\
+  & = \alpha_1 + \alpha_2 - \alpha_1 \\
+  & = \alpha_2
+\end{align*}
+
+\begin{zremark}
+  命题3.8 的一般情况（即线性映射）。
+\end{zremark}
+
+\begin{zremark}
+  命题3.9 的一般情况（即线性映射）。
+\end{zremark}
+
+\end{document}

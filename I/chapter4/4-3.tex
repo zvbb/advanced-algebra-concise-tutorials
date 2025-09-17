@@ -1,0 +1,162 @@
+\documentclass{article}
+\usepackage{mathtools} 
+\usepackage{fontspec}
+\usepackage[UTF8]{ctex}
+\usepackage{amsthm}
+\usepackage{mdframed}
+\usepackage{xcolor}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{hyperref}
+
+
+% 定义新的带灰色背景的说明环境 zremark
+\newmdtheoremenv[
+  backgroundcolor=gray!10,
+  % 边框与背景一致，边框线会消失
+  linecolor=gray!10
+]{zremark}{注释}
+
+% 通用矩阵命令: \flexmatrix{矩阵名}{元素符号}{行数}{列数}
+\newcommand{\flexmatrix}[4]{
+  \[
+  #1 = \begin{pmatrix}
+    #2_{11}     & #2_{12}     & \cdots & #2_{1#4}   \\
+    #2_{21}     & #2_{22}     & \cdots & #2_{2#4}   \\
+    \vdots      & \vdots      & \ddots & \vdots     \\
+    #2_{#31}    & #2_{#32}    & \cdots & #2_{#3#4}
+  \end{pmatrix}
+  \]
+}
+
+% 简化版命令（默认矩阵名为A，元素符号为a）: \quickmatrix{行数}{列数}
+\newcommand{\quickmatrix}[2]{\flexmatrix{A}{a}{#1}{#2}}
+
+
+\begin{document}
+\title{4.2}
+\author{张志聪}
+\maketitle
+
+\section*{2}
+
+\begin{itemize}
+  \item 方法一
+
+        设$A$的列向量组为$\alpha_1, \alpha_2, \cdots, \alpha_n$，
+        $B$的列向量组为$\beta_, \beta_2, \cdots, \beta_n$。
+        并设
+        \begin{align*}
+          rank(A) = rank(B) = r
+        \end{align*}
+
+        令$f_A$为$K^n \to K^m$的线性映射：
+        \begin{align*}
+          f_A(X) = AX
+        \end{align*}
+        则$AX = 0$的解空间为$Kerf_A$，而$Imf_A = L(\alpha_1, \alpha_2, \cdots, \alpha_n)$，
+        故$dim(Imf_A) = rank(A) = r$，按照命题3.5的推论1，有
+        \begin{align*}
+          dim Kerf_A + dim Imf_A = dim K^n = n
+        \end{align*}
+        同理可得
+        \begin{align*}
+          dim Kerf_B + dim Imf_B = dim K^n = n
+        \end{align*}
+        因为
+        \begin{align*}
+          dim Imf_A = dim Imf_B
+        \end{align*}
+        于是可得
+        \begin{align*}
+          dim Kerf_A = dim Kerf_B
+        \end{align*}
+        它们的基础解系的维数相等，即
+        \begin{align*}
+          dim U = dim V
+        \end{align*}
+
+        设$U,V$的一组基分别为
+        \begin{align*}
+          \alpha_{i_1}, \alpha_{i_2}, \cdots, \alpha_{i_r} \ \ \ (I) \\
+          \beta_{j_1}, \beta_{j_2}, \cdots, \beta_{j_r} \ \ \ (II)
+        \end{align*}
+        定义映射$f: U \to V$如下：
+        任意$Y \in U$，我们有
+        \begin{align*}
+          Y = a_1 \alpha_{i_1} + a_2 \alpha_{i_2} + \cdots + a_r \alpha_{i_r}
+        \end{align*}
+        令
+        \begin{align*}
+          f(Y) = b_1 \beta_{j_1} + b_2 \beta_{j_2} + \cdots + b_r \beta_{j_r}
+        \end{align*}
+        因为
+        \begin{align*}
+          f(\alpha_{i_1}) = \beta_{j_1} \\
+          f(\alpha_{i_2}) = \beta_{j_2} \\
+          \vdots                        \\
+          f(\alpha_{i_r}) = \beta_{j_r}
+        \end{align*}
+        易证$f$是线性映射，
+        且$f$在$U,V$所取定的基下的矩阵为$E$，这就找到了命题中的$T = E$。
+
+  \item 方法二
+
+        因为$rank(A) = rank(B)$，所以$A$与$B$相抵，所以存在$m$阶满秩方阵$P$和$n$阶满秩方阵$Q$，使得
+        \begin{align*}
+          A = PBQ
+        \end{align*}
+        任意$\alpha \in U$，我们有
+        \begin{align*}
+          A \alpha = 0                \\
+          PBQ \alpha = 0              \\
+          P^{-1} PBQ \alpha = P^{-1}0 \\
+          BQ \alpha = 0
+        \end{align*}
+        令$T = Q$，接下来证明$f(Y) = TY (\forall Y \in U)$是$U$到$V$的同构映射。
+
+        因为$T$是矩阵，$f$显然是线性映射。
+
+        (i)$f$是单射：
+
+        $\forall \alpha, \beta \in U$，使得
+        \begin{align*}
+          T \alpha = T \beta     \\
+          T \alpha - T \beta = 0 \\
+          T (\alpha - \beta) = 0
+        \end{align*}
+        因为$T$满足，$Tx$只有零解，所以存在
+        \begin{align*}
+          \alpha - \beta = 0 \\
+          \alpha = \beta
+        \end{align*}
+
+        (ii)$f$是满射。
+
+        任意$\beta \in V$，
+        \begin{align*}
+          T \alpha = \beta \\
+          \alpha = T^{-1} \beta
+        \end{align*}
+        需要证明$\alpha \in U$。
+        \begin{align*}
+          A \alpha & = PBQ \alpha       \\
+                   & = PBQ T^{-1} \beta \\
+                   & = PBQ Q^{-1} \beta \\
+                   & = P B \beta 
+        \end{align*}
+        因为$\beta \ in V$，所以$B \beta = 0$，所以
+        \begin{align*}
+          A \alpha = 0
+        \end{align*}
+        综上，$\alpha \in U$，所以$T$是满射。
+
+\end{itemize}
+
+\section*{3}
+
+
+
+
+
+\end{document}

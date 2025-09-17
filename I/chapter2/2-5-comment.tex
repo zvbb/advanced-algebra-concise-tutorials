@@ -76,6 +76,31 @@
 \end{itemize}
 
 \begin{zremark}
+  任何$n$阶方阵，总能表示成对称矩阵和反称矩阵之和。
+\end{zremark}
+
+\textbf{证明：}
+
+设$A$为任意$n$阶方阵，那么
+\begin{equation*}
+  \begin{cases*}
+    A = B + C \\
+    A^T = B^T + C^T = B - C
+  \end{cases*}
+\end{equation*}
+解方程的可得
+\begin{equation*}
+  \begin{cases*}
+    B = \frac{1}{2}(A + A^{T}) \\
+    C = \frac{1}{2}(A - A^{T})
+  \end{cases*}
+\end{equation*}
+所以
+\begin{align*}
+  A = \frac{1}{2}(A+A^{T}) + \frac{1}{2}(A-A^{T})
+\end{align*}
+
+\begin{zremark}
   $Trace$具有一些优良的性质：习题23
 \end{zremark}
 
