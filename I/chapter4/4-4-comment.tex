@@ -49,16 +49,54 @@
 
 \textbf{证明：}
 
-todo
+\begin{itemize}
+  \item $det(A) = det(B)$
+
+        因为$A, B$相似，那么存在$n$阶可逆矩阵$T$，使得
+        \begin{align*}
+          B = T^{-1}AT
+        \end{align*}
+        于是
+        \begin{align*}
+          |B| & = |T^{-1}AT|       \\
+              & = |T^{-1}||A||T|   \\
+              & = |A| |T| |T^{-1}| \\
+              & = |A| |T T^{-1}|   \\
+              & = |A|
+        \end{align*}
+
+  \item $Trace(A) = Trace(B)$
+
+        因为相似举证，有着相同的特征多项式，即
+        \begin{align*}
+          |\lambda E - B| = |\lambda - A|
+        \end{align*}
+        于是，由命题4.2，我们有
+        \begin{align*}
+          f(\lambda) = |\lambda - A| = \lambda^n - Trace(A)\lambda^{n - 1} + \cdots + (-1)^n |A| \\
+          g(\lambda) = |\lambda - B| = \lambda^n - Trace(B)\lambda^{n - 1} + \cdots + (-1)^n |B|
+        \end{align*}
+        因为
+        \begin{align*}
+          f(\lambda) = g(\lambda)
+        \end{align*}
+        于是，我们可以任意代入$l = n + 1$个不同的数$x_1, x_2, \cdots, x_l$，使得
+        \begin{align*}
+          f(x_i) = g(x_i)
+        \end{align*}
+        于是利用第一章$\S 2$命题2.2的推论2可知，$f(\lambda), g(\lambda)$多项式的系数相等，
+        于是可得
+        \begin{align*}
+          Trace(A) = Trace(B)
+        \end{align*}
+\end{itemize}
 
 \begin{zremark}
   例4.4 的另一种证明方式。
 \end{zremark}
 
-todo
-
 \textbf{证明：}
-
+todo
 
 \begin{zremark}
   代数重数 $\geq$ 几何重数
@@ -78,8 +116,4 @@ todo
   \end{align*}
 
 \end{zremark}
-
-
-
-
 \end{document}

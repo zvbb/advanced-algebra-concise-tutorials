@@ -73,10 +73,10 @@
 这个齐次线性方程组中，仅有$x_1$是自由未知量，取$x_1 = 1$，得基础解系
 \begin{align*}
   \eta_1 = \begin{bmatrix}
-             1  \\
-             0  \\
-             \vdots  \\
-             0  \\
+             1      \\
+             0      \\
+             \vdots \\
+             0      \\
            \end{bmatrix}
 \end{align*}
 它对应于$A$的特性向量
@@ -87,6 +87,165 @@
 
 \section*{7}
 
-反证法，假设存在$\lambda \neq 0$是$\mathscr{A}$的特征值。
+ (1)反证法，假设存在$\lambda \neq 0$是$\mathscr{A}$的特征值。
+于是，存在$\alpha \neq 0$使得
+\begin{align*}
+  \mathscr{A} \alpha = \lambda \alpha
+\end{align*}
+于是
+\begin{align*}
+  \mathscr{A}^k (\alpha)
+   & = \mathscr{A}^{k-1}(\mathscr{A} \alpha) \\
+   & = \mathscr{A}^{k-1}(\lambda \alpha)     \\
+   & = \cdots                                \\
+   & = \lambda^k \alpha                      \\
+   & \neq 0
+\end{align*}
+这与题设$\mathscr{A}^k = 0$矛盾。
+
+(2)接下来，证明0是$\mathscr{A}$的特征值。
+
+对任意$\alpha \in V$，我们有
+\begin{align*}
+  \mathscr{A}^k (\alpha) = 0
+\end{align*}
+于是，存在$l (1 \leq l \leq k)$使得
+\begin{align*}
+  \mathscr{A}^{l - 1}(\alpha) \neq 0 \\
+  \mathscr{A}^l(\alpha) = \mathscr{A}(\mathscr{A}^{l - 1}(\alpha)) = 0 = 0 \cdot \mathscr{A}^{l - 1}(\alpha)
+\end{align*}
+所以，$0$是$\mathscr{A}$的特征值，$\mathscr{A}^{l - 1}(\alpha)$是对应的特征向量。
+
+\section*{8}
+
+反证法，假设$\xi_1 + \xi_2$是某个特征向量，那么
+存在$\lambda \in K$使得
+\begin{align*}
+  \mathscr{A} (\xi_1 + \xi_2) = \lambda (\xi_1 + \xi_2)           \\
+  \mathscr{A} \xi_1 + \mathscr{A} \xi_2 = \lambda (\xi_1 + \xi_2) \\
+  \lambda_1 \xi_1 + \lambda_2 \xi_2 = \lambda (\xi_1 + \xi_2)     \\
+  (\lambda_1 - \lambda) \xi_1 + (\lambda_2 - \lambda) \xi_2 = 0
+\end{align*}
+由命题4.3可知，$\xi_1, \xi_2$是线性无关的，所以
+\begin{equation*}
+  \begin{cases*}
+    \lambda_1 - \lambda = 0 \\
+    \lambda_2 - \lambda = 0
+  \end{cases*}
+\end{equation*}
+于是可得
+\begin{align*}
+  \lambda = \lambda_1 \\
+  \lambda = \lambda_2
+\end{align*}
+有题设可知$\lambda_1 \neq \lambda_2$，出现矛盾，
+假设不成立，命题得证。
+
+\section*{8 推广}
+
+$k \xi_1 + l \xi_2$不是$\mathscr{A}$的特征向量。
+
+证明：
+
+因为$k \xi_1 \in V_{\lambda_1}, l \xi_2 \in V_{\lambda_2}$，
+利用习题8，命题得证。
+
+\section*{9}
+
+只需证明，这些特征向量属于同一个特征子空间即可。
+
+反证法，假设$\alpha \in V_{\lambda_1}, \beta \in V_{\lambda_2}$，
+由习题8可知，
+\begin{align*}
+  \alpha + \beta
+\end{align*}
+不是特征向量，与题设矛盾。
+
+\section*{10}
+
+$\mathscr{A}$是线性空间$V$内的可逆线性变换，即存在线性变换$\mathscr{B}$使得
+\begin{align*}
+  \mathscr{A} \mathscr{B} = \mathscr{B} \mathscr{A} = \mathscr{E}
+\end{align*}
+
+任取线性变换$\mathscr{A}, \mathscr{A}$在基$\epsilon_1, \epsilon_2, \cdots, \epsilon_n$
+下的矩阵为$A, B$，
+我们有
+\begin{align*}
+  \sigma(AB) = \sigma(A) \sigma(B) = AB = E
+\end{align*}
+于是可得
+\begin{align*}
+  rank(A) = rank(B) = rank(E) = n
+\end{align*}
+
+\begin{itemize}
+  \item (1)
+
+        \begin{itemize}
+          \item 方法一
+
+                反证法，假设线性变换$\mathscr{A}$存在为零的特征值，
+                那么，我们有
+                \begin{align*}
+                  |\lambda E - A| = 0 \\
+                  |-A| = 0
+                \end{align*}
+                $A$不满秩，出现矛盾。
+
+          \item 方法二
+
+                $\mathscr{A}$是可逆线性变换，所以它是双射。
+
+                反证法，假设线性变换$\mathscr{A}$存在为零的特征值，
+                于是存在$\alpha \in V$使得
+                \begin{align*}
+                  \mathscr{A} \alpha = 0 \cdot \alpha = 0 \\
+                  \mathscr{A} 0 = 0
+                \end{align*}
+                与$\mathscr{A}$是双射矛盾。
+        \end{itemize}
+
+  \item (2)
+
+        $\lambda$是$\mathscr{A}$的特征值，那么，存在$\alpha \in V$使得
+        \begin{align*}
+          \mathscr{A} \alpha = \lambda \alpha \\
+        \end{align*}
+        两边同时代入$\mathscr{A}^{-1}$，我们有
+        \begin{align*}
+          \mathscr{A}^{-1} \mathscr{A} \alpha = \mathscr{A}^{-1} \lambda \alpha \\
+          \alpha = \lambda \mathscr{A}^{-1} \alpha
+        \end{align*}
+\end{itemize}
+
+\section*{10 推广}
+
+(1)的反方向也是成立的，即：
+$\mathscr{A}$的特征值都不为零，则$\mathscr{A}$是可逆线性变换。
+
+证明：
+
+$\mathscr{A}$的在基$\epsilon_1, \epsilon_2, \cdots, \epsilon_n$下的矩阵为$A$，
+则$A$的全体特征根的乘积，我们有
+\begin{align*}
+  \lambda_1 \lambda_2 \cdots \lambda_n = |A| \neq 0
+\end{align*}
+所以，$A$是满秩。
+
+于是存在$A^{-1}$使得
+\begin{align*}
+  A^{-1} A = A A^{-1} = E
+\end{align*}
+于是，由$\sigma: End(V) \to M_n(K)$的双射性，
+存在线性变换$\mathscr{B}$在基下的矩阵为$A^{-1}$，所以
+\begin{align*}
+  E = \sigma(\mathscr{A}) \sigma(\mathscr{B}) = \sigma(\mathscr{A}\mathscr{B})\\
+\end{align*}
+可得
+\begin{align*}
+  \mathscr{A} \mathscr{B} = \mathscr{B} \mathscr{A} = \mathscr{E}
+\end{align*}
+
 
 \end{document}

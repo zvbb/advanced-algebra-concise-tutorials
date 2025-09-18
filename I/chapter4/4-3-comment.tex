@@ -225,6 +225,31 @@ $f(\epsilon_1), f(\epsilon_2), \cdots, f(\epsilon_{i-1}), f(\epsilon_{i+1}), \cd
 出现矛盾。
 
 \begin{zremark}
+  $\mathscr{A}$是数域$K$上线性空间$V$内的线性变换，$\mathscr{A}$在$V$的某组基下的矩阵是单位矩阵，
+  则$\mathscr{A}$是单位变换。
+\end{zremark}
+
+\textbf{证明：}
+
+不妨设线性变换$\mathscr{A}$在基$\epsilon_1, \epsilon_2, \cdots, \epsilon_n$下的矩阵是单位矩阵。
+于是，我们有
+\begin{align*}
+  (\epsilon_1, \epsilon_2, \cdots, \epsilon_n) = (\epsilon_1, \epsilon_2, \cdots, \epsilon_n) E
+\end{align*}
+
+对任意$\alpha \in V$，我们有
+\begin{align*}
+  \alpha = a_1 \epsilon_1 + a_2 \epsilon_2 + \cdots + a_n \epsilon_n
+\end{align*}
+于是
+\begin{align*}
+  \mathscr{A} (\alpha) & = \mathscr{A} (a_1 \epsilon_1 + a_2 \epsilon_2 + \cdots + a_n \epsilon_n) \\
+                       & = a_1 \mathscr{A} (\epsilon_1) + a_2 \mathscr{A} (\epsilon_2) + \cdots + a_n \mathscr{A} (\epsilon_n) \\
+                       & = a_1 \alpha_1 + a_2 \alpha_2 + \cdots + a_n \alpha_n \\
+                       & = \alpha
+\end{align*}
+
+\begin{zremark}
   线性变换$\mathscr{P}$是线性空间$V$某个子空间$M$的投影变换的充分必要条件是$\mathscr{P}^2 = \mathscr{P}$。
 \end{zremark}
 
@@ -273,9 +298,9 @@ $f(\epsilon_1), f(\epsilon_2), \cdots, f(\epsilon_{i-1}), f(\epsilon_{i+1}), \cd
         显然$\mathscr{P}(\alpha) \in Im \mathscr{P}$，因为
         \begin{align*}
           \mathscr{P}(\alpha - \mathscr{P}(\alpha))
-          & = \mathscr{P}(\alpha) - \mathscr{P}(\mathscr{P}(\alpha)) \\
-          & = \mathscr{P}(\alpha) - \mathscr{P}(\alpha) \\
-          & = 0 
+           & = \mathscr{P}(\alpha) - \mathscr{P}(\mathscr{P}(\alpha)) \\
+           & = \mathscr{P}(\alpha) - \mathscr{P}(\alpha)              \\
+           & = 0
         \end{align*}
         所以，$\alpha - \mathscr{P}(\alpha) \in Ker\mathscr{P}$。
 
@@ -309,10 +334,10 @@ $f(\epsilon_1), f(\epsilon_2), \cdots, f(\epsilon_{i-1}), f(\epsilon_{i+1}), \cd
 \end{align*}
 我们有
 \begin{align*}
-  (\mathscr{E} - \mathscr{P})(\alpha) 
-  & = \mathscr{E}(\alpha) - \mathscr{P}(\alpha) \\
-  & = \alpha_1 + \alpha_2 - \alpha_1 \\
-  & = \alpha_2
+  (\mathscr{E} - \mathscr{P})(\alpha)
+   & = \mathscr{E}(\alpha) - \mathscr{P}(\alpha) \\
+   & = \alpha_1 + \alpha_2 - \alpha_1            \\
+   & = \alpha_2
 \end{align*}
 
 \begin{zremark}
