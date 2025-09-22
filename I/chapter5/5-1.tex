@@ -1,0 +1,289 @@
+\documentclass{article}
+\usepackage{mathtools} 
+\usepackage{fontspec}
+\usepackage[UTF8]{ctex}
+\usepackage{amsthm}
+\usepackage{mdframed}
+\usepackage{xcolor}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{hyperref}
+
+
+% 定义新的带灰色背景的说明环境 zremark
+\newmdtheoremenv[
+  backgroundcolor=gray!10,
+  % 边框与背景一致，边框线会消失
+  linecolor=gray!10
+]{zremark}{注释}
+
+% 通用矩阵命令: \flexmatrix{矩阵名}{元素符号}{行数}{列数}
+\newcommand{\flexmatrix}[4]{
+  \[
+  #1 = \begin{pmatrix}
+    #2_{11}     & #2_{12}     & \cdots & #2_{1#4}   \\
+    #2_{21}     & #2_{22}     & \cdots & #2_{2#4}   \\
+    \vdots      & \vdots      & \ddots & \vdots     \\
+    #2_{#31}    & #2_{#32}    & \cdots & #2_{#3#4}
+  \end{pmatrix}
+  \]
+}
+
+% 简化版命令（默认矩阵名为A，元素符号为a）: \quickmatrix{行数}{列数}
+\newcommand{\quickmatrix}[2]{\flexmatrix{A}{a}{#1}{#2}}
+
+
+\begin{document}
+\title{5.1}
+\author{张志聪}
+\maketitle
+
+\section*{9}
+
+提示：反证法可能更方便。考虑$Ax = 0$解的情况。
+
+把$A$看做$K$上n维线性空间$V$内双线性函数$f(\alpha, \beta)$在
+基$\epsilon_1, \epsilon_2, \cdots, \epsilon_n$下的矩阵。
+
+\begin{itemize}
+  \item 必要性
+
+        反证法，假设存在$\alpha \neq 0$，对一切$\beta \in V$有
+        $f(\alpha, \beta) = 0$。
+        不妨设$\alpha, \beta$在$\epsilon_1, \epsilon_2, \cdots, \epsilon_n$的基下的坐标为
+        $X, Y$，且$Y \neq 0$，使得
+        \begin{align*}
+          f(\alpha, \beta) = X^T A Y = 0
+        \end{align*}
+        因为$f(\alpha, \beta)$满秩，即$A$是满秩的，
+        于是$Ax = 0$没有非零解，所以$A Y \neq 0$，
+        所以$\alpha = 0$，
+        存在矛盾。
+
+  \item 充分性
+
+        反证法，假设$f(\alpha, \beta)$不满秩，即$A$不满秩，
+        于是$A$的行向量组是线性相关的，即存在$X^T \neq 0$使得
+        \begin{align*}
+          X^T A = 0
+        \end{align*}
+        此时$\forall Y \in \mathbb{K}^n$有
+        \begin{align*}
+          X^T A Y = 0
+        \end{align*}
+        与题设矛盾。
+\end{itemize}
+
+\section*{10}
+
+利用习题9完成证明。
+
+证明：对任意$B \in M_n(K)$都有
+\begin{align*}
+  f(A, B) = Tr(AB) = 0
+\end{align*}
+则必有$A = 0$。
+
+设$B = E_{ij} (1 \leq i, j \leq n)$，$A = (a_{ij})$
+于是
+\begin{align*}
+  f(A, B) & = Tr(A E_{ij})
+\end{align*}
+其中$A E_{ij}$的第$j$列 $ = $ 矩阵$A$的第$i$列，其余列全是0。
+于是在主对角线上，只有$A E_{ij}$的$j$行，$j$列可能有值，即
+\begin{align*}
+  Tr(A E_{ij}) = a_{ji}
+\end{align*}
+因为
+\begin{align*}
+  Tr(A E_{ij}) = 0
+\end{align*}
+所以$a_{ji} = 0$。
+
+综上，$A = 0$。
+
+\section*{13}
+
+我们可以通过初等矩阵，把对角线上的元素进行调整。
+
+任意$1 \leq i, j \leq n$，希望互换对角线上第$i$个元素和第$j$个元素。
+设
+\begin{align*}
+  A = \begin{bmatrix}
+        \lambda_1                         \\
+         & \lambda_2                      \\
+         &           & \ddots             \\
+         &           &        & \lambda_n
+      \end{bmatrix} \\
+  B = \begin{bmatrix}
+        \lambda_{i_1}                             \\
+         & \lambda_{i_2}                          \\
+         &               & \ddots                 \\
+         &               &        & \lambda_{i_n}
+      \end{bmatrix}
+\end{align*}
+于是
+\begin{align*}
+  (P_n(i, j))^T A P_n(i, j)
+   & = P_n(i, j) A P_n(i, j)                                                       \\
+   & = \begin{bmatrix}
+         \lambda_1                                                                   \\
+          & \lambda_2                                                                \\
+          &           & \ddots                                                       \\
+          &           &        & \lambda_j                                           \\
+          &           &        &           & \ddots                                  \\
+          &           &        &           &        & \lambda_i                      \\
+          &           &        &           &        &           & \ddots             \\
+          &           &        &           &        &           &        & \lambda_n \\
+       \end{bmatrix}
+\end{align*}
+即交换了$i, j$行和$i, j$列。
+所以，存在$T$使得
+\begin{align*}
+  B = T^T A T
+\end{align*}
+所以，$A, B$合同。
+
+\section*{14}
+
+ (1)
+\begin{itemize}
+  \item 必要性
+
+        因为$A$是反对称矩阵，
+        所以
+        \begin{align*}
+          A^T = -A
+        \end{align*}
+        于是，对任意$n$维列向量$x$，有
+        \begin{align*}
+          (x^T A x)^T
+           & = x^T A^T x  \\
+           & = x^T (-A) x \\
+           & = -x^T A x
+        \end{align*}
+        因为$x^T A x$是标量，所以
+        \begin{align*}
+          (x^T A x)^T & = x^T A x \\
+          -x^T A x    & = x^T A x \\
+          2 x^T A x   & = 0       \\
+          x^T A x     & = 0
+        \end{align*}
+
+  \item 充分性
+
+        对$n$维列向量$x + y$，我们有
+        \begin{align*}
+          (x + y)^T A (x + y)
+           & = (x^T + y^T) A (x + y)                 \\
+           & = (x^T A + y^T A)(x + y)                \\
+           & = x^T A x + x^T A y + y^T A x + y^T A y \\
+           & = 0 + x^T A y + y^T A x + 0             \\
+           & = x^T A y + y^T A x
+        \end{align*}
+
+        令列项量$x = e_i$（第$i$个分量为1，其他分量为0），$y = e_j$，
+        设$A = (a_{ij})$，于是
+        \begin{align*}
+          e_i^T A e_j + e_j^T A e_i = 0 \\
+          a_{ij} + a_{ji} = 0           \\
+          a_{ij} = -a_{ji}
+        \end{align*}
+        所以，$A$是反对称矩阵。
+
+\end{itemize}
+
+(2)
+
+利用(1)可知，$A$是反对称矩阵，另外由题设可知$A$是对称矩阵，
+所以，$A = 0$。
+
+
+\section*{17}
+
+对$V$的维数进行归纳。
+
+$n = 1$时，$f(\alpha, \beta)$在任意基下都是0，命题成立。
+
+归纳假设$< n$时，命题成立。
+
+$f(\alpha, \beta) \equiv 0$，命题显然成立；
+$f(\alpha, \beta) \not \equiv 0$，于是存在$d = f(\epsilon_1, \epsilon_2) \neq 0$，
+其中$\epsilon_1, \epsilon_2 \neq 0$（按照双线性函数的定义总有$f(\epsilon_1, 0) = 0, f(0, \epsilon_2) = 0$）。
+
+于是，把$\epsilon_1, \epsilon_2 $，扩充成$V$的一组基
+\begin{align*}
+  \frac{1}{d} \epsilon_1, \epsilon_2, \epsilon_3, \cdots, \epsilon_n
+\end{align*}
+于是，$f(\alpha, \beta)$在这组基下的矩阵形如：
+\begin{align*}
+  \begin{bmatrix}
+    0   & 1      & * \\
+    - 1 & 0      & * \\
+    *   & \cdots & *
+  \end{bmatrix}
+\end{align*}
+即只能确定左上角的$2 \times 2$部分，和主对角线是0。
+
+接下来，通过调整基，把前两行和前两列相关元素置为0。
+令
+\begin{equation*}
+  \begin{cases*}
+    \eta_1 = \frac{1}{d} \epsilon_1 \\
+    \eta_2 = \epsilon_2             \\
+    \eta_i = \epsilon_i - f(\frac{1}{d} \epsilon_1, \epsilon_2) \epsilon_i
+  \end{cases*}
+\end{equation*}
+显然，$\eta_1, \eta_2, \cdots, \eta_n$是$V$的一组基，且
+\begin{align*}
+  f(\eta_1, \eta_i)
+   & = f(\frac{1}{d} \epsilon_1, \epsilon_i - f(\frac{1}{d} \epsilon_1, \epsilon_2) \epsilon_i)                            \\
+   & = f(\frac{1}{d} \epsilon_1, \epsilon_i) - f(\frac{1}{d} \epsilon_1, \epsilon_2) f(\frac{1}{d} \epsilon_1, \epsilon_i) \\
+   & = f(\frac{1}{d} \epsilon_1, \epsilon_i) - 1 f(\frac{1}{d} \epsilon_1, \epsilon_i)                                     \\
+   & = 0
+\end{align*}
+通过换基，此时的矩阵形如：
+\begin{align*}
+  \begin{bmatrix}
+    0      & 1      & 0      & \cdots & 0 \\
+    - 1    & 0      & *      & \cdots & * \\
+    0      & *      & *      & \cdots & * \\
+    \vdots & \vdots & \vdots & \cdots & * \\
+    0      & *      & *      & \cdots & *
+  \end{bmatrix}
+\end{align*}
+注意：由于$f$是反对称双线性函数，在任意基下的矩阵都是对称矩阵。
+
+再次换基，把第二行和第二列相关元素置为0。
+令
+\begin{equation*}
+  \begin{cases*}
+    \eta_1' = \eta_1 \\
+    \eta_2' = \eta_2 \\
+    \eta_i' = \eta_i + f(\eta_2, \eta_1) \eta_i
+  \end{cases*}
+\end{equation*}
+显然，$\eta_1', \eta_2', \cdots, \eta_n'$是$V$的一组基，且
+\begin{align*}
+  f(\eta_1', \eta_i')
+   & = f(\eta_1, \eta_i + f(\eta_2, \eta_1) \eta_i)            \\
+   & = f(\eta_1, \eta_i) + f(\eta_2, \eta_1) f(\eta_1, \eta_i) \\
+   & = f(\eta_1, \eta_i) - 1 \cdot f(\eta_1, \eta_i)           \\
+   & = 0
+\end{align*}
+通过换基，此时的矩阵形如：
+\begin{align*}
+  \begin{bmatrix}
+    0      & 1      & 0      & \cdots & 0 \\
+    - 1    & 0      & 0      & \cdots & 0 \\
+    0      & 0      & *      & \cdots & * \\
+    \vdots & \vdots & \vdots & \cdots & * \\
+    0      & 0      & *      & \cdots & *
+  \end{bmatrix}
+\end{align*}
+由归纳假设可知，右下角部分可以化为准对角形。
+
+归纳完成。
+
+
+\end{document}

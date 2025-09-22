@@ -221,7 +221,7 @@ $\mathscr{A}$是线性空间$V$内的可逆线性变换，即存在线性变换$
 
 \section*{10 推广}
 
-(1)的反方向也是成立的，即：
+ (1)的反方向也是成立的，即：
 $\mathscr{A}$的特征值都不为零，则$\mathscr{A}$是可逆线性变换。
 
 证明：
@@ -240,12 +240,290 @@ $\mathscr{A}$的在基$\epsilon_1, \epsilon_2, \cdots, \epsilon_n$下的矩阵�
 于是，由$\sigma: End(V) \to M_n(K)$的双射性，
 存在线性变换$\mathscr{B}$在基下的矩阵为$A^{-1}$，所以
 \begin{align*}
-  E = \sigma(\mathscr{A}) \sigma(\mathscr{B}) = \sigma(\mathscr{A}\mathscr{B})\\
+  E = \sigma(\mathscr{A}) \sigma(\mathscr{B}) = \sigma(\mathscr{A}\mathscr{B}) \\
 \end{align*}
 可得
 \begin{align*}
   \mathscr{A} \mathscr{B} = \mathscr{B} \mathscr{A} = \mathscr{E}
 \end{align*}
+
+\section*{11}
+
+提示：P204
+\begin{align*}
+  A B = B \begin{bmatrix}
+            f(\epsilon_1) &               &               &        &                \\
+                          & f(\epsilon_2) &               &        &                \\
+                          &               & f(\epsilon_3) &        &                \\
+                          &               &               & \ddots &                \\
+                          &               &               &        & f^{\epsilon_n} \\
+          \end{bmatrix}
+\end{align*}
+
+\section*{13}
+
+\begin{itemize}
+  \item (1)
+
+        \begin{align*}
+          \sigma(\mathscr{A}\mathscr{B})
+           & = \sigma(\mathscr{A})\sigma(\mathscr{B}) \\
+           & = A A^{*}                                \\
+           & = |A| E
+        \end{align*}
+        同时
+        \begin{align*}
+          \sigma(\mathscr{B}\mathscr{A})
+           & = \sigma(\mathscr{B}) \sigma(\mathscr{A}) \\
+           & = A^{*} A                                 \\
+           & = |A| E
+        \end{align*}
+        所以
+        \begin{align*}
+          \sigma(\mathscr{A}\mathscr{B}) = \sigma(\mathscr{B}\mathscr{A})
+        \end{align*}
+
+  \item (2)
+
+        问题等价于
+        \begin{align*}
+          A^{*} x = 0
+        \end{align*}
+        的解空间的维度和一组基。
+
+        由$0$是$A$的特征值，所以
+        \begin{align*}
+          |0 E - A| = 0 \\
+          |A| = 0
+        \end{align*}
+        所以，$A$不是满秩的，即$rank(A) < n$。
+
+        利用第三章$\S 3$习题6可知：
+
+        (i) $rank(A) < n - 1$，则$rank(A^*) = 0$，
+        于是$A^{*} x$的解空间的维数为$n = n - rank(A^*)$，
+        $\epsilon_1, \epsilon_2, \cdots, \epsilon_n$为其一组基。
+
+        (ii) $rank(A) = n - 1$，则$rank(A^*) = 1$，
+        于是$A^{*} x$的解空间的维数为$n - 1 = n - rank(A^*)$，
+        于是可得$ker(\mathscr{B}) = n - 1$，
+        接下来，证明$Ker(\mathscr{B}) = Im(\mathscr{A})$。
+
+        由$x \in V, (A^* A)x = A^* (Ax) = (|A| E)x = 0 $可知，任意$, A(A^* x) = 0$，
+        于是可得
+        \begin{align*}
+          Im(\mathscr{A}) \subseteq \ker(\mathscr{B})
+        \end{align*}
+        由命题3.5的推论1，我们有
+        \begin{align*}
+          Im(\mathscr{A}) + ker(\mathscr{A}) = Im(\mathscr{A}) + 1 = n
+        \end{align*}
+        综上可得
+        \begin{align*}
+          \ker(\mathscr{B}) = Im(\mathscr{A}) = n - 1
+        \end{align*}
+\end{itemize}
+
+\section*{16}
+
+设题中的矩阵为$A$。
+
+反证法，假设存在不变子空间爱你$N$使得
+\begin{align*}
+  V = M \oplus N
+\end{align*}
+于是，由命题4.5可知，存在一组基，使得$\mathscr{A}$在这组基下的矩阵成准对角的，设为
+\begin{align*}
+  B = \begin{bmatrix}
+        A_1 & 0   \\
+        0   & A_2
+      \end{bmatrix}
+\end{align*}
+线性变换$\mathscr{A}$在不同基下的特征多项式相同，所以
+\begin{align*}
+  |\lambda E - B|
+   & = |\lambda E - A_1| |\lambda E - A_2| \\
+   & = (\lambda - \lambda_0)^n
+\end{align*}
+显然，$\lambda_0$是$(\lambda - \lambda_0)^n = 0$的$n$重根，
+所以，也是$|\lambda E - A_1| = 0, |\lambda E - A_2| = 0$的根。
+
+综上，$\lambda_0$是$\mathscr{A}|_M, \mathscr{A}|_N$上的特征值，
+于是在不变子空间$M,N$中最有各一个特征向量$\alpha_m, \alpha_n$，
+又因为$M, N$是直和，所以$\alpha_m, \alpha_n$线性无关。
+于是在$\mathscr{A}$中，我们有
+\begin{align*}
+  \mathscr{A} \alpha_m = \lambda_0 \alpha_m \\
+  \mathscr{A} \alpha_n = \lambda_0 \alpha_n
+\end{align*}
+即线性变换$\mathscr{A}$的属于特征值$\lambda_0$的特性子空间最少是二维的。
+
+而$\lambda_0E - A$的秩，显然是$n - 1$，所以$(\lambda_0E - A)x = 0$的解空间的维数是1，
+即线性变换$\mathscr{A}$的属于特征值$\lambda_0$的特性子空间是1维的，
+出现矛盾，假设不成立，命题得证。
+
+\section*{17}
+
+反证法，假设$\mathscr{A}$存在非平凡不变子空间$M$，
+显然这个平凡子空间是1维的。
+
+设$\eta_1$是$M$的一组基，于是
+\begin{align*}
+  \mathscr{A} \eta_1 \in M
+\end{align*}
+于是，$\mathscr{A} \eta_1$可以表示成
+\begin{align*}
+  \mathscr{A} \eta_1 = \lambda_0 \eta_1 \ (\lambda_0 \in \mathbb{R})
+\end{align*}
+所以，$\mathscr{A}$有特征值$\lambda_0$，且$\eta_1$是特征向量。
+
+$A$的特征多项式为
+\begin{align*}
+  |\lambda E - A| = \lambda^2 - 2cos \theta \lambda + 1
+\end{align*}
+由判别式$\Delta = 4 cos^2 \theta - 4 < 0 (\theta \neq k \pi)$可知
+\begin{align*}
+  \lambda^2 - 2cos \theta \lambda + 1 = 0
+\end{align*}
+没有实数解，所以$\mathscr{A}$没有特征值，
+出现矛盾，假设不成立，命题得证。
+
+\section*{19}
+
+设$\mathscr{A}$在某组基下的矩阵为$A$，
+其特征多项式
+\begin{align*}
+  f(\lambda) = |\lambda E - A| = 0
+\end{align*}
+(i)有实数解，即$\mathscr{A}$有特征子空间，
+在该特征子空间任取一组基中去一个向量$\epsilon$，
+$L(\epsilon)$既是一个不变子空间。
+
+(ii)没有实数解，此时需要把实数域的线性空间，扩展到复数域。
+
+感觉超纲了啊
+% 这里插入一个复化空间的定义:
+% \begin{zremark}
+%   设$V$是实数域上的线性空间，它的复化定义为：
+%   \begin{align*}
+%     V_{\mathbb{C}}
+%   \end{align*}
+% \end{zremark}
+% 那么$f(\lambda) = 0$有复数根。
+% 考察其中任意特征值$\lambda_0$的特征向量$v$。
+
+\section*{20}
+
+任意$\alpha \in V_{\lambda}$，因为
+\begin{align*}
+  \mathscr{A} \mathscr{B} \alpha
+   & = \mathscr{B} \mathscr{A} \alpha \\
+   & = \mathscr{B} \lambda \alpha     \\
+   & = \lambda \mathscr{B} \alpha
+\end{align*}
+所以
+于是要证明
+\begin{align*}
+  \mathscr{B} \alpha \in V_{\lambda}
+\end{align*}
+
+\section*{21}
+
+因为$\mathscr{A}$的矩阵可对角化，那么对$\mathscr{A}$全部互不相等的特征值
+$\lambda_1, \lambda_2, \cdots, \lambda_k$，有
+\begin{align*}
+  V = V_{\lambda_1} \oplus V_{\lambda_2} \oplus \cdots \oplus V_{\lambda_k}
+\end{align*}
+因为$\mathscr{A} \mathscr{B} = \mathscr{B} \mathscr{A}$，有习题20可知
+$V_{\lambda_1}, V_{\lambda_2}, \cdots , V_{\lambda_k}$都是$\mathscr{B}$的不变子空间。
+
+因为$\mathscr{B}$的矩阵可对角化，$V_{\lambda_i} (1 \leq i \leq k)$是$\mathscr{B}$的不变子空间，
+于是由命题4.6可知$\mathscr{B}|_{V_{\lambda_i}}$可对角化，
+即$V_{\lambda_i}$中存在一组基$\epsilon_{i_1},\epsilon_{i_2}, \cdots, \epsilon_{i_r}$，
+$\mathscr{B}|_{V_{\lambda_i}}$在这组基下的矩阵是对角矩阵，设为
+\begin{align*}
+  B_i = \begin{bmatrix}
+          \lambda_{i_1} & 0             & \cdots & 0             \\
+          0             & \lambda_{i_2} & \cdots & 0             \\
+          \vdots        & \vdots        & \ddots & \vdots        \\
+          0             & 0             & \cdots & \lambda_{i_r}
+        \end{bmatrix}
+\end{align*}
+因为$\epsilon_{i_1},\epsilon_{i_2}, \cdots, \epsilon_{i_r} \in V_{\lambda_i}$，所以
+$\mathscr{A}|_{V_{\lambda_i}}$在这组基下的矩阵是对角矩阵为
+\begin{align*}
+  B_i = \begin{bmatrix}
+          \lambda_{i} & 0           & \cdots & 0           \\
+          0           & \lambda_{i} & \cdots & 0           \\
+          \vdots      & \vdots      & \ddots & \vdots      \\
+          0           & 0           & \cdots & \lambda_{i}
+        \end{bmatrix}
+\end{align*}
+综上，我们得到一组基，$\mathscr{A}, \mathscr{B}$在该组基下的矩阵同时成对角形。
+
+\section*{22}
+
+$\mathscr{A}$的矩阵可对角化，即存在一组基$\epsilon_1, \epsilon_2, \cdots, \epsilon_n$，使得
+\begin{align*}
+  \mathscr{A} \epsilon_i = \lambda_i \epsilon_i (1 \leq i \leq n)
+\end{align*}
+
+设$M$是$\mathscr{A}$中不变子空间，那么由命题4.6可知，$\mathscr{A}|_M$的矩阵可对角化，
+不妨设$\eta_1, \eta_2, \cdots, \eta_r$是$M$的一组基，使得
+\begin{align*}
+  \mathscr{A}|_M \eta_i = \lambda'_i \eta_i (1 \leq i \leq r)
+\end{align*}
+利用替换定理，用$\eta_1, \eta_2, \cdots, \eta_r$替换掉
+$\epsilon_1, \epsilon_2, \cdots, \epsilon_n$中$r$个向量，
+得到的一组新的基$\eta_1, \eta_2, \cdots, \eta_r, \epsilon_{i_1}, \epsilon_{i_2}, \cdots, \epsilon_{i_{n - r}}$，
+令
+\begin{align*}
+  N = L(\epsilon_{i_1}, \epsilon_{i_2}, \cdots, \epsilon_{i_{n - r}})
+\end{align*}
+因为这些$\epsilon_{i_j}$本身是$\mathscr{A}$的特征向量，所以
+\begin{align*}
+  \mathscr{A} \epsilon_{i_j} = \lambda_{i_j} \epsilon_{i_j} \in N
+\end{align*}
+所以，$N$是$\mathscr{A}$的不变子空间。又显然，
+\begin{align*}
+  V = M \oplus N
+\end{align*}
+命题得证。
+
+\section*{23}
+
+对$V$的维数$n$进行归纳。
+
+$n = 1$时，此时线性变换$\mathscr{A}$矩阵可对角化是平凡的。
+
+归纳假设维数$< n$时，$\mathscr{A}$矩阵可对角化。
+
+$V$的维数时$n$时，由$V$是复数域上的线性空间可知，
+线性变换$\mathscr{A}$的特征多项式一定有一个复数解$\lambda_0$，
+属于特征值$\lambda_0$的特征子空间设为$V_{\lambda_0}$。
+
+因为特征子空间$V_{\lambda_0}$是$\mathscr{A}$的不变子空间，由题设可知存在$\mathscr{A}$
+的不变子空间$N$，使得
+\begin{align*}
+  V = V_{\lambda_0} \oplus N
+\end{align*}
+因为$dim V = dim V_{\lambda_0} + dim N$，
+所以$dim N < n$，由归纳假设可知，
+$\mathscr{A}|_N$的矩阵可对角化，设$\mathscr{A}|_N$在
+基$\epsilon_{i_1}, \epsilon_{i_2}, \cdots, \epsilon_{i_k}$下的矩阵是对角矩阵
+$B$。
+另外，取$V_{\lambda_0}$的基为$\epsilon_1, \epsilon_2, \cdots, \epsilon_r$，
+两组基合并，得到$V$的一组基。
+综上，在这组基下，我们得到一个$\mathscr{A}$的对角矩阵：
+\begin{align*}
+  \sigma(\mathscr{A}) = \begin{bmatrix}
+                          \lambda_0 E &   \\
+                                      & B
+                        \end{bmatrix}
+\end{align*}
+归纳完成，命题成立。
+
+\section*{24}
 
 
 \end{document}

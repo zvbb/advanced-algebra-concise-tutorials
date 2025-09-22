@@ -92,6 +92,47 @@
 \end{itemize}
 
 \begin{zremark}
+  $M$是线性变换$\mathscr{A}$的不变子空间，
+  $\alpha \in M$是$\mathscr{A}|_M$下属于特征值$\lambda$的特征向量，
+  那么$\alpha$也是$\mathscr{A}$下属于特征值$\lambda$的特征向量。
+\end{zremark}
+
+\textbf{证明：}
+
+$\alpha$是$\mathscr{A}|_M$下的特征向量，即
+\begin{align*}
+  \mathscr{A}|_M \alpha = \lambda \alpha
+\end{align*}
+因为$M$是不变子空间，所以
+\begin{align*}
+  \mathscr{A} \alpha = \lambda \alpha 
+\end{align*}
+由特征向量的定义可知，
+\begin{align*}
+  \alpha \in V_{\lambda}
+\end{align*}
+
+\begin{zremark}
+  如果$M$是线性变换$\mathscr{A}$的一维不变子空间，那么$M$是特征子空间的子集。
+\end{zremark}
+
+\textbf{证明：}
+
+设$\epsilon_1$是$M$的基。
+于是
+\begin{align*}
+  \mathscr{A} \epsilon_1 \in M
+\end{align*}
+所以，存在标量$\lambda$，使得
+\begin{align*}
+  \mathscr{A} \epsilon_1 = \lambda \epsilon_1
+\end{align*}
+于是可得$\lambda$是特征值，$\epsilon_1$是特征向量。我们有
+\begin{align*}
+  M \subseteq V_\lambda
+\end{align*}
+
+\begin{zremark}
   例4.4 的另一种证明方式。
 \end{zremark}
 
