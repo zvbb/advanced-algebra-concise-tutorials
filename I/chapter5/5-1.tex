@@ -285,5 +285,211 @@ $f(\alpha, \beta) \not \equiv 0$，于是存在$d = f(\epsilon_1, \epsilon_2) \n
 
 归纳完成。
 
+\section*{18}
+
+\begin{itemize}
+  \item (1) $L(M), R(M)$是V的子空间；
+
+        略
+
+  \item (2) $dim L(M) = dim R(M) = n - dim$；
+
+        $L(M)$与$R(M)$是对称的，我们以$R(M)$为例。
+
+        取$M$的一组基$\epsilon_1, \epsilon_2, \cdots, \epsilon_r$，并扩充成$V$的一组基
+        $\epsilon_1, \epsilon_2, \cdots, \epsilon_n$。
+        设$f(\alpha, \beta)$在这组基下的矩阵为$A$，由题设可知$A$是满秩矩阵。
+
+        考虑$R(M)$的定义，$\forall \alpha \in R(M)$
+        当且仅当$f(\epsilon_i, \alpha) = 0 \ (i = 1, 2, \cdots, r)$，
+        当且仅当
+        \begin{align*}
+          crd(\epsilon_i)^T A crd(\alpha) = 0 \\
+          e_i^T A crd(\alpha) = 0             \\
+          row_i(A)^T crd(\alpha) = 0
+        \end{align*}
+        因为$i = 1, 2, \cdots, r$，所以
+        就是$A$的前$r$行矩阵$A_r$，使得
+        \begin{align*}
+          A_r crd(\alpha) = 0
+        \end{align*}
+        因为$A$是满秩的，所以$rank(A_r) = r$，于是可得
+        $A_r x = 0$这个线性方程组的解空间是$n - r$维的，
+        因为取坐标会保证坐标与$V$中向量同构，所以$dim R(M) = n - r$，即
+        \begin{align*}
+          dim R(M) = n - r = n - dim M
+        \end{align*}
+
+  \item (3) $R(L(M)) = L(R(M)) = M$。
+
+        以$L(R(M))$为例。
+
+        (i)$M \subseteq L(R(M))$。
+
+        因为$R(M)$是子空间，所以$R(M) \neq \varnothing$，
+        所以，存在$\beta \in R(M)$，由$L(R(M))$的定义可知，
+        任意$\alpha \in M$，都有
+        \begin{align*}
+          \alpha \in L(R(M))
+        \end{align*}
+        所以，$M \subseteq L(R(M))$。
+
+        (ii)利用(2)的结论：
+        \begin{align*}
+          dim L(R(M)) = n - dim R(M) = n - (n - dim M) = dim M
+        \end{align*}
+        综上，$M = L(R(M))$。
+\end{itemize}
+
+\section*{19}
+
+\begin{itemize}
+  \item (1) $L(M + N) = L(M) \cap L(N), R(M + N) = R(M) \cap R(N)$。
+
+        以$L(M + N) = L(M) \cap L(N)$为例。
+
+        (i) $L(M + N) \subseteq L(M) \cap L(N)$；
+
+        任意$\alpha \in L(M + N)$，即$\forall \beta_1 + \beta_2 \in M + N (\beta_1 \in M, \beta_2 \in N)$，有
+        \begin{align*}
+          f(\alpha, \beta_1 + \beta_2) = 0
+        \end{align*}
+        于是，令$\beta_2 = 0$，可得$\forall \beta_1 \in M$有
+        \begin{align*}
+          f(\alpha, \beta_1) = 0
+        \end{align*}
+        即$\alpha \in L(M)$，同理可证$\alpha \in L(N)$。
+        所以$L(M + N) \subseteq L(M) \cap L(N)$。
+
+        (ii) $L(M) \cap L(N) \subseteq L(M + N)$。
+
+        $\alpha \in L(M) \cap L(N)$，即
+        $\forall \beta_1 \in M, \forall \beta_2 \in N$有
+        \begin{equation*}
+          \begin{cases*}
+            f(\alpha, \beta_1) = 0 \\
+            f(\alpha, \beta_2) = 0
+          \end{cases*}
+        \end{equation*}
+        因为$f$是双线性函数，所以
+        \begin{align*}
+          f(\alpha, \beta_1) + f(\alpha, \beta_2)
+           & = f(\alpha, \beta_1 + \beta_2) \\
+           & = 0
+        \end{align*}
+        所以，$\alpha \in L(M + N)$。
+
+        综上，$L(M + N) = L(M) \cap L(N)$。
+
+  \item (2)$f(\alpha, \beta)$满秩，则$L(M \cap N) = L(M) + L(N), R(M \cap N) = R(M) + R(N)$。
+
+        (i)任意$\alpha \in L(M) + L(N)$，设
+        \begin{align*}
+          \alpha = \alpha_M + \alpha_N
+        \end{align*}
+        于是有
+        \begin{equation*}
+          \begin{cases*}
+            f(\alpha_M, \beta_1) = 0, \ \forall \beta_1 \in M \\
+            f(\alpha_N, \beta_2) = 0, \ \forall \beta_2 \in N
+          \end{cases*}
+        \end{equation*}
+        所以对$\forall \beta \in M \cap N$，我们有$\beta \in M, \beta \in N$，
+        并由$f(\alpha, \beta)$是双线性函数，两式相加得
+        \begin{align*}
+          f(\alpha_M, \beta) + f(\alpha_N, \beta)
+           & = f(\alpha_M + \alpha_N, \beta) \\
+           & = f(\alpha, \beta)
+        \end{align*}
+        所以，$\alpha \in L(M \cap N)$，即
+        \begin{align*}
+          L(M) + L(N) \subseteq L(M \cap N)
+        \end{align*}
+
+        (ii)由习题18可知，
+        \begin{align*}
+          dim L(M \cap N) & = n - dim M \cap N \\
+        \end{align*}
+        利用维数公式和已知的等价关系
+        \begin{align*}
+          dim L (M) + L(N)
+           & = dim L(M) + dim L(N) - dim L (M) \cap L(N)                    \\
+           & = dim L(M) + dim L(N) - dim L(M + N)                           \\
+           & = n - dim M + n - dim N - (n - dim M + N)                      \\
+           & = n - dim M + n - dim N - [n - (dim M + dim N - dim M \cap N)] \\
+           & = n -  dim M \cap N
+        \end{align*}
+
+        综上，由包含关系和维数相等可知，
+        \begin{align*}
+          L(M) + L(N) = L(M \cap N)
+        \end{align*}
+\end{itemize}
+
+\section*{20}
+
+反证法，假设$f(\alpha) \not \equiv 0, g(\alpha) \not \equiv 0$，
+即存在$\alpha, \beta \in V$，使得
+\begin{align*}
+  f(\alpha) \neq 0 \\
+  g(\beta) \neq 0
+\end{align*}
+由题设，我们有
+\begin{align*}
+  f(\alpha ) g(\alpha) = 0
+\end{align*}
+所以$g(\alpha) = 0$，同理，$f(\beta) = 0$。
+
+又
+\begin{align*}
+  f(\alpha + \beta) g(\alpha + \beta)
+   & = [f(\alpha) + f(\beta)][g(\alpha) + g(\beta)]                                      \\
+   & = f(\alpha) g(\alpha) + f(\alpha) g(\beta) + f(\beta) g(\alpha) + f(\beta) g(\beta) \\
+   & = f(\alpha) g(\beta) + f(\beta) g(\alpha)                                           \\
+   & = f(\alpha) g(\beta)                                                                \\
+   & \neq 0
+\end{align*}
+与题设$f(\alpha + \beta) g(\alpha + \beta) = 0$矛盾。
+
+\section*{21}
+
+解题思路：通过一个点，确定比例常数。
+
+ (i)$g \equiv 0$，$f(\alpha, \beta) \equiv 0$，于是令
+\begin{align*}
+  \lambda = 0 \\
+  l \equiv 0
+\end{align*}
+即可完成命题要求。
+
+(ii)$g \not \equiv 0$，于是$\exists v \in V, g(v) \neq 0$，
+由题设可知
+\begin{align*}
+  f(v, \beta) = g(v) h(\beta)
+\end{align*}
+由$f$是对称双线性函数可知
+\begin{align*}
+  f(v, \beta) & = f(\beta, v)   \\
+              & = g(\beta) h(v)
+\end{align*}
+所以
+\begin{align*}
+  g(v) h(\beta) = g(\beta) h(v) \\
+  h(\beta) = \frac{h(v)}{g(v)} g(\beta)
+\end{align*}
+令
+\begin{align*}
+  \lambda & = \frac{h(v)}{g(v)} \\
+  l       & = \lambda g
+\end{align*}
+于是，
+\begin{align*}
+  f(\alpha, \beta)
+   & = g(\alpha) h(\beta)                   \\
+   & = g(\alpha) \frac{h(v)}{g(v)} g(\beta) \\
+   & = \frac{h(v)}{g(v)} g(\alpha) g(\beta) \\
+   & = \lambda g(\alpha) g(\beta)
+\end{align*}
+
 
 \end{document}
