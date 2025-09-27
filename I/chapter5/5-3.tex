@@ -233,7 +233,7 @@ $\alpha \in V$，$\alpha = u_1 \eta_1 + u_2 \eta_2 + \cdots + u_n \eta_n$时
 
 \section*{6}
 
-(i)设$f$经过可逆线性变数替换（矩阵为$C$）化作规范形，因为负惯性指数为0，所以可表示为
+ (i)设$f$经过可逆线性变数替换（矩阵为$C$）化作规范形，因为负惯性指数为0，所以可表示为
 \begin{align*}
   f(X) = g(Y) = y_1^2 + y_2^2 + \cdots + y_r^2
 \end{align*}
@@ -273,7 +273,7 @@ $\eta_1, \eta_2, \cdots, \eta_n$，使当$\alpha = y_1 \eta_1 + y_2 \eta_2 + \cd
 任意$\alpha \in M$，由(i)中的讨论可知，$\alpha \in L(\eta_{r+1}, \eta_{r+2}, \cdots, \eta_n)$，
 所以$M \subseteq L(\eta_{r+1}, \eta_{r+2}, \cdots, \eta_n)$。
 
-对任意$\alpha \in L(\eta_{r+1}, \eta_{r+2}, \cdots, \eta_n)$，有 
+对任意$\alpha \in L(\eta_{r+1}, \eta_{r+2}, \cdots, \eta_n)$，有
 \begin{align*}
   \alpha = a_{r+1} \eta_{r+1} + a_{r+2} \eta_{r+2} + \cdots + a_n \eta_n
 \end{align*}
@@ -291,5 +291,118 @@ $\eta_1, \eta_2, \cdots, \eta_n$，使当$\alpha = y_1 \eta_1 + y_2 \eta_2 + \cd
 
 \section*{7}
 
+设$Q_f$在基$\epsilon_1, \epsilon_2, \cdots, \epsilon_n$下的二次型为$f$。
+
+因为存在$Q_f(\alpha) > 0, Q_f(\beta) < 0$，所以
+二次型$f$的正惯性指数不为0， 负惯性指数不为0。
+
+设$f$的规范型为
+\begin{align*}
+  f = u_1^2 + \cdots + u_p^2 - u_{p+1}^2 - \cdots - u_{p + q}^2
+\end{align*}
+其中$p, q > 0$。这表明存在一组基$\eta_1, \eta_2, \cdots, \eta_n$，
+使当$\alpha = u_1 \eta_1 + u_2 \eta_2 + \cdots + u_n \eta_n$时
+\begin{align*}
+  Q_f(\alpha) = u_1^2 + \cdots + u_p^2 - u_{p+1}^2 - \cdots - u_{p + q}^2
+\end{align*}
+令
+\begin{align*}
+  \alpha_{ij} = \eta_i + \eta_{p + j} \ \ \ (i=1,2, \cdots, p; j = 1,2, \cdots, q) \\
+  \beta_{ij} = \eta_i - \eta_{p + j} \ \ \ (i=1,2, \cdots, p; j = 1,2, \cdots, q)
+\end{align*}
+易得以上向量组与$\eta_1, \eta_2, \cdots, \eta_{p + q}$线性等价，且都是迷向向量。
+于是可从中得到一个极大线性无关部分组，向量个数为$p + q$，设为
+\begin{align*}
+  \epsilon_1, \epsilon_2, \cdots, \epsilon_{p + q}
+\end{align*}
+另外
+\begin{align*}
+  \epsilon_{p + q + 1} = \eta_{p + q + 1} \\
+  \vdots                                  \\
+  \epsilon_n = \eta_n
+\end{align*}
+因为对任意$i > p+q$，我们有
+\begin{align*}
+  Q_f(\eta_i) = 0
+\end{align*}
+综上，V内存在一组基$\epsilon_1, \epsilon_2, \cdots, \epsilon_n$，
+使得其中每个$\epsilon_i$均为迷向向量。
+
+\section*{8}
+
+\begin{itemize}
+  \item 充分性
+
+        反证法，假设命题不成立，即存在$\alpha, \beta \in V$使得
+        \begin{align*}
+          Q_f(\alpha) < 0 \\
+          Q_f(\beta) > 0
+        \end{align*}
+        于是由习题7可知，存在一组基$\eta_1, \eta_2, \cdots, \eta_n$，每个
+        $\eta_i$均为迷向向量，即
+        \begin{align*}
+          Q_f(\eta_i) = 0
+        \end{align*}
+        于是$\eta_i \in N(f)$，
+        由于$\eta_1, \eta_2, \cdots, \eta_n$是一组基，所以$\alpha$可以被这组基表示，
+        而又假设可知
+        \begin{align*}
+          Q_f(\alpha) < 0
+        \end{align*}
+        即$\alpha \not \in N(f)$，
+        出现矛盾。
+
+  \item 必要性
+
+        习题6已证明。
+\end{itemize}
+
+\section*{9}
+
+由习题6可知：
+(1)$p = 0$时，$dim N(f) = n - q$，满足命题；\\
+(2)$q = 0$时，$dim N(f) = n - p$，满足命题；\\
+(3)$p > 0, q > 0$时，这里以$p > q$为例，$p < q$证明类似。
+
+设二次型的规范型为
+\begin{align*}
+  u_1^2 + \cdots + u_p^2 - u_{p+1}^2 - \cdots - u_{p + q}^2
+\end{align*}
+这表明存在一组基$\eta_1, \eta_2, \cdots, \eta_n$，使当$\alpha = u_1 \eta_1 + u_2 \eta_2 + \cdots + u_n \eta_n$时
+\begin{align*}
+  Q_f(\alpha) = u_1^2 + \cdots + u_p^2 - u_{p+1}^2 - \cdots - u_{p + q}^2
+\end{align*}
+令
+\begin{align*}
+  N_p = L(\eta_1, \eta_2, \cdots, \eta_p)
+\end{align*}
+显然，$N_p \cap N(f) = \{0\}$，于是我们有
+\begin{align*}
+  n & \geq dim N(f) + N_p  \\
+    & = dim N(f) + dim N_p \\
+    & = dim N(f) + p
+\end{align*}
+这表明$dim N(f) \leq n - p$。
+
+\section*{10}
+
+题设满足$\S2 $习题9-(1)的充分条件，所以
+$f$可用三角形变换化为
+\begin{align*}
+  g = \lambda_1 y_1^2 + \cdots + \lambda_2 y_2^2 + \cdots + \lambda_n y_n^2
+\end{align*}
+又由9-(2)可知
+\begin{align*}
+  \lambda_k & = \frac{D_k}{D_{k - 1}}                         \\
+            & = \frac{A \begin{Bmatrix}
+                            1 & 2 & \cdots & k \\
+                            1 & 2 & \cdots & k
+                          \end{Bmatrix}}{A \begin{Bmatrix}
+                                             1 & 2 & \cdots & k-1 \\
+                                             1 & 2 & \cdots & k-1
+                                           \end{Bmatrix}} \\
+            & > 0
+\end{align*}
+于是，命题显然成立。
 
 \end{document}
