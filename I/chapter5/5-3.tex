@@ -1,0 +1,295 @@
+\documentclass{article}
+\usepackage{mathtools} 
+\usepackage{fontspec}
+\usepackage[UTF8]{ctex}
+\usepackage{amsthm}
+\usepackage{mdframed}
+\usepackage{xcolor}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{hyperref}
+
+
+% 定义新的带灰色背景的说明环境 zremark
+\newmdtheoremenv[
+  backgroundcolor=gray!10,
+  % 边框与背景一致，边框线会消失
+  linecolor=gray!10
+]{zremark}{注释}
+
+% 通用矩阵命令: \flexmatrix{矩阵名}{元素符号}{行数}{列数}
+\newcommand{\flexmatrix}[4]{
+  \[
+  #1 = \begin{pmatrix}
+    #2_{11}     & #2_{12}     & \cdots & #2_{1#4}   \\
+    #2_{21}     & #2_{22}     & \cdots & #2_{2#4}   \\
+    \vdots      & \vdots      & \ddots & \vdots     \\
+    #2_{#31}    & #2_{#32}    & \cdots & #2_{#3#4}
+  \end{pmatrix}
+  \]
+}
+
+% 简化版命令（默认矩阵名为A，元素符号为a）: \quickmatrix{行数}{列数}
+\newcommand{\quickmatrix}[2]{\flexmatrix{A}{a}{#1}{#2}}
+
+
+\begin{document}
+\title{5.3}
+\author{张志聪}
+\maketitle
+
+\section*{3}
+
+设二次型为$f(x_1, x_2, \cdots, x_n) = \sum_{i=1}^n \sum_{j=1}^n a_{ij}x_ix_j$。
+
+\begin{itemize}
+  \item 必要性
+
+        设
+        \begin{align*}
+          f = (a_1 x_1 + a_2 x_2 + \cdots + a_n x_n) (b_1 x_1 + b_2 x_2 + \cdots + b_n x_n)
+        \end{align*}
+
+        接下来要做可逆的线性变数替换，而线性变数替换其实就是换基操作，
+        所以我们要讨论两个一次多项式的线性关系。
+
+        (i) $a_1 x_1 + a_2 x_2 + \cdots + a_n x_n, b_1 x_1 + b_2 x_2 + \cdots + b_n x_n$
+        线性相关，即存在$k$使得
+        \begin{align*}
+          a_1 x_1 + a_2 x_2 + \cdots + a_n x_n = k(b_1 x_1 + b_2 x_2 + \cdots + b_n x_n)
+        \end{align*}
+        于是存在可逆矩阵$C$使得
+        \begin{align*}
+          Y = C X
+        \end{align*}
+        其中$C$的第一行为$b_1, b_2, \cdots, b_n$，即
+        \begin{align*}
+          y_1 = b_1 x_1 + b_2 x_2 + \cdots + b_n x_n
+        \end{align*}
+        （注意：这里的$y_2, y_3, \cdots, y_n$只是没有列出，因为它们在$f$中没有出现，具体的值不重要。）\\
+        $\therefore f = k y_1^2$\\
+        由规范性的性质可知（更严格的说，这里需要再进行一次可逆线性变数替换），$f$的秩为1。
+
+        (ii) $a_1 x_1 + a_2 x_2 + \cdots + a_n x_n, b_1 x_1 + b_2 x_2 + \cdots + b_n x_n$
+        线性无关。
+        于是存在可逆矩阵$C$使得
+        \begin{align*}
+          Y = C X
+        \end{align*}
+        其中$C$的第一行为$a_1, a_2, \cdots, a_n$，第二行为$b_1, b_2, \cdots, b_n$，即
+        \begin{align*}
+          y_1 = a_1 x_1 + a_2 x_2 + \cdots + a_n x_n \\
+          y_2 = b_1 x_1 + b_2 x_2 + \cdots + b_n x_n
+        \end{align*}
+        $\therefore f = y_1 y_2$。\\
+        作可逆线性变数替换，
+        \begin{align*}
+          y_1 & = z_1 + z_2 \\
+          y_2 & = z_1 - z_2 \\
+          y_3 & = z_3       \\
+              & \vdots      \\
+          y_n & = z_n
+        \end{align*}
+        $\therefore f = z_1^2 - z_2^2$\\
+        $\therefore f$的秩为2，符号差为0
+
+  \item 充分性
+
+        (i)$f$的秩为2，符号差为0，于是$f$可作可逆线性变数替换
+        \begin{align*}
+          Y = C X
+        \end{align*}
+        使得
+        \begin{align*}
+          f = y_1^2 - y_2^2
+        \end{align*}
+        （或符号相反）
+
+        设$C$的第一行为$a_1, a_2, \cdots, a_n$，第二行为$b_1, b_2, \cdots, b_n$，即
+        \begin{align*}
+          y_1 = a_1 x_1 + a_2 x_2 + \cdots + a_n x_n \\
+          y_2 = b_1 x_1 + b_2 x_2 + \cdots + b_n x_n
+        \end{align*}
+        于是可得
+        \begin{align*}
+          f & = (a_1 x_1 + a_2 x_2 + \cdots + a_n x_n)^2 - (b_1 x_1 + b_2 x_2 + \cdots + b_n x_n)^2                                         \\
+            & = [(a_1 x_1 + \cdots + a_n x_n) + (b_1 x_1 + \cdots + b_n x_n)] [(a_1 x_1 + \cdots + a_n x_n) - (b_1 x_1 + \cdots + b_n x_n)]
+        \end{align*}
+        命题得证。
+
+        (ii) $f$的秩为1，同理可证。
+
+\end{itemize}
+
+\section*{4}
+设$f$通过可逆线性变数替换（矩阵为$C$）
+\begin{align*}
+  X = C Y
+\end{align*}
+把$f$化为规范形。
+
+由题设可知，$f$的正负惯性指数都不为1。
+反证法，假设$f$的正惯性指数为0，秩为$r$，
+那么$f$通过可逆线性变数替换可得
+\begin{align*}
+  f = - u_1^2 - u_2^2 - \cdots - u_r^2
+\end{align*}
+这表明在$\mathbb{R}$上$n$维线性空间$V$内存在一组基$\eta_1, \eta_2, \cdots, \eta_n$，对任意
+$\alpha \in V$，$\alpha = u_1 \eta_1 + u_2 \eta_2 + \cdots + u_n \eta_n$时
+\begin{align*}
+  Q_f(\alpha) = - u_1^2 - u_2^2 - \cdots - u_r^2 < 0
+\end{align*}
+与题设矛盾，故$f$的正惯性指数不为0。同理可证，$f$的正负惯性指数都不为0。
+
+于是可设$f$的正惯性指数不为$p > 0$，负关系指数为$r - p > 0$，即
+\begin{align*}
+  f = u_1^2 + u_2^2 + \cdots + u_p^2 - u_{p+1}^2 - u_{p+2}^2 - \cdots - u_r^2
+\end{align*}
+设$Y_0 = (1, 0, 0, \cdots, 1, 0, \cdots, 0)$（第1个和第$p+1$个分量为1，其余为0），
+此时
+\begin{align*}
+  f(Y_0) = 1 - 1 = 0
+\end{align*}
+于是，我们有
+\begin{align*}
+  f = f(CY_0) = (CY_0)^T A (CY_0) = 0
+\end{align*}
+
+\section*{5}
+
+设$f$经过可逆线性变数替换（矩阵为$C$）
+\begin{align*}
+  Y = C X
+\end{align*}
+化作规范形，
+\begin{align*}
+  f(X) = g(Y) = y_1^2 + y_2^2 + \cdots + y_t^2 - y_{t+1}^2 - \cdots - y_{t+s}^2
+\end{align*}
+
+(i)假设$s > q$，考虑关于$x_1, x_2, \cdots, x_n$的方程组
+\begin{equation*}
+  \begin{cases}
+    y_1 = row_{1}(C) X = 0 \\
+    y_2 = row_{2}(C) X = 0 \\
+    \vdots                 \\
+    y_t = row_{t}(C) X = 0 \\
+    l_{p+1} = 0            \\
+    l_{p+2} = 0            \\
+    \vdots                 \\
+    l_{p+q} = 0
+  \end{cases}
+\end{equation*}
+
+以上齐次线性方程组方程的个数为$t + q < t + s < n$，所以以上齐次线性方程组存在非零解，
+设为\begin{align*}
+  X_0 = \begin{bmatrix}
+          k_1    \\
+          k_2    \\
+          \vdots \\
+          k_n
+        \end{bmatrix} \\
+  Y_0 = C X_0
+\end{align*}
+由于$C$是可逆的，且$X_0 \neq 0$，所以$Y_0 \neq 0$，即存在$y_i \neq 0 (i > t)$，
+于是我们有
+\begin{align*}
+  f(X_0) \geq 0 \\
+  g(Y_0) < 0
+\end{align*}
+存在矛盾，故$s \leq q$。
+
+(ii)假设$t > p$，考虑关于$x_1, x_2, \cdots, x_n$的方程组
+\begin{equation*}
+  \begin{cases}
+    y_{t+1} = row_{t + 1}(C) X = 0 \\
+    y_{t+2} = row_{t + 2}(C) X = 0 \\
+    \vdots                         \\
+    y_{t+s} = row_{t + s}(C) X = 0 \\
+    l_{1} = 0                      \\
+    l_{2} = 0                      \\
+    \vdots                         \\
+    l_{p} = 0
+  \end{cases}
+\end{equation*}
+
+以上齐次线性方程组方程的个数为$s + p < s + t < n$，
+所以以上齐次线性方程组存在非零解，
+设为\begin{align*}
+  X_0 = \begin{bmatrix}
+          k_1    \\
+          k_2    \\
+          \vdots \\
+          k_n
+        \end{bmatrix} \\
+  Y_0 = C X_0
+\end{align*}
+由于$C$是可逆的，且$X_0 \neq 0$，所以$Y_0 \neq 0$，即存在$y_i \neq 0 (i < t+1)$，
+于是我们有
+\begin{align*}
+  f(X_0) \leq 0 \\
+  g(Y_0) > 0
+\end{align*}
+存在矛盾，故$t \leq p$。
+
+\section*{6}
+
+(i)设$f$经过可逆线性变数替换（矩阵为$C$）化作规范形，因为负惯性指数为0，所以可表示为
+\begin{align*}
+  f(X) = g(Y) = y_1^2 + y_2^2 + \cdots + y_r^2
+\end{align*}
+其中$r$是$f$的秩。
+这表明在$\mathbb{R}$上$n$维线性空间V内存在一组基
+$\eta_1, \eta_2, \cdots, \eta_n$，使当$\alpha = y_1 \eta_1 + y_2 \eta_2 + \cdots + y_n \eta_n$时
+\begin{align*}
+  Q_f(\alpha) = y_1^2 + y_2^2 + \cdots + y_r^2
+\end{align*}
+
+任意$\alpha, \beta \in M$有$f(\alpha, \alpha) = 0$，
+设
+\begin{align*}
+  \alpha = a_1 \eta_1 + a_2 \eta_2 + \cdots + a_n \eta_n \\
+  \beta = b_1 \eta_1 + b_2 \eta_2 + \cdots + b_n \eta_n
+\end{align*}
+则有
+\begin{align*}
+  f(\alpha, \alpha) = a_1^2 + a_2^2 + \cdots + a_r^2 = 0 \\
+  f(\beta, \beta) = b_1^2 + b_2^2 + \cdots + b_r^2 = 0
+\end{align*}
+可得
+\begin{align*}
+  a_1 = a_2 = \cdots = a_r = 0 \\
+  b_1 = b_2 = \cdots = b_r = 0
+\end{align*}
+于是
+\begin{align*}
+  f(k\alpha + l\beta)
+   & = (k a_1 + l b_1)^2 + (k a_2 + l b_2)^2 + \cdots + (k a_r + l b_r)^2 \\
+   & = 0
+\end{align*}
+所以$k \alpha + l \beta \in M$，可得$M$是V的子空间。
+
+(ii) 下面通过证明$M = L(\eta_{r+1}, \eta_{r+2}, \cdots, \eta_n)$确定$dim M$。
+
+任意$\alpha \in M$，由(i)中的讨论可知，$\alpha \in L(\eta_{r+1}, \eta_{r+2}, \cdots, \eta_n)$，
+所以$M \subseteq L(\eta_{r+1}, \eta_{r+2}, \cdots, \eta_n)$。
+
+对任意$\alpha \in L(\eta_{r+1}, \eta_{r+2}, \cdots, \eta_n)$，有 
+\begin{align*}
+  \alpha = a_{r+1} \eta_{r+1} + a_{r+2} \eta_{r+2} + \cdots + a_n \eta_n
+\end{align*}
+于是
+\begin{align*}
+  f(\alpha) = 0
+\end{align*}
+可得$L(\eta_{r+1}, \eta_{r+2}, \cdots, \eta_n) \subseteq M$。
+
+综上$M = L(\eta_{r+1}, \eta_{r+2}, \cdots, \eta_n)$，
+所以
+\begin{align*}
+  dim M = dim L(\eta_{r+1}, \eta_{r+2}, \cdots, \eta_n) = n - r
+\end{align*}
+
+\section*{7}
+
+
+\end{document}

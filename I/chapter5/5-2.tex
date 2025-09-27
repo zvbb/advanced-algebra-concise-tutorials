@@ -1,0 +1,204 @@
+\documentclass{article}
+\usepackage{mathtools} 
+\usepackage{fontspec}
+\usepackage[UTF8]{ctex}
+\usepackage{amsthm}
+\usepackage{mdframed}
+\usepackage{xcolor}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{hyperref}
+
+
+% 定义新的带灰色背景的说明环境 zremark
+\newmdtheoremenv[
+  backgroundcolor=gray!10,
+  % 边框与背景一致，边框线会消失
+  linecolor=gray!10
+]{zremark}{注释}
+
+% 通用矩阵命令: \flexmatrix{矩阵名}{元素符号}{行数}{列数}
+\newcommand{\flexmatrix}[4]{
+  \[
+  #1 = \begin{pmatrix}
+    #2_{11}     & #2_{12}     & \cdots & #2_{1#4}   \\
+    #2_{21}     & #2_{22}     & \cdots & #2_{2#4}   \\
+    \vdots      & \vdots      & \ddots & \vdots     \\
+    #2_{#31}    & #2_{#32}    & \cdots & #2_{#3#4}
+  \end{pmatrix}
+  \]
+}
+
+% 简化版命令（默认矩阵名为A，元素符号为a）: \quickmatrix{行数}{列数}
+\newcommand{\quickmatrix}[2]{\flexmatrix{A}{a}{#1}{#2}}
+
+
+\begin{document}
+\title{5.2}
+\author{张志聪}
+\maketitle
+
+\section*{6}
+
+设$V$对称双线性函数$f(\alpha, \beta)$在基$\epsilon_1, \epsilon_2, \cdots, \epsilon_n$下的矩阵为
+$A$，由定理1.1可知，$V$内存在一组基，使$f(\alpha, \beta)$在这组基下的矩阵成对角型，设对角矩阵为$D$，
+因为$A,D$是同一个双线性函数$f(\alpha, \beta)$在两组基下的矩阵，所以存在可逆的n阶方阵$T$，使得
+\begin{align*}
+  A = T^{T} D T
+\end{align*}
+由题设可知$A$的秩为$r$，而$T$是可逆的矩阵，所以$D$的秩也是$r$，
+于是可得$D$在主对角线上又$r$个非零元素，为了讨论的方便，不妨设主对角线中前$r$个元素不为零，
+于是写成单个非零对角元的和：
+\begin{align*}
+  D = \sum \limits_{j = 1}^r d_j E_{jj}
+\end{align*}
+于是
+\begin{align*}
+  A & = T^{T} D T                                 \\
+    & = T^T (\sum \limits_{j = 1}^r d_j E_{jj}) T \\
+    & = \sum \limits_{j = 1}^r T^T (d_j E_{jj}) T
+\end{align*}
+显然，$M_j = d_j E_{jj}$是秩等于1的对角矩阵，且有
+\begin{align*}
+  (T^T M_j T)^T
+   & = T^T M_j^T T \\
+   & = T^T M_j T
+\end{align*}
+所以$T^T M_j T$是对称矩阵。
+
+综上可得：秩等于$r$的对称矩阵可以表成$r$个秩等于1的对称矩阵之和。
+
+\section*{7}
+
+设二次型
+\begin{align*}
+  g = y_1^2 + y_2^2 + \cdots + y_n^2
+\end{align*}
+其系数矩阵为
+\begin{align*}
+  E_n = \begin{bmatrix}
+          1                 \\
+           & 1              \\
+           &   & \ddots     \\
+           &   &        & 1
+        \end{bmatrix}
+\end{align*}
+于是$g$写成矩阵形式为
+\begin{align*}
+  g = Y^T E_n Y
+\end{align*}
+令
+\begin{align*}
+  X = \begin{bmatrix}
+        x_1    \\
+        x_2    \\
+        \vdots \\
+        x_n
+      \end{bmatrix},
+  Y = \begin{bmatrix}
+        y_1    \\
+        y_2    \\
+        \vdots \\
+        y_n
+      \end{bmatrix},
+\end{align*}
+于是，有
+\begin{align*}
+  Y = A X
+\end{align*}
+则代入得
+\begin{align*}
+  g & = Y^T E_n Y         \\
+    & = (A X)^T E_n (A X) \\
+    & = X^T A^T E_n A X   \\
+    & = X^T (A^T A) X     \\
+    & = f
+\end{align*}
+于是可得$A^T A$是$f$的秩，又因为
+\begin{align*}
+  rank(A) = rank(A^T A)
+\end{align*}
+命题得证。
+
+\section*{9}
+
+\begin{itemize}
+  \item (1)
+
+        \begin{itemize}
+          \item 必要性
+
+                $g$写成矩阵形式为
+                \begin{align*}
+                  g = Y^T D Y
+                \end{align*}
+                其中
+                \begin{align*}
+                  D = \begin{bmatrix}
+                        \lambda_1                                          \\
+                         & \lambda_2                                       \\
+                         &           & \ddots                              \\
+                         &           &        & \lambda_r                  \\
+                         &           &        &           & 0              \\
+                         &           &        &           &   & \ddots     \\
+                         &           &        &           &   &        & 0 \\
+                      \end{bmatrix}
+                \end{align*}
+
+                由习题8可知
+                \begin{align*}
+                  D_k = A \begin{Bmatrix}
+                            1 & 2 & \cdots & k \\
+                            1 & 2 & \cdots & k
+                          \end{Bmatrix}
+                   & = D \begin{Bmatrix}
+                           1 & 2 & \cdots & k \\
+                           1 & 2 & \cdots & k
+                         \end{Bmatrix}                 \\
+                   & = \lambda_1 \lambda_2 \cdots \lambda_k
+                  \ \ \ (k = 1, 2, \cdots, r)
+                \end{align*}
+                又因为$\lambda_i \neq 0$，所以
+                \begin{align*}
+                  D_k \neq 0
+                \end{align*}
+
+                进而可知
+                \begin{align*}
+                  A \begin{Bmatrix}
+                      1 & 2 & \cdots & k \\
+                      1 & 2 & \cdots & k
+                    \end{Bmatrix}
+                  = 0 \ \ \ (k = r + 1, r + 2, \cdots, n)
+                \end{align*}
+
+          \item 充分性
+
+                由题设可知$A$的前$r$列（行）线性无关，
+                由定理2.1可知，存在K上可逆防止T，使在线性变数替换$X = TY$下二次型$f$变为
+                如下标准型
+                \begin{align*}
+                  d_1 y_1^2 + \cdots + d_r y_r^2 + \cdots + d_n y_n^2
+                \end{align*}
+
+                todo 
+
+
+        \end{itemize}
+  \item (2)
+
+        利用(1)
+        \begin{align*}
+          \lambda_k & = \frac{D \begin{Bmatrix}
+                                    1 & 2 & \cdots & k \\
+                                    1 & 2 & \cdots & k
+                                  \end{Bmatrix}}{D \begin{Bmatrix}
+                                                     1 & 2 & \cdots & k-1 \\
+                                                     1 & 2 & \cdots & k-1
+                                                   \end{Bmatrix}} \\
+                    & =\frac{D_k}{D_{k-1}}
+        \end{align*}
+\end{itemize}
+
+
+\end{document}

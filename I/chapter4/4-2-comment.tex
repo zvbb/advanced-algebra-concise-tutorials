@@ -157,6 +157,56 @@
 类似地，可证$A \oplus B \oplus C = A \oplus (B \oplus C)$。
 
 \begin{zremark}
+  有限多个真子空间$V_i (i = 1, 2, 3, \cdots, n)$做并，无法得到整个线性空间$V$。
+\end{zremark}
+
+\textbf{证明：}
+
+对$n$进行归纳。
+
+$n = 1$时，因为$V_1 \subset V$，命题显然成立。
+
+归纳假设$n = m - 1$时，命题成立。
+
+$n = m$时，由归纳假设可知，存在$\alpha \in V$使得
+\begin{align*}
+  \alpha \not \in V_i \ (i = 1, 2, \cdots, m - 1)
+\end{align*}
+因为$V_m \subset V$，所以存在$\beta \not \in V_m$。\\
+所以$\alpha, \beta$不能同时属于$V_i(i = 1, 2, \cdots, m)$。
+进而$\alpha + k_i\beta, \alpha + k \beta $不会同时属于$V_i(i = 1, 2, \cdots, m)$，
+如果
+\begin{align*}
+  \alpha + k_i\beta \in V_i \\
+  \alpha + k \beta \in V_i
+\end{align*}
+那么
+\begin{align*}
+  (\alpha + k \beta) - (\alpha + k_i\beta)
+   & = (k - k_i)\beta
+\end{align*}
+所以$\beta \in V_i$。\\
+又由
+\begin{align*}
+  \alpha + \beta - \beta = \alpha
+\end{align*}
+可知$\alpha \in V_i$，出现矛盾。\\
+因此若 $\alpha + k_i \beta \in V_i$，则对任意 $k \neq k_i$，必有 $\alpha + k\beta \notin V_i$。
+
+由于数域是无限的，$k_i$ 至多只有 $m$ 个不同的值，我们可以从数域中选取一个
+\[
+  k \notin \{k_1, k_2, \cdots, k_m\},
+\]
+从而保证 $\alpha + k \beta \notin V_i \ (i=1,2,\cdots,m)$。
+
+故
+\[
+  V_1 \cup V_2 \cup \cdots \cup V_m \neq V。
+\]
+
+归纳完成，命题得证。
+
+\begin{zremark}
   向量的模M同余和数的模$m$同余的类比。
 \end{zremark}
 
@@ -217,8 +267,5 @@ $\alpha$的模$M$同余类$\overline{\alpha}$有:
 
 一个线性空间$V$，它的补空间不唯一，
 商空间是唯一的。
-
-
-
 
 \end{document}

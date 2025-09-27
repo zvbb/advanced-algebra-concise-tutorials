@@ -117,5 +117,29 @@
   A^{-1} = Q_1 Q_2 \cdots Q_t Y^{-1} P_s \cdots P_2P_1
 \end{align*}
 
+\begin{zremark}
+  对任意矩阵$A$，我们有
+  \begin{align*}
+    rank(A) = rank(A^T A)
+  \end{align*}
+\end{zremark}
+
+\textbf{证明：}
+
+通过两者的基础解系相同来证明。
+
+如果$Ax = 0$，则$A^T A x = 0$；
+
+如果$A^T A x = 0$，则
+\begin{align*}
+  0 = x^T A^T A x = (A x)^T (A x) \\
+\end{align*}
+所以$Ax = 0$（可设$Ax = \alpha$，于是$\alpha^T \alpha = 0$，即$\alpha = 0$）。
+
+由两者的基础解系相同，可知
+\begin{align*}
+  rank(A) = rank(A^T A)
+\end{align*}
+（2-5-comment.tex中有证明）
 
 \end{document}
