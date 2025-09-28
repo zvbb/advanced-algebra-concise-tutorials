@@ -1,0 +1,360 @@
+\documentclass{article}
+\usepackage{mathtools} 
+\usepackage{fontspec}
+\usepackage[UTF8]{ctex}
+\usepackage{amsthm}
+\usepackage{mdframed}
+\usepackage{xcolor}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{hyperref}
+
+
+% 定义新的带灰色背景的说明环境 zremark
+\newmdtheoremenv[
+  backgroundcolor=gray!10,
+  % 边框与背景一致，边框线会消失
+  linecolor=gray!10
+]{zremark}{注释}
+
+% 通用矩阵命令: \flexmatrix{矩阵名}{元素符号}{行数}{列数}
+\newcommand{\flexmatrix}[4]{
+  \[
+  #1 = \begin{pmatrix}
+    #2_{11}     & #2_{12}     & \cdots & #2_{1#4}   \\
+    #2_{21}     & #2_{22}     & \cdots & #2_{2#4}   \\
+    \vdots      & \vdots      & \ddots & \vdots     \\
+    #2_{#31}    & #2_{#32}    & \cdots & #2_{#3#4}
+  \end{pmatrix}
+  \]
+}
+
+% 简化版命令（默认矩阵名为A，元素符号为a）: \quickmatrix{行数}{列数}
+\newcommand{\quickmatrix}[2]{\flexmatrix{A}{a}{#1}{#2}}
+
+
+\begin{document}
+\title{5.4}
+\author{张志聪}
+\maketitle
+
+\section*{3}
+
+解题思路：通过调整$C^T A C = B$，把主子式改为顺序主子式。
+
+设$A$的$r$阶主子式为
+\begin{align*}
+  A
+  \begin{Bmatrix}
+    i_1, i_2, \cdots, i_r \\
+    i_1, i_2, \cdots, i_r
+  \end{Bmatrix}
+\end{align*}
+把$i_1$行，$i_1$列，调整到第一行，第一列，
+通过左右乘上初阶矩阵完成：
+\begin{align*}
+  P_n(1, i_1)^T A P_n(1, i_1)
+\end{align*}
+因为$P_n(1, i_1)^T = P_n(1, i_1)$，且
+\begin{align*}
+  |P_n(1, i_1)| = - 1
+\end{align*}
+于是可得
+\begin{align*}
+  |P_n(1, i_1)^T A P_n(1, i_1)| = |P_n(1, i_1)| |A| |P_n(1, i_1)| = |A|
+\end{align*}
+所以，最多经过$r$次调整的到矩阵$B$，
+由具体的操作可知$A, B$是合同的，且$|A| = |B|$，
+所以$B$也是正定矩阵（合同关系是等价关系，等价关系具有传递性，利用命题4.1(ii)可得$B$是正定矩阵）。
+
+至此，A中的$r$阶主子式会被调整为$B$中的顺序主子式，
+但子式本身是不变的，由定理4.1可知，正定矩阵$B$的各阶顺序主子式都大于零，
+命题得证。
+
+\section*{4}
+
+提示：$t$充分大时，$tE + A$是对角严格占优矩阵，
+通过证明各阶顺序主子式大于零，来完成证明。$|tE_k - (- A_k)|$可以看做关于t的特征多项式，
+通过$t \to +\infty$，可得$|tE_k - (- A_k)| > 0$，完成证明。
+
+\section*{5}
+
+因为$A$是正定矩阵，所有存在可逆矩阵$T$使得
+\begin{align*}
+  T^T A T = E                    \\
+  (T^T A T)^{-1} = E^{-1}        \\
+  T^{-1} A^{-1} (T^T)^{-1} = E   \\
+  T^{-1} A^{-1} (T^{-1})^{T} = E \\
+\end{align*}
+因为$T^{-1}$是可逆矩阵，所以$A^{-1}, E$合同，
+由命题4.1(ii)可知，$A^{-1}$是正定矩阵，
+
+\section*{6}
+
+由习题4可知，存在$c_1, c_2$使得
+\begin{align*}
+  c_1 E + A \\
+  c_2 E - A
+\end{align*}
+都是正定矩阵，取$c = max(c_1, c_2)$，于是
+\begin{align*}
+  c E + A \\
+  c E - A
+\end{align*}
+都是正定矩阵。
+
+由正定矩阵的性质可得，对任意$X$，我们有
+\begin{align*}
+  X^T (c E + A) X \geq 0    \\
+  cX^T E X + X^T A X \geq 0 \\
+  cX^T  X \geq - X^T A X
+\end{align*}
+同理
+\begin{align*}
+  X^T (c E - A) X \geq 0 \\
+  cX^T X \geq X^T A X
+\end{align*}
+综上，
+\begin{align*}
+  |X^T A X| \leq c X^T X
+\end{align*}
+
+\section*{7}
+
+$|A| < 0$，由命题4.1的推论（逆否命题）可知，$A$不是正定矩阵，
+于是命题4.1(iii)不成立，即存在$X \neq 0$使得
+\begin{align*}
+  X^T A X < 0
+\end{align*}
+
+\section*{8}
+
+因为$A, B$是正定矩阵，于是对任意$X \neq 0$，都有
+\begin{align*}
+  X^T A X > 0 \\
+  X^T B X > 0
+\end{align*}
+两式相加得
+\begin{align*}
+  X^T (A + B) X > 0
+\end{align*}
+所以，$A + B$是正定矩阵。
+
+\section*{9}
+
+提示：对$n$进行归纳，证明$f \geq 0$。
+
+\section*{10}
+
+二次型表示成矩阵乘积的形式：$f = X^T A X$，
+因为$f$是正定二次型，所以$|A|>0$。
+
+\begin{itemize}
+  \item (1)
+
+        设$A$的列向量组为$\alpha_1, \alpha_2, \cdots, \alpha_n$，
+        $\beta = \begin{bmatrix}
+            y_1    \\
+            y_2    \\
+            \vdots \\
+            y_n
+          \end{bmatrix}$
+        因为$A$是满秩的，所以$\beta$可以被$\alpha_1, \alpha_2, \cdots, \alpha_n$线性表示，
+        设为
+        \begin{align*}
+          \beta & = c_1 \alpha_1 + c_2 \alpha_2 + \cdots + c_n \alpha_n \\
+          C     & = \begin{bmatrix}
+                      c_1    \\
+                      c_2    \\
+                      \vdots \\
+                      c_n
+                    \end{bmatrix}                                      \\
+          \beta & = A C
+        \end{align*}
+        于是，对任意$y_1, y_2, \cdots, y_n$，有
+        \begin{align*}
+          g(y_1, y_2, \cdots, y_n) & = \begin{vmatrix}
+                                         \alpha_1 & \alpha_2 & \cdots & \alpha_n & \beta \\
+                                         y_1      & y_2      & \cdots & y_n      & 0
+                                       \end{vmatrix}                                  \\
+                                   & =\begin{vmatrix}
+                                        \alpha_1 & \alpha_2 & \cdots & \alpha_n & 0                                       \\
+                                        y_1      & y_2      & \cdots & y_n      & -(c_1 y_1 + c_2 y_2 + \cdots + c_n y_n)
+                                      \end{vmatrix} \\
+                                   & = |A|[-(c_1 y_1 + c_2 y_2 + \cdots + c_n y_n)]                                     \\
+                                   & = - |A| (C^T A C)
+        \end{align*}
+        因为$f$是正定二次型，所有$\beta = (y_1, y_2, \cdots, y_n)\neq 0$时，
+        $C \neq 0$，$C^T A C > 0$，所以
+        \begin{align*}
+          - |A| (C^T A C) < 0
+        \end{align*}
+        可得$g$是负定二次型。
+
+  \item (2)
+
+        由行列式的性质，我们有
+        \begin{align*}
+          |A| & = \begin{vmatrix}
+                    a_{11} & a_{12} & \cdots & a_{1n} \\
+                    a_{21} & a_{22} & \cdots & a_{2n} \\
+                    \vdots & \vdots & \ddots & \vdots \\
+                    a_{n1} & a_{n2} & \cdots & a_{nn}
+                  \end{vmatrix}                 \\
+              & = \begin{vmatrix}
+                    a_{11} & a_{12} & \cdots & a_{1n} \\
+                    a_{21} & a_{22} & \cdots & a_{2n} \\
+                    \vdots & \vdots & \ddots & \vdots \\
+                    a_{n1} & a_{n2} & \cdots & 0
+                  \end{vmatrix} + \begin{vmatrix}
+                                    a_{11} & a_{12} & \cdots & 0      \\
+                                    a_{21} & a_{22} & \cdots & 0      \\
+                                    \vdots & \vdots & \ddots & \vdots \\
+                                    a_{n1} & a_{n2} & \cdots & a_{nn}
+                                  \end{vmatrix} \\
+              & = \begin{vmatrix}
+                    a_{11} & a_{12} & \cdots & a_{1n} \\
+                    a_{21} & a_{22} & \cdots & a_{2n} \\
+                    \vdots & \vdots & \ddots & \vdots \\
+                    a_{n1} & a_{n2} & \cdots & 0
+                  \end{vmatrix}
+          + a_{nn} \cdot P_{n - 1}
+        \end{align*}
+        利用(1)可知
+        \begin{align*}
+          \begin{vmatrix}
+            a_{11} & a_{12} & \cdots & a_{1n} \\
+            a_{21} & a_{22} & \cdots & a_{2n} \\
+            \vdots & \vdots & \ddots & \vdots \\
+            a_{n1} & a_{n2} & \cdots & 0
+          \end{vmatrix} \leq 0
+        \end{align*}
+        所以
+        \begin{align*}
+          |A| \leq a_{nn} \cdot P_{n - 1}
+        \end{align*}
+
+  \item (3)
+
+        多次利用(2):
+        \begin{align*}
+          |A| \leq a_{nn} \cdot P_{n - 1} \leq a_{nn}  a_{n-1 \  n-1} P_{n - 2} \leq \cdots \leq a_{nn} \cdots a_{22} a_{11}
+        \end{align*}
+
+  \item (4)
+
+        因为$T$是可逆的，所以对任意$x \neq 0$，我们有
+        \begin{align*}
+          x^T T^T T x = (Tx)^2 (T x) > 0
+        \end{align*}
+        所以，$T^T T$是正定矩阵。
+
+        又
+        \begin{align*}
+          T^T T = \begin{bmatrix}
+                    t_{11}^2 + t_{21}^2 + \cdots + t_{n1}^2 &                                                                                            \\
+                                                            & t_{12}^2 + t_{22}^2 + \cdots + t_{n2}^2 &                                                  \\
+                                                            &                                         & \ddots                                           \\
+                                                            &                                         &        & t_{1n}^2 + t_{2n}^2 + \cdots + t_{nn}^2
+                  \end{bmatrix}
+        \end{align*}
+        其中未写的部分是任意值。
+
+        由(2)可知，
+        \begin{align*}
+          |T^T T| = |T|^2 \leq \prod\limits_{i = 1}^n (t_{1i}^2 + t_{2i}^2 + \cdots + t_{ni}^2)
+        \end{align*}
+\end{itemize}
+
+\section*{11}
+
+设$\mathbb{R}$上n维线性空间V上的对称双线性函数$f(\alpha, \beta)$的二次型函数$Q_f(\alpha)$
+在基$\epsilon_1, \epsilon_2, \cdots, \epsilon_n$下解析式表达式为
+$f$，矩阵为$A$。
+
+\begin{itemize}
+  \item 必要性
+
+        令$M = L(\epsilon_{i_1}, \epsilon_{i_2}, \cdots, \epsilon_{i_k})$。把$f(\alpha, \beta)$限制在
+        $M$内，在$M$的基$\epsilon_{i_1}, \epsilon_{i_2}, \cdots, \epsilon_{i_k}$下它的矩阵
+        \begin{align}
+          A_k = \begin{bmatrix}
+                  a_{i_1 \ i_1} & a_{i_1 \ i_2} & \cdots & a_{i_1 \ i_k} \\
+                  a_{i_2 \ i_1} & a_{i_2 \ i_2} & \cdots & a_{i_2 \ i_k} \\
+                  \vdots        & \vdots        & \ddots & \vdots        \\
+                  a_{i_k \ i_1} & a_{i_k \ i_2} & \cdots & a_{i_k \ i_k}
+                \end{bmatrix}
+        \end{align}
+        任意$\alpha \in M$（设坐标为$X$）即$\alpha \in M$，由于$f$是半正定二次型，所以$Q_f(\alpha) = X^T A_k X > 0$，
+        所以限制在$M$内的$f$也是半正定二次型，于是根据半正定二次型的根据定义，$A_k$在$\mathbb{R}$内合同于标准矩阵$D$。
+        所以，存在可逆矩阵$T$使得
+        \begin{align}
+          |A_k| & = |T^T D T|     \\
+                & = |T^T| |D| |T| \\
+                & = |D| |T|^2     \\
+                & \geq 0
+        \end{align}
+
+  \item 充分性
+
+        todo
+
+        $A$所有主子式包括$|A|$，所以
+        \begin{align*}
+          |A| \geq 0
+        \end{align*}
+
+\end{itemize}
+
+\section*{12}
+
+\begin{itemize}
+  \item (1)
+
+        $f, g$的二次型矩阵分别为：
+        \begin{align*}
+          A = \begin{bmatrix}
+                -1 & 0 \\
+                0  & 2
+              \end{bmatrix} \\
+          B = \begin{bmatrix}
+                2 & 0  \\
+                0 & -1
+              \end{bmatrix}
+        \end{align*}
+        而$f + g$的矩阵为
+        \begin{align*}
+          C & = A + B \\
+            & = E
+        \end{align*}
+
+  \item (2)
+
+        设$f$在基$\epsilon_1, \epsilon_2, \cdots, \epsilon_n$下为规范型
+        \begin{align*}
+          u_1^2 + \cdots + u_{p_{1}}^2 - u_{p_{1} + 1}^2 - \cdots - u_{r_1}^2
+        \end{align*}
+
+        $g$在基$\eta_1, \eta_2, \cdots, \eta_n$下为规范型
+        \begin{align*}
+          w_1^2 + \cdots + w_{p_{2}}^2 - w_{p_{2} + 1}^2 - \cdots - w_{r_2}^2
+        \end{align*}
+
+        由题设可知$p_1, p_2 < \frac{n}{2}$，
+        所以$\epsilon_{p_1 + 1}, \cdots, \epsilon_n$与$\eta_1, \eta_2, \cdots, \eta_{p_2}$不会线性等价（向量数不相同），
+        即存在$\epsilon_i (i > p_1)$，无法被$\eta_1, \eta_2, \cdots, \eta_{p_2}$不会线性表示，
+        我们有
+        \begin{align}
+          f(\epsilon_i) \leq 0 \\
+          g(\epsilon_i) \leq 0
+        \end{align}
+        所以
+        \begin{align}
+          (f + g)(\epsilon_i) \leq 0
+        \end{align}
+        所以，$f + g$一定不是正定二次型。
+\end{itemize}
+
+
+
+\end{document}
