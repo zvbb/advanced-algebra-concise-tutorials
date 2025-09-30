@@ -1,0 +1,324 @@
+\documentclass{article}
+\usepackage{mathtools} 
+\usepackage{fontspec}
+\usepackage[UTF8]{ctex}
+\usepackage{amsthm}
+\usepackage{mdframed}
+\usepackage{xcolor}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{hyperref}
+
+
+% 定义新的带灰色背景的说明环境 zremark
+\newmdtheoremenv[
+  backgroundcolor=gray!10,
+  % 边框与背景一致，边框线会消失
+  linecolor=gray!10
+]{zremark}{注释}
+
+% 通用矩阵命令: \flexmatrix{矩阵名}{元素符号}{行数}{列数}
+\newcommand{\flexmatrix}[4]{
+  \[
+  #1 = \begin{pmatrix}
+    #2_{11}     & #2_{12}     & \cdots & #2_{1#4}   \\
+    #2_{21}     & #2_{22}     & \cdots & #2_{2#4}   \\
+    \vdots      & \vdots      & \ddots & \vdots     \\
+    #2_{#31}    & #2_{#32}    & \cdots & #2_{#3#4}
+  \end{pmatrix}
+  \]
+}
+
+% 简化版命令（默认矩阵名为A，元素符号为a）: \quickmatrix{行数}{列数}
+\newcommand{\quickmatrix}[2]{\flexmatrix{A}{a}{#1}{#2}}
+
+
+\begin{document}
+\title{6.1}
+\author{张志聪}
+\maketitle
+
+\section*{1}
+
+$A$是n阶正定矩阵，所以$A$是对称矩阵。
+
+\begin{itemize}
+  \item (1)
+
+        (i)
+        \begin{align*}
+          (k_1 \alpha_1 + k_2 \alpha_2, \beta)
+           & = (k_1 \alpha_1 + k_2 \alpha_2) A \beta^T         \\
+           & = k_1 \alpha_1 A \beta^T + k_2 \alpha_2 A \beta^T \\
+           & = k_1(\alpha_1, \beta) + k_2(\alpha_2, \beta)
+        \end{align*}
+
+        (ii)
+        \begin{align*}
+          (\beta, \alpha) & = [(\beta, \alpha)]^T  \\
+                          & = (\beta A \alpha^T)^T \\
+                          & = \alpha A^T \beta^T   \\
+                          & = \alpha A \beta^T     \\
+                          & = (\alpha, \beta)
+        \end{align*}
+        注意，因为$(\beta, \alpha)$是标量。
+
+        (iii) 因为$A$是正定矩阵，所以
+        \begin{align*}
+          (\alpha, \alpha) > 0 \ \ \ (\forall \alpha \in \mathbb{R}^n, \alpha \neq 0)
+        \end{align*}
+        且$(\alpha, \alpha)$当且仅当$\alpha = 0$。
+
+  \item (2)
+
+        因为$A$
+        \begin{align*}
+          |(\alpha, \beta)|  & \leq |\alpha| \cdot |\beta|                                \\
+          |\alpha A \beta^T| & \leq \sqrt{\alpha A \alpha^T} \cdot \sqrt{\beta A \beta^T}
+        \end{align*}
+        注意，不能写成对应坐标相乘在相加的形式，因为这里的A不一定是单位矩阵。
+\end{itemize}
+
+\section*{4}
+
+\begin{itemize}
+  \item 必要性
+
+        $\alpha, \beta$正交，于是
+        \begin{align*}
+          (\alpha + t \beta, \alpha + t \beta)
+           & = (\alpha, \alpha) + 2t(\alpha, \beta) + t^2 (\beta, \beta) \\
+           & = (\alpha, \alpha) + t^2 (\beta, \beta)                     \\
+           & = |\alpha|^2 + t^2 |\beta|^2                                \\
+           & \geq |\alpha|^2
+        \end{align*}
+        因为$|\alpha|> 0$，所以
+        \begin{align*}
+          |(\alpha + t \beta, \alpha + t \beta)| & \geq |\alpha|
+        \end{align*}
+
+  \item 充分性
+
+        反证法，假设$(\alpha, \beta) \neq 0$。
+
+        由题设可知
+        \begin{align*}
+          |\alpha + t \beta| \geq |\alpha|                                                \\
+          (\alpha, \alpha) + 2t(\alpha, \beta) + t^2 (\beta, \beta) \geq (\alpha, \alpha) \\
+          (\beta, \beta) t^2 + 2(\alpha, \beta) t \geq 0
+        \end{align*}
+        右端是关于$t$的二次多项式，于是判别式为
+        \begin{align*}
+          \Delta = 4(\alpha, \beta)^2 > 0
+        \end{align*}
+        于是有个实数根，它在两个实数根之间函数值为负，出现矛盾。
+
+\end{itemize}
+
+\section*{5}
+
+\begin{itemize}
+  \item (1)
+
+        我们有
+        \begin{align*}
+          |\alpha + \beta|^2 & = (\alpha+\beta, \alpha+\beta)                         \\
+                             & = (\alpha, \alpha) + 2(\alpha, \beta) + (\beta, \beta) \\
+                             & = |\alpha|^2 + 2(\alpha, \beta) + |\beta|^2
+        \end{align*}
+        利用命题1.1的不等式，我们有
+        \begin{align*}
+          2|(\alpha, \beta)| \leq 2|\alpha| |\beta|
+        \end{align*}
+        于是
+        \begin{align*}
+          |\alpha + \beta|^2 \leq |\alpha|^2 + 2|\alpha| |\beta| + |\beta|^2 = (|\alpha| + |\beta|)^2
+        \end{align*}
+        这表明
+        \begin{align*}
+          |\alpha + \beta| \leq |\alpha| + |\beta|
+        \end{align*}
+
+  \item (2)
+
+        利用(1)
+        \begin{align*}
+          |\alpha - \gamma| & = |\alpha + \beta - \beta - \gamma|      \\
+                            & = |\alpha - \beta + \beta - \gamma|      \\
+                            & \leq |\alpha - \beta| + |\beta - \gamma|
+        \end{align*}
+        这表明
+        \begin{align*}
+          d(\alpha, \gamma) \leq d(\alpha, \beta) + d(\beta, \gamma)
+        \end{align*}
+\end{itemize}
+
+\section*{6}
+
+提示：利用命题1.5的证明思想，得到$L(\alpha, \beta, \gamma)$的正交补。
+
+\section*{7}
+
+\begin{itemize}
+  \item (1)
+
+        设
+        \begin{align*}
+          \beta = k_1 \alpha_1 + k_2 \alpha_2 + \cdots + k_n \alpha_n
+        \end{align*}
+        于是
+        \begin{align*}
+          (\beta, \beta)
+           & = (\beta, k_1 \alpha_1 + k_2 \alpha_2 + \cdots + k_n \alpha_n)                \\
+           & = k_1(\beta, \alpha_1) + k_2(\beta, \alpha_2) + \cdots + k_n(\beta, \alpha_n) \\
+           & = 0
+        \end{align*}
+        所以，$\beta = 0$。
+
+  \item (2)
+
+        我们有
+        \begin{align*}
+          (\beta_1, \alpha_i) = (\beta_2, \alpha_i)     \\
+          (\beta_1, \alpha_i) - (\beta_2, \alpha_i) = 0 \\
+          (\beta_1 - \beta_2, \alpha_i) = 0
+        \end{align*}
+        由(1)可知
+        \begin{align*}
+          \beta_1 - \beta_2 = 0 \\
+          \beta_1 = \beta_2
+        \end{align*}
+\end{itemize}
+
+\section*{15}
+
+\begin{itemize}
+  \item 必要性
+
+        由于$\alpha_1, \alpha_2, \cdots, \alpha_s$线性无关，
+        令$M = L(\alpha_1, \alpha_2, \cdots, \alpha_s)$，于是$M$是$V$的线性子空间。
+        $(\alpha, \beta)$是$M$内一个对称双线性函数，又因为$M$是有限维线性空间，所以
+        $(\alpha, \alpha)$是一个正定二次型函数，即$(\alpha, \beta)$在$M$内的任一组基下的矩阵是正定矩阵。
+        所以$|D| > 0$。
+
+  \item 充分性
+
+        反证法，假设$\alpha_1, \alpha_2, \cdots, \alpha_s$线性相关，
+        即存在不全为0的$k_1, k_2, \cdots, k_s$，使得
+        \begin{align*}
+          k_1 \alpha_1 + k_2 \alpha_2 + \cdots + k_s \alpha_s = 0
+        \end{align*}
+        令
+        \begin{align*}
+          x = \begin{bmatrix}
+                k_1    \\
+                k_2    \\
+                \vdots \\
+                \k_s
+              \end{bmatrix}
+        \end{align*}
+        考虑$D$的任意一个行向量$D_i$，我们有
+        \begin{align*}
+          D_i x
+           & = (\alpha_i, \alpha_1) k_1 + (\alpha_i, \alpha_2) k_2 + \cdots + (\alpha_i, \alpha_s) k_s \\
+           & = (\alpha_1, k_1 \alpha_1 + k_2 \alpha_2 + \cdots + k_s \alpha_s)                         \\
+           & = (\alpha_1, 0)                                                                           \\
+           & = 0
+        \end{align*}
+        于是
+        \begin{align*}
+          Dx = 0
+        \end{align*}
+        因为$x \neq 0$，这与$det(D) \neq 0$矛盾。
+
+\end{itemize}
+
+\section*{17}
+
+设
+\begin{align*}
+  A = \begin{bmatrix}
+        a_{11} & a_{12} & \cdots & a_{1n} \\
+        0      & a_{22} & \cdots & a_{2n} \\
+        \vdots & \vdots & \ddots & \vdots \\
+        0      & 0      & \cdots & a_{nn}
+      \end{bmatrix}
+\end{align*}
+于是
+\begin{align*}
+  A^T A & =
+  \begin{bmatrix}
+    a_{11} & 0      & \cdots & 0      \\
+    a_{12} & a_{22} & \cdots & 0      \\
+    \vdots & \vdots & \ddots & \vdots \\
+    a_{1n} & a_{2n} & \cdots & a_{nn}
+  \end{bmatrix}
+  \begin{bmatrix}
+    a_{11} & a_{12} & \cdots & a_{1n} \\
+    0      & a_{22} & \cdots & a_{2n} \\
+    \vdots & \vdots & \ddots & \vdots \\
+    0      & 0      & \cdots & a_{nn}
+  \end{bmatrix}                                                                       \\
+        & =   \begin{bmatrix}
+                a_{11}^2     & a_{11}a_{12}              & \cdots & a_{11}a_{1n}                            \\
+                a_{12}a_{11} & a_{12}^2 + a_{22}^2       & \cdots & a_{12}a_{1n} + a_{22}a_{2n}             \\
+                \vdots       & \vdots                    & \ddots & \vdots                                  \\
+                a_{1n}a_{11} & a_{1n}a_{21}+a_{2n}a_{22} & \cdots & a_{1n}^2 + a_{2n}^2 + \cdots + a_{nn}^2
+              \end{bmatrix} \\
+        & = \begin{bmatrix}
+              1      & 0      & \cdots & 0      \\
+              0      & 1      & \cdots & 0      \\
+              \vdots & \vdots & \ddots & \vdots \\
+              0      & 0      & \cdots & 1
+            \end{bmatrix}                                                             \\
+\end{align*}
+考虑第一行，
+\begin{align*}
+  a_{11} & = \pm 1                   \\
+  a_{1i} & = 0 (i = 2, 3, \cdots, n)
+\end{align*}
+逐行往下，命题得证。
+
+\section*{18}
+
+$|A| \neq 0$，所以$A$是满秩的，
+$A$的列向量可以看做欧式空间$\mathbb{R}^n$的一组基。
+
+由命题1.4可知，正交矩阵$Q$可以看做欧式空间$\mathbb{R}^n$的一组标准正交基。
+而施密特正交化方法可以让$A$化为一组标准正交基。
+
+为了讨论的方便，符号与教科书中保持一致（P9）。即$A$的列向量组设为
+\begin{align*}
+  \alpha_1, \alpha_2, \cdots, \alpha_n
+\end{align*}
+$Q$的列向量组设为
+\begin{align*}
+  \epsilon_1, \epsilon_2, \cdots, \epsilon_n
+\end{align*}
+于是，我们有
+\begin{align*}
+  \alpha_1 & = |\epsilon_1'| \epsilon_1                                                                                       \\
+  \alpha_2 & = \frac{(\alpha_2, \epsilon_1')}{(\epsilon_1', \epsilon_1')} |\epsilon_1'| \epsilon_1 + |\epsilon_2'| \epsilon_2 \\
+  \alpha_3 & = \frac{(\alpha_3, \epsilon_1')}{(\epsilon_1', \epsilon_1')} |\epsilon_1'| \epsilon_1 +
+  \frac{(\alpha_3, \epsilon_2')}{(\epsilon_2', \epsilon_2')} |\epsilon_2'| \epsilon_2 + |\epsilon_3'| \epsilon_3              \\
+  \vdots                                                                                                                      \\
+  \alpha_n & = \frac{(\alpha_n, \epsilon_1')}{(\epsilon_1', \epsilon_1')} |\epsilon_1'| \epsilon_1 +
+  \frac{(\alpha_n, \epsilon_2')}{(\epsilon_2', \epsilon_2')} |\epsilon_2'| \epsilon_2 + \cdots + |\epsilon_n'| \epsilon_n     \\
+\end{align*}
+令
+\begin{align*}
+  T = \begin{bmatrix}
+        |\epsilon_1'| & \frac{(\alpha_2, \epsilon_1')}{(\epsilon_1', \epsilon_1')} |\epsilon_1'| & \frac{(\alpha_3, \epsilon_1')}{(\epsilon_1', \epsilon_1')} |\epsilon_1'| & \frac{(\alpha_n, \epsilon_1')}{(\epsilon_1', \epsilon_1')} |\epsilon_1'| \\
+        0             & |\epsilon_2'|                                                            & \frac{(\alpha_3, \epsilon_2')}{(\epsilon_2', \epsilon_2')} |\epsilon_2'| & \frac{(\alpha_n, \epsilon_2')}{(\epsilon_2', \epsilon_2')} |\epsilon_2'| \\
+        0             & 0                                                                        & |\epsilon_3'|                                                            & \frac{(\alpha_n, \epsilon_2')}{(\epsilon_3', \epsilon_3')} |\epsilon_3'| \\
+        \vdots        & \vdots                                                                   & \vdots                                                                   & \vdots                                                                   \\
+        0             & 0                                                                        & 0                                                                        & |\epsilon_n'|
+      \end{bmatrix}
+\end{align*}
+综上，
+\begin{align*}
+  A = Q T
+\end{align*}
+
+
+\end{document}

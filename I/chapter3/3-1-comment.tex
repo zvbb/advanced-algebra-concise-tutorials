@@ -49,6 +49,18 @@
   向量点乘，两种定义的等价性。
 \end{zremark}
 
+利用余弦定理，三角形三个边为$a, b, c$，$\theta$为$a, b$的夹角，我们有
+\begin{align*}
+  a^2 + b^2 - 2 ab cos \theta = c^2
+\end{align*}
+应用到向量上，我们有
+\begin{align*}
+  |a|^2 + |b|^2 - 2a \cdot b & = |a - b|^2                                                                                                  \\
+  a \cdot b                  & = \frac{1}{2}(|a|^2 + |b|^2 - |a - b|^2)                                                                     \\
+                             & = \frac{1}{2}(a_1^2 + a_2^2 + a_3^2 + b_1^2 + b_2^2 + b_3^2 - (a_1 - b_1)^2 + (a_2 - b_2)^2 + (a_3 - b_3)^2) \\
+                             & = a_1 b_1 + a_2 b_2 + a_3 b_3
+\end{align*}
+
 \begin{zremark}
   点乘基本性质(ii)等价于
   \begin{itemize}
