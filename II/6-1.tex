@@ -281,7 +281,7 @@ $A$是n阶正定矩阵，所以$A$是对称矩阵。
 
 \section*{18}
 
-$|A| \neq 0$，所以$A$是满秩的，
+ (i)$|A| \neq 0$，所以$A$是满秩的，
 $A$的列向量可以看做欧式空间$\mathbb{R}^n$的一组基。
 
 由命题1.4可知，正交矩阵$Q$可以看做欧式空间$\mathbb{R}^n$的一组标准正交基。
@@ -319,6 +319,187 @@ $Q$的列向量组设为
 \begin{align*}
   A = Q T
 \end{align*}
+$|\epsilon_i'| \neq 0$书中也有阐明。
 
+(ii) $QT$的唯一性证明。
+
+假设存在$Q_1, T_1$使得
+\begin{align*}
+  A = Q_1 T_1
+\end{align*}
+于是
+\begin{align*}
+  Q T = Q_1 T_1                       \\
+  Q^T Q T = Q^T Q_1^T T_1             \\
+  T = Q^T Q_1^T T_1                   \\
+  T T_1^{-1} = Q^T Q_1^T T_1 T_1^{-1} \\
+  T T_1^{-1} = Q^T Q_1^T
+\end{align*}
+
+$T_1$是上三角矩阵，那么由第二章$\S 5$习题18可知
+$T_1^{-1}$也是上三角矩阵。且通过简单计算可知两个上三角矩阵的乘积也是上三角矩阵，
+所以$T T_1^{-1}$是上三角矩阵。
+
+由于$Q, Q_1$都是正交矩阵，所以
+\begin{align*}
+  (Q^T Q_1^T)(Q^T Q_1^T)^T
+   & = (Q^T Q_1^T)(Q_1 Q) \\
+   & = Q^T (Q_1^TQ_1) Q   \\
+   & = Q^T E Q            \\
+   & = E
+\end{align*}
+所以$Q^T Q_1^T$也是正交矩阵。
+
+综上，$T T_1^{-1}$既是上三角矩阵，也是正交矩阵。
+由习题17可知，$T T_1^{-1}$是对角矩阵，且对角线上的元素为$\pm 1$。
+
+又因为$T, T_1^{-1}$对角线上的元素都大于$0$，
+于是$T T_1^{-1}$主对角线上元素都大于零。
+
+所以$T T_1^{-1}$是单位矩阵，于是可得
+\begin{align*}
+  T^{-1} & = T_1^{-1} \\
+  T      & = T_1
+\end{align*}
+进而$Q = Q_1$，唯一性得证。
+
+\section*{19}
+
+$A$是正定矩阵，所以存在可逆矩阵$C$使得
+\begin{align*}
+  A = C^T C
+\end{align*}
+因为$C$可逆，于是由习题18可知，存在正交矩阵和上三角矩阵$T$使得
+\begin{align*}
+  C = Q T
+\end{align*}
+所以
+\begin{align*}
+  A & = (QT)^T (QT) \\
+    & = T^T Q^T Q T \\
+    & = T^T E T     \\
+    & = T^T T
+\end{align*}
+
+\section*{20}
+
+解题思路：
+
+(i)存在性
+
+设$\epsilon_1, \epsilon_2, \cdots, \epsilon_n$是$V$的一组标准正交基，
+于是，$\forall \alpha \in V$可表示为
+\begin{align*}
+  \alpha = k_1 \epsilon_1 + k_2 \epsilon_2 + \cdots + k_n \epsilon_n
+\end{align*}
+于是
+\begin{align*}
+  f(\alpha) & = f(k_1 \epsilon_1 + k_2 \epsilon_2 + \cdots + k_n \epsilon_n)       \\
+            & = k_1 f(\epsilon_1) + k_2 f(\epsilon_2) + \cdots + k_n f(\epsilon_n)
+\end{align*}
+又
+\begin{align*}
+  (\alpha, \beta) & = (k_1 \epsilon_1 + k_2 \epsilon_2 + \cdots + k_n \epsilon_n, \beta)                   \\
+                  & = k_1 (\epsilon_1, \beta) + k_2 (\epsilon_2, \beta) + \cdots + k_n (\epsilon_n, \beta)
+\end{align*}
+题目希望得证
+\begin{align*}
+  f(\alpha) = (\alpha, \beta) \beta
+\end{align*}
+如果
+\begin{align*}
+  f(\epsilon_i) = (\epsilon_i, \beta) (i = 1, 2, \cdots, n)
+\end{align*}
+即可完成证明。
+
+设
+\begin{align*}
+  \beta = f(\epsilon_1) \epsilon_1 + f(\epsilon_2) \epsilon_2 + \cdots + f(\epsilon_n) \epsilon_n
+\end{align*}
+即可满足要求。
+
+(ii) 唯一性
+
+假设存在$\beta_1$也满足题设，于是对任意$\alpha \in V$都有
+\begin{align*}
+  f(\alpha) = (\alpha, \beta) = (\alpha, \beta_1)
+\end{align*}
+所以
+\begin{align*}
+  (\alpha, \beta - \beta_1) = 0
+\end{align*}
+设$\alpha = \beta - \beta_1$，则
+\begin{align*}
+  (\beta - \beta_1, \beta - \beta_1) = 0
+\end{align*}
+由内积的定义可知
+\begin{align*}
+  \beta - \beta_1 = 0 \\
+  \beta = \beta_1
+\end{align*}
+
+\section*{21}
+
+$\beta$到$\alpha + M$记为
+\begin{align*}
+  d(\beta, \alpha + M)
+\end{align*}
+按照定义可知
+\begin{align*}
+  d(\beta, \alpha + M) = \min\limits_{\gamma \in \alpha + M} (|\beta - \gamma|)
+\end{align*}
+任意$\gamma = \alpha + m \ \ \ (m \in M)$，于是
+\begin{align*}
+  \beta - \gamma & = \beta - (\alpha + m)  \\
+                 & = \beta - \alpha - m    \\
+                 & = \beta_1 + \beta_2 - m \\
+                 & = \beta_1 - m + \beta_2
+\end{align*}
+于是
+\begin{align*}
+  (\beta - \gamma, \beta - \gamma) & = (\beta_1 - m + \beta_2, \beta_1 - m + \beta_2)                                                    \\
+                                   & = (\beta_1 - m, \beta_1 - m) + (\beta_1 - m, \beta_2) + (\beta_2, \beta_1 - m) + (\beta_2, \beta_2) \\
+                                   & = (\beta_1 - m, \beta_1 - m) + 0 + 0 + (\beta_2, \beta_2)                                           \\
+                                   & = (\beta_1 - m, \beta_1 - m) + (\beta_2, \beta_2)
+\end{align*}
+可知$m = \beta_1$时，$(\beta - \gamma, \beta - \gamma)$取最小值$(\beta_2, \beta_2)$，所以
+\begin{align*}
+  d(\beta, \alpha + M) = |\beta_2|
+\end{align*}
+
+\section*{22}
+
+处理方式与习题21一致。
+
+任意
+\begin{align*}
+  \alpha + m & \in \alpha + M \ \ \ (m \in M) \\
+  \beta + n  & \in \beta + N \ \ \ (n \in N)
+\end{align*}
+我们有
+\begin{align*}
+  (\beta + n) - (\alpha + m)
+   & = \beta - \alpha + n - m    \\
+   & = \beta_1 + n - m + \beta_2
+\end{align*}
+于是
+\begin{align*}
+  (\beta + n, \alpha + m)
+   & = (\beta_1 + n - m + \beta_2, \beta_1 + n - m + \beta_2)          \\
+   & = (\beta_1 + n - m, \beta_1 + n - m) + (\beta_1 + n - m, \beta_2)
+  + (\beta_2, \beta_1 + n - m) + (\beta_2, \beta_2)
+\end{align*}
+因为$n - m \in M + N$，所以$\beta_1 + n - m \in M + N$，所以
+\begin{align*}
+   & (\beta_1 + n - m, \beta_1 + n - m) + (\beta_1 + n - m, \beta_2)
+  + (\beta_2, \beta_1 + n - m) + (\beta_2, \beta_2)                    \\
+   & = (\beta_1 + n - m, \beta_1 + n - m) + 0 + 0 + (\beta_2, \beta_2) \\
+   & = (\beta_1 + n - m, \beta_1 + n - m) + (\beta_2, \beta_2)
+\end{align*}
+
+可知$n - m = \beta_1$时，$(\beta + n, \alpha + m)$取最小值$(\beta_2, \beta_2)$，所以
+\begin{align*}
+  d = |\beta_2|
+\end{align*}
 
 \end{document}
