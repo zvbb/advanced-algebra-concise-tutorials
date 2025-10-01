@@ -8,6 +8,7 @@
 \usepackage{amssymb}
 \usepackage{amsmath}
 \usepackage{hyperref}
+\usepackage{mathrsfs}
 
 
 % 定义新的带灰色背景的说明环境 zremark
@@ -143,7 +144,7 @@
           A \alpha & = PBQ \alpha       \\
                    & = PBQ T^{-1} \beta \\
                    & = PBQ Q^{-1} \beta \\
-                   & = P B \beta 
+                   & = P B \beta
         \end{align*}
         因为$\beta \ in V$，所以$B \beta = 0$，所以
         \begin{align*}
@@ -153,10 +154,106 @@
 
 \end{itemize}
 
-\section*{14}
+\section*{18}
 
+\begin{itemize}
+  \item 必要性
 
+        $\mathscr{A}$可逆，即$\mathscr{A}$是双射，所以$\mathscr{A}$是同构映射。
+        由命题3.1可知
+        \begin{align*}
+          \mathscr{A}\epsilon_1, \mathscr{A}\epsilon_2, \cdots, \mathscr{A}\epsilon_n
+        \end{align*}
+        线性无关。
 
+  \item 充分性
+
+        (i)反证法，假设$\mathscr{A}$不是单射，即存在$\alpha, \beta \in V$且$\alpha \neq \beta$，使得
+        \begin{align*}
+          \mathscr{A} \alpha = \mathscr{A} \beta \\
+          \mathscr{A}(\alpha - \beta) = 0
+        \end{align*}
+        设
+        \begin{align*}
+          \alpha - \beta = k_1 \epsilon_1 + k_2 \epsilon_2 + \cdots + k_n \epsilon_n
+        \end{align*}
+        因为$\alpha - \beta \neq 0$，所以$k_1, k_2, \cdots, k_n$不全为0，
+        于是
+        \begin{align*}
+          \mathscr{A}(\alpha - \beta) = k_1 \mathscr{A}\epsilon_1 + k_2 \mathscr{A}\epsilon_2 + \cdots + k_n \mathscr{A}\epsilon_n = 0
+        \end{align*}
+        这与$\mathscr{A}\epsilon_1, \mathscr{A}\epsilon_2, \cdots, \mathscr{A}\epsilon_n$线性无关矛盾。
+
+        (ii)因为$\mathscr{A}\epsilon_1, \mathscr{A}\epsilon_2, \cdots, \mathscr{A}\epsilon_n$线性无关，且$V$是n维空间，
+        所以$\mathscr{A}\epsilon_1, \mathscr{A}\epsilon_2, \cdots, \mathscr{A}\epsilon_n$是$V$的一组基，
+        于是，任意$\beta \in V$，都有
+        \begin{align*}
+          \beta = k_1 \mathscr{A}\epsilon_1 + k_2 \mathscr{A}\epsilon_2 + \cdots + k_n \mathscr{A}\epsilon_n
+        \end{align*}
+        设
+        \begin{align*}
+          \alpha = k_1 \epsilon_1 + k_2 \epsilon_2 + \cdots + k_n \epsilon_n
+        \end{align*}
+        于是
+        \begin{align*}
+          \beta = \mathscr{A}(\alpha)
+        \end{align*}
+        所以，$\mathscr{A}$是满射。
+
+        综上，$\mathscr{A}$是双射，所以$\mathscr{A}$是可逆的。
+
+\end{itemize}
+
+\section*{18 推论}
+
+线性变换$\mathscr{A}$在基$\epsilon_1, \epsilon_2, \cdots, \epsilon_n$下的矩阵为$A$，
+$\mathscr{A}$可逆（或是同构映射）的充分必要条件是$A$满秩。
+
+\begin{itemize}
+  \item 充分性
+
+        $\mathscr{A}$可逆，由习题18可知，$\mathscr{A}\epsilon_1, \mathscr{A}\epsilon_2, \cdots, \mathscr{A}\epsilon_n$
+        线性无关。
+        我们有
+        \begin{align*}
+          (\mathscr{A}\epsilon_1, \mathscr{A}\epsilon_2, \cdots, \mathscr{A}\epsilon_n)
+          = (\epsilon_1, \epsilon_2, \cdots, \epsilon_n) A
+        \end{align*}
+        所以$T$是满秩的，否则存在$\mathscr{A}\epsilon_i$可以被
+        $\mathscr{A}\epsilon_1, \mathscr{A}\epsilon_2, \cdots, \mathscr{A}\epsilon_n$中的其他向量线性表示，出现矛盾。
+
+  \item 必要性
+
+        我们有
+        \begin{align*}
+          (\mathscr{A}\epsilon_1, \mathscr{A}\epsilon_2, \cdots, \mathscr{A}\epsilon_n)
+          = (\epsilon_1, \epsilon_2, \cdots, \epsilon_n) A
+        \end{align*}
+        且$A$是满秩的。
+
+        反证法，假设$\mathscr{A}\epsilon_1, \mathscr{A}\epsilon_2, \cdots, \mathscr{A}\epsilon_n$
+        不是线性无关的，于是存在
+        \begin{align*}
+          k_1 \mathscr{A}\epsilon_1 + k_2 \mathscr{A}\epsilon_2 + \cdots + k_n \mathscr{A}\epsilon_n = 0 \\
+          (\epsilon_1, \epsilon_2, \cdots, \epsilon_n) A \begin{bmatrix}
+                                                           k_1    \\
+                                                           k_2    \\
+                                                           \vdots \\
+                                                           k_n
+                                                         \end{bmatrix} = 0
+        \end{align*}
+        其中$k_1, k_2, \cdots, k_n$不全为0，由于$\epsilon_1, \epsilon_2, \cdots, \epsilon_n$是一组基，
+        所以
+        \begin{align*}
+          A \begin{bmatrix}
+              k_1    \\
+              k_2    \\
+              \vdots \\
+              k_n
+            \end{bmatrix} = 0
+        \end{align*}
+        这与$A$满秩没有非零解矛盾。
+\end{itemize}
 
 
 \end{document}
