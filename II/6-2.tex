@@ -1,0 +1,307 @@
+\documentclass{article}
+\usepackage{mathtools} 
+\usepackage{fontspec}
+\usepackage[UTF8]{ctex}
+\usepackage{amsthm}
+\usepackage{mdframed}
+\usepackage{xcolor}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{hyperref}
+\usepackage{mathrsfs}
+
+
+% 定义新的带灰色背景的说明环境 zremark
+\newmdtheoremenv[
+  backgroundcolor=gray!10,
+  % 边框与背景一致，边框线会消失
+  linecolor=gray!10
+]{zremark}{注释}
+
+% 通用矩阵命令: \flexmatrix{矩阵名}{元素符号}{行数}{列数}
+\newcommand{\flexmatrix}[4]{
+  \[
+  #1 = \begin{pmatrix}
+    #2_{11}     & #2_{12}     & \cdots & #2_{1#4}   \\
+    #2_{21}     & #2_{22}     & \cdots & #2_{2#4}   \\
+    \vdots      & \vdots      & \ddots & \vdots     \\
+    #2_{#31}    & #2_{#32}    & \cdots & #2_{#3#4}
+  \end{pmatrix}
+  \]
+}
+
+% 简化版命令（默认矩阵名为A，元素符号为a）: \quickmatrix{行数}{列数}
+\newcommand{\quickmatrix}[2]{\flexmatrix{A}{a}{#1}{#2}}
+
+
+\begin{document}
+\title{6.2}
+\author{张志聪}
+\maketitle
+
+\section*{1}
+
+\begin{itemize}
+  \item (1)
+
+        \begin{itemize}
+          \item 方法一：按照定义
+
+                对任意$\alpha, \beta \in V$，我们有
+                \begin{align*}
+                  (\mathscr{A} \alpha, \mathscr{A} \beta)
+                   & = (\alpha - 2(\eta,\alpha)\eta, \beta - 2(\eta, \beta)\eta)                                                                       \\
+                   & = (\alpha, \beta) + (\alpha, - 2(\eta, \beta)\eta) + (- 2(\eta,\alpha)\eta, \beta) + (- 2(\eta,\alpha)\eta, - 2(\eta, \beta)\eta) \\
+                   & = (\alpha, \beta) - 2(\eta, \beta) (\alpha, \eta) - 2(\eta, \alpha) (\eta, \beta) + 4 (\eta,\alpha)(\eta, \beta) (\eta, \eta)     \\
+                   & = (\alpha, \beta) - 2(\eta, \beta) (\alpha, \eta) - 2(\eta, \alpha) (\eta, \beta) + 4 (\eta,\alpha)(\eta, \beta)                  \\
+                   & = (\alpha, \beta) - 4(\alpha, \eta) (\eta, \beta) + 4 (\eta,\alpha)(\eta, \beta)                                                  \\
+                   & = (\alpha, \beta)
+                \end{align*}
+                所以，$\mathscr{A}$是正交变换。
+
+          \item 方法二：按照矩阵角度
+
+                按照命题1.5的推论，我们可以在$\eta$的基础上扩充成一组标准正交基，设为
+                \begin{align}
+                  \eta, \epsilon_2, \epsilon_3, \cdots, \epsilon_n
+                \end{align}
+                于是，线性变换$\mathscr{A}$在基$(1)$下矩阵$A$为
+                \begin{align*}
+                  (\mathscr{A}\eta, \mathscr{A}\epsilon_2, \cdots, \mathscr{A}\epsilon_n)
+                   & = (\eta - 2(\eta,\eta)\eta, \epsilon_2 - 2(\eta, \epsilon_2)\eta, \cdots, \epsilon_n - 2(\eta, \epsilon_n)\eta) \\
+                   & = (\eta, \epsilon_2, \cdots, \epsilon_n) \begin{bmatrix}
+                                                                -1 &                    \\
+                                                                   & 1                  \\
+                                                                   &   & 1              \\
+                                                                   &   &   & \ddots     \\
+                                                                   &   &   &        & 1
+                                                              \end{bmatrix}
+                \end{align*}
+                于是
+                \begin{align*}
+                  A^T A = E
+                \end{align*}
+                可知$A$是正交矩阵，所以$\mathscr{A}$是正交变换。
+        \end{itemize}
+  \item (2)
+
+        由(1)的方法二的求解过程可知$|A| = -1$，所以$\mathscr{A}$是第二类的。
+
+  \item (3)
+
+        $A^2 = E$，由第四章命题3.7(ii)可知，$\mathscr{A}^2 = \mathscr{E}$。
+
+  \item (4)
+
+        设$\mathscr{B}$在标准正交基$\eta, \epsilon_2, \epsilon_3, \cdots, \epsilon_n$下的矩阵为$B$，
+        由于$\mathscr{B}$是正交变换，所以$B$是正交矩阵，
+        因为$A$是正交矩阵，则$A^{-1}$也是正交矩阵，设
+        \begin{align*}
+          B_1 = A^{-1} B
+        \end{align*}
+        是正交矩阵，所以$B_1$对应的线性变换$\mathscr{B}_1$是正交变换，
+        又因为
+        \begin{align*}
+          |B_1| = |A^{-1}| |B| = (-1) (-1) = 1
+        \end{align*}
+        所以，$\mathscr{B}_1$是第一类正交变换，
+        而且
+        \begin{align*}
+          A B_1 = B
+        \end{align*}
+        所以
+        \begin{align*}
+          \mathscr{A} \mathscr{B_1} = \mathscr{B}
+        \end{align*}
+\end{itemize}
+
+\section*{2}
+
+我们有
+\begin{align*}
+  V = V_1 \oplus V_1^\bot
+\end{align*}
+由于$dim V_1 = n - 1$，所以$dim V_1^\bot = 1$。
+
+任取单位向量$\eta \in V_{1}^\bot$；
+在$V_{1}$取一组标准正交基$\epsilon_2, \epsilon_3, \cdots, \epsilon_n$，
+合在一起得到$V$的一组标准正交基$\eta, \epsilon_2, \epsilon_3, \cdots, \epsilon_n$。
+
+因为$\epsilon_i \in V_{1} \ (i = 2, 3, \cdots, n)$，所以
+\begin{align*}
+  \mathscr{A} \epsilon_i = \epsilon_i \ \ \ (i = 2, 3, \cdots, n)
+\end{align*}
+因为$\mathscr{A}\eta \in V$，可被线性表示为
+\begin{align*}
+  \mathscr{A}\eta = k_1 \eta + k_2 \epsilon_2 + \cdots + k_n \epsilon_n
+\end{align*}
+于是，$\mathscr{A}$在标准正交基$\eta, \epsilon_2, \epsilon_3, \cdots, \epsilon_n$下的矩阵为
+\begin{align*}
+  A = \begin{bmatrix}
+        k_1    & 0      & \cdots & 0      \\
+        k_2    & 1      & \cdots & 0      \\
+        \vdots & \vdots & \ddots & \vdots \\
+        k_n    & 0      & \cdots & 1
+      \end{bmatrix}
+\end{align*}
+因为$\mathscr{A}$是正交变换，所以
+\begin{align*}
+  |A| = \pm 1
+\end{align*}
+所以$k_1 = \pm 1$。\\
+$\mathscr{A}$是正交变换也可得
+\begin{align*}
+  (\mathscr{A} \eta, \mathscr{A}\eta)
+   & = (\eta, \eta)                   \\
+   & = 1                              \\
+   & = k_1^2 + k_2^2 + \cdots + k_n^2
+\end{align*}
+所以，$k_2 = k_3 = \cdots = k_n = 0$。\\
+如果$k_1 = 1$，则
+\begin{align*}
+  \mathscr{A} \eta = \eta \in V_1
+\end{align*}
+出现矛盾。\\
+综上，$k_1 = -1$，于是
+\begin{align*}
+  A = \begin{bmatrix}
+        -1     & 0      & \cdots & 0      \\
+        0      & 1      & \cdots & 0      \\
+        \vdots & \vdots & \ddots & \vdots \\
+        0      & 0      & \cdots & 1
+      \end{bmatrix}
+\end{align*}
+
+因为
+\begin{align*}
+  \mathscr{A}(\eta) = -\eta = \eta - 2(\eta,\eta) \eta                        \\
+  \mathscr{A}(\epsilon_2) = \epsilon_2 = \epsilon_2 - 2(\eta,\epsilon_2) \eta \\
+  \vdots                                                                      \\
+  \mathscr{A}(\epsilon_n) = \epsilon_n = \epsilon_n - 2(\eta,\epsilon_n) \eta
+\end{align*}
+两个线性变换相等，只需考察在一组基上向量相等，所以$\mathscr{A}$是关于$\eta$的镜面反射。
+
+\section*{3}
+
+\begin{itemize}
+  \item 必要性
+
+        利用题设和$\mathscr{A}$是正交变换，我们有
+        \begin{align*}
+          (\alpha_i, \alpha_j) = (\mathscr{A} \alpha_i, \mathscr{A} \alpha_j) = (\beta_i, \beta_j)
+        \end{align*}
+
+  \item 充分性
+
+        (i)先证明$\alpha_1, \alpha_2, \cdots, \alpha_s$与
+        $\beta_1, \beta_2, \cdots, \beta_s$的秩是相同的。
+
+        取$V$的一组基$\epsilon_1, \epsilon_2, \cdots, \epsilon_n$，
+        设
+        \begin{align*}
+          (\alpha_1, \alpha_2, \cdots, \alpha_s) & = (\epsilon_1, \epsilon_2, \cdots, \epsilon_n) A \\
+          (\beta_1, \beta_2, \cdots, \beta_s)    & = (\epsilon_1, \epsilon_2, \cdots, \epsilon_n) B
+        \end{align*}
+        其中$A, B$都是$n \times s$的矩阵。此时问题变为讨论$A$和$B$的秩。\\
+        有题设$(\alpha_i, \alpha_j) = (\beta_i, \beta_j)$可知（标准真正交基下内积为对应坐标相乘在相加）
+        \begin{align*}
+          A^T A = B^T B
+        \end{align*}
+        又因为（注：2-5-comment.tex中有证明）
+        \begin{align*}
+          rank(A^T A) = rank(A)
+        \end{align*}
+        所以
+        \begin{align*}
+          rank(A) = rank(B)
+        \end{align*}
+
+        (ii)令
+        \begin{align*}
+          U = L(\alpha_1, \alpha_2, \cdots, \alpha_s) \\
+          W = L(\beta_1, \beta_2, \cdots, \beta_s)
+        \end{align*}
+        两者秩相同，可以构造一个同构映射$f: U \to W$为
+        对任意$\alpha \in U$，
+        \begin{align*}
+          \alpha = k_1 \alpha_1 + k_2 \alpha_2 + \cdots + k_s \alpha_s
+        \end{align*}
+        定义
+        \begin{align*}
+          f(\alpha) = k_1 \beta_1 + k_2 \beta_2 + \cdots + k_s \beta_s
+        \end{align*}
+        此时，我们有
+        \begin{align*}
+          f(\alpha_i) = \beta_i
+        \end{align*}
+
+        取$U^{\bot}, W^{\bot}$的一组基标准正交基
+        \begin{align*}
+          \epsilon_{r + 1}, \epsilon_{r + 2}, \cdots, \epsilon_{n} \\
+          \eta_{r + 1}, \eta_{r + 2}, \cdots, \eta_{n}
+        \end{align*}
+        扩充$f$，对任意$\alpha \in V$，
+        \begin{align*}
+          \alpha = k_1 \alpha_1 + k_2 \alpha_2 + \cdots + k_s \alpha_s + k_{r + 1} \epsilon_{r + 1} + \cdots + k_n \epsilon_n
+        \end{align*}
+        定义
+        \begin{align*}
+          f(\alpha) = k_1 \beta_1 + k_2 \beta_2 + \cdots + k_s \beta_s + k_{r + 1} \eta_{r + 1} + \cdots + k_n \eta_n
+        \end{align*}
+        验证$f$是正交变换:
+        对任意$\alpha', \alpha'' \in V$，
+        \begin{align*}
+          \alpha' = a_1 \alpha_1 + \cdots + a_s \alpha_s + a_{r + 1} \epsilon_{r + 1} + \cdots + a_n \epsilon_n \\
+          \alpha'' = b_1 \alpha_1 + \cdots + b_s \alpha_s + b_{r + 1} \epsilon_{r + 1} + \cdots + b_n \epsilon_n
+        \end{align*}
+        因为$(\beta_i, \eta_j) = 0 \ \ \ (1 \leq i \leq r, j \geq r + 1)$，于是
+        \begin{align*}
+          (f(\alpha'), f(\alpha''))
+           & = (a_1 \beta_1 + \cdots + a_{r + 1} \eta_{r + 1} + \cdots + a_n \eta_n, b_1 \beta_1 + \cdots + b_{r + 1} \eta_{r + 1} + \cdots + b_n \eta_n) \\
+           & = \sum\limits_{i = 1}^r \sum\limits_{j = 1}^r a_i b_j (\beta_i, \beta_j)                                                                     \\
+           & = \sum\limits_{i = 1}^r \sum\limits_{j = 1}^r a_i b_j (\alpha_i, \alpha_j)                                                                   \\
+           & = (\alpha', \alpha'')
+        \end{align*}
+        所以$f$就是目标正交变换。
+\end{itemize}
+
+\section*{4}
+
+用代数的方法，算出镜面反射定义中的单位向量$\eta$。
+假设已有$\mathscr{A}$满足条件，于是
+\begin{align*}
+  \mathscr{A} \alpha            & = \beta                \\
+  \alpha - 2(\eta, \alpha) \eta & = \beta                \\
+  \alpha - \beta                & = 2(\eta, \alpha) \eta
+\end{align*}
+因为$2(\eta, \alpha)$是标量，于是我们可知$\alpha - \beta$、$\eta$向量的方向相同，所以可得
+\begin{align*}
+  \eta = \pm \frac{\alpha - \beta}{|\alpha - \beta|}
+\end{align*}
+假设$\eta = \frac{\alpha - \beta}{|\alpha - \beta|}$，则
+\begin{align*}
+  2(\eta, \alpha) \eta
+   & = 2(\frac{\alpha - \beta}{|\alpha - \beta|}, \alpha) \frac{\alpha - \beta}{|\alpha - \beta|}                          \\
+   & = 2 \frac{\alpha - \beta}{|\alpha - \beta|^2}(\alpha - \beta, \alpha)                                                 \\
+   & = 2 \frac{\alpha - \beta}{|\alpha - \beta|^2}[(\alpha, \alpha) - (\alpha, \beta)]                                     \\
+   & = 2 \frac{\alpha - \beta}{(\alpha - \beta)(\alpha - \beta)}[1 - (\alpha, \beta)]                                      \\
+   & = 2 \frac{\alpha - \beta}{(\alpha, \alpha) - (\alpha, \beta) - (\beta, \alpha) + (\beta, \beta)}[1 - (\alpha, \beta)] \\
+   & = 2 \frac{\alpha - \beta}{1 - (\alpha, \beta) - (\beta, \alpha) + 1}[1 - (\alpha, \beta)]                             \\
+   & = 2 \frac{\alpha - \beta}{2 - 2(\alpha, \beta)}[1 - (\alpha, \beta)]                                                  \\
+   & = 2 \frac{\alpha - \beta}{2[1 - (\alpha, \beta)]}[1 - (\alpha, \beta)]                                                \\
+   & = \alpha - \beta
+\end{align*}
+所以，可设$\eta = \frac{\alpha - \beta}{|\alpha - \beta|}$，并在$\eta$上扩展出$V$的一组标准正交基$\eta, \epsilon_2, \epsilon_3, \cdots, \epsilon_n$，
+$mathscr{A}$是一个镜面反射，只需令：
+\begin{align*}
+  \mathscr{A} \eta = - \eta           \\
+  \mathscr{A} \epsilon_2 = \epsilon_2 \\
+  \vdots                              \\
+  \mathscr{A} \epsilon_n = \epsilon_n
+\end{align*}
+且通过构造过程，我们有
+\begin{align*}
+  \mathscr{A} \alpha = \beta
+\end{align*}
+
+\end{document}
