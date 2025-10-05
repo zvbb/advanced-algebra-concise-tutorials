@@ -1,0 +1,160 @@
+\documentclass{article}
+\usepackage{mathtools} 
+\usepackage{fontspec}
+\usepackage[UTF8]{ctex}
+\usepackage{amsthm}
+\usepackage{mdframed}
+\usepackage{xcolor}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{hyperref}
+\usepackage{mathrsfs}
+
+
+% 定义新的带灰色背景的说明环境 zremark
+\newmdtheoremenv[
+  backgroundcolor=gray!10,
+  % 边框与背景一致，边框线会消失
+  linecolor=gray!10
+]{zremark}{注释}
+
+% 通用矩阵命令: \flexmatrix{矩阵名}{元素符号}{行数}{列数}
+\newcommand{\flexmatrix}[4]{
+  \[
+  #1 = \begin{pmatrix}
+    #2_{11}     & #2_{12}     & \cdots & #2_{1#4}   \\
+    #2_{21}     & #2_{22}     & \cdots & #2_{2#4}   \\
+    \vdots      & \vdots      & \ddots & \vdots     \\
+    #2_{#31}    & #2_{#32}    & \cdots & #2_{#3#4}
+  \end{pmatrix}
+  \]
+}
+
+% 简化版命令（默认矩阵名为A，元素符号为a）: \quickmatrix{行数}{列数}
+\newcommand{\quickmatrix}[2]{\flexmatrix{A}{a}{#1}{#2}}
+
+
+\begin{document}
+\title{6.3注释}
+\author{张志聪}
+\maketitle
+
+\begin{zremark}
+  命题3.4 (ii) $\Rightarrow$ (iii)省略的步骤。
+\end{zremark}
+
+$\alpha = k\epsilon_i + \epsilon_j$代入上式，
+\begin{align*}
+  (\mathscr{U}(k\epsilon_i + \epsilon_j), \mathscr{U}(k\epsilon_i + \epsilon_j))
+   & = (k\mathscr{U} \epsilon_i + \mathscr{U}\epsilon_j, k\mathscr{U} \epsilon_i + \mathscr{U}\epsilon_j)                                                                                                                               \\
+   & = k (\mathscr{U} \epsilon_i, k\mathscr{U} \epsilon_i + \mathscr{U}\epsilon_j) + (\mathscr{U}\epsilon_j, k\mathscr{U} \epsilon_i + \mathscr{U}\epsilon_j)                                                                           \\
+   & = k \overline{(k\mathscr{U} \epsilon_i + \mathscr{U}\epsilon_j, \mathscr{U} \epsilon_i)} + \overline{(k\mathscr{U} \epsilon_i + \mathscr{U}\epsilon_j, \mathscr{U}\epsilon_j)}                                                     \\
+   & = k \overline{(k\mathscr{U} \epsilon_i,  \mathscr{U} \epsilon_i) + (\mathscr{U}\epsilon_j, \mathscr{U} \epsilon_i)} + \overline{(k\mathscr{U} \epsilon_i, \mathscr{U}\epsilon_j) + (\mathscr{U}\epsilon_j, \mathscr{U}\epsilon_j)} \\
+   & = k \overline{k + (\mathscr{U}\epsilon_j, \mathscr{U} \epsilon_i)} + \overline{k(\mathscr{U} \epsilon_i, \mathscr{U}\epsilon_j) + 1}                                                                                               \\
+   & = k [\overline{k} + (\mathscr{U} \epsilon_i, \mathscr{U}\epsilon_j)] + \overline{k}(\mathscr{U}\epsilon_j, \mathscr{U} \epsilon_i) + 1                                                                                             \\
+   & = k \overline{k} + k(\mathscr{U} \epsilon_i, \mathscr{U}\epsilon_j) + \overline{k}(\mathscr{U}\epsilon_j, \mathscr{U} \epsilon_i) + 1
+\end{align*}
+又
+\begin{align*}
+  (k\epsilon_i + \epsilon_j, k\epsilon_i + \epsilon_j)
+   & = k (\epsilon_i, k\epsilon_i + \epsilon_j) + (\epsilon_j, k \epsilon_i + \epsilon_j)                                                   \\
+   & = k \overline{(k\epsilon_i + \epsilon_j, \epsilon_i)} + \overline{(k\epsilon_i + \epsilon_j, \epsilon_j)}                              \\
+   & = k \overline{(k \epsilon_i, \epsilon_i) + (\epsilon_j, \epsilon_i)} + \overline{(k\epsilon_i, \epsilon_j) + (\epsilon_j, \epsilon_j)} \\
+   & = k \overline{k} + 1
+\end{align*}
+于是
+\begin{align*}
+  k \overline{k} + k(\mathscr{U} \epsilon_i, \mathscr{U}\epsilon_j) + \overline{k}(\mathscr{U}\epsilon_j, \mathscr{U} \epsilon_i) + 1 & = k \overline{k} + 1 \\
+  k(\mathscr{U} \epsilon_i, \mathscr{U}\epsilon_j) + \overline{k}(\mathscr{U}\epsilon_j, \mathscr{U} \epsilon_i)                      & = 0
+\end{align*}
+
+\begin{zremark}
+  (ii) $\Rightarrow$ (iii)的证明方法，对正交变换是否成立，
+  即命题2.1中(iv)推(iii)
+\end{zremark}
+
+设$\mathscr{A} k\epsilon_i + \epsilon_j \in V (i \neq j)$，
+\begin{align*}
+  (\mathscr{A} k\epsilon_i + \epsilon_j, \mathscr{A} k\epsilon_i + \epsilon_j)
+   & = (k\mathscr{A} \epsilon_i + \mathscr{A}\epsilon_j, k\mathscr{A} \epsilon_i + \mathscr{A}\epsilon_j) \\
+   & = (k\mathscr{A} \epsilon_i, k\mathscr{A} \epsilon_i)
+  + (k\mathscr{A} \epsilon_i, \mathscr{A}\epsilon_j)
+  + (\mathscr{A}\epsilon_j, k\mathscr{A} \epsilon_i)
+  + (\mathscr{A}\epsilon_j, \mathscr{A}\epsilon_j)                                                        \\
+   & = k \cdot k(\mathscr{A} \epsilon_i, \mathscr{A} \epsilon_i)
+  + k(\mathscr{A} \epsilon_i, \mathscr{A}\epsilon_j)
+  + k(\mathscr{A}\epsilon_j, \mathscr{A} \epsilon_i)
+  + (\mathscr{A}\epsilon_j, \mathscr{A}\epsilon_j)                                                        \\
+   & = k\cdot k + 2k(\mathscr{A} \epsilon_i, \mathscr{A}\epsilon_j) + 1
+\end{align*}
+又
+\begin{align*}
+  (k\epsilon_i + \epsilon_j, k\epsilon_i + \epsilon_j)
+   & = (k\epsilon_i, k\epsilon_i)
+  + (k\epsilon_i, \epsilon_j)
+  + (\epsilon_j, k\epsilon_i)
+  + (\epsilon_j, \epsilon_j)      \\
+   & = k \cdot k + 1
+\end{align*}
+于是
+\begin{align*}
+  k\cdot k + 2k(\mathscr{A} \epsilon_i, \mathscr{A}\epsilon_j) + 1 & = k \cdot k + 1 \\
+  (\mathscr{A} \epsilon_i, \mathscr{A}\epsilon_j)                  & = 0
+\end{align*}
+又因为
+\begin{align*}
+  (\mathscr{A} \epsilon_i, \mathscr{A}\epsilon_i)
+   & = (\epsilon_i, \epsilon_i) \\
+   & = 1
+\end{align*}
+所以$\mathscr{A} \epsilon_1, \epsilon_2, \cdots, \epsilon_n$是标准正交基。
+
+\begin{zremark}
+  $(\mathscr{A}\alpha, \beta) = (\alpha, \mathscr{A}^*\beta)$显然等价于
+  \begin{align*}
+    (\mathscr{A}\epsilon_i, \epsilon_j) = (\epsilon_i, \mathscr{A}^*\epsilon_j) \ \ \ (i, j = 1, 2, \cdots, n)
+  \end{align*}
+  的原因。
+\end{zremark}
+任意$\alpha, \beta \in V$，可表示为
+\begin{align*}
+  \alpha = x_1 \epsilon_1 + x_2 \epsilon_2 + \cdots + x_n \epsilon_n \\
+  \beta = y_1 \epsilon_1 + y_2 \epsilon_2 + \cdots + y_n \epsilon_n
+\end{align*}
+于是
+\begin{align*}
+  (\mathscr{A}\alpha, \beta)
+   & = (\mathscr{A} x_1 \epsilon_1 + x_2 \epsilon_2 + \cdots + x_n \epsilon_n, y_1 \epsilon_1 + y_2 \epsilon_2 + \cdots + y_n \epsilon_n)                       \\
+   & = (x_1 \mathscr{A} \epsilon_1 + x_2 \mathscr{A}\epsilon_2 + \cdots + x_n \mathscr{A}\epsilon_n, y_1 \epsilon_1 + y_2 \epsilon_2 + \cdots + y_n \epsilon_n) \\
+   & = \sum \limits_{i = 1}^n \sum \limits_{j = 1}^n x_i (\mathscr{A} \epsilon_i, y_j \epsilon_j)                                                               \\
+   & = \sum \limits_{i = 1}^n \sum \limits_{j = 1}^n x_i \overline{(y_j \epsilon_j, \mathscr{A} \epsilon_i)}                                                    \\
+   & = \sum \limits_{i = 1}^n \sum \limits_{j = 1}^n x_i \overline{y_j (\epsilon_j, \mathscr{A} \epsilon_i)}                                                    \\
+   & = \sum \limits_{i = 1}^n \sum \limits_{j = 1}^n x_i \overline{y_j}\overline{(\epsilon_j, \mathscr{A} \epsilon_i)}                                          \\
+   & = \sum \limits_{i = 1}^n \sum \limits_{j = 1}^n x_i \overline{y_j}(\mathscr{A} \epsilon_i, \epsilon_j)
+\end{align*}
+又
+\begin{align*}
+  (\alpha, \mathscr{A}\beta)
+   & = (x_1 \epsilon_1 + x_2 \epsilon_2 + \cdots + x_n \epsilon_n, \mathscr{A}^* y_1 \epsilon_1 + y_2 \epsilon_2 + \cdots + y_n \epsilon_n)                           \\
+   & = (x_1 \epsilon_1 + x_2 \epsilon_2 + \cdots + x_n \epsilon_n, y_1 \mathscr{A}^* \epsilon_1 + y_2 \mathscr{A}^*\epsilon_2 + \cdots + y_n \mathscr{A}^*\epsilon_n) \\
+   & = \sum \limits_{i = 1}^n \sum \limits_{j = 1}^n x_i (\epsilon_i, \mathscr{A}^* y_j \epsilon_j)                                                                   \\
+   & = \sum \limits_{i = 1}^n \sum \limits_{j = 1}^n x_i \overline{(y_j \mathscr{A}^* \epsilon_j, \epsilon_i)}                                                        \\
+   & = \sum \limits_{i = 1}^n \sum \limits_{j = 1}^n x_i \overline{y_j(\mathscr{A}^* \epsilon_j, \epsilon_i)}                                                         \\
+   & = \sum \limits_{i = 1}^n \sum \limits_{j = 1}^n x_i \overline{y_j}\overline{(\mathscr{A}^* \epsilon_j, \epsilon_i)}                                              \\
+   & = \sum \limits_{i = 1}^n \sum \limits_{j = 1}^n x_i \overline{y_j}(\epsilon_i, \mathscr{A}^* \epsilon_j)                                                         \\
+\end{align*}
+\begin{itemize}
+  \item 左边推右边
+
+        取$i = 1, j = 1$，可得$(\mathscr{A}\epsilon_1, \epsilon_1) = (\epsilon_1, \mathscr{A}^*\epsilon_1)$。 \\
+        类似地，推导出剩余项。
+
+  \item 右边推左边
+
+        是平凡的结果。
+\end{itemize}
+综上，命题得证。
+
+
+
+\end{document}

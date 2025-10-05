@@ -304,4 +304,94 @@ $mathscr{A}$是一个镜面反射，只需令：
   \mathscr{A} \alpha = \beta
 \end{align*}
 
+\section*{5}
+
+设$A$是n维欧氏空间V上任意正交变换。
+
+对$n$进行归纳。
+
+$n = 1$时，设单位向量$\epsilon_1 \neq 0$是$V$的基，
+$\mathscr{A} \epsilon_1 = a_{11}\epsilon_1$，
+因为这里的$a_{11}$就是特征值，由命题2.3的推论1可知，
+$a_{11} = \pm 1$。\\
+我们构造一个镜面反射$\mathscr{A}_1$使得
+\begin{align*}
+  \mathscr{A}_1 \epsilon_1 = -\epsilon_1
+\end{align*}
+其实一维的情况下，只有这么一种，理由如下:
+\begin{zremark}
+  设任意镜面反射$\mathscr{A}_1$的法向量为$\beta$（即定义中的$\eta$），
+  对任意$\alpha \in V$，可表示为$\alpha = k \beta$，
+  于是，我们有
+  \begin{align*}
+    \mathscr{A}_1 \alpha
+     & = \alpha - 2(\alpha, \beta) \beta   \\
+     & = k \beta - 2(k \beta, \beta) \beta \\
+     & = k \beta - 2k \beta                \\
+     & = -k \beta                          \\
+     & = -\alpha
+  \end{align*}
+  所以，镜面反射$\mathscr{A}_1$与法向量的选取无关，
+  是唯一的。
+\end{zremark}
+于是，$a_1 = -1$时，$\mathscr{A} = \mathscr{A}_1$；\\
+$a_1 = 1$时，$\mathscr{A} = \mathscr{A}_1 \mathscr{A}_1$。
+
+归纳假设，$< n$时，命题成立。
+
+取$V$的一组基标准正交基
+\begin{align*}
+  \epsilon_1, \epsilon_2, \cdots, \epsilon_n
+\end{align*}
+设
+\begin{align*}
+  \mathscr{A}(\epsilon_1, \epsilon_2, \cdots, \epsilon_n)
+  = (\beta_1, \beta_2, \cdots, \beta_n)
+\end{align*}
+因为$\mathscr{A}$是正交变换，所以$\beta_1, \beta_2, \cdots, \beta_n$也是一组标准正交基。
+
+(i)如果$\mathscr{A} = \mathscr{E}$，则我们有
+\begin{align*}
+  \epsilon_i = \beta_i \ \ \ i = 1, 2, \cdots, n
+\end{align*}
+定义镜像反射:
+\begin{align*}
+  \mathscr{B}_n \epsilon_1 & = - \epsilon_1 = -\beta_1 \\
+  \mathscr{B}_n \epsilon_2 & = \epsilon_2 = \beta_2    \\
+  \vdots                                               \\
+  \mathscr{B}_n \epsilon_n & = \epsilon_n = \beta_n    \\
+\end{align*}
+于是可得$\mathscr{A} = \mathscr{B}_n\mathscr{B}_n$。
+
+(ii)如果$\mathscr{A} \neq \mathscr{E}$，则存在$\epsilon_i \neq \mathscr{A} \epsilon_i = \beta_i$，
+不妨设$\epsilon_1 \neq \beta_1$，由习题4可知，存在镜像反射$\mathscr{B}_1$使得
+\begin{align*}
+  \mathscr{B}_1 \epsilon_1 = \beta_1
+\end{align*}
+于是
+\begin{align*}
+  \mathscr{B}_1(\epsilon_1, \epsilon_2, \cdots, \epsilon_n)
+  = (\beta_1, \mathscr{B}_1 \epsilon_2, \cdots, \mathscr{B}_1 \epsilon_n)
+\end{align*}
+是一组标准正交基。
+
+令$M = L(\epsilon_1)$
+则$M^{\bot} = L(\epsilon_2, \epsilon_3, \cdots, \epsilon_n)$，
+由于$M^{\bot}$是$n - 1$维线性空间，
+$\mathscr{B}_1^{-1}\mathscr{A}|_{M^{\bot}}$是正交变换
+（注：$\mathscr{A}|_{M^{\bot}} = L(\mathscr{B}_1 \epsilon_2, \cdots, \mathscr{B}_1 \epsilon_n)$），
+由归纳假设可知能被一系列镜面反射的乘积表示，
+记为$\mathscr{B}_{n} = \mathscr{B}_{2} \mathscr{B}_{3} \cdots$（有限个），
+$\mathscr{B}_{n}$扩展为$V$上的镜面反射，令$\mathscr{B}_n \epsilon_1 = \epsilon_1$，于是我们有
+\begin{align*}
+  \mathscr{B}_1 \mathscr{B}_n (\epsilon_1, \epsilon_2, \cdots, \epsilon_n)
+  & = \mathscr{B}_1(\epsilon_1, \mathscr{B}^{-1}_1 \beta_2, \cdots, \mathscr{B}^{-1}_1 \beta_n) \\
+  & = (\beta_1, \beta_2, \cdots, \beta_n)
+\end{align*}
+所以
+\begin{align*}
+  \mathscr{A} = \mathscr{B}_1 \mathscr{B}_n
+\end{align*}
+归纳完成。
+
 \end{document}
