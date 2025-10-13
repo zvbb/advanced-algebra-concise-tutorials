@@ -1,0 +1,115 @@
+\documentclass{article}
+\usepackage{mathtools} 
+\usepackage{fontspec}
+\usepackage[UTF8]{ctex}
+\usepackage{amsthm}
+\usepackage{mdframed}
+\usepackage{xcolor}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{hyperref}
+\usepackage{mathrsfs}
+
+
+% 定义新的带灰色背景的说明环境 zremark
+\newmdtheoremenv[
+  backgroundcolor=gray!10,
+  % 边框与背景一致，边框线会消失
+  linecolor=gray!10
+]{zremark}{注释}
+
+% 通用矩阵命令: \flexmatrix{矩阵名}{元素符号}{行数}{列数}
+\newcommand{\flexmatrix}[4]{
+  \[
+  #1 = \begin{pmatrix}
+    #2_{11}     & #2_{12}     & \cdots & #2_{1#4}   \\
+    #2_{21}     & #2_{22}     & \cdots & #2_{2#4}   \\
+    \vdots      & \vdots      & \ddots & \vdots     \\
+    #2_{#31}    & #2_{#32}    & \cdots & #2_{#3#4}
+  \end{pmatrix}
+  \]
+}
+
+% 简化版命令（默认矩阵名为A，元素符号为a）: \quickmatrix{行数}{列数}
+\newcommand{\quickmatrix}[2]{\flexmatrix{A}{a}{#1}{#2}}
+
+
+\begin{document}
+\title{6.2注释}
+\author{张志聪}
+\maketitle
+
+% \begin{zremark}
+%   $\mathscr{A}$是欧氏空间中镜面反射的等价定义：
+
+%   \begin{itemize}
+%     \item (1) $\mathscr{A}$正交变换;
+%     \item (2) $\mathscr{A}^2 = \mathscr{E}$;
+%     \item (3) $\mathscr{A}$的特征值-1的重数为1。
+%   \end{itemize}
+% \end{zremark}
+
+% \begin{itemize}
+%   \item 必要性
+
+%         \begin{itemize}
+%           \item (1) 习题1-(1)已经证明。
+
+%           \item (2)
+
+%                 设$\mathscr{A}$的法向量为$\eta$，并在$\eta$的基础上扩充成一组标准正交基，
+%                 $\mathscr{A}$在这组基下的矩阵为
+%                 \begin{align*}
+%                   A = \begin{bmatrix}
+%                         -1                    \\
+%                          & 1                  \\
+%                          &   & 1              \\
+%                          &   &   & \ddots     \\
+%                          &   &   &        & 1
+%                       \end{bmatrix}
+%                 \end{align*}
+%                 于是$A^2 = E$，所以$\mathscr{A}^2 = \mathscr{E}$。
+
+%           \item (3) 习题1-(2)已经证明。
+%         \end{itemize}
+
+%   \item 充分性
+
+%         取$V$中的一组标准正交基，
+%         $\mathscr{A}$在这组基下的矩阵为$A$，
+%         由(1)可知$A$是正交矩阵，所以$A^T A = E$，即
+%         $A^{-1} = A^T$。
+
+%         由(2)可知，$AA = E$，所以$A^{-1} = A$，于是可得$A^T = A^{-1} = A$，
+%         于是可知$A$是对称的正交矩阵。
+
+%         由于$A$是正交矩阵，所以是满秩的，可知$A$的秩为$n$，
+%         任何对称方程都合同于一个对角矩阵，
+%         可以通过可逆矩阵$C$，使得$C^T A C$是对角矩阵（对角元素为$\pm 1$），
+%         即$C^{T} A C$是$\mathscr{A}$在另一组基$\epsilon_1, \cdots, \epsilon_n$下的矩阵，于是由(3)可知
+%         \begin{align*}
+%           det(C^{-1} A C) = det(A) = -1
+%         \end{align*}
+%         于是
+%         \begin{align*}
+%           B = C^T A C = \begin{bmatrix}
+%                           -1                    \\
+%                            & 1                  \\
+%                            &   & 1              \\
+%                            &   &   & \ddots     \\
+%                            &   &   &        & 1
+%                         \end{bmatrix}
+%         \end{align*}
+%         而且，我们有
+%         \begin{align*}
+%           \mathscr{A} \epsilon_1 = - \epsilon_1 \\
+%           \mathscr{A} \epsilon_2 = \epsilon_2 \\
+%           \vdots \\
+%           \mathscr{A} \epsilon_n = \epsilon_n \\
+%         \end{align*}
+%         所以，$\mathscr{A}$是镜像反射。
+
+% \end{itemize}
+
+
+\end{document}

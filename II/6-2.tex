@@ -385,13 +385,95 @@ $\mathscr{B}_1^{-1}\mathscr{A}|_{M^{\bot}}$是正交变换
 $\mathscr{B}_{n}$扩展为$V$上的镜面反射，令$\mathscr{B}_n \epsilon_1 = \epsilon_1$，于是我们有
 \begin{align*}
   \mathscr{B}_1 \mathscr{B}_n (\epsilon_1, \epsilon_2, \cdots, \epsilon_n)
-  & = \mathscr{B}_1(\epsilon_1, \mathscr{B}^{-1}_1 \beta_2, \cdots, \mathscr{B}^{-1}_1 \beta_n) \\
-  & = (\beta_1, \beta_2, \cdots, \beta_n)
+   & = \mathscr{B}_1(\epsilon_1, \mathscr{B}^{-1}_1 \beta_2, \cdots, \mathscr{B}^{-1}_1 \beta_n) \\
+   & = (\beta_1, \beta_2, \cdots, \beta_n)
 \end{align*}
 所以
 \begin{align*}
   \mathscr{A} = \mathscr{B}_1 \mathscr{B}_n
 \end{align*}
 归纳完成。
+
+\section*{6}
+
+没看懂题目。
+
+\section*{7}
+
+ (i)镜面反射的矩阵表示
+
+取$V$的任意一组标准正交基
+\begin{align*}
+  \epsilon_1, \epsilon_2, \cdots, \epsilon_n
+\end{align*}
+对于镜面反射$\mathscr{A}$存在单位向量$\eta \in V$，其坐标设为
+\begin{align*}
+  y = \begin{bmatrix}
+        y_1    \\
+        y_2    \\
+        \vdots \\
+        y_n
+      \end{bmatrix}
+\end{align*}
+此时$\mathscr{A}$在这组基下的矩阵为
+\begin{align*}
+  A = E - 2 y y^T \ \ \ (1)
+\end{align*}
+验证这个矩阵的正确性：对任意$\alpha \in V$，设坐标为$x = \begin{bmatrix}
+    x_1    \\
+    x_2    \\
+    \vdots \\
+    x_n
+  \end{bmatrix}$，于是
+\begin{align*}
+  A x & = (I - 2 y y^T) x        \\
+      & = x - 2 y (y^T x)        \\
+      & = x - 2 y (\eta, \alpha) \\
+      & = x - 2 (\alpha, \eta) y
+\end{align*}
+（注意：$(\alpha, \eta)$是标量）\\
+对应的坐标变换为
+\begin{align*}
+  \mathscr{A} \alpha = \alpha - 2 (\alpha, \eta) \eta
+\end{align*}
+符合镜面反射定义。
+
+(ii) 正交变换的矩阵性质
+
+正交变换$\mathscr{B}$在标准正交基下的矩阵$B$满足正交矩阵的定义：
+$B^T B = E$，即$B^{-1} = B^T$。此时$\mathscr{B}^{-1} \mathscr{A} \mathscr{B}$在这组基下的矩阵为
+$B^{-1} A B = B^T A B$。
+
+(iii) 证明$B^T A B$是镜面反射矩阵。
+\begin{align*}
+  B^T A B & = B^T (E - 2 y y^T) B    \\
+          & = B^T(B - 2 y y^T B)     \\
+          & = B^T B - 2 B^T y y^T B  \\
+          & = E - 2 B^T y y^T B      \\
+          & = E - 2 (B^T y)(B^T y)^T
+\end{align*}
+令$\beta = B^T y$，接下来我们只需证明$\beta$是单位向量，即$(\beta, \beta) = 1$。
+\begin{align*}
+  (\beta, \beta) & = \beta^T \beta   \\
+                 & = (B^T y)^T B^T y \\
+                 & = y^T B^T B y     \\
+                 & = y^T y           \\
+                 & = 1
+\end{align*}
+所以，$ B^T A B = E - 2 \beta \beta^T$，其中$\beta$是单位向量坐标，
+由第一步的镜面反射矩阵定义，$B^T A B$是镜面反射矩阵，对应线性变换
+$\mathscr{B}^{-1} \mathscr{A} \mathscr{B}$是镜面反射。
+
+\section*{8}
+
+提示：证明$f(\alpha, \beta)$是对称双线性函数，即证明
+\begin{align*}
+  f(k\alpha_1 + l \alpha_2, \beta) & = kf(\alpha_1, \beta) + lf(\alpha_2, \beta) \\
+  f(\alpha, \beta)                 & = f(\beta, \alpha)
+\end{align*}
+
+\section*{10}
+
+
 
 \end{document}

@@ -268,7 +268,64 @@ todo
 
 \section*{19}
 
-todo
+设$<n$的多项式$f(x)$为
+\begin{align*}
+  f(x) = k_0 + k_1 x + k_2 x^2 + \cdots + k_{n-1} x^{n-1}
+\end{align*}
+（注：这里不一定是$n-1$次的，因为$k_i(i = 0, 1, \cdots, n-1)$的取值可以为0）。
+
+由题意可得如下线性方程组：
+\begin{equation*}
+  \begin{cases}
+    k_0 + k_1 a_1 + k_2 a_1^2 + k_3 a_1^3 + \cdots + k_{n-1} a_1^{n-1} & = b_1  \\
+    k_0 + k_1 a_2 + k_2 a_2^2 + k_3 a_2^3 + \cdots + k_{n-1} a_2^{n-1} & = b_2  \\
+                                                                       & \vdots \\
+    k_0 + k_1 a_n + k_2 a_n^2 + k_3 a_n^3 + \cdots + k_{n-1} a_n^{n-1} & = b_n
+  \end{cases}
+\end{equation*}
+看做关于$k_0, k_1, \cdots, k_{n-1}$的线性方程组，其系数矩阵为
+\begin{align*}
+  A = \begin{bmatrix}
+        1      & a_1    & a_1^2  & \cdots & a_1^{n-1} \\
+        1      & a_2    & a_2^2  & \cdots & a_2^{n-1} \\
+        \vdots & \vdots & \vdots & \ddots & \vdots    \\
+        1      & a_n    & a_n^2  & \cdots & a_n^{n-1}
+      \end{bmatrix}
+\end{align*}
+$A^T$矩阵是范德蒙德矩阵，且$a_1, a_2, \cdots, a_n$两两不同，
+于是，我们有
+\begin{align*}
+  |A| = |A^T| = \prod\limits_{1 \leq i < j \leq n} (a_j - a_i) \neq 0
+\end{align*}
+所以，$A$是满秩的，线性方程组只有唯一解。
+设
+\begin{align*}
+  K = \begin{bmatrix}
+        k_0    \\
+        k_1    \\
+        \vdots \\
+        k_{n-1}
+      \end{bmatrix} \\
+  B = \begin{bmatrix}
+        b_1    \\
+        b_2    \\
+        \vdots \\
+        b_n
+      \end{bmatrix}
+\end{align*}
+我们有
+\begin{align*}
+  K = A^{-1} B
+\end{align*}
+综上，我们有
+\begin{align*}
+  f(x) & = \begin{bmatrix}
+             1 & x & x^2 & \cdots & x^{n-1}
+           \end{bmatrix} K \\
+       & = \begin{bmatrix}
+        1 & x & x^2 & \cdots & x^{n-1}
+      \end{bmatrix} A^{-1} B
+\end{align*}
 
 \section*{20}
 
