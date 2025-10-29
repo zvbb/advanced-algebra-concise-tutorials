@@ -235,11 +235,11 @@ $M_1 \cup M_2 \cup \cdots \cup M_{i - 1} \cup M_{i + 1} \cup \cdots \cup M_k = V
         易得$M_2$是1维的，且$A$是它的一组基。
         于是可得$dim M_1 + dim M_2 = n$。
 
-        综上，$M_n(K) = M_1 \oplus M_2$。
+        综上，$K^n = M_1 \oplus M_2$。
 
   \item 方法二
 
-        先证明$M_n(K) = M_1 + M_2$，即对任意$\gamma  = \begin{bmatrix}
+        先证明$K^n = M_1 + M_2$，即对任意$\gamma  = \begin{bmatrix}
             c_1    \\
             c_2    \\
             \vdots \\
@@ -308,7 +308,7 @@ $M_1 \cup M_2 \cup \cdots \cup M_{i - 1} \cup M_{i + 1} \cup \cdots \cup M_k = V
               \frac{c_1 + c_2 + \cdots + c_n}{n}
             \end{bmatrix}
         \end{align*}
-        $M_n(K) = M_1 + M_2$得证。
+        $K^n = M_1 + M_2$得证。
 
         再证明$M_1 + M_2$是直和。
         通过任意向量$\alpha \in M_1 + M_2$，只有唯一分解方式来证明。
@@ -469,25 +469,24 @@ $\forall \alpha \in M \cap (N \cap L)$，我们有
 
   \item 充分性
 
-        反证法，假设存在
+        已知
         \begin{align*}
-          M_l \cap \left(\sum\limits_{j = 1; j \neq l}^{k} M_j\right) \neq \{0\}
+          M_i \cap \left(\sum\limits_{j = 1}^{i - 1} M_j\right) = \{0\}
         \end{align*}
-        由于
+        所以
         \begin{align*}
-          M_l \cap \left(\sum\limits_{j = 1}^{l - 1} M_j\right) = \{0\}
+          M_i \oplus \left(\sum\limits_{j = 1}^{i - 1} M_j\right), i = 1, 2, \cdots, k
         \end{align*}
-        所以，存在$\alpha \neq 0$，有
-        \begin{align*}
-          \alpha \in M_l \\
-          \alpha \in M_s
-        \end{align*}
-        其中$l < s \leq k$。
         于是可得
         \begin{align*}
-          M_{s} \cap \left(\sum\limits_{j = 1}^{s-1} M_j\right) \neq \{0\}
+          dim \left(\sum\limits_{j = 1}^{k} M_j\right)
+          & = dim \left(M_k + \sum\limits_{j = 1}^{k-1} M_j\right) \\
+          & = dim M_k + dim \left(\sum\limits_{j = 1}^{k-1} M_j\right) \\
+          & = dim M_k + dim M_{k-1} + dim \left(\sum\limits_{j = 1}^{k-2} M_j\right) \\
+          & \vdots \\
+          & = dim M_k + dim M_{k-1} + \cdots + dim M_1
         \end{align*}
-        出现矛盾。
+        可得$\left(\sum\limits_{j = 1}^{k} M_j\right)$是直和。
 \end{itemize}
 
 \section*{24}
@@ -815,7 +814,7 @@ $L$作为$F$上的线性空间的一组基为
 \end{align*}
 又因为$\epsilon_1, \epsilon_2, \cdots, \epsilon_m$是线性无关，所以有
 \begin{align*}
-  k_{i_j} = 0, (1 \leq i \leq m, 1 \leq j \leq n) 
+  k_{i_j} = 0, (1 \leq i \leq m, 1 \leq j \leq n)
 \end{align*}
 综上，$(I)$是线性无关的。
 
@@ -826,9 +825,9 @@ $L$作为$F$上的线性空间的一组基为
 \begin{itemize}
   \item (1) 略
 
-  \item (2) 略 
+  \item (2) 略
 
-  \item (3) 
+  \item (3)
 \end{itemize}
 
 \end{document}
