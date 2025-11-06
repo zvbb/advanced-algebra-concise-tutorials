@@ -87,44 +87,56 @@
 \begin{itemize}
   \item 已知$(A \oplus B) \oplus C$可得$A \oplus B \oplus C$。
 
-        $(A \oplus B) \oplus C$，由定理2.2(iii)，我们有
-        \begin{align*}
-          A \cap B = \{0\} \\
-          (A + B) \cap C = \{0\}
-        \end{align*}
-        为了证明$A \oplus B \oplus C$，我们利用定理2.3的(iii)，
-        即
-        \begin{align*}
-          A \cap (B + C) = \{0\} \\
-          B \cap (A + C) = \{0\} \\
-          C \cap (A + B) = \{0\}
-        \end{align*}
-        最后一条是已知的，且前两条是对称的，所以只需证明一条。
+        \begin{itemize}
+          \item 方法一
 
-        $\forall \alpha \in A \cap (B + C)$，我们有
-        \begin{align*}
-          \alpha = a = b + c \\
-          a - b = c
-        \end{align*}
-        因为$a - b \in A + B, c \in C$，利用$(A + B) \cap C = \{0\} $可知
-        \begin{align*}
-          a - b = c = 0 \\
-          a = b         \\
-          c = 0
-        \end{align*}
-        又$A \cap B = \{0\}$，所以
-        \begin{align*}
-          a = b = 0
-        \end{align*}
-        所以
-        \begin{align*}
-          \alpha = a = 0
-        \end{align*}
-        综上可得
-        \begin{align*}
-          A \cap (B + C) = \{0\}
-        \end{align*}
-        所以，$A + B + C$是直和。
+                $(A \oplus B) \oplus C$，由定理2.2(iii)，我们有
+                \begin{align*}
+                  A \cap B = \{0\} \\
+                  (A + B) \cap C = \{0\}
+                \end{align*}
+                为了证明$A \oplus B \oplus C$，我们利用定理2.3的(iii)，
+                即
+                \begin{align*}
+                  A \cap (B + C) = \{0\} \\
+                  B \cap (A + C) = \{0\} \\
+                  C \cap (A + B) = \{0\}
+                \end{align*}
+                最后一条是已知的，且前两条是对称的，所以只需证明一条。
+
+                $\forall \alpha \in A \cap (B + C)$，我们有
+                \begin{align*}
+                  \alpha = a = b + c \\
+                  a - b = c
+                \end{align*}
+                因为$a - b \in A + B, c \in C$，利用$(A + B) \cap C = \{0\} $可知
+                \begin{align*}
+                  a - b = c = 0 \\
+                  a = b         \\
+                  c = 0
+                \end{align*}
+                又$A \cap B = \{0\}$，所以
+                \begin{align*}
+                  a = b = 0
+                \end{align*}
+                所以
+                \begin{align*}
+                  \alpha = a = 0
+                \end{align*}
+                综上可得
+                \begin{align*}
+                  A \cap (B + C) = \{0\}
+                \end{align*}
+                所以，$A + B + C$是直和。
+
+          \item 方法二
+                \begin{align*}
+                  dim ((A \oplus B) \oplus C)
+                   & = dim (A \oplus B) + dim C \\
+                   & = dim A + dim B + dim C
+                \end{align*}
+                所以，$A \oplus B \oplus C$。
+        \end{itemize}
 
   \item 已知$A \oplus B \oplus C$可得$(A \oplus B) \oplus C$。
 

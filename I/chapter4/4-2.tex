@@ -480,11 +480,11 @@ $\forall \alpha \in M \cap (N \cap L)$，我们有
         于是可得
         \begin{align*}
           dim \left(\sum\limits_{j = 1}^{k} M_j\right)
-          & = dim \left(M_k + \sum\limits_{j = 1}^{k-1} M_j\right) \\
-          & = dim M_k + dim \left(\sum\limits_{j = 1}^{k-1} M_j\right) \\
-          & = dim M_k + dim M_{k-1} + dim \left(\sum\limits_{j = 1}^{k-2} M_j\right) \\
-          & \vdots \\
-          & = dim M_k + dim M_{k-1} + \cdots + dim M_1
+           & = dim \left(M_k + \sum\limits_{j = 1}^{k-1} M_j\right)                   \\
+           & = dim M_k + dim \left(\sum\limits_{j = 1}^{k-1} M_j\right)               \\
+           & = dim M_k + dim M_{k-1} + dim \left(\sum\limits_{j = 1}^{k-2} M_j\right) \\
+           & \vdots                                                                   \\
+           & = dim M_k + dim M_{k-1} + \cdots + dim M_1
         \end{align*}
         可得$\left(\sum\limits_{j = 1}^{k} M_j\right)$是直和。
 \end{itemize}
@@ -587,12 +587,10 @@ $\forall \alpha \in M \cap (N \cap L)$，我们有
 
 \section*{28}
 
-todo 未做出来
-
 \begin{itemize}
   \item (1)
 
-        先证明加法和数乘运算是封闭的。
+        (i)先证明加法和数乘运算是封闭的。
 
         \begin{itemize}
           \item $f + g \in P(K)$。
@@ -679,7 +677,7 @@ todo 未做出来
                 乘法封闭性得证。
         \end{itemize}
 
-        证明8条运算法则成立：
+        (ii)证明8条运算法则成立：
 
         \begin{itemize}
           \item 存在零元素。
@@ -702,16 +700,16 @@ todo 未做出来
                 \end{align*}
                 所以$f + (- f)$是零元素。
         \end{itemize}
+        其他法则证明略。
 
   \item (2)
+
+        注意：题中$i_1, i_2, \cdots, i_n$不是排列，是各取各的，互不影响。
 
         任意矩阵$A \in M_n(K)$，设为
         \begin{align*}
           A = \begin{bmatrix}
-                a_{11} & a_{12} & \cdots & a_{1n} \\
-                a_{21} & a_{22} & \cdots & a_{2n} \\
-                \vdots & \vdots & \ddots & \vdots \\
-                a_{n1} & a_{n2} & \cdots & a_{nn}
+                \alpha_1 & \alpha_2 & \cdots & \alpha_n
               \end{bmatrix}
         \end{align*}
         即任意列向量$\alpha_i \in A$，表示成
@@ -737,14 +735,86 @@ todo 未做出来
               \end{bmatrix}
         \end{align*}
         $f$是列线性函数，可以把$A$每列展开，
-        具体展开式为
+        最终$A$是有限个矩阵（都由$\epsilon_1, \epsilon_2, \cdots, \epsilon_n$作为列向量组合而成的矩阵）
+        记为$E_i(i = 1, 2, \cdots, s)$
+        相加得到，即
         \begin{align*}
-          f(A)
-          = \sum\limits_{i_1 = 1}^n \cdots \sum\limits_{i_n = 1}^n a_{i_1 1} \cdots a_{i_n n}
-          f[\epsilon_{i_1}  \epsilon_{i_2}  \cdots  \epsilon_{i_n}]
+          A = \sum_{i = 1}^s E_i
         \end{align*}
-
+        于是由列线性函数的性质可知
+        \begin{align*}
+          f(A) = f(\sum_{i = 1}^s E_i) = \sum_{i = 1}^s f(E_i)
+        \end{align*}
   \item (3)
+
+        可以先看(4)，通过其中(ii)的描述，就可以表示出想要的函数了。
+
+  \item (4)
+
+        由(2)可知，任意$f \in P(K)$由$n^n$个变量（(2)中描述的矩阵）确定，
+        这个$n^n$个矩阵，我们把它排序成$A_1, A_2, \cdots, A_{n^n}$，
+        定义一组函数$f_i \in P(K)$：
+        \begin{equation*}
+          \begin{cases}
+            f_i(A_i) = 1 \\
+            f_i(A_m) = 0, m \neq i
+          \end{cases}
+        \end{equation*}
+        现在证明这$n^n$个函数是$P(K)$的一组基，为了讨论方便，这组函数记为$(I)$.
+
+        (i)线性无关。
+
+        令
+        \begin{align*}
+          f = c_1 f_1 + c_2 f_2 + \cdots + c_{n^n} f_{n^n} = 0
+        \end{align*}
+        以上是一个常量函数，即任意点都是$0$，由$(I)$的构造过程可知，
+        $c_1 = c_2 = \cdots = c_{n^n} = 0$，
+        于是可知$(I)$是线性无关的。
+
+        (ii)可以表示$P(k)$中的任意列线性函数$f$.
+
+        设$f$在$n^n$个矩阵上的值为
+        \begin{align*}
+          f(A_i) = b_i
+        \end{align*}
+        令
+        \begin{align*}
+          g = b_1 f_1 + b_2 f_2 + \cdots + b_{n^n} f_{n^n}
+        \end{align*}
+        因为对任意$A_i$，都有
+        \begin{align*}
+          f(A_i) = g(A_i) = b_i
+        \end{align*}
+        所以$f = g$。
+
+        综上，$(I)$就是$P(K)$的一组基，$P(K)$的维数是$n^n$.
+
+  \item (5)
+
+        (i) 子空间的证明略
+
+        (ii)
+        \begin{itemize}
+          \item 一个错误方法；
+
+                受(1)-(4)的启发: 我们知道反对称的列线性函数$f$，
+                因为在不满秩的矩阵上，函数值总是0，于是推出$\epsilon_i, i = 1, 2, \cdots, n$
+                在矩阵中不可重复，所以是$1, 2, \cdot, n$的排列组合，即维数是
+                $n!$。
+
+                上面方法的问题在于，我们应该只能推出维数$\leq n!$，
+                因为反对称函数还有隐含的性质：交换矩阵两行，函数值前后是相反数，
+                而不是在这$n!$上相互独立，即维数$< n!$。
+
+          \item 正确方法.
+
+                我们知道行列式（$det$）的定义为：反对称列线性函数 + $det(E) = 1$，
+                而反对称函数的在$E$上的值确定了，由第三章命题2.3可知其他矩阵上的值也就确定了，
+                于是对任意反对称列线性函数$f$，如果已知$f(E) = a \cdot det(E)$，则这个函数就被唯一确定了，
+                综上可得，反对称列线性函数的维数是$1$，$det$是一组基。
+
+        \end{itemize}
 
 \end{itemize}
 
@@ -784,7 +854,7 @@ $L$作为$F$上的线性空间的一组基为
   \epsilon_1 \eta_1, \epsilon_1 \eta_2, \cdots \epsilon_1 \eta_n, \\
   \epsilon_2 \eta_1, \epsilon_2 \eta_2, \cdots \epsilon_2 \eta_n, \\
   \vdots                                                          \\
-  \epsilon_m \eta_1, \epsilon_m \eta_2, \cdots \epsilon_m \eta_n  \\
+  \epsilon_m \eta_1, \epsilon_m \eta_2, \cdots \epsilon_m \eta_n
 \end{align*}
 用$K$上的数线性表示。
 
@@ -823,11 +893,62 @@ $L$作为$F$上的线性空间的一组基为
 \section*{30}
 
 \begin{itemize}
-  \item (1) 略
+  \item (1)
 
-  \item (2) 略
+        提示：
+
+        零元素为零函数$f_0$（即对任意$A \in M_n(K)$），都有$f_0(A) = 0$。\\
+        任意$f \in F(K)$，负元素为$-f$。
+
+  \item (2)
+
+        \begin{itemize}
+          \item (i) $Q(K)$是$F(K)$的子空间。
+
+                设$A \in M_n(K)$，为
+                \begin{align*}
+                  A = (\beta_1, \cdots, \cdots, \beta_j + \beta, \cdots, \beta_n)
+                \end{align*}
+                其中
+                \begin{align*}
+                  A_1 = (\beta_1, \cdots, \cdots, \beta_j, \cdots, \beta_n) \\
+                  A_2 = (\beta_1, \cdots, \cdots, \beta, \cdots, \beta_n)   \\
+                  A = A_1 + A_2
+                \end{align*}
+
+                对加法封闭：\\
+                任意$q_1, q_2 \in Q(K)$，有
+                \begin{align*}
+                  (q_1 + q_2) (A)
+                   & = q_1(A) + q_2(A)                           \\
+                   & = q_1(A_1 + A_2) + q_2(A_1 + A_2)           \\
+                   & = q_1(A_1) + q_1(A_2) + q_2(A_1) + q_2(A_2) \\
+                   & = (q_1 + q_2)(A_1) + (q_1 + q_2)(A_2)
+                \end{align*}
+
+                对数乘封闭：\\
+                任意$q_1\in Q(K)$，有
+                \begin{align*}
+                  (kq_1)(A)
+                   & = k q_1(A)                \\
+                   & = k (q_1(A_1) + q_1(A_2)) \\
+                   & = k q_1(A_1) + k q_1(A_2)
+                \end{align*}
+
+          \item (ii) $P(K)$是$F(K)$的子空间。
+
+                同理可知。
+        \end{itemize}
 
   \item (3)
+
+        todo
+
+  \item (4)
+
+        todo
+
+
 \end{itemize}
 
 \end{document}
