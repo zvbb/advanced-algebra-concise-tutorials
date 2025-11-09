@@ -768,9 +768,17 @@ $\forall \alpha \in M \cap (N \cap L)$，我们有
         \begin{align*}
           f = c_1 f_1 + c_2 f_2 + \cdots + c_{n^n} f_{n^n} = 0
         \end{align*}
-        以上是一个常量函数，即任意点都是$0$，由$(I)$的构造过程可知，
-        $c_1 = c_2 = \cdots = c_{n^n} = 0$，
-        于是可知$(I)$是线性无关的。
+        以上是一个常量函数，即任意矩阵$A$都是$f(A) = 0$。
+        反证法，假设$(I)$不是线性无关的，即存在$c_j \neq 0$，使得上式成立。
+        取$A = A_j$，则
+        \begin{align*}
+          f(A) & = c_1 f_1(A_j) + c_2 f_2(A_j) + \cdots + c_j f_j(A_j) + \cdot + c_{n^n} f_{n^n} \\
+               & = 0 + c_j f_j(A_j)                                                              \\
+               & = c_j \cdot 1                                                                   \\
+               & = c_j                                                                           \\
+               & \neq 0
+        \end{align*}
+        出现矛盾，于是可知$(I)$是线性无关的。
 
         (ii)可以表示$P(k)$中的任意列线性函数$f$.
 
@@ -942,11 +950,70 @@ $L$作为$F$上的线性空间的一组基为
 
   \item (3)
 
-        todo
+        由习题28-(2)可知，
+        任意的行线性函数或列线性函数，由$n^n$个下列函数值确定：
+        $f(\epsilon_{i_1}, \epsilon_{i_2}, \cdots, \epsilon_{i_n})$
+        其中$i_1, i_2, \cdots, i_n$分别取$1, 2, \cdots, n$。
+
+        任意$f \in P(K) \cap Q(K)$，则
+        $i_1, i_2, \cdots, i_n$有重复时，
+        函数值一定为$0$。因为$\epsilon_{i_1}, \epsilon_{i_2}, \cdots, \epsilon_{i_n}$
+        中一共有$n$个1，存在$i_j$重复，则某列的1个数$\geq 2$，此时将有一行的元素全为0，
+        由于$f$是行线性函数，所以$f$此时的函数值为0。
+
+        任意$f \in P(K) \cap Q(K)$，
+        $i_1, i_2, \cdots, i_{n!}$可以排列组合处$n!$个矩阵，
+        我们把它记为$A_1, A_2, \cdots, A_{n!}$，定义一组函数$f_i$：
+        \begin{equation*}
+          \begin{cases}
+            f_i(A_i) = 1 \\
+            f_i(A_m) = 0, m \neq i
+          \end{cases}
+        \end{equation*}
+        现在证明这$n!$个函数是$P(K) \cap Q(K)$的一组基，为了讨论方便，这组函数记为$(I)$.
+
+        (i) 线性无关。
+
+        令
+        \begin{align*}
+          f = c_1 f_1 + c_2 f_2 + \cdots + c_{n!} f_{n!} = 0
+        \end{align*}
+        以上是一个常量函数，即任意矩阵$A$都是$f(A) = 0$。
+        反证法，假设$(I)$不是线性无关的，即存在$c_j \neq 0$，使得上式成立。
+        取$A = A_j$，则
+        \begin{align*}
+          f(A) & = c_1 f_1(A_j) + c_2 f_2(A_j) + \cdots + c_j f_j(A_j) + \cdot + c_{n!} f_{n!} \\
+               & = 0 + c_j f_j(A_j)                                                          \\
+               & = c_j \cdot 1                                                               \\
+               & = c_j                                                                       \\
+               & \neq 0
+        \end{align*}
+        出现矛盾，于是可知$(I)$是线性无关的。
+
+        (ii)可以表示$P(k) \cap Q(K)$中的任意列线性函数$f$.
+
+        利用习题28-(2)的结论，排除哪些一定等于$0$的函数值，我们只需定义$f$在$n!$个函数值。
+
+        设$f$在$n!$个矩阵上的值为
+        \begin{align*}
+          f(A_i) = b_i
+        \end{align*}
+        令
+        \begin{align*}
+          g = b_1 f_1 + b_2 f_2 + \cdots + b_{n!} f_{n!}
+        \end{align*}
+        因为对任意$A_i$，都有
+        \begin{align*}
+          f(A_i) = g(A_i) = b_i
+        \end{align*}
+        所以$f = g$。
+
+        综上，$(I)$就是$P(K) \cap Q(K)$的一组基，$P(K) \cap Q(K)$的维数是$n!$.
 
   \item (4)
 
-        todo
+        可以利用定理2.1的证明过程，来找到$P(K) + Q(K)$的一组基。
+        过程比较显然，证明略。
 
 
 \end{itemize}
