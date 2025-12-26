@@ -38,6 +38,260 @@
 \author{张志聪}
 \maketitle
 
+\section*{1}
+\begin{itemize}
+  \item (1)
+
+        \[
+          \begin{bmatrix}
+            -2          & 0             & \frac{1}{2}   \\
+            0           & -1            & - \frac{1}{2} \\
+            \frac{1}{2} & - \frac{1}{2} & 0
+          \end{bmatrix}
+        \]
+  \item (2)
+
+        \[
+          \begin{bmatrix}
+            0            & 0 & -\frac{1}{2}  & -1            \\
+            0            & 0 & 0             & 0             \\
+            -\frac{1}{2} & 0 & 1             & - \frac{5}{2} \\
+            - 1          & 0 & - \frac{5}{2} & 0
+          \end{bmatrix}
+        \]
+  \item (3)
+
+        略
+  \item (4)
+
+        略
+\end{itemize}
+
+\section*{2}
+
+\begin{itemize}
+  \item (1)
+
+        \[
+          A =
+          \begin{bmatrix}
+            f(\epsilon_1, \epsilon_1) & f(\epsilon_1, \epsilon_2) & f(\epsilon_1, \epsilon_3) & f(\epsilon_1, \epsilon_4) \\
+            f(\epsilon_2, \epsilon_1) & f(\epsilon_2, \epsilon_2) & f(\epsilon_2, \epsilon_3) & f(\epsilon_2, \epsilon_4) \\
+            f(\epsilon_3, \epsilon_1) & f(\epsilon_3, \epsilon_2) & f(\epsilon_3, \epsilon_3) & f(\epsilon_3, \epsilon_4) \\
+            f(\epsilon_4, \epsilon_1) & f(\epsilon_4, \epsilon_2) & f(\epsilon_4, \epsilon_3) & f(\epsilon_4, \epsilon_4)
+          \end{bmatrix}
+          =
+          \begin{bmatrix}
+            -1 & 2  & 0 & -2 \\
+            2  & -3 & 0 & 1  \\
+            0  & 0  & 0 & 0  \\
+            -2 & 1  & 0 & 2
+          \end{bmatrix}
+        \]
+        设$\alpha$在基$\epsilon_1, \epsilon_2, \epsilon_3, \epsilon_4$下的坐标为
+        \begin{align*}
+          X = \begin{bmatrix}
+                x_1 \\
+                x_2 \\
+                x_3 \\
+                x_4
+              \end{bmatrix},
+        \end{align*}
+        则解系表达式为
+        \begin{align*}
+          f(\alpha, \alpha) & = X^T A X                                                         \\
+                            & = - x_1^2 + 4 x_1 x_2 - 3 x_2^2 + 2 x_4^2 - 4 x_1 x_4 + 2 x_2 x_4
+        \end{align*}
+
+  \item (2)
+
+        由命题2.2可知，在基$\eta_1, \eta_2, \eta_3, \eta_4$下的矩阵为
+        \begin{align*}
+          B & = T^T A T                                \\
+            & =
+          \begin{bmatrix}
+            2                  & 1                  & 0 & 0                  \\
+            1                  & 0                  & 0 & 0                  \\
+            \frac{4}{\sqrt{3}} & \frac{3}{\sqrt{3}} & 0 & \frac{1}{\sqrt{3}} \\
+            0                  & 0                  & 1 & 0
+          \end{bmatrix}
+          \begin{bmatrix}
+            -1 & 2  & 0 & -2 \\
+            2  & -3 & 0 & 1  \\
+            0  & 0  & 0 & 0  \\
+            -2 & 1  & 0 & 2
+          \end{bmatrix}
+          \begin{bmatrix}
+            2 & 1 & \frac{4}{\sqrt{3}} & 0 \\
+            1 & 0 & \frac{3}{\sqrt{3}} & 0 \\
+            0 & 0 & 0                  & 1 \\
+            0 & 0 & \frac{1}{\sqrt{3}} & 0
+          \end{bmatrix} \\
+            & =
+          \begin{bmatrix}
+            0  & 1 & 0 & -3                   \\
+            -1 & 2 & 0 & -2                   \\
+            0  & 0 & 0 & - \frac{3}{\sqrt{3}} \\
+            0  & 0 & 0 & 0
+          \end{bmatrix}
+          \begin{bmatrix}
+            2 & 1 & \frac{4}{\sqrt{3}} & 0 \\
+            1 & 0 & \frac{3}{\sqrt{3}} & 0 \\
+            0 & 0 & 0                  & 1 \\
+            0 & 0 & \frac{1}{\sqrt{3}} & 0
+          \end{bmatrix} \\
+            & =
+          \begin{bmatrix}
+            1 & 0  & 0  & 0 \\
+            0 & -1 & 0  & 0 \\
+            0 & 0  & -1 & 0 \\
+            0 & 0  & 0  & 0
+          \end{bmatrix}
+        \end{align*}
+
+        设$\alpha$在基$\eta_1, \eta_2, \eta_3, \eta_4$下的坐标为
+        \begin{align*}
+          X = \begin{bmatrix}
+                x_1 \\
+                x_2 \\
+                x_3 \\
+                x_4
+              \end{bmatrix},
+        \end{align*}
+        则解系表达式为
+        \begin{align*}
+          f(\alpha, \alpha) & = X^T B X               \\
+                            & = x_1^2 - x_2^2 - x_3^2
+        \end{align*}
+
+  \item (3)
+
+        先对$x_1$进行配方，得到
+        \begin{align*}
+          f
+           & = - x^2 + 4 x_1 x_2 - 4 x_1 x_4 - 3x_2^2 + 2 x_2 x_4 + 2 x_4^2                            \\
+           & = -(x_1 ^ 2 - 2 \cdot 2 x_1 x_2 + 2 \cdot 2 x_1 x_4) - 3x_2^2 + 2 x_2 x_4 + 2 x_4^2       \\
+           & = -(x_1 - 2 x_2 + 2 x_4)^2 + 4 x_2^2 - 8 x_2 x_4 + 4 x_4^2 - 3x_2^2 + 2 x_2 x_4 + 2 x_4^2 \\
+           & = -(x_1 - 2 x_2 + 2 x_4)^2 + x_2^2 - 6 x_2 x_4 + 6 x_4^2
+        \end{align*}
+        做变数替换
+        \begin{equation*}
+          \begin{cases*}
+            y_1 = x_1 - 2 x_2 + 2 x_4 \\
+            y_2 = x_2                 \\
+            y_3 = x_3                 \\
+            y_4 = x_4
+          \end{cases*}
+        \end{equation*}
+        反解为
+        \begin{equation*}
+          \begin{cases}
+            x_1 = y_1 + 2 y_2 - 2 y_4 \\
+            x_2 = y_2                 \\
+            x_3 = y_3                 \\
+            x_4 = y_4
+          \end{cases}
+        \end{equation*}
+        表成矩阵形式
+        \begin{align*}
+          X = \begin{bmatrix}
+                x_1 \\
+                x_2 \\
+                x_3 \\
+                x_4
+              \end{bmatrix}
+          = \begin{bmatrix}
+              1 & 2 & 0 & -2 \\
+              0 & 1 & 0 & 0  \\
+              0 & 0 & 1 & 0  \\
+              0 & 0 & 0 & 1
+            \end{bmatrix}
+          \begin{bmatrix}
+            y_1 \\
+            y_2 \\
+            y_3 \\
+            y_4
+          \end{bmatrix}
+          = T_1 Y
+        \end{align*}
+        于是，二次型化作
+        \begin{align*}
+          - y_1^2 + y_2^2 - 6 y_2 y_4 + 6 y_4^2
+        \end{align*}
+        再次对$y_2$配方，得
+        \begin{align*}
+          - y_1^2 + y_2^2 - 6 y_2 y_4 + 6 y_4^2
+           & = - y_1^2 + (y_2^2 - 2 \cdot 3 y_2 y_4) + 6 y_4^2 \\
+           & = - y_1^2 + (y_2 - 3y_4)^2 - 9 y_4^2 + 6 y_4^2    \\
+           & = - y_1^2 + (y_2 - 3y_4)^2 - 3 y_4^2
+        \end{align*}
+        做变数替换
+        \begin{equation*}
+          \begin{cases*}
+            z_1 = y_1        \\
+            z_2 = y_2 - 3y_4 \\
+            z_3 = y_3        \\
+            z_4 = y_4
+          \end{cases*}
+        \end{equation*}
+        反解为
+        \begin{equation*}
+          \begin{cases}
+            y_1 = z_1        \\
+            y_2 = z_2 + 3z_4 \\
+            y_3 = z_3        \\
+            y_4 = z_4
+          \end{cases}
+        \end{equation*}
+        表成矩阵形式
+        \begin{align*}
+          Y = \begin{bmatrix}
+                y_1 \\
+                y_2 \\
+                y_3 \\
+                y_4
+              \end{bmatrix}
+          = \begin{bmatrix}
+              1 & 0 & 0 & 0 \\
+              0 & 1 & 0 & 3 \\
+              0 & 0 & 1 & 0 \\
+              0 & 0 & 0 & 1
+            \end{bmatrix}
+          \begin{bmatrix}
+            z_1 \\
+            z_2 \\
+            z_3 \\
+            z_4
+          \end{bmatrix}
+          = T_2 Z
+        \end{align*}
+        于是，二次型化作标准型
+        \begin{align*}
+          - z_1^2 + z_2^2 - 3 z_4^2
+        \end{align*}
+        最后，求出总的坐标变换矩阵。因
+        \begin{align*}
+          X = T_1 Y = T_1 (T_2 Z)
+        \end{align*}
+        故
+        \begin{align*}
+          T & = T_1 T_2         \\
+            & =  \begin{bmatrix}
+                   1 & 2 & 0 & -2 \\
+                   0 & 1 & 0 & 0  \\
+                   0 & 0 & 1 & 0  \\
+                   0 & 0 & 0 & 1
+                 \end{bmatrix}
+          \begin{bmatrix}
+            1 & 0 & 0 & 0 \\
+            0 & 1 & 0 & 3 \\
+            0 & 0 & 1 & 0 \\
+            0 & 0 & 0 & 1
+          \end{bmatrix}
+        \end{align*}
+\end{itemize}
+
+
 \section*{6}
 
 设$V$对称双线性函数$f(\alpha, \beta)$在基$\epsilon_1, \epsilon_2, \cdots, \epsilon_n$下的矩阵为

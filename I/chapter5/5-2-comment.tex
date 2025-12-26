@@ -7,6 +7,7 @@
 \usepackage{xcolor}
 \usepackage{amssymb}
 \usepackage{amsmath}
+\usepackage{hyperref}
 
 
 % 定义新的带灰色背景的说明环境 zremark
@@ -14,7 +15,7 @@
   backgroundcolor=gray!10,
   % 边框与背景一致，边框线会消失
   linecolor=gray!10
-]{zremark}{说明}
+]{zremark}{注释}
 
 % 通用矩阵命令: \flexmatrix{矩阵名}{元素符号}{行数}{列数}
 \newcommand{\flexmatrix}[4]{
@@ -33,49 +34,27 @@
 
 
 \begin{document}
-\title{1.1 习题}
+\title{5.2注释}
 \author{张志聪}
 \maketitle
 
 \begin{zremark}
-  考虑高等代数问题的视角
+  关于命题2.2 的注意点；
 \end{zremark}
 
 \begin{itemize}
-  \item 线性方程组的角度；
-  \item 矩阵角度；
-  \item 秩的角度；
-  \item 线性空间的角度；
-  \item 线性映射的角度；
-\end{itemize}
+  \item 在证明必要性时，按照题设“使$f$变为$g$”其实隐含了$f = g$。
 
-\begin{zremark}
-  满秩的$n \times n$矩阵$A$的性质.
-\end{zremark}
+        否则命题在证明时，无法使用命题2.1；
 
-\begin{itemize}
-  \item 存在n阶初等矩阵$P_1,P_2,\cdots, P_s$，使$A = P_1P_2\cdots P_s$.
-\end{itemize}
+  \item 在思考二次型问题时，不能按照数学分析的思考方式，来确定$f$和$g$的相等问题（即：函数相等的问题）。
 
-
-\begin{zremark}
-  证明向量组线性无关的常用办法。
-\end{zremark}
-
-设
-\begin{align*}
-  \alpha_1, \alpha_2, \cdots, \alpha_n \ \ \ (I)
-\end{align*}
-
-\begin{itemize}
-  \item 借助定义，证明:$k_1\alpha_1 + k_1\alpha_2 + \cdots + k_n\alpha_n$可得
+        对于线性映射来说，换了一组基，二次型就会改变，
+        如果以$X = Y \in K^n$思考，$f = g$无法成立，
+        而是应该考虑成
         \begin{align*}
-          k_1 = k_2 = \cdots = k_n = 0
+          \alpha = X = T Y
         \end{align*}
-
-  \item 借助一些已经存在的线性无关的向量组。比如：基础解系中的向量。
-        如：第二章$\S 4$习题12。
 \end{itemize}
-
 
 \end{document}

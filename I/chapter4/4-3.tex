@@ -89,7 +89,7 @@
         \end{align*}
         令
         \begin{align*}
-          f(Y) = b_1 \beta_{j_1} + b_2 \beta_{j_2} + \cdots + b_r \beta_{j_r}
+          f(Y) = a_1 \beta_{j_1} + a_2 \beta_{j_2} + \cdots + a_r \beta_{j_r}
         \end{align*}
         因为
         \begin{align*}
@@ -153,6 +153,171 @@
         综上，$\alpha \in U$，所以$T$是满射。
 
 \end{itemize}
+
+\section*{6}
+
+令\begin{align*}
+  A & = \begin{bmatrix}
+          -1 & 1  & 2 & 1 \\
+          0  & -2 & 1 & 0 \\
+          -1 & -1 & 3 & 1
+        \end{bmatrix} \\
+  X & = \begin{bmatrix}
+          x_1 \\
+          x_2 \\
+          x_3 \\
+          x_4
+        \end{bmatrix}
+\end{align*}
+由题设已知
+\begin{align*}
+  f(X) = A X
+\end{align*}
+由矩阵乘法运算法则可知，$f$是线性映射。
+
+\section*{14}
+
+对$k$进行归纳。
+
+$k = 1$时，由题设可知命题成立。
+
+归纳假设$k-1$时，命题成立。
+
+于是
+\begin{align*}
+  \mathscr{A}^k \mathscr{B} - \mathscr{B}\mathscr{A}^k
+   & = \mathscr{A}(\mathscr{A}^{k - 1} \mathscr{B}) - \mathscr{B}\mathscr{A}^k                                                                           \\
+   & = \mathscr{A}(\mathscr{A}^{k - 1} \mathscr{B} - \mathscr{B}\mathscr{A}^{k-1}) + \mathscr{A} \mathscr{B}\mathscr{A}^{k-1}
+  - \mathscr{B}\mathscr{A}^k                                                                                                                             \\
+   & = \mathscr{A}(\mathscr{A}^{k - 1} \mathscr{B} - \mathscr{B}\mathscr{A}^{k-1}) + \mathscr{A} \mathscr{B}\mathscr{A}^{k-1}
+  - (\mathscr{B}\mathscr{A})\mathscr{A}^{k-1}                                                                                                            \\
+   & = \mathscr{A}(\mathscr{A}^{k - 1} \mathscr{B} - \mathscr{B}\mathscr{A}^{k-1}) + (\mathscr{A} \mathscr{B} - \mathscr{B}\mathscr{A})\mathscr{A}^{k-1} \\
+   & = A (k-1)\mathscr{A}^{k - 2} + \mathscr{A}^{k - 1}                                                                                                  \\
+   & = (k-1)\mathscr{A}^{k - 1} + \mathscr{A}^{k - 1}                                                                                                    \\
+   & = k\mathscr{A}^{k - 1}
+\end{align*}
+归纳完成，命题得证。
+
+\section*{15}
+
+\begin{itemize}
+  \item (1)
+
+        任意$\alpha \in V$，由于$V = M \oplus N$，所以
+        \begin{align*}
+          \alpha = m_1 + n_1 , \, m_1 \in M, n_1 \in N
+        \end{align*}
+        于是
+        \begin{align*}
+          \mathscr{P}(\alpha)   & = m_1                                                       \\
+          \mathscr{P}^2(\alpha) & = \mathscr{P}(\mathscr{P}(\alpha)) = \mathscr{P}(m_1) = m_1
+        \end{align*}
+        故
+        \begin{align*}
+          \mathscr{P}^2 = \mathscr{P}
+        \end{align*}
+
+  \item (2)
+
+        设$M$的一组基为
+        \begin{align*}
+          \alpha_1, \alpha_2, \cdots, \alpha_r
+        \end{align*}
+        由于$M \neq V$，故$N$不是零空间，设$N$的一组基为
+        \begin{align*}
+          \beta_1, \beta_2, \cdots, \beta_s
+        \end{align*}
+        两组基合并后是$V$的一组基。
+
+        我们有
+        \begin{align*}
+          \mathscr{P}(\alpha_1), \cdots, \mathscr{P}(\alpha_r), \mathscr{P}(\beta_1), \cdots, \mathscr{P}(\beta_s)
+           & = \alpha_1, \alpha_2, \cdots, \alpha_r, 0, \cdots, 0
+        \end{align*}
+        $\alpha_1, \alpha_2, \cdots, \alpha_r, 0, \cdots, 0$
+        是线性相关的，由命题3.1可知，$\mathscr{P}$不是单射，
+        故$\mathscr{P}$不可逆。
+
+  \item (3)
+
+        略。
+\end{itemize}
+
+\section*{16}
+
+令
+\begin{align*}
+  M = Im\, \mathscr{A} \\
+  N = Ker\, \mathscr{A}
+\end{align*}
+
+\begin{itemize}
+  \item (1)
+
+        4-3-comment.tex中有证明$V = M \oplus N$且$\mathscr{A}$对于$M$的投影变换，
+        于是对任意$\alpha \in V$，可表示为
+        \begin{align*}
+          \alpha = \alpha_1 + \alpha_2, \, \,  \alpha_1 \in M, \alpha_2 \in N
+        \end{align*}
+        故
+        \begin{align*}
+          \mathscr{A}(\alpha) = \mathscr{A}(\alpha_1) = \alpha_1 \\
+          \mathscr{A}(\alpha_2) = 0
+        \end{align*}
+  \item (2)
+
+        由(1)知$\alpha$可表示为
+        \begin{align*}
+          \alpha = \alpha_1 + \alpha_2, \, \,  \alpha_1 \in M, \alpha_2 \in N
+        \end{align*}
+        于是
+        \begin{align*}
+          \mathscr{A}(\alpha) = \alpha_1 = -\alpha
+        \end{align*}
+        所以
+        \begin{align*}
+          \alpha_2 & = \alpha - \alpha_1     \\
+                   & = - \alpha_1 - \alpha_1 \\
+                   & = -2 \alpha_1
+        \end{align*}
+        又有
+        \begin{align*}
+          \mathscr{A}(\alpha_2)   & = 0 \\
+          \mathscr{A}(-2\alpha_1) & = 0 \\
+          \mathscr{A}(2\alpha)    & = 0 \\
+          2 (-\alpha)             & = 0 \\
+          \alpha                  & = 0
+        \end{align*}
+\end{itemize}
+
+\section*{17}
+
+已知
+\begin{align*}
+  (\mathscr{A} + \mathscr{B})^2                                                   & = \mathscr{A} + \mathscr{B} \\
+  \mathscr{A}^2 + \mathscr{B}^2 + \mathscr{A}\mathscr{B} + \mathscr{B}\mathscr{A} & = \mathscr{A} + \mathscr{B}
+\end{align*}
+于是可得
+\begin{align*}
+  \mathscr{A}\mathscr{B}
+   & = \mathscr{A} + \mathscr{B} - (\mathscr{A}^2 + \mathscr{B}^2 + \mathscr{B}\mathscr{A}) \\
+   & = \mathscr{A} + \mathscr{B} - (\mathscr{A} + \mathscr{B} + \mathscr{B}\mathscr{A})     \\
+   & = - \mathscr{B}\mathscr{A}                                                             \\
+   & = - \mathscr{B} \mathscr{B} \mathscr{A} \mathscr{A}                                    \\
+   & = - \mathscr{B} (\mathscr{B} \mathscr{A}) \mathscr{A}                                  \\
+   & = - \mathscr{B} (-\mathscr{A}\mathscr{B}) \mathscr{A}                                  \\
+   & = \mathscr{B} \mathscr{A} \mathscr{B} \mathscr{A}                                      \\
+   & = (\mathscr{B} \mathscr{A}) (\mathscr{B} \mathscr{A})                                  \\
+   & = (-\mathscr{A}\mathscr{B})(-\mathscr{A}\mathscr{B})                                   \\
+   & = \mathscr{A}\mathscr{B}\mathscr{A}\mathscr{B}                                         \\
+   & = \mathscr{A}(-\mathscr{A}\mathscr{B})\mathscr{B}                                      \\
+   & = - \mathscr{A}\mathscr{B}
+\end{align*}
+故
+\begin{align*}
+  2 \mathscr{A}\mathscr{B} & = 0 \\
+  \mathscr{A}\mathscr{B}   & = 0 
+\end{align*}
 
 \section*{18}
 

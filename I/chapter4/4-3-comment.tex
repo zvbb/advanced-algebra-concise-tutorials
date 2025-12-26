@@ -243,20 +243,24 @@ $f(\epsilon_1), f(\epsilon_2), \cdots, f(\epsilon_{i-1}), f(\epsilon_{i+1}), \cd
 \end{align*}
 于是
 \begin{align*}
-  \mathscr{A} (\alpha) & = \mathscr{A} (a_1 \epsilon_1 + a_2 \epsilon_2 + \cdots + a_n \epsilon_n) \\
+  \mathscr{A} (\alpha) & = \mathscr{A} (a_1 \epsilon_1 + a_2 \epsilon_2 + \cdots + a_n \epsilon_n)                             \\
                        & = a_1 \mathscr{A} (\epsilon_1) + a_2 \mathscr{A} (\epsilon_2) + \cdots + a_n \mathscr{A} (\epsilon_n) \\
-                       & = a_1 \alpha_1 + a_2 \alpha_2 + \cdots + a_n \alpha_n \\
+                       & = a_1 \alpha_1 + a_2 \alpha_2 + \cdots + a_n \alpha_n                                                 \\
                        & = \alpha
 \end{align*}
 
 \begin{zremark}
-  线性变换$\mathscr{P}$是线性空间$V$某个子空间$M$的投影变换的充分必要条件是$\mathscr{P}^2 = \mathscr{P}$。
-\end{zremark}
+  \textbf{定理.} 设线性变换 $\mathscr{P}:V\to V$，则以下条件等价：
+
+  \begin{enumerate}
+    \item $\mathscr{P}$ 是 $V$ 到某个子空间 $M$ 的投影；
+    \item $\mathscr{P}^2 = \mathscr{P}$ 且 $\operatorname{Im}(\mathscr{P}) = M$。
+  \end{enumerate}\end{zremark}
 
 \textbf{证明：}
 
 \begin{itemize}
-  \item 必要性
+  \item $1 \to 2$
 
         设$V = M \oplus N$，
         因为$\mathscr{P}$是线性空间$V$对子空间$M$的投影变换，那么$\forall \alpha \in V$，设
@@ -278,40 +282,67 @@ $f(\epsilon_1), f(\epsilon_2), \cdots, f(\epsilon_{i-1}), f(\epsilon_{i+1}), \cd
           \mathscr{P}^2 = \mathscr{P}
         \end{align*}
 
-  \item 充分性
+  \item $2 \to 1$
 
         令
         \begin{align*}
-          M & = Im\mathscr{P}  \\
           N & = Ker\mathscr{P}
         \end{align*}
         由3.5推论1，我们有
         \begin{align*}
-          dim M + dim N = dim Im\mathscr{P} + (dim V - dim Im\mathscr{P}) = dim V
+          dim M + dim N
+           & = dim\, Im\mathscr{P} + dim\, Ker\mathscr{P}            \\
+           & = dim\, Im\mathscr{P} + (dim\, V - dim\, V/Ker\mathscr{P}) \\
+           & = dim\, Im\mathscr{P} + (dim\, V - dim\, Im\mathscr{P}) \\
+           & = dim\, V
         \end{align*}
-        又因为$Ker\mathscr{P}, Im\mathscr{P}$都是$V$的子空间，所以$U, V$是直和。
+        接下来证明$M \oplus N$。反证法$M \cap N \neq \{0\}$， 即
+        存在$\alpha \in M \cap N = Ker \mathscr{P} \cap Im \mathscr{P}$。
+
+        由$\alpha \in Ker \mathscr{P}$，则
+        \begin{align*}
+          \mathscr{P}(\alpha) & = 0
+        \end{align*}
+
+        由$\alpha \in Im \mathscr{P}$，则且存在$\alpha_1 \in V$使得
+        \begin{align*}
+          \mathscr{P}(\alpha_1) = \alpha
+        \end{align*}
+        已知$\mathscr{P}^2 = \mathscr{P}$，于是
+        \begin{align*}
+          \mathscr{P}^2(\alpha_1)
+           & = \mathscr{P}(\mathscr{P}(\alpha_1)) \\
+           & = \mathscr{P}(\alpha)              \\
+           & = 0
+        \end{align*}
+        又$ \mathscr{P}^2(\alpha_1) = \mathscr{P}(\alpha_1) \neq 0$出现矛盾，
+        假设不成立，即
+        \begin{align*}
+          Im\mathscr{P} \oplus Ker\mathscr{P} = M \oplus N
+        \end{align*}
+        且有
+        \begin{align*}
+          V = M \oplus N
+        \end{align*}
 
         任意$\alpha \in V$，令
         \begin{align*}
           \alpha = \mathscr{P}(\alpha) + (\alpha - \mathscr{P}(\alpha))
         \end{align*}
-        显然$\mathscr{P}(\alpha) \in Im \mathscr{P}$，因为
+        因为$\mathscr{P}(\alpha) \in Im \mathscr{P} = M$，
         \begin{align*}
           \mathscr{P}(\alpha - \mathscr{P}(\alpha))
            & = \mathscr{P}(\alpha) - \mathscr{P}(\mathscr{P}(\alpha)) \\
            & = \mathscr{P}(\alpha) - \mathscr{P}(\alpha)              \\
            & = 0
         \end{align*}
-        所以，$\alpha - \mathscr{P}(\alpha) \in Ker\mathscr{P}$。
+        所以，$\alpha - \mathscr{P}(\alpha) \in Ker\mathscr{P} = N$。
 
-        综上
+        综上可得
         \begin{align*}
-          V = Im\mathscr{P} \oplus Ker\mathscr{P} = M \oplus N
-        \end{align*}
-
-        由以上的讨论可知，任意$\alpha \in V$，有
-        \begin{align*}
-          \alpha = \alpha_1 + \alpha_2 \ \ \ (\alpha_1 \in M, \alpha_2 \in N)
+          \alpha
+           & = \mathscr{P}(\alpha) + (\alpha - \mathscr{P}(\alpha))       \\
+           & = \alpha_1 + \alpha_2 \ \ \ (\alpha_1 \in M, \alpha_2 \in N)
         \end{align*}
         且
         \begin{align*}

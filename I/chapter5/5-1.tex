@@ -50,15 +50,17 @@
 
         反证法，假设存在$\alpha \neq 0$，对一切$\beta \in V$有
         $f(\alpha, \beta) = 0$。
-        不妨设$\alpha, \beta$在$\epsilon_1, \epsilon_2, \cdots, \epsilon_n$的基下的坐标为
-        $X, Y$，且$Y \neq 0$，使得
+
+        在$\alpha$的基础上扩充出$V$的一组基：
         \begin{align*}
-          f(\alpha, \beta) = X^T A Y = 0
+          \alpha, \beta_2, \beta_3, \cdots, \beta_{n}
         \end{align*}
-        因为$f(\alpha, \beta)$满秩，即$A$是满秩的，
-        于是$Ax = 0$没有非零解，所以$A Y \neq 0$，
-        所以$\alpha = 0$，
-        存在矛盾。
+        于是
+        \begin{align*}
+          f(\alpha, \alpha)  & = 0                             \\
+          f(\alpha, \beta_i) & = 0 \quad (i = 1, 2, \cdots, n)
+        \end{align*}
+        即$f$在这组基下的矩阵第一行全是0，这与$f$满秩矛盾。
 
   \item 充分性
 
@@ -455,7 +457,7 @@ $f(\alpha, \beta) \not \equiv 0$，于是存在$d = f(\epsilon_1, \epsilon_2) \n
 
 解题思路：通过一个点，确定比例常数。
 
- (i)$g \equiv 0$，$f(\alpha, \beta) \equiv 0$，于是令
+(i)$g \equiv 0$，$f(\alpha, \beta) \equiv 0$，于是令
 \begin{align*}
   \lambda = 0 \\
   l \equiv 0

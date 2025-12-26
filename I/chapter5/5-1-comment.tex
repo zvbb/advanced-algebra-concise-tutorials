@@ -39,9 +39,56 @@
 \maketitle
 
 \begin{zremark}
-$Q_f(\alpha) \equiv 0$则$f(\alpha, \beta) \equiv 0$的逆否命题：
+  证明
 
-$f(\alpha, \beta) \not \equiv 0$，则$Q_f(\alpha) \not \equiv 0$。
+  数域$K$上线性空间$V$内全体对称双线性函数与二次型函数的一一对应关系.
+\end{zremark}
+\textbf{证明：}
+设对称双线性函数集合为$U$，二次型函数的集合为$V$，
+定义函数$Q: U \to W$，接下来我们证明$Q$是双射即可。
+
+\begin{itemize}
+  \item 单射；
+
+        对任意$f_1, f_2 \in U$，且$f_1 \neq f_2$，我们证明
+        设$\epsilon_1, \epsilon_2, \cdots, \epsilon_n$是$V$的一组基，
+        取$f_1, f_2$在这组基下的矩阵分别为$A = (a_{ij}), B$，由命题1.1可知$A \neq B$.
+
+        对$X$的适当选择，可以得到矩阵中元素。
+        对角线上的元素，取$\alpha = \epsilon_i$，
+        于是
+        \begin{align*}
+          (e_i)^T A e_i = a_{ii}
+        \end{align*}
+        对于非对角线上的元素，$\alpha = \epsilon_i + \epsilon_j$，
+        于是，由P340的结论
+        \begin{align*}
+          a_{ij}
+           & = f_1(\epsilon_i, \epsilon_j)                                                                \\
+           & = \frac{1}{2} [Q_{f_1}(\epsilon_i + \epsilon_j) - Q_{f_1}(\epsilon_i) - Q_{f_1}(\epsilon_j)]
+        \end{align*}
+        由于$A \neq B$，即存在$a_{ij} \neq b_{ij}$，
+        即
+        \begin{align*}
+          a_{ij} \neq b_{ij} \\
+          \frac{1}{2} [Q_{f_1}(\epsilon_i + \epsilon_j) - Q_{f_1}(\epsilon_i) - Q_{f_1}(\epsilon_j)]
+           & \neq \frac{1}{2} [Q_{f_2}(\epsilon_i + \epsilon_j) - Q_{f_2}(\epsilon_i) - Q_{f_2}(\epsilon_j)]
+        \end{align*}
+        所以$Q_{f_1} \neq Q_{f_2}$，所以$Q$是单射.
+  \item 满射。
+
+        对任意$Q_f$，由P340的结论
+        \begin{align*}
+          f(\alpha, \beta) = \frac{1}{2} [Q_f(\alpha + \beta) - Q_f(\alpha) - Q_f(\beta)]
+        \end{align*}
+        可证明其是满射的。
+
+\end{itemize}
+
+\begin{zremark}
+  $Q_f(\alpha) \equiv 0$则$f(\alpha, \beta) \equiv 0$的逆否命题：
+
+  $f(\alpha, \beta) \not \equiv 0$，则$Q_f(\alpha) \not \equiv 0$。
 \end{zremark}
 
 \end{document}
