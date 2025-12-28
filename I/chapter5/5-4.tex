@@ -38,6 +38,88 @@
 \author{张志聪}
 \maketitle
 
+\section*{1}
+\begin{itemize}
+  \item (1)
+
+        \begin{itemize}
+          \item 方法一： 计算顺序主子式，弊端是这个计算量有点大；
+
+                $f$的矩阵为
+                \begin{align*}
+                  A = \begin{bmatrix}
+                        99 & -6  & 24  \\
+                        -6 & 130 & -30 \\
+                        24 & -30 & 71
+                      \end{bmatrix}
+                \end{align*}
+                一阶顺序主子式等于$99 > 0$；\\
+                二阶顺序主子式等于$99 \cdot 130 - (-6) \cdot (-6) = 12834 > 0$；\\
+                继续计算$det(A) = 755874 > 0$，由定理4.1可知，该矩阵是正定矩阵。
+
+          \item 方法二：通过命题4.1（iii）即$Q_f(\alpha) > 0$（$\forall \alpha \in V, \alpha \neq 0$）.
+
+                因为矩阵对角占优，我们有
+                \begin{align*}
+                  |-12 x_1 x_2| = 12 |x_1 x_2| \leq 6 (x_1^2 + x_2^2) \\
+                \end{align*}
+                故
+                \begin{align*}
+                  - 6 (x_1^2 + x_2^2) \leq -12 x_1 x_2 \leq 6 (x_1^2 + x_2^2)
+                \end{align*}
+                同理
+                \begin{align*}
+                  -24 (x_1^2 + x_3^2) \leq 48 x_1 x_3 \leq 24 (x_1^2 + x_3^2) \\
+                  -30 (x_2^2 + x_3^2) \leq 60 x_2 x_3 \leq 30 (x_2^2 + x_3^2)
+                \end{align*}
+                综上
+                \begin{align*}
+                   & f = 99 x_1^2 - 12 x_1 x_2 + 48 x_1 x_3 + 130 x_2^2 -60 x_2 x_3 + 71 x_3^2                        \\
+                   & \geq 99 x_1^2 - 6 (x_1^2 + x_2^2) -24 (x_1^2 + x_3^2) + 130 x_2^2 -30 (x_2^2 + x_3^2) + 71 x_3^2 \\
+                   & = 69 x_1^2 + 94 x_2^2 + 17 x_3^2
+                \end{align*}
+                故$Q_f(\alpha) > 0$，$f$正定。
+        \end{itemize}
+\end{itemize}
+
+\section*{2}
+
+\begin{itemize}
+  \item (1)
+
+        f的矩阵为
+        \begin{align*}
+          A = \begin{bmatrix}
+                1  & t & -1 \\
+                t  & 1 & 2  \\
+                -1 & 2 & 5
+              \end{bmatrix}
+        \end{align*}
+        如果$f$是正定的，由定理4.1可知，
+        $A$的二阶顺序主子式大于$0$，即
+        \begin{align*}
+          1 - t^2 > 0 \\
+          -1 < t < 1
+        \end{align*}
+
+        同样的，$A$的三阶顺序主子式大于$0$，
+        \begin{align*}
+          -5 t^2 - 4t > 0 \\
+          -5t (t + \frac{4}{5}) > 0
+        \end{align*}
+        解得
+        \begin{align*}
+          - \frac{4}{5} < t < 0
+        \end{align*}
+        综上可得，
+        当$- \frac{4}{5} < t < 0$时，$f$是正定的。
+
+  \item (2)
+
+        方法和(1)类似，而且我也没想到更好的方法；
+
+\end{itemize}
+
 \section*{3}
 
 解题思路：通过调整$C^T A C = B$，把主子式改为顺序主子式。

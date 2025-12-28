@@ -38,6 +38,138 @@
 \author{张志聪}
 \maketitle
 
+\section*{1}
+
+\begin{itemize}
+  \item (1)
+
+        二次型的矩阵为
+        \begin{align*}
+          A = \begin{bmatrix}
+                0 & 1  & 1  \\
+                1 & 0  & -3 \\
+                1 & -3 & 0
+              \end{bmatrix}
+        \end{align*}
+        直接计算$A$的行列式：
+        \begin{align*}
+          det(A) = -6 \neq 0
+        \end{align*}
+        所以$rank(A) = 3$.
+
+        所以，$f$的规范型为
+        \begin{align*}
+          u_1^2 + u_2^2 + u_3^2 = 0
+        \end{align*}
+
+  \item (2) (3) (4)
+
+        略
+\end{itemize}
+
+\section*{2}
+
+以第一题为例，讨论下常用方法；
+\begin{itemize}
+  \item (1)
+
+        \begin{itemize}
+          \item 配方法；
+
+                即书中得到标准型的方法。
+
+                现在所有平方项系数都为零，而$a_{12} = 1 \neq 0$.
+                做变数替换
+                \begin{equation*}
+                  \begin{cases*}
+                    x_1 = y_1 + y_2 \\
+                    x_2 = y_1 - y_2 \\
+                    x_3 = y_3
+                  \end{cases*}
+                \end{equation*}
+                二次型化作
+                \begin{align*}
+                   & 2(y_1 + y_2)(y_1 - y_2) - 6(y_1 - y_2) y_3 + 2(y_1 + y_2) y_3       \\
+                   & = 2 y_1^2 - 2 y_2^2 - 6 y_1 y_3 + 6 y_2 y_3 + 2 y_1 y_3 + 2 y_2 y_3 \\
+                   & = 2 y_1^2 - 2 y_2^2 - 4 y_1 y_3 + 8 y_2 y_3
+                \end{align*}
+                $y_1^2$的系数不为零，对$y_1$配方，得
+                \begin{align*}
+                   & 2 y_1^2 - 2 y_2^2 - 4 y_1 y_3 + 8 y_2 y_3         \\
+                   & = 2 (y_1 ^2 - 2 y_1 y_3) - 2 y_2^2 + 8 y_2 y_3    \\
+                   & = 2 (y_1 - y_3)^2 - 2 y_3^2 - 2 y_2^2 + 8 y_2 y_3 \\
+                \end{align*}
+                做变数替换，得
+                \begin{equation*}
+                  \begin{cases*}
+                    z_1 = y_1 - y_3 \\
+                    z_2 = y_2       \\
+                    z_3 = y_3
+                  \end{cases*}
+                \end{equation*}
+                二次型化作
+                \begin{align*}
+                  2 z_1^2 - 2 z_2^2 + 8 z_2 z_3 - 2 z_3^2
+                \end{align*}
+                $z_2^2$的系数不为零，对$z_2$配方，得
+                \begin{align*}
+                   & 2 z_1^2 - 2 z_2^2 + 8 z_2 z_3 - 2 z_3^2             \\
+                   & = 2 z_1^2 - 2 (z_2^2 - 2 \cdot 2 z_2 z_3) - 2 z_3^2 \\
+                   & = 2 z_1^2 - 2 (z_2 - 2 z_3)^2 + 8 z_3^2 - 2 z_3^2   \\
+                   & = 2 z_1^2 - 2 (z_2 - 2 z_3)^2 + 6 z_3^2
+                \end{align*}
+                做变数替换
+                \begin{equation*}
+                  \begin{cases*}
+                    w_1 = z_1         \\
+                    w_2 = z_2 - 2 z_3 \\
+                    w_3 = z_3
+                  \end{cases*}
+                \end{equation*}
+                二次型化作
+                \begin{align*}
+                  2 w_1^2 - 2 w_2^2 + 6 w_3^2
+                \end{align*}
+                故，$f$的秩为3，正惯性指数为2， 负惯性指数为1，符号差为1，规范型为
+                \begin{align*}
+                  u_1^2 + u_2^2 - u_3^2
+                \end{align*}
+
+          \item 特征多项式；
+
+                这种解题方法的理论支持，书中没有明确提及，这里只提供具体操作方法。所以证明题不能用。
+
+                二次型$f$的矩阵为
+                \begin{align*}
+                  A =
+                  \begin{bmatrix}
+                    0 & 1  & 1  \\
+                    1 & 0  & -3 \\
+                    1 & -3 & 0
+                  \end{bmatrix}
+                \end{align*}
+                特征多项式为$|\lambda E - A|$，
+                我们有
+                \begin{equation*}
+                  \begin{cases*}
+                    \lambda_1 + \lambda_2 + \lambda_3 = Trace(A) = 0 \\
+                    \lambda_1 \cdot \lambda_2 \cdot \lambda_3 = det(A) = -4
+                  \end{cases*}
+                \end{equation*}
+                因为$det(A) = -4 \neq 0$，所以$A$是满秩的，
+                由$\lambda_1 \cdot \lambda_2 \cdot \lambda_3 = -4 < 0$
+                故$\lambda_1, \lambda_2, \lambda_3$两正一负，或三负。
+                又因为$\lambda_1 + \lambda_2 + \lambda_3  = 0$可知，不可能全是负，
+                所以，两正一负.
+
+                综上，$f$的秩为3，正惯性指数为2， 负惯性指数为1，符号差为1，规范型为
+                \begin{align*}
+                  u_1^2 + u_2^2 - u_3^2
+                \end{align*}
+        \end{itemize}
+\end{itemize}
+
+
 \section*{3}
 
 设二次型为$f(x_1, x_2, \cdots, x_n) = \sum_{i=1}^n \sum_{j=1}^n a_{ij}x_ix_j$。
