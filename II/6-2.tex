@@ -111,7 +111,7 @@
         \end{align*}
         所以
         \begin{align*}
-          \mathscr{A} \mathscr{B_1} = \mathscr{B}
+          \mathscr{A} \mathscr{B}_1 = \mathscr{B}
         \end{align*}
 \end{itemize}
 
@@ -161,7 +161,7 @@ $\mathscr{A}$是正交变换也可得
 \begin{align*}
   \mathscr{A} \eta = \eta \in V_1
 \end{align*}
-出现矛盾。\\
+此时$dim V_1 = n$，出现矛盾。\\
 综上，$k_1 = -1$，于是
 \begin{align*}
   A = \begin{bmatrix}
@@ -174,12 +174,12 @@ $\mathscr{A}$是正交变换也可得
 
 因为
 \begin{align*}
-  \mathscr{A}(\eta) = -\eta = \eta - 2(\eta,\eta) \eta                        \\
-  \mathscr{A}(\epsilon_2) = \epsilon_2 = \epsilon_2 - 2(\eta,\epsilon_2) \eta \\
-  \vdots                                                                      \\
-  \mathscr{A}(\epsilon_n) = \epsilon_n = \epsilon_n - 2(\eta,\epsilon_n) \eta
+  \mathscr{A}\eta = -\eta = \eta - 2(\eta,\eta) \eta                        \\
+  \mathscr{A}\epsilon_2 = \epsilon_2 = \epsilon_2 - 2(\eta,\epsilon_2) \eta \\
+  \vdots                                                                    \\
+  \mathscr{A}\epsilon_n = \epsilon_n = \epsilon_n - 2(\eta,\epsilon_n) \eta
 \end{align*}
-两个线性变换相等，只需考察在一组基上向量相等，所以$\mathscr{A}$是关于$\eta$的镜面反射。
+两个线性变换相等，只需考察在一组基上向量相等，所以$\mathscr{A}$就是关于$\eta$的镜面反射。
 
 \section*{3}
 
@@ -196,20 +196,21 @@ $\mathscr{A}$是正交变换也可得
         (i)先证明$\alpha_1, \alpha_2, \cdots, \alpha_s$与
         $\beta_1, \beta_2, \cdots, \beta_s$的秩是相同的。
 
-        取$V$的一组基$\epsilon_1, \epsilon_2, \cdots, \epsilon_n$，
+        取$V$的一组标准正交基$\epsilon_1, \epsilon_2, \cdots, \epsilon_n$，
         设
         \begin{align*}
           (\alpha_1, \alpha_2, \cdots, \alpha_s) & = (\epsilon_1, \epsilon_2, \cdots, \epsilon_n) A \\
           (\beta_1, \beta_2, \cdots, \beta_s)    & = (\epsilon_1, \epsilon_2, \cdots, \epsilon_n) B
         \end{align*}
         其中$A, B$都是$n \times s$的矩阵。此时问题变为讨论$A$和$B$的秩。\\
-        有题设$(\alpha_i, \alpha_j) = (\beta_i, \beta_j)$可知（标准真正交基下内积为对应坐标相乘在相加）
+        有题设$(\alpha_i, \alpha_j) = (\beta_i, \beta_j)$，由标准正交基下内积的计算可知
         \begin{align*}
           A^T A = B^T B
         \end{align*}
         又因为（注：2-5-comment.tex中有证明）
         \begin{align*}
-          rank(A^T A) = rank(A)
+          rank(A^T A) = rank(A) \\
+          rank(B^T B) = rank(B)
         \end{align*}
         所以
         \begin{align*}
@@ -235,7 +236,7 @@ $\mathscr{A}$是正交变换也可得
           f(\alpha_i) = \beta_i
         \end{align*}
 
-        取$U^{\bot}, W^{\bot}$的一组基标准正交基
+        设$rank(A) = rank(B) = r$，取$U^{\bot}, W^{\bot}$的一组基标准正交基
         \begin{align*}
           \epsilon_{r + 1}, \epsilon_{r + 2}, \cdots, \epsilon_{n} \\
           \eta_{r + 1}, \eta_{r + 2}, \cdots, \eta_{n}
@@ -254,15 +255,15 @@ $\mathscr{A}$是正交变换也可得
           \alpha' = a_1 \alpha_1 + \cdots + a_s \alpha_s + a_{r + 1} \epsilon_{r + 1} + \cdots + a_n \epsilon_n \\
           \alpha'' = b_1 \alpha_1 + \cdots + b_s \alpha_s + b_{r + 1} \epsilon_{r + 1} + \cdots + b_n \epsilon_n
         \end{align*}
-        因为$(\beta_i, \eta_j) = 0 \ \ \ (1 \leq i \leq r, j \geq r + 1)$，于是
+        因为$(\beta_i, \eta_j) = 0 \ \ \ (1 \leq i \leq s, j \geq r + 1)$，于是
         \begin{align*}
           (f(\alpha'), f(\alpha''))
            & = (a_1 \beta_1 + \cdots + a_{r + 1} \eta_{r + 1} + \cdots + a_n \eta_n, b_1 \beta_1 + \cdots + b_{r + 1} \eta_{r + 1} + \cdots + b_n \eta_n) \\
-           & = \sum\limits_{i = 1}^r \sum\limits_{j = 1}^r a_i b_j (\beta_i, \beta_j)                                                                     \\
-           & = \sum\limits_{i = 1}^r \sum\limits_{j = 1}^r a_i b_j (\alpha_i, \alpha_j)                                                                   \\
+           & = \sum\limits_{i = 1}^s \sum\limits_{j = 1}^s a_i b_j (\beta_i, \beta_j)                                                                     \\
+           & = \sum\limits_{i = 1}^s \sum\limits_{j = 1}^s a_i b_j (\alpha_i, \alpha_j)                                                                   \\
            & = (\alpha', \alpha'')
         \end{align*}
-        所以$f$就是目标正交变换。
+        所以$f$就是正交变换。
 \end{itemize}
 
 \section*{4}
@@ -274,32 +275,33 @@ $\mathscr{A}$是正交变换也可得
   \alpha - 2(\eta, \alpha) \eta & = \beta                \\
   \alpha - \beta                & = 2(\eta, \alpha) \eta
 \end{align*}
-因为$2(\eta, \alpha)$是标量，于是我们可知$\alpha - \beta$、$\eta$向量的方向相同，所以可得
+因为$2(\eta, \alpha)$是标量，于是我们可知$\alpha - \beta$、$\eta$向量的方向相同，且$\eta$是单位向量，所以可得
 \begin{align*}
-  \eta = \pm \frac{\alpha - \beta}{|\alpha - \beta|}
+  \eta = \frac{\alpha - \beta}{|\alpha - \beta|}
 \end{align*}
-假设$\eta = \frac{\alpha - \beta}{|\alpha - \beta|}$，则
+% 代入后
+% \begin{align*}
+%   2(\eta, \alpha) \eta
+%    & = 2(\frac{\alpha - \beta}{|\alpha - \beta|}, \alpha) \frac{\alpha - \beta}{|\alpha - \beta|}                          \\
+%    & = 2 \frac{\alpha - \beta}{|\alpha - \beta|^2}(\alpha - \beta, \alpha)                                                 \\
+%    & = 2 \frac{\alpha - \beta}{|\alpha - \beta|^2}[(\alpha, \alpha) - (\alpha, \beta)]                                     \\
+%    & = 2 \frac{\alpha - \beta}{(\alpha - \beta)(\alpha - \beta)}[1 - (\alpha, \beta)]                                      \\
+%    & = 2 \frac{\alpha - \beta}{(\alpha, \alpha) - (\alpha, \beta) - (\beta, \alpha) + (\beta, \beta)}[1 - (\alpha, \beta)] \\
+%    & = 2 \frac{\alpha - \beta}{1 - (\alpha, \beta) - (\beta, \alpha) + 1}[1 - (\alpha, \beta)]                             \\
+%    & = 2 \frac{\alpha - \beta}{2 - 2(\alpha, \beta)}[1 - (\alpha, \beta)]                                                  \\
+%    & = 2 \frac{\alpha - \beta}{2[1 - (\alpha, \beta)]}[1 - (\alpha, \beta)]                                                \\
+%    & = \alpha - \beta
+% \end{align*}
+% 所以满足条件，
+我们在$\eta$上扩展出$V$的一组标准正交基$\eta, \epsilon_2, \epsilon_3, \cdots, \epsilon_n$，
+$\mathscr{A}$是一个镜面反射，只需令：
 \begin{align*}
-  2(\eta, \alpha) \eta
-   & = 2(\frac{\alpha - \beta}{|\alpha - \beta|}, \alpha) \frac{\alpha - \beta}{|\alpha - \beta|}                          \\
-   & = 2 \frac{\alpha - \beta}{|\alpha - \beta|^2}(\alpha - \beta, \alpha)                                                 \\
-   & = 2 \frac{\alpha - \beta}{|\alpha - \beta|^2}[(\alpha, \alpha) - (\alpha, \beta)]                                     \\
-   & = 2 \frac{\alpha - \beta}{(\alpha - \beta)(\alpha - \beta)}[1 - (\alpha, \beta)]                                      \\
-   & = 2 \frac{\alpha - \beta}{(\alpha, \alpha) - (\alpha, \beta) - (\beta, \alpha) + (\beta, \beta)}[1 - (\alpha, \beta)] \\
-   & = 2 \frac{\alpha - \beta}{1 - (\alpha, \beta) - (\beta, \alpha) + 1}[1 - (\alpha, \beta)]                             \\
-   & = 2 \frac{\alpha - \beta}{2 - 2(\alpha, \beta)}[1 - (\alpha, \beta)]                                                  \\
-   & = 2 \frac{\alpha - \beta}{2[1 - (\alpha, \beta)]}[1 - (\alpha, \beta)]                                                \\
-   & = \alpha - \beta
+  \mathscr{A} \eta = - \eta                                                  \\
+  \mathscr{A} \epsilon_2 = \epsilon_2 - 2(\eta, \epsilon_2)\eta = \epsilon_2 \\
+  \vdots                                                                     \\
+  \mathscr{A} \epsilon_n = \epsilon_n - 2(\eta, \epsilon_n)\eta = \epsilon_n
 \end{align*}
-所以，可设$\eta = \frac{\alpha - \beta}{|\alpha - \beta|}$，并在$\eta$上扩展出$V$的一组标准正交基$\eta, \epsilon_2, \epsilon_3, \cdots, \epsilon_n$，
-$mathscr{A}$是一个镜面反射，只需令：
-\begin{align*}
-  \mathscr{A} \eta = - \eta           \\
-  \mathscr{A} \epsilon_2 = \epsilon_2 \\
-  \vdots                              \\
-  \mathscr{A} \epsilon_n = \epsilon_n
-\end{align*}
-且通过构造过程，我们有
+利用习题2，容易验证$\mathscr{A}$就是关于单位向量$\eta$的镜面反射，且有
 \begin{align*}
   \mathscr{A} \alpha = \beta
 \end{align*}

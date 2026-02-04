@@ -502,4 +502,61 @@ $\beta$到$\alpha + M$记为
   d = |\beta_2|
 \end{align*}
 
+\section*{23}
+
+不妨设$n > k$（可以通过交换位置满足这个要求）
+\begin{align*}
+  (P_{n}(x), P_k(x))
+   & = \int_{-1}^{1} \frac{1}{2^n n!} \frac{d^n}{d x^n}[(x^2 - 1)^n] \cdot P_k(x) dx \\
+\end{align*}
+设
+\begin{align*}
+  du & = \frac{d^n}{d x^n}[(x^2 - 1)^n] dx \\
+  v  & = P_k(x)
+\end{align*}
+则
+\begin{align*}
+  u  & = \frac{d^{n - 1}}{d x^{n - 1}}[(x^2 - 1)^n] dx \\
+  dv & = P_k'(x)
+\end{align*}
+由分部积分法可知
+\begin{align*}
+  (P_{n}(x), P_k(x))
+   & = \frac{1}{2^n n!} \frac{d^{n - 1}}{d x^{n - 1}}[(x^2 - 1)^n] P_k(x) \bigg|_{x = -1}^{x = 1}
+  -  \int_{-1}^{1} \frac{1}{2^n n!} \frac{d^{n - 1}}{d x^{n - 1}}[(x^2 - 1)^n] P_k'(x) dx
+\end{align*}
+因为$\frac{d^{n - 1}}{d x^{n - 1}}[(x^2 - 1)^n]$中总有$(x^2 - 1)$项，故
+\begin{align*}
+  \frac{1}{2^n n!} \frac{d^{n - 1}}{d x^{n - 1}}[(x^2 - 1)^n] P_k(x) \bigg|_{x = -1}^{x = 1}
+   & = 0
+\end{align*}
+所以
+\begin{align*}
+  (P_{n}(x), P_k(x)) = -  \int_{-1}^{1} \frac{1}{2^n n!} \frac{d^{n - 1}}{d x^{n - 1}}[(x^2 - 1)^n] P_k'(x) dx
+\end{align*}
+重复上述操作，我们有
+\begin{align*}
+  (P_{n}(x), P_k(x)) = (-1)^{(k+1)}  \int_{-1}^{1} \frac{1}{2^n n!} \frac{d^{n - (k+1)}}{d x^{n - (k+1)}}[(x^2 - 1)^n] P_k^{(k+1)}(x) dx
+\end{align*}
+因为
+\begin{align*}
+  P_k^{(k+1)}(x)
+  & = 0
+\end{align*}
+所以
+\begin{align*}
+  (P_{n}(x), P_k(x)) = 0
+\end{align*}
+
+综上，命题得知。
+
+\section*{24}
+
+todo
+
+\section*{25}
+
+提示：解出基础解系，然后通过Schmidt正交化方法和单位化得到标准正交基。
+
+
 \end{document}
