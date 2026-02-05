@@ -70,7 +70,7 @@
         由于$A \neq B$，即存在$a_{ij} \neq b_{ij}$，
         即
         \begin{align*}
-          a_{ij} \neq b_{ij} \\
+          a_{ij} \neq b_{ij}                                                                                 \\
           \frac{1}{2} [Q_{f_1}(\epsilon_i + \epsilon_j) - Q_{f_1}(\epsilon_i) - Q_{f_1}(\epsilon_j)]
            & \neq \frac{1}{2} [Q_{f_2}(\epsilon_i + \epsilon_j) - Q_{f_2}(\epsilon_i) - Q_{f_2}(\epsilon_j)]
         \end{align*}
@@ -82,6 +82,64 @@
           f(\alpha, \beta) = \frac{1}{2} [Q_f(\alpha + \beta) - Q_f(\alpha) - Q_f(\beta)]
         \end{align*}
         可证明其是满射的。
+
+\end{itemize}
+
+\begin{zremark}
+  数域 K 上线性空间 V 内的二次型函数与二次型的解系表达式（二次型）的一
+  一对应关系.
+\end{zremark}
+
+\textbf{证明：}
+
+\begin{itemize}
+  \item 单射；
+
+        设$V$内任意两个二次型函数$Q_f(\alpha), Q_g(\alpha)$，且
+        $Q_f(\alpha) \neq Q_g(\alpha)$。
+        有二次型函数与对称双线性函数的一一对应关系，我们得到
+        $f(\alpha, \beta), g(\alpha, \beta)$，且$f(\alpha, \beta) \neq g(\alpha, \beta)$，
+        设$\epsilon_1, \epsilon_2, \cdots, \epsilon_n$是V的一组基，
+        得到$f(\alpha, \beta), g(\alpha, \beta)$在这组基下的矩阵分别为$A, B$，
+        且$A \neq B$，于是可得$Q_f(\alpha), Q_g(\alpha)$在基
+        $\epsilon_1, \epsilon_2, \cdots, \epsilon_n$下的解析表达式为
+        \begin{align*}
+          X^T A X \\
+          X^T B X
+        \end{align*}
+        （注：$X$是$\alpha$在基$\epsilon_1, \epsilon_2, \cdots, \epsilon_n$下的坐标）。
+        接下来只需证明$X^T A X \neq X^T B X$，
+        假设$X^T A X = X^T B X$，即$X^T (A - B) X = 0$，
+
+        当$X = e_i$，则
+        \begin{align*}
+          X^T C X
+           & = c_{ii} \\
+           & = 0
+        \end{align*}
+        所以$c_{ii}, 1 \leq i \leq n$，即$C$对角线上的元素都为0。
+
+        当$X = e_i + e_j$，则
+        \begin{align*}
+          X^T C X
+           & = (e_i + e_j)^T C (e_i + e_j)                           \\
+           & = e_i^T C e_i + e_i^T C e_j + e_j^T C e_i + e_j^T C e_j \\
+           & = 0 + e_i^T C e_j + e_j^T C e_i + 0                     \\
+           & = c_{ij} + c_{ji}                                       \\
+           & = 2 c_{ij}                                              \\
+           & = 0
+        \end{align*}
+        所以$c_{ij} = c_{ji} = 0$。
+
+        综上$C = 0$，故$A = B$，出现矛盾，所以$X^T A X \neq X^T B X$.
+
+  \item 满射.
+
+        对任意二次型的解析式为$X^T A X$，
+        取定$V$的一组基$\epsilon_1, \epsilon_2, \cdots, \epsilon_n$，
+        在指定基下，对称矩阵与对称双线性函数的一一对应关系，
+        可得$V$内对称双线性函数$f(\alpha, \beta)$在这组基下的矩阵为$A$，
+        于是$Q_f(\alpha)$在这组基下的解系表达式为$X^T A X$.
 
 \end{itemize}
 
