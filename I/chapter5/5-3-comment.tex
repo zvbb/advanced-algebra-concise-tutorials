@@ -38,5 +38,20 @@
 \author{张志聪}
 \maketitle
 
+\begin{zremark}
+  实二次型$f,g$的规范型在秩相同的情况下，为什么正惯性指数不同就不能是等价的？
+\end{zremark}
+
+\textbf{证明：}
+
+反证法，设$f,g$的正惯性指数不同，但$f, g$等价。设$f, g$的正惯性指数分别为$p, q$且$p \neq q$，
+并设它们的矩阵为$A, B$。
+
+因为$f, g$等价，于是存在可逆线性变数替换，使得
+\begin{align*}
+  B = T^T A T
+\end{align*}
+于是可得$f, g$分别有两种规范型表示，这与规范型的唯一性矛盾。
+
 
 \end{document}
