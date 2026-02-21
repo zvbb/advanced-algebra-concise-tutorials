@@ -93,33 +93,35 @@
 
   \item (4)
 
-        设$\mathscr{B}$在标准正交基$\eta, \epsilon_2, \epsilon_3, \cdots, \epsilon_n$下的矩阵为$B$，
-        由于$\mathscr{B}$是正交变换，所以$B$是正交矩阵，
-        因为$A$是正交矩阵，则$A^{-1}$也是正交矩阵，设
+        令
         \begin{align*}
-          B_1 = A^{-1} B
+          \mathscr{B}_1 = \mathscr{A}^{-1} \mathscr{B}
         \end{align*}
-        是正交矩阵，所以$B_1$对应的线性变换$\mathscr{B}_1$是正交变换，
-        又因为
+        易得$\mathscr{B}_1$是满足要求的线性变换，
+        由命题2.2 可知，$\mathscr{B}_1$是正交变换，另外设$\mathscr{A}, \mathscr{B}$在标准正交基下的矩阵为$A, B$，
+        由题设可知
         \begin{align*}
-          |B_1| = |A^{-1}| |B| = (-1) (-1) = 1
+          |A| & = -1 \\
+          |B| & = 1
         \end{align*}
-        所以，$\mathscr{B}_1$是第一类正交变换，
-        而且
+        故，
         \begin{align*}
-          A B_1 = B
+          |A^{-1}| = -1
         \end{align*}
         所以
         \begin{align*}
-          \mathscr{A} \mathscr{B}_1 = \mathscr{B}
+          |A^{-1} B| = -1
         \end{align*}
+        所以$\mathscr{B}_1$是第二类正交变换。
+
 \end{itemize}
 
 \section*{2}
 
 我们有
 \begin{align*}
-  V = V_1 \oplus V_1^\bot
+  V_1 & = V_{\lambda_0}       \\
+  V   & = V_1 \oplus V_1^\bot
 \end{align*}
 由于$dim V_1 = n - 1$，所以$dim V_1^\bot = 1$。
 
