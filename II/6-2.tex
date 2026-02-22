@@ -334,7 +334,7 @@ $a_{11} = \pm 1$。\\
   \begin{align*}
     a \epsilon_1 - 2 (a \epsilon_1, k \epsilon_1) k \epsilon_1 = - a \epsilon_1 \\
     a \epsilon_1 - 2 a k^2 (\epsilon_1, \epsilon_1) \epsilon_1 = - a \epsilon_1 \\
-    k^2 \epsilon_1 = \epsilon_1 \\
+    k^2 \epsilon_1 = \epsilon_1                                                 \\
     k = \pm 1
   \end{align*}
   即可令$\eta = k \epsilon_1$，于是
@@ -367,7 +367,7 @@ $a_1 = 1$时，$\mathscr{A} = \mathscr{B}_1 \mathscr{B}_1$。
   \mathscr{B}_n \epsilon_1 & = - \epsilon_1 = -\beta_1 \\
   \mathscr{B}_n \epsilon_2 & = \epsilon_2 = \beta_2    \\
   \vdots                                               \\
-  \mathscr{B}_n \epsilon_n & = \epsilon_n = \beta_n    
+  \mathscr{B}_n \epsilon_n & = \epsilon_n = \beta_n
 \end{align*}
 易得$\mathscr{B}_n$是镜面反射，其中$\eta = \epsilon_1 = \beta_1$。
 于是可得$\mathscr{A} = \mathscr{B}_n\mathscr{B}_n$
@@ -408,7 +408,29 @@ $\mathscr{B}_{n}$扩展为$V$上的镜面反射，令$\mathscr{B}_n \epsilon_1 =
 
 对照正交变换的定义，我们需要证明$\mathscr{A}$是线性变换。
 
-
+对任意$\alpha_1, \alpha_2, \beta \in V$，由题意可知
+\begin{align*}
+  (\mathscr{A}(k_1 \alpha_1 + k_2 \alpha_2), \beta)
+   & = (k_1 \alpha_1 + k_2 \alpha_2, \beta)                                    \\
+   & = (k_1 \alpha_1, \beta) + (k_2 \alpha_2, \beta)                           \\
+   & = (\mathscr{A}(k_1 \alpha_1), \beta) + (\mathscr{A}(k_2 \alpha_2), \beta) \\
+   & = k_1 \mathscr{A}(\alpha_1) + k_2 \mathscr{A}(\alpha_2)
+\end{align*}
+移项可得
+\begin{align*}
+  (\mathscr{A}(k_1 \alpha_1 + k_2 \alpha_2), \beta) - (k_1 \mathscr{A}\alpha_1, \beta) - (k_2 \mathscr{A}\alpha_2, \beta) & = 0 \\
+  (\mathscr{A}(k_1 \alpha_1 + k_2 \alpha_2) - k_1 \mathscr{A}\alpha_1 - k_2 \mathscr{A}\alpha_2, \beta)                   & = 0
+\end{align*}
+由$\beta$的任意性，可令$\beta = \mathscr{A}(k_1 \alpha_1 + k_2 \alpha_2) - k_1 \mathscr{A}\alpha_1 - k_2 \mathscr{A}\alpha_2$，
+所以
+\begin{align*}
+  \mathscr{A}(k_1 \alpha_1 + k_2 \alpha_2) - k_1 \mathscr{A}\alpha_1 - k_2 \mathscr{A}\alpha_2 & = 0
+\end{align*}
+于是可得
+\begin{align*}
+  \mathscr{A}(k_1 \alpha_1 + k_2 \alpha_2) & = k_1 \mathscr{A}\alpha_1 + k_2 \mathscr{A}\alpha_2 
+\end{align*}
+故$\mathscr{A}$是线性变换。
 
 \section*{7}
 
