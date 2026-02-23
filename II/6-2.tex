@@ -428,7 +428,7 @@ $\mathscr{B}_{n}$扩展为$V$上的镜面反射，令$\mathscr{B}_n \epsilon_1 =
 \end{align*}
 于是可得
 \begin{align*}
-  \mathscr{A}(k_1 \alpha_1 + k_2 \alpha_2) & = k_1 \mathscr{A}\alpha_1 + k_2 \mathscr{A}\alpha_2 
+  \mathscr{A}(k_1 \alpha_1 + k_2 \alpha_2) & = k_1 \mathscr{A}\alpha_1 + k_2 \mathscr{A}\alpha_2
 \end{align*}
 故$\mathscr{A}$是线性变换。
 
@@ -460,7 +460,7 @@ $\mathscr{B}_{n}$扩展为$V$上的镜面反射，令$\mathscr{B}_n \epsilon_1 =
     x_n
   \end{bmatrix}$，于是
 \begin{align*}
-  A x & = (I - 2 y y^T) x        \\
+  A x & = (E - 2 y y^T) x        \\
       & = x - 2 y (y^T x)        \\
       & = x - 2 y (\eta, \alpha) \\
       & = x - 2 (\alpha, \eta) y
@@ -501,12 +501,97 @@ $\mathscr{B}^{-1} \mathscr{A} \mathscr{B}$是镜面反射。
 \section*{8}
 
 提示：证明$f(\alpha, \beta)$是对称双线性函数，即证明
+
+(i) 线性
+
 \begin{align*}
-  f(k\alpha_1 + l \alpha_2, \beta) & = kf(\alpha_1, \beta) + lf(\alpha_2, \beta) \\
-  f(\alpha, \beta)                 & = f(\beta, \alpha)
+  f(k\alpha_1 + l \alpha_2, \beta)
+   & = (\mathscr{A}(k\alpha_1 + l \alpha_2), \beta)                    \\
+   & = (k \mathscr{A} \alpha_1 + l \mathscr{A} \alpha_2, \beta)        \\
+   & = k(\mathscr{A} \alpha_1, \beta) + l(\mathscr{A} \alpha_2, \beta) \\
+   & = kf(\alpha_1, \beta) + lf(\alpha_2, \beta)
 \end{align*}
 
+(ii)对称性
+
+又因为$\mathscr{A}$是镜面发射，故存在$V$中的单位向量$\eta$，使得
+\begin{align*}
+  \mathscr{A} \alpha = \alpha - 2 (\alpha, \eta) \eta
+\end{align*}
+于是可得
+\begin{align*}
+  f(\alpha, \beta)
+   & = (\mathscr{A} \alpha, \beta)                      \\
+   & = (\alpha - 2 (\alpha, \eta) \eta, \beta)          \\
+   & = (\alpha, \beta) - 2 (\alpha, \eta) (\eta, \beta) \\
+   & = (\beta, \alpha) - 2 (\beta, \eta)(\eta, \alpha)  \\
+   & = (\beta - 2 (\beta, \eta) \eta, \alpha)           \\
+   & = (\mathscr{A} \beta, \alpha)                      \\
+   & = f(\beta, \alpha)
+\end{align*}
+
+\section*{9}
+
+\begin{itemize}
+  \item (1)
+
+        % \begin{align*}
+        %   A = \begin{bmatrix}
+        %         \frac{2}{3}   & - \frac{1}{3} & \frac{2}{3}  \\
+        %         \frac{2}{3}   & \frac{2}{3}   & -\frac{1}{3} \\
+        %         - \frac{1}{3} & \frac{2}{3}   & \frac{2}{3}
+        %       \end{bmatrix}
+        % \end{align*}
+        计算出矩阵A的特性值为$\lambda_1 = 1, \lambda_2 = e^{i\pi/3}, \lambda_2 = e^{- i\pi/3}$，
+        由特征值，我们可得到准对角为
+        \begin{align*}
+          J & = \begin{bmatrix}
+                  1 & 0         & 0          \\
+                  0 & cos \pi/3 & -sin \pi/3 \\
+                  0 & sin \pi/3 & cos \pi/3
+                \end{bmatrix}                                 \\
+            & = \begin{bmatrix}
+                  1 & 0                  & 0                   \\
+                  0 & \frac{1}{2}        & -\frac{\sqrt{3}}{2} \\
+                  0 & \frac{\sqrt{3}}{2} & \frac{1}{2}
+                \end{bmatrix}
+        \end{align*}
+
+  \item (2)
+
+        略
+\end{itemize}
+
 \section*{10}
+
+设$\epsilon_1, \epsilon_2, \cdots, \epsilon_n$为标准正交基，
+\begin{align*}
+  \alpha & = (\epsilon_1, \epsilon_2, \cdots, \epsilon_n) X \\
+  \beta  & = (\epsilon_1, \epsilon_2, \cdots, \epsilon_n) Y
+\end{align*}
+线性变换$\mathscr{A}, \mathscr{B}$在标准正交基下的矩阵为$A_1, A_2$，
+于是
+\begin{align*}
+  \mathscr{A} \alpha & = (\epsilon_1, \epsilon_2, \cdots, \epsilon_n) A_1 X \\
+  \mathscr{B} \beta  & = (\epsilon_1, \epsilon_2, \cdots, \epsilon_n) A_2 Y
+\end{align*}
+设度量矩阵为$G$，由于$\epsilon_1, \epsilon_2, \cdots, \epsilon_n$为标准正交基，
+故$G = E$，于是
+\begin{align*}
+  (\mathscr{A} \alpha, \beta) & = (A_1 X)^T G Y = X^T A_1^T Y \\
+  (\alpha, \mathscr{B} \beta) & = X^T G A_2 Y =  X^T A_2 Y
+\end{align*}
+有题设可知
+\begin{align*}
+  (\mathscr{A} \alpha, \beta) & = (\alpha, \mathscr{B} \beta) \\
+  X^T A_1^T Y                 & = X^T A_2 Y
+\end{align*}
+故
+\begin{align*}
+  A_1^T = A_2
+\end{align*}
+
+
 
 
 
