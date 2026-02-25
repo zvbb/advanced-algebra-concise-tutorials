@@ -1,0 +1,136 @@
+\documentclass{article}
+\usepackage{mathtools} 
+\usepackage{fontspec}
+\usepackage[UTF8]{ctex}
+\usepackage{amsthm}
+\usepackage{mdframed}
+\usepackage{xcolor}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{hyperref}
+
+
+% 定义新的带灰色背景的说明环境 zremark
+\newmdtheoremenv[
+  backgroundcolor=gray!10,
+  % 边框与背景一致，边框线会消失
+  linecolor=gray!10
+]{zremark}{注释}
+
+% 通用矩阵命令: \flexmatrix{矩阵名}{元素符号}{行数}{列数}
+\newcommand{\flexmatrix}[4]{
+  \[
+  #1 = \begin{pmatrix}
+    #2_{11}     & #2_{12}     & \cdots & #2_{1#4}   \\
+    #2_{21}     & #2_{22}     & \cdots & #2_{2#4}   \\
+    \vdots      & \vdots      & \ddots & \vdots     \\
+    #2_{#31}    & #2_{#32}    & \cdots & #2_{#3#4}
+  \end{pmatrix}
+  \]
+}
+
+% 简化版命令（默认矩阵名为A，元素符号为a）: \quickmatrix{行数}{列数}
+\newcommand{\quickmatrix}[2]{\flexmatrix{A}{a}{#1}{#2}}
+
+
+\begin{document}
+\title{6.3}
+\author{张志聪}
+\maketitle
+
+\section*{1}
+
+验证定义即可
+\begin{itemize}
+  \item (i)
+
+        对任意$k_1, k_2 \in \mathbb{C}, f_1, f_2, g \in \mathbb{C}[x]_n$，有
+        \begin{align*}
+          (k_1 f_1 + k_2 f_2, g)
+           & = \sum \limits_{k = 1}^n (k_1 f_1 + k_2 f_2)(k) \overline{g(k)}                                           \\
+           & = \sum \limits_{k = 1}^n [k_1 f_1(k) + k_2 f_2(k)] \overline{g(k)}                                        \\
+           & = \sum \limits_{k = 1}^n k_1 f_1(k)  \overline{g(k)} + \sum \limits_{k = 1}^n k_2 f_2(k)  \overline{g(k)} \\
+           & = k_1 \sum \limits_{k = 1}^n f_1(k)  \overline{g(k)} + k_2 \sum \limits_{k = 1}^n f_2(k)  \overline{g(k)} \\
+           & = k_1 (f_1, g) + k_2 (f_2, g)
+        \end{align*}
+
+  \item (ii)
+
+        \begin{align*}
+          \overline{(g, f)}
+           & = \overline{\sum \limits_{k = 1}^n g(k) \overline{f(k)}} \\
+           & = \sum \limits_{k = 1}^n \overline{g(k) \overline{f(k)}} \\
+           & = \sum \limits_{k = 1}^n \overline{g(k)} f(k)            \\
+           & = (f, g)
+        \end{align*}
+
+  \item (iii)
+
+        对任意$f \in \mathbb{C}[x]_n$，有
+        \begin{align*}
+          (f, f) & = \sum \limits_{k = 1}^n f(k) \overline{f(k)} \\
+                 & = \sum \limits_{k = 1}^n |f(k)|^2             \\
+                 & \geq 0
+        \end{align*}
+
+        $f = 0$，显然$(f, f) = 0$；
+
+        $(f, f) = 0$，假设$f \neq 0$，$f$是$n - 1$次多项式，故$f(x) = 0$只有$n - 1$个根，
+        这与$(f, f) = 0$，$f$有$n$个根矛盾，故$f = 0$.
+\end{itemize}
+
+\section*{2}
+
+\begin{itemize}
+  \item 必要性;
+
+        $U$是酉矩阵，故
+        \begin{align*}
+          U \overline{U^T} = E
+        \end{align*}
+        设$U = (u_{ij})$，把$U$的行向量组写出：
+        \begin{align*}
+          \mu_i = (u_{i1} , u_{i2}, \cdots, u_{in}) (i = 1, 2, \cdots, n)
+        \end{align*}
+        把它们看做$\mathbb{C}^n$中向量组，则$U \overline{U^T} = E$等价于
+        \begin{align*}
+          (\mu_i, \mu_j) = u_{i1} \overline{u_{j1}} + u_{i2} \overline{u_{j2}}
+          + \cdots + u_{in} \overline{u_{jn}}= \delta_{ij}
+        \end{align*}
+        即$\mu_1, \mu_2, \cdots, \mu_n$是$\mathbb{C}^n$中的一组标准正交基。
+
+        如把$U$的列向量组写出
+        \begin{align*}
+          \mu_i = \begin{bmatrix}
+                    u_{1i} \\
+                    u_{2i} \\
+                    \vdots \\
+                    u_{ni}
+                  \end{bmatrix}
+          (i = 1, 2, \cdots, n)
+        \end{align*}
+        把它们看做$\mathbb{C}^n$中向量组，则$\overline{U^T} U = E$等价于
+        \begin{align*}
+          (\mu_i, \mu_j)
+           & = \overline{(\mu_j, \mu_i)}                                                                                      \\
+           & = \overline{\mu_{1j} \overline{\mu_{1i}} + \mu_{2j} \overline{\mu_{2i}} + \cdots + \mu_{nj} \overline{\mu_{ni}}} \\
+           & = \overline{\mu_{1i}} \mu_{1j} + \overline{\mu_{2i}} \mu_{2j} + \cdots + \overline{\mu_{ni}} \mu_{ni}            \\
+           & = \delta_{ij}
+        \end{align*}
+        即$\mu_1, \mu_2, \cdots, \mu_n$是$\mathbb{C}^n$中的一组标准正交基。
+
+  \item 充分性.
+
+        以行向量组为例，于是我们有
+        \begin{align*}
+          U \overline{U^T} = E
+        \end{align*}
+        故$U$是酉矩阵。
+\end{itemize}
+
+\section*{3}
+
+
+
+
+\end{document}
