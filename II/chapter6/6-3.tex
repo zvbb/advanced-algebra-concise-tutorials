@@ -8,6 +8,8 @@
 \usepackage{amssymb}
 \usepackage{amsmath}
 \usepackage{hyperref}
+\usepackage{mathrsfs}
+
 
 
 % 定义新的带灰色背景的说明环境 zremark
@@ -130,7 +132,250 @@
 
 \section*{3}
 
+\begin{itemize}
+  \item (1)
 
+        假设$G$不可逆，设$G$的列向量为
+        \begin{align*}
+          \mu_i = \begin{bmatrix}
+                    g_{1i} \\
+                    g_{2i} \\
+                    \vdots \\
+                    g_{ni}
+                  \end{bmatrix}
+          (i = 1, 2, \cdots, n)
+        \end{align*}
+        于是我们有
+        \begin{align*}
+          k_1 \mu_1 + k_2 \mu_2 + \cdots + k_n \mu_n = 0
+        \end{align*}
+        其中$k_1, k_2, \cdots, k_n$不全为零，故有
+        \begin{align*}
+          (\sum \limits_{i = 1}^n k_i \epsilon_i, \epsilon_j) = 0, j = 1, 2, \cdots, n
+        \end{align*}
+        令
+        \begin{align*}
+          \alpha = \sum \limits_{i = 1}^n k_i \epsilon_i
+        \end{align*}
+        显然$\alpha \neq 0$，因为对任意$\epsilon_j(j = 1, 2, \cdots, n)$，有
+        \begin{align*}
+          (\alpha, \epsilon_j) = 0
+        \end{align*}
+        于是可得
+        \begin{align*}
+          (\alpha, \alpha) = 0
+        \end{align*}
+        出现矛盾。
+  \item (2)
+
+        对任意$\alpha = (\epsilon_1, \epsilon_2, \cdots, \epsilon_n) X, \beta = (\epsilon_1, \epsilon_2, \cdots, \epsilon_n) Y$，
+        利用本题（3），我们有
+        \begin{align*}
+          (\alpha, \beta) & = X^T G \overline{Y}
+        \end{align*}
+        因为
+        \begin{align*}
+          (\alpha, \beta) = \overline{(\beta, \alpha)}
+        \end{align*}
+        故
+        \begin{align*}
+          X^T G \overline{Y}
+           & = \overline{Y^T G \overline{X}} \\
+           & = \overline{Y^T} \overline{G} X
+        \end{align*}
+        因为$(\alpha, \beta)$是标量，所以转置不影响取值，故
+        \begin{align*}
+          \overline{Y^T} \overline{G} X
+           & = (\overline{Y^T} \overline{G} X)^T \\
+           & = X^T \overline{G}^T \overline{Y}
+        \end{align*}
+        于是可得
+        \begin{align*}
+          X^T G \overline{Y} & = X^T \overline{G}^T \overline{Y}
+        \end{align*}
+        所以
+        \begin{align*}
+          G = \overline{G}^T
+        \end{align*}
+
+  \item (3)
+
+        证明略。
+\end{itemize}
+
+\section*{4}
+
+提示：
+显然$1, x, x^2$是$\mathbb{C}[x]_n$的一组基，然后对这组基进行正交化和单位化即可。
+
+\section*{5}
+
+证明思路和命题2.3类似。
+
+酉变换在标准正交基下的矩阵$U$是酉矩阵，故
+\begin{align*}
+  U \overline{U^T} = E
+\end{align*}
+由习题3-(2)可知$\overline{U^T} = U$，所以
+\begin{align*}
+  |U \overline{U^T}| = |U| \cdot |\overline{U^T}| = |U|^2 = 1
+\end{align*}
+故$|U| = \pm 1$.
+
+设$\lambda_0$是任意特征值，由习题3-(1)可知$U$可逆，故$\lambda_0 \neq 0$
+（因$f(\lambda_0) = |0 \cdot E - U| = |-U| \neq 0$）.齐次线性方程组
+$(\lambda_0 - U) X = 0$在$\mathbb{C}^n$内有一非零解向量$X_0$，于是
+$U X_0 = \lambda_0 X_0$，两边取复共轭再转置，得$\overline{X_0^T} \overline{U^T} = \overline{\lambda_0} \overline{X_0^T}$，
+因为$\overline{U^T} = U$，所以$\overline{X_0^T} U = \overline{\lambda_0} \overline{X_0^T}$，
+等式两边右乘$X_0$，利用$UX_0 = \lambda_0 X_0$，得
+\begin{align*}
+  \overline{X_0^T} U X_0         & = \overline{\lambda_0} \overline{X_0^T} X_0 \\
+  \overline{X_0^T} \lambda_0 X_0 & = \overline{\lambda_0} \overline{X_0^T} X_0
+\end{align*}
+现设
+\begin{align*}
+  X_0 = \begin{bmatrix}
+          x_{1}  \\
+          x_{2}  \\
+          \vdots \\
+          x_{n}
+        \end{bmatrix}
+  \neq 0
+\end{align*}
+则
+\begin{align*}
+  \overline{X_0^T} X_0 & = (\overline{x_1}, \overline{x_2}, \cdots, \overline{x_n}) \begin{bmatrix}
+                                                                                      x_{1}  \\
+                                                                                      x_{2}  \\
+                                                                                      \vdots \\
+                                                                                      x_{n}
+                                                                                    \end{bmatrix} \\
+                       & = |x_1|^2 + |x_2|^2 + \cdots + |x_n|^2                                    \\
+                       & \neq 0
+\end{align*}
+于是立得$\lambda_0 \overline{\lambda_0} = 1$，即$|\lambda_0| = 1$.
+
+\section*{6}
+
+当$\alpha = 0$时，命题显然正确。
+现设$\alpha \neq 0$.令
+\begin{align*}
+  \gamma = \alpha - \frac{(\alpha, \beta)}{(\beta, \beta)} \beta
+\end{align*}
+由内积的性质可知$(\beta, \beta)$是实数。
+
+根据内积的正定性，有$(\gamma, \gamma) \geq 0$，即
+\begin{align*}
+  0 \leq (\gamma, \gamma)
+   & = (\alpha - \frac{(\alpha, \beta)}{(\beta, \beta)} \beta, \alpha - \frac{(\alpha, \beta)}{(\beta, \beta)} \beta)                                                \\
+   & = (\alpha, \alpha) - \frac{\overline{(\alpha, \beta)}}{(\beta, \beta)} (\alpha, \beta)
+  - \frac{(\alpha, \beta)}{(\beta, \beta)} (\beta, \alpha) + \frac{(\alpha, \beta)}{(\beta, \beta)} \frac{\overline{(\alpha, \beta)}}{(\beta, \beta)} (\beta, \beta) \\
+\end{align*}
+因为
+\begin{align*}
+  \frac{(\alpha, \beta)}{(\beta, \beta)} (\beta, \alpha)
+   & = \frac{(\alpha, \beta)}{(\beta, \beta)} \overline{(\alpha, \beta)}
+\end{align*}
+故
+\begin{align*}
+  0 & \leq  (\alpha, \alpha) - \frac{\overline{(\alpha, \beta)}}{(\beta, \beta)} (\alpha, \beta)
+  - \frac{(\alpha, \beta)}{(\beta, \beta)} (\beta, \alpha) + \frac{(\alpha, \beta)}{(\beta, \beta)} \frac{\overline{(\alpha, \beta)}}{(\beta, \beta)} (\beta, \beta)                                     \\
+    & = (\alpha, \alpha) - 2 \frac{\overline{(\alpha, \beta)}}{(\beta, \beta)} (\alpha, \beta) + \frac{(\alpha, \beta)}{(\beta, \beta)} \frac{\overline{(\alpha, \beta)}}{(\beta, \beta)} (\beta, \beta) \\
+    & = (\alpha, \alpha) - 2 \frac{|(\alpha, \beta)|^2}{(\beta, \beta)} + \frac{|(\alpha, \beta)|^2}{(\beta, \beta)}                                                                                     \\
+    & = (\alpha, \alpha) - \frac{|(\alpha, \beta)|^2}{(\beta, \beta)}
+\end{align*}
+由$(\alpha, \alpha) - \frac{|(\alpha, \beta)|^2}{(\beta, \beta)} \geq 0$，得
+\begin{align*}
+  (\alpha, \alpha)                & \geq \frac{|(\alpha, \beta)|^2}{(\beta, \beta)} \\
+  (\alpha, \alpha) (\beta, \beta) & \geq |(\alpha, \beta)|^2                        \\
+  |\alpha| |\beta|                & \geq |(\alpha, \beta)|
+\end{align*}
+
+等式成立当且仅当$(\gamma, \gamma) = 0$，即$\gamma = 0$，由$\gamma = 0$可得：
+\begin{align*}
+  \alpha = \frac{(\alpha, \beta)}{(\beta, \beta)} \beta
+\end{align*}
+此时$\alpha, \beta$是线性相关的。
+
+\section*{7}
+
+我们有
+\begin{align*}
+  |\alpha + \beta|^2
+   & = (\alpha + \beta, \alpha + \beta)                                      \\
+   & = (\alpha, \alpha) + (\alpha, \beta) + (\beta, \alpha) + (\beta, \beta) \\
+\end{align*}
+因为
+\begin{align*}
+  (\alpha, \beta) = \overline{(\beta, \alpha)}
+\end{align*}
+故
+\begin{align*}
+  (\alpha, \beta) + (\beta, \alpha) & = 2 \Re [(\alpha, \beta)]
+\end{align*}
+$\Re [(\alpha, \beta)]$表示复数$(\alpha, \beta)$的实部。
+
+因为复数的实部小于等于复数的模，所以
+\begin{align*}
+  \Re [(\alpha, \beta)] \leq |(\alpha, \beta)|
+\end{align*}
+综上，并利用柯西-布尼雅可夫斯基不等式，我们有
+\begin{align*}
+  |\alpha + \beta|^2
+   & = (\alpha, \alpha) + (\alpha, \beta) + (\beta, \alpha) + (\beta, \beta) \\
+   & = (\alpha, \alpha)  + 2 \Re [(\alpha, \beta)] + (\beta, \beta)          \\
+   & \leq (\alpha, \alpha)  + 2 |(\alpha, \beta)| + (\beta, \beta)           \\
+   & \leq (\alpha, \alpha)  + 2 |\alpha| |\beta| + (\beta, \beta)            \\
+   & = (|\alpha| + |\beta|)^2
+\end{align*}
+故
+\begin{align*}
+  |\alpha + \beta| \leq |\alpha| + |\beta|
+\end{align*}
+
+\section*{8}
+
+\begin{itemize}
+  \item (1)
+
+        由内积的正定性，我们有
+        \begin{align*}
+          d(\alpha, \beta)
+           & = |\alpha - \beta|                        \\
+           & = \sqrt{(\alpha - \beta, \alpha - \beta)} \\
+           & \geq 0
+        \end{align*}
+        且$d(\alpha, \beta) = 0$当且仅当$\alpha - \beta = 0$，即$\alpha = \beta$.
+
+  \item (2)
+
+        我们有
+        \begin{align*}
+          d(\alpha, \beta)^2
+           & = |\alpha - \beta|^2                      \\
+           & = (\alpha - \beta, \alpha - \beta)        \\
+           & = (-1)^2 (\alpha - \beta, \alpha - \beta) \\
+           & = (-(\alpha - \beta), - (\alpha - \beta)) \\
+           & = (\beta - \alpha, \beta - \alpha)        \\
+           & = d(\beta, \alpha)^2
+        \end{align*}
+        由距离的非负性可知
+        \begin{align*}
+          d(\alpha, \beta) = d(\beta, \alpha)
+        \end{align*}
+
+  \item (3)
+
+        由习题7，我们有
+        \begin{align*}
+          d(\alpha, \gamma)
+           & = d(\alpha, \gamma - \beta + \beta)      \\
+           & = |\alpha - (\gamma - \beta + \beta)|    \\
+           & = |\alpha - \beta + \beta - \gamma|      \\
+           & \leq |\alpha - \beta| + |\beta - \gamma| \\
+           & = d(\alpha, \beta) + d(\beta, \gamma)
+        \end{align*}
+\end{itemize}
 
 
 \end{document}
