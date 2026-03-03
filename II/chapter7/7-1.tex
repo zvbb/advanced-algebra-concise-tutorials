@@ -1,0 +1,275 @@
+\documentclass{article}
+\usepackage{mathtools} 
+\usepackage{fontspec}
+\usepackage[UTF8]{ctex}
+\usepackage{amsthm}
+\usepackage{mdframed}
+\usepackage{xcolor}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{hyperref}
+\usepackage{mathrsfs}
+
+
+
+% 定义新的带灰色背景的说明环境 zremark
+\newmdtheoremenv[
+  backgroundcolor=gray!10,
+  % 边框与背景一致，边框线会消失
+  linecolor=gray!10
+]{zremark}{注释}
+
+% 通用矩阵命令: \flexmatrix{矩阵名}{元素符号}{行数}{列数}
+\newcommand{\flexmatrix}[4]{
+  \[
+  #1 = \begin{pmatrix}
+    #2_{11}     & #2_{12}     & \cdots & #2_{1#4}   \\
+    #2_{21}     & #2_{22}     & \cdots & #2_{2#4}   \\
+    \vdots      & \vdots      & \ddots & \vdots     \\
+    #2_{#31}    & #2_{#32}    & \cdots & #2_{#3#4}
+  \end{pmatrix}
+  \]
+}
+
+% 简化版命令（默认矩阵名为A，元素符号为a）: \quickmatrix{行数}{列数}
+\newcommand{\quickmatrix}[2]{\flexmatrix{A}{a}{#1}{#2}}
+
+
+\begin{document}
+\title{7.1}
+\author{张志聪}
+\maketitle
+
+\section*{1}
+
+todo
+
+\section*{2}
+
+$V_{\lambda_0}$特征子空间的维数为$k$，
+于是可得$rank(A) = n - k$，由命题1.4可知，在$V$内存在一组基，
+使得该组基下$\mathscr{A}$的矩阵成Jordan形矩阵，
+因为$rank(A) = n - k$，所以$Jordan$形矩阵$J$中，只有$n - k$个1，
+于是单个Jordan块($J_{ni}$)中$1$的个数不超过$n - k$个，
+从而$J_{ni}$的阶数$\leq n - k + 1$，
+于是有$J_{ni}^{n - k + 1} = 0$，
+由分块矩阵乘法可知，$J^{n - k + 1} = 0$.
+
+\section*{3}
+
+tip:
+判断一个矩阵是不是幂零矩阵，通常使用特征多项式是否为$f(\lambda) = \lambda^n$来判断.
+
+\section*{4}
+
+按照题设，得
+\begin{align*}
+  \mathscr{A}^n X = \sum \limits_{i = 1}^n (-1)^i C_n^i A^{n - i} X A^i
+\end{align*}
+以上可对n进行归纳完成证明。
+
+因为$A$是一个幂零矩阵，即存在整数$m$，使得$A^m = 0$.
+由于$\max\{2m - i, i\} \geq m, \forall i = 0, 1, 2, \cdots, 2m$.
+因此，对任意$X \in M_n(k), \mathscr{A}^{2m} X = 0$.
+
+\section*{5}
+
+ (i)由导数定义，对任意$f(x) \in K[x]_n$，有
+\begin{align*}
+  \mathscr{D}^n f = 0
+\end{align*}
+且对$f(x) = x^{n - 1}$，有
+\begin{align*}
+  \mathscr{D}^{n - 1} f = (n - 1)! \neq 0
+\end{align*}
+故$\mathscr{D}^{n - 1} \neq 0$。
+
+综上，$\mathscr{D}$是循环幂零线性变换。
+
+(ii)一组循环基：
+\begin{align*}
+  \mathscr{D}^{n - 1} x^{n - 1},
+  \mathscr{D}^{n - 2} x^{n - 1},
+  \cdots,
+  \mathscr{D} x^{n - 1},
+  x^{n - 1}
+\end{align*}
+
+\section*{6}
+
+$\mathscr{A}$的全部不变子空间只有
+\begin{align*}
+  \{0\}, ker \mathscr{A}, ker \mathscr{A}^2, \cdots, ker \mathscr{A}^{n - 1}, V
+\end{align*}
+一共n + 1个。
+
+因为$\mathscr{A}$是循环幂零线性变换，于是可得对于每个$k$，
+\begin{align*}
+  ker\, \mathscr{A}^k = span \{\epsilon_{n - k + 1}, \epsilon_{n - k + 2}, \cdots, \epsilon_n\}
+\end{align*}
+所以
+\begin{align*}
+  \{0\} \subset ker \mathscr{A} \subset ker \mathscr{A}^{2} \subset \cdots \subset ker \mathscr{A}^{n - 1} \subset V
+\end{align*}
+另外，需要证明$\mathscr{A}$的任意不变子空间，都属于以上子空间。
+
+todo
+
+% $\epsilon_1, \epsilon_2, \cdots, \epsilon_n$是一组循环基，故也可表示成
+% \begin{align*}
+%   e_1 & = \epsilon_n,             \\
+%   e_2 & = \mathscr{A} e_1,        \\
+%       & \vdots                    \\
+%   e_n & = \mathscr{A}^{n - 1} e_1
+% \end{align*}
+% 设$M$是非零不变子空间，任意$\beta \in M$，都可以被
+% $e_1, e_2 \cdots, e_n$线性表示，
+% 我们定义函数
+% \begin{align*}
+%   h(w) = max{i | w = a_1 e_1 + a_2 e_2 + \cdots + a_n e_n}
+% \end{align*}
+% 我们称$h(w_0), $为向量的高度，我们可以定义上确界为
+% \begin{align*}
+%   s = \sup \{h(w) | w \in M\}
+% \end{align*}
+% 因为$W$非空和有上界，由上界定理可知，上确界$s$存在.
+
+% 对$e_s$反复使用$\mathscr{A}$，可以得到
+% \begin{align*}
+%   \mathscr{A} e_s             & = e_{s + 1} \\
+%   \vdots                                    \\
+%   \mathscr{A}^{n - s + 1} e_s & = e_n
+% \end{align*}
+% 由于$M$是非零不变子空间，所以$e_n \in M$，
+
+\section*{7}
+
+$\mathscr{A}$是幂零线性变换，故$\mathscr{A}$只有特征值0，所以
+$\alpha, \beta$属于$V_0$特征子空间，
+由题设可知$V_0$的维数$\geq 2$，不妨设为$k$，
+由习题2可知，$\mathscr{A}^{n - k + 1} = 0$，
+由于$n - k + 1 < n - 1$，由循环幂零线性变换定义，
+$\mathscr{A}$不是循环幂零线性变换。
+
+\section*{8}
+
+由$\mathscr{A} \mathscr{B} = \mathscr{B} \mathscr{A}$可知，
+
+接下来证明，若干$\mathscr{A}, \mathscr{B}$的构成的乘积，与排列顺序无关。
+
+假设有$m$个$\mathscr{A}$，$n$个$\mathscr{B}$，$t = m + n$，对$t$进行归纳。
+
+$t = 1$,显然成立，因为要么只有一个$\mathscr{A}$，要么只有一个$\mathscr{B}$;
+
+归纳假设$< t$时，命题成立。
+
+考虑一个有$m$个$\mathscr{A}$，$n$个$\mathscr{B}$组成的，长度为$t$的乘积：
+\begin{align*}
+  P = x_1 x_2 \cdots x_t
+\end{align*}
+其中$x_i$是$\mathscr{A}$或$\mathscr{B}$.
+
+如果$x_1 = \mathscr{A}$，则
+\begin{align*}
+  P = \mathscr{A} \cdot (x_2 x_3 \cdots x_t)
+\end{align*}
+于是$(x_2 x_3 \cdots x_t)$中的总数为$t - 1$项，其中有$m - 1$个$\mathscr{A}$，$n$个$\mathscr{B}$，
+所以由归纳假设可知
+\begin{align*}
+  P & = \mathscr{A} \cdot \mathscr{A}^{m - 1} \mathscr{B}^n \\
+    & = \mathscr{A}^m \mathscr{B}^n
+\end{align*}
+同理$x_1 = \mathscr{B}$时，
+\begin{align*}
+  P & = \mathscr{B} \cdot (x_2 x_3 \cdots x_t)              \\
+    & = \mathscr{B} \cdot \mathscr{A}^m \mathscr{B}^{n - 1}
+\end{align*}
+由$\mathscr{A} \mathscr{B} = \mathscr{B} \mathscr{A}$可知，
+$\mathscr{B} \cdot \mathscr{A}^m = \mathscr{A}^m \cdot \mathscr{B}$，所以
+\begin{align*}
+  P & = \mathscr{A}^m \cdot \mathscr{B} \mathscr{B}^{n - 1} \\
+    & = \mathscr{A}^m \mathscr{B}^{n}
+\end{align*}
+因此，无论第一个因子是$\mathscr{A}$还是$\mathscr{B}$，结果都是$\mathscr{A}^m \mathscr{B}^{n}$。
+
+归纳完成。
+
+于是，我们有
+\begin{align*}
+  (\mathscr{A} + \mathscr{B})^n
+   & = \sum \limits_{i = 0}^n C_n^i \mathscr{A}^{n - i} \mathscr{B}^i
+\end{align*}
+
+由题意可知，存在正整数$k_1, k_2$使得$\mathscr{A} = 0, \mathscr{B} = 0$，
+取$l = 2 \max\{k_1, k_2\}$，于是我们有
+\begin{align*}
+  max\{2l - i, i\} \geq l, i = 0, 1, 2, \cdots, 2l
+\end{align*}
+于是
+\begin{align*}
+  (\mathscr{A} + \mathscr{B})^{2l} = 0
+\end{align*}
+所以，$\mathscr{A} + \mathscr{B}$是幂零线性变换。
+
+\section*{9}
+
+ (i)
+假设$k \mathscr{E} - \mathscr{A}$不可逆，即$k \mathscr{E} - \mathscr{A}$存在非零解$\alpha$，
+即
+\begin{align*}
+  (k \mathscr{E} - \mathscr{A}) \alpha & = 0                   \\
+  k \alpha                             & =  \mathscr{A} \alpha
+\end{align*}
+于是可知$\mathscr{A}$存在特征值$k \neq 0$且$\alpha$是特征向量，
+这与$\mathscr{A}$是幂零线性变换只有特征值0矛盾。
+
+(ii)
+
+取$\mathscr{A}$的一组基，设
+$k \mathscr{E} - \mathscr{A}$在这组基下的矩阵为$A$，
+由(i)可知矩阵$A$有可逆矩阵$A^{-1}$，由矩阵和线性变换一一对应的关系即可得到目标矩阵。
+
+\section*{10}
+
+有命题1.2可知
+\begin{align*}
+  V = I(\alpha_1) \oplus I(\alpha_2) \oplus \cdots \oplus I(\alpha_s)
+\end{align*}
+设$J_i$的阶数为$n_i$，于是我们有
+\begin{align*}
+  \mathscr{A}^{n_i} \alpha_i = 0
+\end{align*}
+即
+\begin{align*}
+  \mathscr{A} (\mathscr{A}^{n_i - 1} \alpha_i) = 0
+\end{align*}
+所以$\mathscr{A}^{n_i - 1} \alpha_i \in ker \mathscr{A} = V_{\lambda_0}, i = 1, 2, \cdots, s$.
+
+接下来证明，$\mathscr{A}^{n_i - 1}, i = 1, 2, \cdots, s$是$V_{\lambda_0}$的一组基。
+
+由$V = I(\alpha_1) \oplus I(\alpha_2) \oplus \cdots \oplus I(\alpha_s)$可知$\mathscr{A}^{n_i - 1}, i = 1, 2, \cdots, s$
+线性无关。
+
+假设$V_{\lambda_0}$的维数大于$k$，
+即$I(\alpha_i), i = 1, 2, \cdots, s$向量是$V_{\lambda_0}$基向量，
+不妨设$\beta \in I(\alpha_j), 1 \leq j \leq s$，
+$\beta$可表示为
+\begin{align*}
+  \beta = a_1 \alpha_j + a_2 \mathscr{A} \alpha_j + \cdots + a_{n_j} \mathscr{A}^{n_j - 1} \alpha_j
+\end{align*}
+其中$a_i, i = 1, 2, \cdots, n_j - 1$不全为0（注意下标范围为什么这样取，因为全零，这$\beta = a_{nj}\mathscr{A}^{n_j - 1} \alpha_j$
+已经在$\mathscr{A}^{n_i - 1}, i = 1, 2, \cdots, s$中了）。
+因为$\beta \in V_{\lambda_0}$，所以
+\begin{align*}
+  \mathscr{A} \beta                                                                                           & = 0  \\
+  \mathscr{A} (a_1 \alpha_j + a_2 \mathscr{A} \alpha_j + \cdots + a_{n_j} \mathscr{A}^{n_j - 1} \alpha_j)     & = 0  \\
+  a_1 \mathscr{A} \alpha_j + a_2 \mathscr{A}^2 \alpha_j + \cdots + a_{n_j} \mathscr{A}^{n_j} \alpha_j         & = 0  \\
+  a_1 \mathscr{A} \alpha_j + a_2 \mathscr{A}^2 \alpha_j + \cdots + a_{n_j - 1} \mathscr{A}^{n_j} \alpha_j + 0 & =  0 \\
+  a_1 \mathscr{A} \alpha_j + a_2 \mathscr{A}^2 \alpha_j + \cdots + a_{n_j - 1} \mathscr{A}^{n_j} \alpha_j     & = 0
+\end{align*}
+这和$\mathscr{A} \alpha_j, \mathscr{A}^2, \cdots, \mathscr{A}^{n_j - 1}$线性无关矛盾，
+故假设不成立。
+
+综上，$V_{\lambda_0}$的维数等于$k$.
+
+\end{document}
