@@ -105,42 +105,58 @@ $\mathscr{A}$的全部不变子空间只有
 
 因为$\mathscr{A}$是循环幂零线性变换，于是可得对于每个$k$，
 \begin{align*}
-  ker\, \mathscr{A}^k = span \{\epsilon_{n - k + 1}, \epsilon_{n - k + 2}, \cdots, \epsilon_n\}
+  ker\, \mathscr{A}^k = span \{\mathscr{A}^{n - k} \alpha, \mathscr{A}^{n - k + 1} \alpha, \cdots, \mathscr{A}^{n - 1} \alpha\}
 \end{align*}
 所以
 \begin{align*}
   \{0\} \subset ker \mathscr{A} \subset ker \mathscr{A}^{2} \subset \cdots \subset ker \mathscr{A}^{n - 1} \subset V
 \end{align*}
-另外，需要证明$\mathscr{A}$的任意不变子空间，都属于以上子空间。
+另外，需要证明$\mathscr{A}$的任意非零不变子空间$M$，都属于以上子空间。
 
-todo
+为了方便表述，令
+\begin{align*}
+  e_1 & = \mathscr{A}^{n-1} \alpha \\
+  e_2 & = \mathscr{A}^{n-2} \alpha \\
+  \vdots                           \\
+  e_n & = \alpha
+\end{align*}
 
-% $\epsilon_1, \epsilon_2, \cdots, \epsilon_n$是一组循环基，故也可表示成
-% \begin{align*}
-%   e_1 & = \epsilon_n,             \\
-%   e_2 & = \mathscr{A} e_1,        \\
-%       & \vdots                    \\
-%   e_n & = \mathscr{A}^{n - 1} e_1
-% \end{align*}
-% 设$M$是非零不变子空间，任意$\beta \in M$，都可以被
-% $e_1, e_2 \cdots, e_n$线性表示，
-% 我们定义函数
-% \begin{align*}
-%   h(w) = max{i | w = a_1 e_1 + a_2 e_2 + \cdots + a_n e_n}
-% \end{align*}
-% 我们称$h(w_0), $为向量的高度，我们可以定义上确界为
-% \begin{align*}
-%   s = \sup \{h(w) | w \in M\}
-% \end{align*}
-% 因为$W$非空和有上界，由上界定理可知，上确界$s$存在.
+$M$的一组基可以被$e_1, e_2, \cdots, e_n$表示，
+取$M$任意基都可以表示成
+\begin{align*}
+  \epsilon_i = a_1 e_1 + a_2 e_2 + \cdots + a_n e_n, i = 1, 2, \cdots, n
+\end{align*}
+在该基下的最高非零坐标对应基向量$e_r$，此时$a_r \neq 0$。
 
-% 对$e_s$反复使用$\mathscr{A}$，可以得到
-% \begin{align*}
-%   \mathscr{A} e_s             & = e_{s + 1} \\
-%   \vdots                                    \\
-%   \mathscr{A}^{n - s + 1} e_s & = e_n
-% \end{align*}
-% 由于$M$是非零不变子空间，所以$e_n \in M$，
+由于$M$是不变子空间，于是我们有
+\begin{align*}
+  \mathscr{A}^{n - r} \epsilon_i & = a_r e_1
+\end{align*}
+可知$e_1 \in M$，因为
+\begin{align*}
+  \mathscr{A}^{n - r - 1} \epsilon_i
+   & = a_{r - 1} e_1 + a_r e_2
+\end{align*}
+也是可得$e_2 \in M$，
+类似地，可得$e_3, e_4, \cdots, e_r \in M$，故$ker \mathscr{A}^{r} \subset M$.
+
+接下来，我们证明$M \subset ker \mathscr{A}^{r}$。
+
+首先，证明$M$必须属于以上$n + 1$个不变子空间，
+$M = V$结论是显然的；$M \neq V$，那么$M$是否属于某个
+$ker \mathscr{A}, ker \mathscr{A}^{2}, \cdots, ker \mathscr{A}^{n - 1}$，
+假设不属于，于是存在$\beta \in M$，
+$\mathscr{A} \beta \neq 0, \mathscr{A}^{2} \beta \neq 0, \cdots, \mathscr{A}^{n - 1} \beta \neq 0$，
+因为$\beta, \mathscr{A} \beta, \mathscr{A}^{2} \beta, \cdots, \mathscr{A}^{n - 1} \beta$线性无关，
+所以$M$是n维空间，故$M = V$，与前提矛盾，所以$M$属于某个
+$ker \mathscr{A}, ker \mathscr{A}^{2}, \cdots, ker \mathscr{A}^{n - 1}$.
+
+假设$M \not \subset ker \mathscr{A}^{r}$，
+于是可得$M \subset ker \mathscr{A}^{s}, s > r$（$M = V$表述依然成立），
+所以$e_s \in M$，这与$M$在该基下的最高非零坐标对应基向量$e_r$矛盾，
+假设不成立，即$M \subset ker \mathscr{A}^{r}$.
+
+综上$M = ker \mathscr{A}^{r}$，命题得证。
 
 \section*{7}
 
