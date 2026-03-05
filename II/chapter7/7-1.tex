@@ -60,6 +60,28 @@ $V_{\lambda_0}$特征子空间的维数为$k$，
 tip:
 判断一个矩阵是不是幂零矩阵，通常使用特征多项式是否为$f(\lambda) = \lambda^n$来判断.
 
+以第一个矩阵为例。
+
+我们有
+\begin{align*}
+  f(\lambda) = |\lambda E - A| = \lambda^3
+\end{align*}
+
+\begin{align*}
+  A   & = \begin{bmatrix}
+            0  & - 3 & 3  \\
+            -2 & - 7 & 13 \\
+            -1 & - 4 & 7
+          \end{bmatrix} \\
+  A^2 & = \begin{bmatrix}
+            3 & 9 & -18 \\
+            1 & 3 & -6  \\
+            1 & 3 & -6
+          \end{bmatrix} \\
+  A^3 & = 0
+\end{align*}
+
+综上可得$\mathscr{A}$是循环幂零线性变换。
 \section*{4}
 
 按照题设，得
@@ -287,5 +309,167 @@ $\beta$可表示为
 故假设不成立。
 
 综上，$V_{\lambda_0}$的维数等于$k$.
+
+\section*{11}
+
+todo
+
+\section*{12}
+
+以第一个矩阵为例。
+
+由习题3可知，$\mathscr{A}$是循环幂零线性变换，
+于是存在$\alpha \in V$，使得
+\begin{align*}
+  \alpha, \mathscr{A} \alpha, \mathscr{A}^2 \alpha
+\end{align*}
+组成一组基。这里需要注意$\alpha \not \in ker \mathscr{A}$，否则
+$\mathscr{A} \alpha = 0$.我们通过解
+\begin{align*}
+  A x = 0
+\end{align*}
+这个线性方程组，解得
+\begin{align*}
+  ker  \mathscr{A} = span\left\{\begin{bmatrix}1 \\ 1 \\ 1\end{bmatrix}\right\}
+\end{align*}
+可得$dim \, ker \mathscr{A} = 1$，由习题10也可知，只有一个Jordan块。
+于是可取
+\begin{align*}
+  \alpha               & = (\epsilon_1, \epsilon_2, \epsilon_3) \begin{bmatrix}
+                                                                  0 \\
+                                                                  0 \\
+                                                                  1 \\
+                                                                \end{bmatrix}   \\
+  \mathscr{A} \alpha   & = (\epsilon_1, \epsilon_2, \epsilon_3) A \begin{bmatrix}
+                                                                    0 \\
+                                                                    0 \\
+                                                                    1 \\
+                                                                  \end{bmatrix}
+  = (\epsilon_1, \epsilon_2, \epsilon_3) \begin{bmatrix}
+                                           3  \\
+                                           13 \\
+                                           7
+                                         \end{bmatrix}                          \\
+  \mathscr{A}^2 \alpha & = (\epsilon_1, \epsilon_2, \epsilon_3) A \begin{bmatrix}
+                                                                    3  \\
+                                                                    13 \\
+                                                                    7
+                                                                  \end{bmatrix}
+  = (\epsilon_1, \epsilon_2, \epsilon_3) \begin{bmatrix}
+                                           - 18 \\
+                                           -6   \\
+                                           -6
+                                         \end{bmatrix}                          \\
+  \mathscr{A}^3 \alpha & = (\epsilon_1, \epsilon_2, \epsilon_3) \begin{bmatrix}
+                                                                  - 18 \\
+                                                                  -6   \\
+                                                                  -6
+                                                                \end{bmatrix}
+  = 0
+\end{align*}
+所以以$\mathscr{A}^2 \alpha, \mathscr{A} \alpha, \alpha$为基，$\mathscr{A}$在此组基下的矩阵为
+\begin{align*}
+  J = \begin{bmatrix}
+        0 & 1 & 0 \\
+        0 & 0 & 1 \\
+        0 & 0 & 0
+      \end{bmatrix}
+\end{align*}
+
+\section*{13}
+
+\begin{itemize}
+  \item (1)
+
+        我们有
+        \begin{align*}
+          \mathscr{T}^2(X)
+           & = \mathscr{T}(\mathscr{T}(X)) \\
+           & = \mathscr{T}(T^T X T)        \\
+           & = T^T (T^T X T) T             \\
+           & = (T^T)^2 X T^2
+        \end{align*}
+        容易得到$\mathscr{T}^k(X) = (T^T)^k X T^k$.
+        有题设$T$是幂零矩阵可知，存在$k_1$使得$T^{k_1} = 0$，故
+        \begin{align*}
+          \mathscr{T}^{k_1}(X) = (T^T)^{k_1} X T^{k_1} & = 0
+        \end{align*}
+  \item (2)
+
+        我们有
+        \begin{align*}
+          T^2 = 0
+        \end{align*}
+        所以
+        \begin{align*}
+          \mathscr{T}^2(X) = (T^T)^2 X T^2 = 0
+        \end{align*}
+        故$\mathscr{T}$是循环幂零线性变换。
+
+        可选
+        \begin{align*}
+          X_0               & = \begin{bmatrix}
+                                  1 & 0 \\
+                                  0 & 1
+                                \end{bmatrix} \\
+          \mathscr{T} (X_0) & =
+          \begin{bmatrix}
+            0 & 0 \\
+            1 & 0
+          \end{bmatrix}
+          \begin{bmatrix}
+            1 & 0 \\
+            0 & 1
+          \end{bmatrix}
+          \begin{bmatrix}
+            0 & 1 \\
+            0 & 0
+          \end{bmatrix}
+          = \begin{bmatrix}
+              0 & 0 \\
+              0 & 1
+            \end{bmatrix}
+        \end{align*}
+        $X_0 \neq 0$，且$\mathscr{T}(X_0) \neq 0$，以$\mathscr{T}(X_0), X_0$作为一组基，
+        $\mathscr{T}$在此组基下的矩阵为
+        \begin{align*}
+          \begin{bmatrix}
+            0 & 1 \\
+            0 & 0
+          \end{bmatrix}
+        \end{align*}
+  \item (3)
+
+        与(1)可知
+        \begin{align*}
+          \mathscr{T}^k(X) = (T^T)^k X T^k
+        \end{align*}
+        由题设$\mathscr{T}$是幂零线性变换，所以存在$k_1 \in \mathbb{N}$使得
+        \begin{align*}
+          \mathscr{T}^{k_1}(X) = (T^T)^{k_1} X T^{k_1} = 0, \forall X \in M_n(K)
+        \end{align*}
+        接下来证明$T^{k_1} = 0$，反证法，假设$T^{k_1} \neq 0$，那么$(T^T)^{k_1} \neq 0$，不妨设
+        $(T^T)^{k_1}$的$i$列不为零，$T^{k_1}$的$j$行不为零，
+        由$X$的任意性，取$X = E_{ij}$，即只在$i$行$j$列的位置上矩阵为1，其他位置为0。于是
+        \begin{align*}
+          (T^T)^{k_1} X T^{k_1} 
+          & = (T^T)^{k_1} E_{ij} T^{k_1} \\
+          & \neq 0
+        \end{align*}
+        出现矛盾，故$T^{k_1} = 0$。
+
+        综上，$T$是幂零矩阵。
+\end{itemize}
+
+\section*{14}
+
+反证法，假设存在大于$k$阶的Jordan块$J_i$，
+即在某组基$\epsilon_1, \epsilon_2, \cdots, \epsilon_n$下，
+$\mathscr{A}$是Jordan形矩阵$J$，
+按照矩阵乘法和存在大于$k$阶的Jordan块，我们有
+\begin{align*}
+  J^k \neq 0
+\end{align*}
+这与$\mathscr{A}^k = 0$矛盾。
 
 \end{document}
