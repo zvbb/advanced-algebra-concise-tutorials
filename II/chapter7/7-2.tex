@@ -9,6 +9,7 @@
 \usepackage{amsmath}
 \usepackage{hyperref}
 \usepackage{mathrsfs}
+\usepackage{mathdots}
 
 
 
@@ -105,8 +106,10 @@ $\forall \alpha \in M_k$，都有
 于是$\mathscr{A}\big|_{M_k}$中$\lambda_0$的重数，就是$\mathscr{A}$中
 $\lambda_0$的重数。
 
-由教材中的内容可知，$M_k$中存在一组基，使得$\mathscr{A}$在这组基下的矩阵成Jordan标准型$J$，
-且以$\lambda_0$为特征值的Jordan块，因此
+由教材中的内容可知，$\mathscr{B} = \mathscr{A} - \lambda_0 E$
+限制在$M_k$内为幂零线性变换，根据命题2.1，在$M_k$中存在一组基，
+使得$\mathscr{A}\big|_{M_k}$在这组基下的矩阵成Jordan标准型$J$，
+且以$\lambda_0$为特征值的Jordan块，因此由Jordan块的特点，我们有
 \begin{align*}
   |\lambda E - J| = (\lambda - \lambda_0)^{dim M_k}
 \end{align*}
@@ -194,5 +197,305 @@ $J = \begin{pmatrix}
 
 综上，命题得证。
 
+\section*{6}
+略
+
+\section*{7}
+
+显然，$A$的特征值a具有n重，
+由习题3可知，$dim M_k$也是n，
+于是由习题1可知，J中以a为特征值的Jordan块是n阶的，
+故$J$只有一个Jordan块，且是n阶的，所以，A的Jordan标准型是
+\begin{align*}
+  J = \begin{bmatrix}
+        a & 1 &        &        & 0 \\
+          & a & 1      &        &   \\
+          &   & \ddots & \ddots &   \\
+          &   &        & a      & 1 \\
+          &   &        &        & a
+      \end{bmatrix}
+\end{align*}
+
+\section*{8}
+
+J是幂零矩阵，当$k \geq n$，则$J^k = 0$，
+此时，Jordan标准型就是零矩阵。
+
+当$k < n$时，由P79关于幂零矩阵的乘法性质，我们有
+$J^k$是上三角矩阵，且主对角线元素都是0，
+于是$J^k$的特征多项式
+\begin{align*}
+  f(\lambda) & = |\lambda E - J^k| \\
+             & = \lambda^n
+\end{align*}
+由第一节习题1可知，$J^k$是幂零矩阵。
+
+接下来，考虑Jordan块的阶数问题。
+
+按命题2.1中的方式，
+令$B = J^k - \lambda E = J^k - 0 \cdot E = J^k$，
+$M_i, N_i, i = 0, 1, \cdots$的定义与教材中一致。
+
+于是，我们有
+\begin{align*}
+  B^l = (J^k)^l = J^{lk}
+\end{align*}
+使用整数的带余除法，我们有
+\begin{align*}
+  n = q k + r
+\end{align*}
+于是，当$l \geq q$时，$J^{lk} = 0$，
+此时$dim M_l = dim Ker B^l = dim Ker J^{lk} = n$；
+$l < q$时，$dim B^l = dim J^{lk} = n - lk$，于是
+$dim M_l = n - dim B^l = lk$.
+
+利用命题2.4，我们有如下结论。
+\begin{itemize}
+  \item $l + 1 \leq q$时，$l$阶的Jordan块的个数为
+        \begin{align*}
+          2 dim M_l - dim M_{l + 1} - dim M_{l - 1}
+           & = 2 l k - (l + 1) k - (l - 1) k \\
+           & = 2lk - l k - k - lk + k        \\
+           & = 0
+        \end{align*}
+
+  \item $l = q$时，$l$阶的Jordan块的个数为
+        \begin{align*}
+          2 dim M_l - dim M_{l + 1} - dim M_{l - 1}
+           & = 2 lk - n - (l - 1) k        \\
+           & = 2 qk - (qk + r) - (q - 1) k \\
+           & = 2 qk - qk - r - qk + k      \\
+           & = k - r
+        \end{align*}
+
+  \item $l = q + 1$时，$l$阶的Jordan块的个数为
+        \begin{align*}
+          2 dim M_l - dim M_{l + 1} - dim M_{l - 1}
+           & = 2 n - n - (l - 1) k     \\
+           & = 2 n - n - (q + 1 - 1) k \\
+           & = 2 n - n - q k           \\
+           & = n - qk                  \\
+           & = r
+        \end{align*}
+
+  \item $l > q + 1$时，$l$阶的Jordan块的个数为
+        \begin{align*}
+          2 dim M_l - dim M_{l + 1} - dim M_{l - 1}
+           & = 2 n - n - n \\
+           & = 0
+        \end{align*}
+\end{itemize}
+
+综上，$J^k$的幂零矩阵中有$k - r$个$q$阶Jordan块，$r$个$q + 1$阶Jordan块。
+
+注：一共有$k$个Jordan块，这与$dim J^k = n - k$，$J^k$的解空间的维数是$n - dim J^k = k$是一致的。
+回顾第一节习题10.
+
+\section*{9}
+
+\begin{itemize}
+  \item (1) 方法一;
+
+        通过把$A$和$A^T$都看作在某组基下线性变换的矩阵，
+        两者的Jordan标准型$J$相同。
+
+        由命题2.2和命题2.4可知，线性变换的Jordan标准型只和
+        它的特征值和每个Jordan块的阶有关（即和$dim M_i$相关）。
+
+        我们知道，转置不影响行列式的值，即
+        \begin{align*}
+          |\lambda E - A|
+           & = |(\lambda E - A)^T| \\
+           & = |\lambda E - A^T|
+        \end{align*}
+        所以，两者的特征值相同。
+
+        对特征值$\lambda_0$，令
+        \begin{align*}
+          B = A - \lambda_0 E
+        \end{align*}
+        于是
+        \begin{align*}
+          rank (A - \lambda_0 E)^k = rank (A^T - \lambda_0 E)^k,
+          k = 1, 2, \cdots
+        \end{align*}
+        以上结论通过对k进行归纳容易得到。
+
+        于是，我们有
+        \begin{align*}
+          dim (Ker B^i)
+           & = n - dim (A - \lambda_0 E)^i   \\
+           & = n - dim (A^T - \lambda_0 E)^i
+        \end{align*}
+
+        综上，命题得证。
+
+  \item (2) 方法二.
+
+        复数矩阵$A$与Jordan标准型相似，即存在可逆矩阵使得
+        \begin{align*}
+          A = P^{-1} J P
+        \end{align*}
+        于是
+        \begin{align*}
+          A^T & = (P^{-1} J P)^T     \\
+              & = P^T J^T (P^{-1})^T
+        \end{align*}
+        令$Q = (P^{-1})^T$，则
+        \begin{align*}
+          A^T = Q^{-1} J^T Q
+        \end{align*}
+        所以，$A^T \backsim  J^T$.
+
+        利用反序矩阵的性质，令
+        \begin{align*}
+          R = \begin{bmatrix}
+                0      & 0       & 0      & 1      \\
+                0      & 0       & 1      & 0      \\
+                \vdots & \iddots & \ddots & \vdots \\
+                1      & 0       & 0      & 0
+              \end{bmatrix}_{n \times n}
+        \end{align*}
+        于是，我们有
+        \begin{align*}
+          J^T = R^{-1} J R
+        \end{align*}
+        （注：可以通过一个特别的例子来看具体的过程。）
+        所以，$J \backsim J^T$。
+
+        综上，$A^T \backsim A$.
+\end{itemize}
+
+\section*{10}
+
+\begin{itemize}
+  \item (1)
+
+        (i) $M_i$是子空间；
+
+        加法封闭:
+        任意$\alpha, \beta \in M_i$，则有存在$m_1, m_2$使得
+        \begin{align*}
+          (\mathscr{A} - \lambda_i E)^{m_1} \alpha & = 0 \\
+          (\mathscr{A} - \lambda_i E)^{m_2} \beta  & = 0
+        \end{align*}
+        取$m = max\{m_1, m_2\}$，于是
+        \begin{align*}
+          (\mathscr{A} - \lambda_i E)^{m} (\alpha + \beta)
+           & = (\mathscr{A} - \lambda_i E)^{m} \alpha + (\mathscr{A} - \lambda_i E)^{m} \beta                \\
+           & = (\mathscr{A} - \lambda_i E)^{m - m_1} (\mathscr{A} - \lambda_i E)^{m_1} \alpha
+          + (\mathscr{A} - \lambda_i E)^{m - m_2} (\mathscr{A} - \lambda_i E)^{m_2} \beta                    \\
+           & = (\mathscr{A} - \lambda_i E)^{m - m_1} \cdot 0 + (\mathscr{A} - \lambda_i E)^{m - m_2} \cdot 0 \\
+           & = 0
+        \end{align*}
+        故$\alpha + \beta \in M_i$.
+
+        数乘封闭:
+        任意$\alpha, \beta \in M_i$，因为$(\mathscr{A} - \lambda_i E)^{m}$
+        是线性变换，所以
+        \begin{align*}
+          (\mathscr{A} - \lambda_i E)^{m} (k \alpha)
+           & = k (\mathscr{A} - \lambda_i E)^{m} \alpha \\
+           & = k \cdot 0                                \\
+           & = 0
+        \end{align*}
+        故$k \alpha \in M_i$.
+
+        (ii) $M_i$是不变子空间。
+
+        对任意$\alpha \in M_i$，有
+        \begin{align*}
+          (\mathscr{A} - \lambda_i E)^{m} \alpha = 0
+        \end{align*}
+        另外
+        \begin{align*}
+          (\mathscr{A} - \lambda_i E)^m (\mathscr{A} \alpha)
+           & = \mathscr{A} (\mathscr{A} - \lambda_i E)^m \alpha \\
+           & = \mathscr{A} \cdot 0                              \\
+           & = 0
+        \end{align*}
+        注：第一个等式可以通过对m进行归纳完成证明。
+
+        故$\mathscr{A} \alpha \in M_i$，所以$M_i$是不变子空间。
+  \item (2)
+
+        因为$\mathscr{A}$的特征值都在数域K上，所以存在一组基，使得$\mathscr{A}$在这组基下的矩阵为Jordan标准型$J$.
+        在这组基下：
+        \begin{align*}
+          V = V_1 \oplus V_2 \oplus \cdots \oplus V_k
+        \end{align*}
+        其中$V_i:$由所有以$\lambda_i$为特征值的Jordan块对应的基向量张成。
+
+        命题转换为证明$V_i = M_i$.
+
+        (i)在$V_i$上，在它的基向量下，对应的矩阵
+        也是Jordan标准型，且每个Jordan块都有
+        \begin{align*}
+          J_{\lambda_i} = \lambda_i E + N
+        \end{align*}
+        其中N是幂零矩阵。所以
+        \begin{align*}
+          (\mathscr{A} - \lambda_i \mathscr{E}) \big|_{V_i}
+        \end{align*}
+        的矩阵为$N$，而$N^r = 0$（某个整数$r$）.
+        于是对任意$\alpha \in V_i$:
+        \begin{align*}
+          (\mathscr{A} - \lambda_i \mathscr{E})^r \alpha = 0
+        \end{align*}
+        故$V_i \subseteq M_i$.
+
+        (ii)反过来，任取$\alpha \in M_i$，把$V$拆分为
+        \begin{align*}
+          V = V_i \oplus \left( \bigoplus \limits_{j \neq i} V_j \right)
+        \end{align*}
+        于是$\alpha$可表示为
+        \begin{align*}
+          \alpha = \alpha_i + \sum\limits_{j \neq i} \alpha_j
+        \end{align*}
+        其中$\alpha_i \in V_i$，$\alpha_j \in V_j$.
+
+        因为$\alpha \in M_i$，存在$m$使得
+        \begin{align*}
+          (\mathscr{A} - \lambda_i \mathscr{E})^m \alpha = 0
+        \end{align*}
+        即
+        \begin{align*}
+          (\mathscr{A} - \lambda_i \mathscr{E})^m (\alpha_i + \sum\limits_{j \neq i} \alpha_j) & = 0 \\
+          (\mathscr{A} - \lambda_i \mathscr{E})^m \alpha_i
+          + \sum\limits_{j \neq i} (\mathscr{A} - \lambda_i \mathscr{E})^m \alpha_j            & = 0
+        \end{align*}
+        因为$V_i, V_j (j \neq i)$都是不变子空间，所以
+        \begin{align*}
+          (\mathscr{A} - \lambda_i \mathscr{E})^m \alpha_i \in V_i \\
+          (\mathscr{A} - \lambda_i \mathscr{E})^m \alpha_j \in V_j, j \neq i
+        \end{align*}
+        由直和0向量表示的唯一性可知
+        \begin{align*}
+          (\mathscr{A} - \lambda_i \mathscr{E})^m \alpha_i = 0 \\
+          (\mathscr{A} - \lambda_i \mathscr{E})^m \alpha_j = 0, j \neq i
+        \end{align*}
+        又因为，在$V_j$上，$\mathscr{A} - \lambda_i \mathscr{E}$
+        的矩阵为$J_j - \lambda_i E$是满秩的，故$\alpha_j = 0$，
+        所以
+        \begin{align*}
+          \alpha = \alpha_i \in V_i
+        \end{align*}
+        于是可得 $M_i \subseteq V_i$.
+
+        综上可得，$V_i = M_i$.
+  \item (3)
+
+        (i) $\mathscr{A}\big|_{M_i}$的Jordan标准型，就是保留以$\lambda_i$为特征值Jordan块；
+
+        (ii) 由(2)的证明过程可知$V_i = M_i$，为了讨论方便不妨设
+        $\bigoplus \limits_{j \neq i} V_j$的基向量为
+        $\epsilon_1, \epsilon_2, \cdots, \epsilon_t$，
+        于是可得
+        \begin{align*}
+          \overline{\epsilon_1}, \overline{\epsilon_2}, \cdots, \overline{\epsilon_t}
+        \end{align*}
+        是$V/M_i$的一组基，在这组基下，$\mathscr{A}$在$V/M_i$内的诱导变换的Jordan标准型
+        就是$J$中去掉以$\lambda_i$为特征值Jordan块。
+\end{itemize}
 
 \end{document}
